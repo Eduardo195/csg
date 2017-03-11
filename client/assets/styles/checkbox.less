@@ -1,0 +1,39 @@
+.checkbox {
+
+  label {
+    user-select: none;
+    font-weight: normal;
+    display: block;
+    cursor: pointer;
+    transition: 0.2s background-color;
+    margin-bottom: 0; // overriding bootstrap
+    padding-bottom: 0.25em 0;
+
+    &:hover {
+      background-color: @bg-color-alt;
+    }
+  }
+
+  label input {
+    visibility: hidden;/* <-- hide the default checkbox, the rest is to hide and alllow tabbing, which display:none prevents */
+    display:block;
+    height:0;
+    width:0;
+    position:absolute;
+    overflow:hidden;
+    font-size: 1.1em;
+  }
+
+  label span {/* <-- style the artificial checkbox */
+    height: 1em;
+    width: 1em;
+    border: 1px solid @font-color-title;
+    display: inline-block;
+    margin-right: 0.5em;
+    transition: 0.3s background;
+  }
+
+  [type=checkbox]:checked + span {/* <-- style its checked state */
+    background: @font-color-title;
+  }
+}

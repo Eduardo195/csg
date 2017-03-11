@@ -1,0 +1,10 @@
+export const SET_WORK_TITLE = 'crate-work-ad/SET_WORK_TITLE';
+export const SET_WORK_ROLE = 'crate-work-ad/SET_WORK_ROLE';
+export const SET_WORK_LOCATION = 'crate-work-ad/SET_WORK_LOCATION';
+export const SET_WORK_EMPLOYER = 'crate-work-ad/SET_WORK_EMPLOYER';
+export const SET_WORK_CONTRACT_TYPE = 'crate-work-ad/SET_WORK_CONTRACT_TYPE';
+export const SET_WORK_MIN_PAY = 'crate-work-ad/SET_WORK_MIN_PAY';
+export const SET_WORK_MAX_PAY = 'crate-work-ad/SET_WORK_MAX_PAY';
+export const SET_WORK_PAY_RANGE = 'crate-work-ad/SET_WORK_PAY_RANGE';
+export const SET_WORK_PAY_CRITERIA = 'crate-work-ad/SET_WORK_PAY_CRITERIA';
+export const SET_WORK_WRITE_UP = 'crate-work-ad/SET_WORK_WRITE_UP';

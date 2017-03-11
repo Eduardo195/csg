@@ -1,0 +1,43 @@
+.searchWrapper {
+  padding: 1em;
+
+  .anchor {
+    padding-left: 1em;
+
+    .no--results {
+      align-self: center;
+      align-items: center;
+
+      h1 {
+        margin: 0;
+        padding-bottom: 1em;
+      }
+    }
+  }
+  .pagination {
+
+    padding: 1em;
+
+      .page-item  {
+
+        .page-link {
+          cursor: pointer;
+          color: @font-color-main;
+
+          &:hover, &:focus {
+            background-color: lighten(@bg-color-tertiary, 50%);
+            border-color: lighten(@bg-color-tertiary, 50%);
+          }
+        }
+
+        &.active > .page-link {
+          background-color: @bg-color-tertiary;
+          border-color: @bg-color-tertiary;
+          color: @font-color-alt;
+        }
+      }
+
+
+  }
+
+}

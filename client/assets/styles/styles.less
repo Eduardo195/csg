@@ -1,0 +1,111 @@
+@import './constants.less';
+@import './header.less';
+@import './mainSearch.less';
+@import './latest.less';
+@import './offers.less';
+
+@import './advert.less';
+@import './opportunity.less';
+
+@import './buttons.less';
+@import './nav.less';
+@import './markdownBox';
+@import './footer';
+@import './dialog';
+@import './login';
+@import './register.less';
+@import './icons';
+@import './input.less';
+@import './dividers.less';
+@import './glyphicon.less';
+@import './flex.less';
+@import './layouts/layouts.less';
+@import './profile.less';
+@import './articles/articles.less';
+@import './opportunities.less';
+@import './logo.less';
+@import './filters.less';
+@import './checkbox.less';
+@import './font.less';
+@import './search.less';
+
+body, html {
+    font-family: @font-family;
+    color: @font-color-main;
+}
+
+body {
+    background: @bg-color-main;
+}
+
+// this allows us to have a sticky footer
+.root {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    main {
+            flex-grow: 1;
+    }
+}
+
+.in-b {
+    display: inline-block;
+}
+
+.flt-r {
+    float: right;
+}
+
+.flt-l {
+    float: left;
+}
+
+.centered {
+    text-align: center;
+}
+
+.spaced {
+    margin: 3em;
+}
+
+.hr-text {
+    line-height: 1em;
+    position: relative;
+    outline: 0;
+    border: 0;
+    color: black;
+    text-align: center;
+    height: 1.5em;
+    opacity: 0.5;
+
+    &:before {
+        content: '';
+        // use the linear-gradient for the fading effect
+        // use a solid background color for a solid bar
+        background: linear-gradient(to right, transparent, #818078, transparent);
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 100%;
+        height: 1px;
+    }
+
+    &:after {
+        content: attr(data-content);
+        position: relative;
+        display: inline-block;
+        color: black;
+        padding: 0 0.5em;
+        line-height: 1.5em;
+        // this is really the only tricky part, you need to specify the background color of the container element...
+        color: #818078;
+        background-color: #fcfcfa;
+    }
+}
+
+.sectionTitle {
+    color: @font-color-title;
+    padding-bottom: 0.5em;
+    border-bottom: 0.25em solid @border-color-alt;
+}

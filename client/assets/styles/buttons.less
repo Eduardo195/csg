@@ -1,0 +1,57 @@
+.btn {
+    background: @bg-color-main;
+    border: 1px solid #ccc;
+    border-radius: 0;
+
+    &--massive {
+        font-size: 2em;
+    }
+
+    &--alt {
+        background: @bg-color-alt;
+        color: @font-color-alt;
+    }
+
+    &--bolder {
+        font-weight: bolder;
+    }
+
+    &--go {
+        border-right: 0;
+        padding-right: 0;
+
+        &::after {
+            content: ">";
+            margin-left: 1em;
+            padding: 8.5px;
+            background: #333;
+            color: white;
+        }
+    }
+
+    &--incognito {
+        border: 0;
+        background: transparent;
+    }
+
+    &--main {
+        display: block;
+        text-align: center;
+        margin: 0 auto;
+    }
+
+    &--large {
+        padding: 0.7em;
+    }
+}
+
+button {
+
+    &:focus, &:hover {
+
+        .caret {
+                transform: rotate(-180deg);
+        }
+    }
+
+}

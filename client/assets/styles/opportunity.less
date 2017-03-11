@@ -1,0 +1,47 @@
+.op {
+  padding: 1em;
+
+  .title {
+    text-align: center;
+    .sectionTitle;
+  }
+
+  > .mainWrapper {
+    padding: 1em;
+    overflow: hidden;
+
+    h1,h2,h3,h4 {
+      color: @font-color-title;
+    }
+
+    .contentWrapper {
+      padding: 0 1em;
+    }
+
+    .detais {
+      float: left;
+      width: 70%;
+    }
+
+    .overview {
+      width: 30%;
+      float: right;
+      
+      .contentWrapper {
+          padding-left: 3em;
+          border-left: 1px solid @font-color-title;
+
+          span {
+            padding-left: 1em;
+          }
+
+      }
+
+      h3 {
+        text-transform: uppercase;
+      }
+    }
+
+  }
+
+}

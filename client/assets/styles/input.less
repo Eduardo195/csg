@@ -1,0 +1,38 @@
+.autocp {
+    // padding: 0 1em;
+    display: inline-block;
+
+    &.big {
+        width: 100%;
+        input {
+            width: 100%;
+        }
+    }
+
+    + .autocp.no-label {
+        margin-right: 1em;
+    }
+
+}
+
+input {
+    background: #fafafa;
+    border: 1px solid #ddd;
+    padding: 1em;
+}
+// overriding bootstrap
+.dropdown {
+  .dropdown-toggle,
+  .dropdown-item{
+    cursor: pointer;
+  }
+  .dropdown-item {
+    &.active,
+    &:active,
+    &:hover,
+    &:focus {
+      background-color: @border-color-alt;
+      color: @font-color-alt;
+    }
+  }
+}

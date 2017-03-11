@@ -1,0 +1,30 @@
+.flex {
+    display: flex;
+
+    .img {
+        flex: 1;
+    }
+
+    .anchor{
+        flex: 4;
+    }
+
+    &&--center {
+        align-content: center;
+        justify-content: space-around;
+    }
+
+    &--center--stretch {
+        > div {
+            flex-grow: 1;
+        }
+
+        .anchor {
+            flex-grow: 2;
+        }
+    }
+
+    &--col {
+        flex-direction: column;
+    }
+}

@@ -1,0 +1,40 @@
+@mainSearch-border: 1px solid lighten(@header-bg-color, 5%);
+
+.mainSearch {
+    text-align: center;
+    background: url(../images/bcg.svg) no-repeat;
+    background-color: @bg-color-tertiary;
+    background-size: auto 70%;
+    background-position: 50% 100%;
+    color: @font-color-alt;
+    min-height: 90vh;
+    overflow: hidden;
+
+    &.flex.flex--center {
+            justify-content: center;
+    }
+
+    .form {
+
+        .btn {
+            color: @font-color-main;
+        }
+
+        .autocp {
+            margin-right: 1em;
+
+        }
+    }
+
+    .wrapper {
+        // padding: 13em;
+    }
+
+    div {
+        padding: 0 1em;
+
+        input {
+            width: 25em;
+        }
+    }
+}
