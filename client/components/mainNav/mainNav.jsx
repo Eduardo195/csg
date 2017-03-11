@@ -39,8 +39,8 @@ const MainNav = () => (
                         }
                         {
                             item.items && (
-                                <ul className="subLinks">
-                                    {
+                            <ul className="subLinks">
+                                {
                                         item.items.map(link => (
                                             <li key={link.text}>
                                                 <Link href={link.href}>
@@ -49,7 +49,7 @@ const MainNav = () => (
                                             </li>
                                         ))
                                     }
-                                </ul>
+                            </ul>
                             )
                         }
                     </li>

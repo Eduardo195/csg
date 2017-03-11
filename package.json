@@ -8,7 +8,8 @@
     "build": "webpack --config webpack/webpack.config.prod.js",
     "watch": "webpack -w --progress --color --config webpack/webpack.config.dev.js",
     "start": "webpack-dev-server -d --config webpack/webpack.config.dev.js",
-    "exp": "node server/server.js"
+    "exp": "node server/server.js",
+    "lint": "eslint --fix --ext js* client"
   },
   "repository": {
     "type": "git",
@@ -37,11 +38,19 @@
   },
   "devDependencies": {
     "babel-core": "^6.23.1",
+    "babel-eslint": "^7.1.1",
     "babel-loader": "^6.4.0",
     "babel-preset-es2015-native-modules": "^6.9.4",
     "babel-preset-react": "^6.23.0",
     "css-loader": "^0.27.1",
     "deep-freeze": "0.0.1",
+    "eslint": "^3.17.1",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-config-google": "^0.7.1",
+    "eslint-import-resolver-webpack": "^0.8.1",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.0",
     "extract-text-webpack-plugin": "^2.1.0",
     "file-loader": "^0.10.1",
     "less": "^2.7.2",
