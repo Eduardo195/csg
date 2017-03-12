@@ -482,7 +482,7 @@ input {
   background: url(/810e76948e4d5b98830870e9569640ab.svg) no-repeat 50%;
 }
 .filters {
-  padding: 1em;
+  padding: 2em;
   padding-top: 0;
   border-right: 1px solid #e4edea;
 }
@@ -495,22 +495,25 @@ input {
   font-style: normal;
 }
 .filters h2 {
-  font-size: 2.3em;
+  font-size: 2em;
   padding-bottom: 0.25em;
   margin: 0;
   border-bottom: 1px solid #808080;
 }
 .filters h3 {
   font-size: 1.3em;
-  margin-top: 0.5em;
+  margin: 0.75em 0;
+  margin-bottom: 0.75em;
 }
 .checkboxGroup .checkbox {
-  font-weight: normal;
   font-weight: 600;
   font-style: normal;
+  font-weight: normal;
+  padding: 0 0 0.25em 1em;
+  color: #808080;
 }
 .keywordFilter {
-  margin-bottom: 1em;
+  margin-bottom: 0.25em;
 }
 .keywordFilter .form-control:focus {
   border-color: #4eb8a9;
@@ -533,18 +536,23 @@ input {
   border-color: #4eb8a9;
 }
 .keywordList {
-  padding-bottom: 1em;
+  max-width: 18em;
 }
 .keywordList .keyword {
   display: inline-block;
-  padding: 0.25em 0.5em;
-  margin: 0.5em 0;
   background: #4eb8a9;
   color: #fff;
+  padding-right: 0.5em;
+  margin: 0.25em;
 }
 .keywordList .keyword button {
-  background: transparent;
   border: 0;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.25em 0.5em;
+  display: inline-block;
+  background: transparent;
+  color: #fff;
 }
 .checkbox label {
   user-select: none;
@@ -553,7 +561,6 @@ input {
   cursor: pointer;
   transition: 0.2s background-color;
   margin-bottom: 0;
-  padding-bottom: 0.25em 0;
 }
 .checkbox label:hover {
   background-color: #f7f7f7;
@@ -588,6 +595,9 @@ input {
 .searchWrapper {
   padding: 1em;
 }
+.searchWrapper .results .offer:last-child {
+  border: 0;
+}
 .searchWrapper .anchor {
   padding-left: 1em;
 }
@@ -598,6 +608,9 @@ input {
 .searchWrapper .anchor .no--results h1 {
   margin: 0;
   padding-bottom: 1em;
+}
+.searchWrapper .anchor .offer:first-child {
+  padding-top: 0;
 }
 .searchWrapper .pagination {
   padding: 1em;

@@ -23,12 +23,10 @@ class KeywordList extends React.Component {
             <div className="keywordList">
                 {
                     keywords.map(entry => (
-                        <div>
-                            <span className="keyword">
-                                <button onClick={this.onRemove} value={entry}>X</button>
-                                {entry}
-                            </span>
-                        </div>
+                        <span className="keyword">
+                            <button onClick={this.onRemove} value={entry}>X</button>
+                            {entry}
+                        </span>
                     ))
                 }
             </div>

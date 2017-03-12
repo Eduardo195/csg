@@ -10,7 +10,7 @@ function Filters(props) {
 
     return (
         <div className="filters">
-            <h2 className="mainTitle semi-bold">Filters</h2>
+            <h2 className="mainTitle">filter results by:</h2>
             <div>
                 <h3>Keywords</h3>
                 <KeywordFilter />

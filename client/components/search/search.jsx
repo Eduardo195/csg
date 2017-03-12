@@ -17,9 +17,11 @@ class Search extends React.Component {
                     <Filters />
                     <div className="anchor">
                         { !resultCount ? (<NoResults />) : null }
-                        { results ? results.map(entry => <Offer data={entry} />) : null }
+                        <div className="results">
+                            { results ? results.map(entry => <Offer data={entry} />) : null }
+                        </div>
+                        { resultCount ? (<div className="text-center">{`${resultCount} results`}</div>) : null }
                         <Paging />
-                        { resultCount ? (<div>{`${resultCount} results`}</div>) : null }
                     </div>
                 </main>
             </section>

@@ -1,7 +1,7 @@
 @font-color-filters: #808080;
 
 .filters {
-  padding: 1em;
+  padding: 2em;
   padding-top: 0;
   border-right: 1px solid @border-color-main;
 
@@ -12,7 +12,7 @@
   }
 
   h2 {
-    font-size: 2.3em;
+    font-size: 2em;
     padding-bottom: 0.25em;
     margin: 0;
     border-bottom: 1px solid @font-color-filters;
@@ -20,19 +20,22 @@
 
   h3 {
     font-size: 1.3em;
-    margin-top: 0.5em;
+    margin: 0.75em 0;
+    margin-bottom: 0.75em;
   }
 }
 
 .checkboxGroup {
   .checkbox {
-    font-weight: normal;
     .semi-bold;
+    font-weight: normal;
+    padding: 0 0 0.25em 1em;
+    color: @font-color-filters;
   }
 }
 
 .keywordFilter {
-  margin-bottom: 1em;
+  margin-bottom: 0.25em;
 
   .form-control:focus {
       border-color: @font-color-title;
@@ -61,18 +64,23 @@
 }
 
 .keywordList {
-  padding-bottom: 1em;
+   max-width: 18em;
 
   .keyword {
     display: inline-block;
-    padding: 0.25em 0.5em;
-    margin: 0.5em 0;
     background: @font-color-title;
     color: @font-color-alt;
+    padding-right: 0.5em;
+    margin: 0.25em;
 
     button {
-      background: transparent;
       border: 0;
+      cursor: pointer;
+      user-select: none;
+      padding: 0.25em 0.5em;
+      display: inline-block;
+      background: transparent;
+      color: @font-color-alt;
     }
 
   }
