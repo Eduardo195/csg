@@ -87,17 +87,13 @@ const Connector = {
       }));
     });
   },
-  latest({ limit, page }) {
-    const params = {
-      limit: Checkers.checkLimit(limit),
-      page: Checkers.checkPage(page),
-    };
+  latest() {
     return this.connect().then((db) => {
-      const find = db.collection(TABLE_NAME).find({}, returnableFields).sort({ date: 1 });
-      return find.count().then(count => find.skip(params.page * params.limit).limit(params.limit).toArray().then((data) => {
-        db.close();
-        return { data, count };
-      }));
+      return db.collection(TABLE_NAME).find({}, returnableFields)
+        .limit(30).sort({ date: 1 }).toArray().then((data) => {
+          db.close();
+          return data;
+        })
     });
   },
 };

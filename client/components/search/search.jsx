@@ -4,21 +4,28 @@ import Paging from 'components/search/containers/paging';
 import Offer from 'components/offer/offer';
 import NoResults from './noResults';
 
-function Search(props) {
-    const { results, resultCount } = props;
-    return (
-        <section className="searchWrapper">
-            <main className="flex">
-                <Filters />
-                <div className="anchor">
-                    { !resultCount ? (<NoResults />) : null }
-                    { results ? results.map(entry => <Offer data={entry} />) : null }
-                    <Paging />
-                    { resultCount ? (<div>{`${resultCount} results`}</div>) : null }
-                </div>
-            </main>
-        </section>
-    );
+class Search extends React.Component {
+    componentDidMount() {
+        this.props.handleMount();
+    }
+
+    render() {
+        const { results, resultCount } = this.props;
+        return (
+            <section className="searchWrapper">
+                <main className="flex">
+                    <Filters />
+                    <div className="anchor">
+                        { !resultCount ? (<NoResults />) : null }
+                        { results ? results.map(entry => <Offer data={entry} />) : null }
+                        <Paging />
+                        { resultCount ? (<div>{`${resultCount} results`}</div>) : null }
+                    </div>
+                </main>
+            </section>
+        );
+    }
+
 }
 
 Search.propTypes = {

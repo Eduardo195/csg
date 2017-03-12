@@ -33,14 +33,10 @@ const SearchService = {
             });
         });
     },
-    getLatest(limit, page) {
+    getLatest() {
         return new Promise((resolve) => {
             $.ajax({
                 url: '/api/latest',
-                data: {
-                    limit,
-                    page: page - 1, // search is 0 based
-                },
             }).done((data) => {
                 resolve(data);
             });

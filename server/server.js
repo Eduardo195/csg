@@ -11,7 +11,7 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 app.get('/api/latest', (req, res) => {
-  db.latest(req.query).then((data) => {
+  db.latest().then((data) => {
     res.send(data);
   });
 });
