@@ -4,7 +4,7 @@ const scraper = require('./scraper')
 const BASE_URL = 'http://expressoemprego.pt';
 const SEARCH_PATH = '/ofertas-emprego';
 const ENCODING = 'UTF-8';
-const REQUEST_LIMIT = 50;
+const REQUEST_LIMIT = 1;
 
 const convertToRefArray = (previousData) => previousData.map(record => record.ref);
 
@@ -32,12 +32,15 @@ function getPage(index, results, previousRefs, currentRefs, resolve, reject) {
           // handle cases where opportunities are added as we crawl
           currentRefs.push(ref);
           return crawl(ENCODING, absoluteUrl).then((postHtml) => {
-            results.push(scraper.scrapePost(absoluteUrl, postHtml));
+            try {
+              const oport = scraper.scrapePost(absoluteUrl, postHtml);
+              results.push(oport);
+            } catch(e) {
+                console.log(`failed parsing ${absoluteUrl} :::`, e);
+            }
           }).catch(error => {
-            return console.log(`{ERROR scraping ${url} }`, error);
+            console.log(`{ERROR scraping ${url} }`, error);
           });
-        } else {
-          console.log(`skipping ${ref}`);
         }
     })).then(result => {
       if((index+1) <= REQUEST_LIMIT && !hasHitExisting) {

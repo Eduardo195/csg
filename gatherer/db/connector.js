@@ -33,10 +33,7 @@ const Connector = {
     });
   },
   insertMany(col, data) {
-    return col.insertMany(data, { ordered: false }).then(() => {
-      return console.log(`Inserted ${data.length} records`);
-    }).catch(err => {
-      console.log(err.writeErrors.forEach(error => error.errmsg));
+    return col.insertMany(data, { ordered: false }).catch(err => {
       return console.log('InsertMany failed: ', err);
     });
   },

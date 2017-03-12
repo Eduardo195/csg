@@ -4,7 +4,7 @@ const scraper = require('./scraper')
 const BASE_URL = 'http://www.net-empregos.com/';
 const SEARCH_PATH = 'listagem_livre2.asp';
 const ENCODING = 'ISO-8859-1';
-const REQUEST_LIMIT = 20;
+const REQUEST_LIMIT = 5;
 
 const convertToRefArray = (previousData) => previousData.map(record => record.ref);
 
@@ -29,13 +29,15 @@ function getPage(index, results, previousRefs, currentRefs, resolve, reject) {
         // skip adds we already have
         if(previousRefs.indexOf(ref) < 0 && currentRefs.indexOf(ref) < 0) {
           // handle cases where opportunities are added as we crawl
-          // currentRefs.push(ref);
           currentRefs.push(ref);
           return crawl(ENCODING, absoluteUrl).then((postHtml) => {
-            results.push(scraper.scrapePost(absoluteUrl, postHtml));
+              try {
+                const oport = scraper.scrapePost(absoluteUrl, postHtml);
+                results.push(oport);
+              } catch(e) {
+                  console.log(`failed parsing ${absoluteUrl} :::`, e);
+              }
           });
-        } else {
-          console.log(`skipping ${ref}`);
         }
     })).then(result => {
       if((index+1) <= REQUEST_LIMIT && !hasHitExisting) {

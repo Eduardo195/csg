@@ -1,6 +1,7 @@
 import React from 'react';
 import marked from 'marked';
 import Button from 'components/button/button';
+import moment from 'moment';
 import $ from 'jquery';
 
 const plc = {
@@ -81,7 +82,7 @@ class FullOffer extends React.Component {
                             </div>
                             <div>
                                 <h3>Posted</h3>
-                                <span>{date}</span>
+                                <span>{moment(date).format('ll')}</span>
                             </div>
                             <div>
                                 <h3>Industry</h3>

@@ -3,6 +3,7 @@ const jsdom = require('jsdom');
 const window = jsdom.jsdom().defaultView;
 const $ = require("jquery")(window);
 const Normalizer = require('./normalizer')
+const moment = require('moment');
 
 const pToH3 = {
   filter: 'p',
@@ -33,30 +34,26 @@ const scraper = {
       const title = header.find('> h1').text().trim();
       const company = header.find('> h2').text().trim();
 
-      let [rawDate, location, rawRef ] = header.find('> span').text().trim().split('|');
+      const [rawDate, location, rawRef ] = header.find('> span').text().trim().split('|');
 
-      location = location.trim();
-      rawDate = rawDate.trim().split('.');
-
-      const date = new Date(rawDate[2], (+rawDate[1]) - 1 , rawDate[0]).getTime();
-      const ref = rawRef.trim().split(" ")[1];
+      const now = moment();
+      const date = moment(`${rawDate.trim()} ${now.hours()}:${now.minutes()}:${now.seconds()}`, "DD.MM.YYYY HH:mm:ss").valueOf()
 
       // OH THE HUMANITY
       let description = body.find('div.fOpenSansRegular');
       description.find('div.pull-right').remove();
       const markdown = toMarkdown(description.html().trim(), { converters: [pToH3, h3ToP]});
-      const values = {
+      return {
         src: 'expressoEmprego',
         title,
         url,
         company,
         date,
-        location: Normalizer.normalizeLocation(location),
+        location: Normalizer.normalizeLocation(location.trim()),
         contractType: Normalizer.normalizeContractType(),
         markdown,
-        ref
-      };
-      return values;
+        ref: rawRef.trim().split(" ")[1]
+      };;
   },
 
 }

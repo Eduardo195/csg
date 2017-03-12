@@ -9,21 +9,14 @@ console.log('gatherin\'');
 gather(ExpressoEmprego);
 gather(NetEmpregos);
 
-const respawn = (worker) => {
-  console.log(`Whipping in ${RETRY_TIME}`);
-  setTimeout(() => {
-    gather(worker)
-  }, RETRY_TIME);
-}
-
+//TODO: needs optimizing
 function gather(worker) {
   Connector.connect().then(db => {
     const col = Connector.getCollection(db, TableNames.OPPORTUNITIES);
     Connector.getLast(col, 1000).then(previousData => {
     worker(previousData).then((data) => {
-        console.log('Finished gathering');
+        console.log(`Finished gathering @ ${new Date()}`);
         if(data.length <= 0) {
-          respawn(worker);
           return console.log('No records to insert');
         }
         Connector.insertMany(col, data).catch(error => {
@@ -31,7 +24,6 @@ function gather(worker) {
         }).then(rsp => {
           console.log(`inserted ${data.length} records`);
           db.close();
-          respawn(worker);
         })
       })
     });

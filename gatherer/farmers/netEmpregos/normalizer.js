@@ -25,7 +25,6 @@ const Normalizer = {
   normalizeLocation(needle) {
     const pile = LOCATIONS.find(loc => loc.label === needle || loc.simple === needle)
     if(!pile) {
-      console.error(`could not convert ${needle}`);
       return { index: -1, label: needle || NOT_SPECIFIED };
     }
     return { index: pile.index, label: pile.label };

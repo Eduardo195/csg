@@ -3,6 +3,7 @@ const jsdom = require('jsdom');
 const window = jsdom.jsdom().defaultView;
 const $ = require("jquery")(window);
 const Normalizer = require('./normalizer')
+const moment = require('moment');
 
 const linkFilter = {
   filter: 'a',
@@ -37,9 +38,10 @@ const scraper = {
       const detailsTable = $(center.find('tr:nth-child(2)'));
       const company = detailsTable.find('tr:nth-child(1) td:last-child').text().trim();
       const contractType = detailsTable.find('tr:nth-child(2) td:last-child').text().trim();
-      const dateStr = detailsTable.find('tr:nth-child(3) td:last-child').text().trim().split('-');
+      const dateStr = detailsTable.find('tr:nth-child(3) td:last-child').text().trim();
       // month is 0-based
-      const date = new Date(dateStr[2], (+dateStr[1]) - 1 , dateStr[0]).getTime();
+      const now = moment();
+      const date = moment(`${dateStr} ${now.hours()}:${now.minutes()}:${now.seconds()}`, "DD-MM-YYYY HH:mm:ss").valueOf()
       const location = detailsTable.find('tr:nth-child(4) td:last-child').text().trim();
       const industry = detailsTable.find('tr:nth-child(5) td:last-child').text().trim();
       const ref = detailsTable.find('tr:nth-child(6) td:last-child').text().split(" ")[1];
