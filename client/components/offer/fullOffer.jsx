@@ -73,7 +73,7 @@ class FullOffer extends React.Component {
                             </div>
                             <div>
                                 <h3>Contract type</h3>
-                                <span>{contractType}</span>
+                                <span>{contractType.label}</span>
                             </div>
                             <div>
                                 <h3>Salary</h3>

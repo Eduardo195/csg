@@ -3,10 +3,7 @@ const sharedConfig = require('./webpack.config.shared.js');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 const EXCLUDE = (/node_modules/);
-const extractLess = new ExtractTextPlugin({
-    filename: "styles.css",
-    disable: process.env.NODE_ENV === "development"
-});
+const extractLess = new ExtractTextPlugin({ filename: "styles.css" });
 
 sharedConfig.module.rules.push(
   {

@@ -36,6 +36,7 @@ const Checkers = {
             { title: { $regex: regex, $options: 'i' } },
             { industry: { $regex: regex, $options: 'i' } },
             { company: { $regex: regex, $options: 'i' } },
+            { 'contractType.label': { $regex: regex, $options: 'i' } },
         ], // $or
       }; // return
     }

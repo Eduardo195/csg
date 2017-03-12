@@ -1,5 +1,5 @@
 node_modules
 npm-debug.log
-public/app_bundle.js
-public/*
 !public/index.html
+!public/styles.css
+!public/bundle.js

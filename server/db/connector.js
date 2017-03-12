@@ -80,7 +80,7 @@ const Connector = {
     };
 
     return this.connect().then((db) => {
-      const find = db.collection(TABLE_NAME).find(filters, {}).sort({ date: 1 });
+      const find = db.collection(TABLE_NAME).find(filters, returnableFields).sort({ date: -1 });
       return find.count().then(count => find.skip(page * limit).limit(limit).toArray().then((data) => {
         db.close();
         return { data, count };
@@ -90,7 +90,7 @@ const Connector = {
   latest() {
     return this.connect().then((db) => {
       return db.collection(TABLE_NAME).find({}, returnableFields)
-        .limit(30).sort({ date: 1 }).toArray().then((data) => {
+        .limit(30).sort({ date: -1 }).toArray().then((data) => {
           db.close();
           return data;
         })
