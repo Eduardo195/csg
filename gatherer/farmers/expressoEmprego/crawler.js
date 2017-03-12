@@ -4,7 +4,7 @@ const scraper = require('./scraper')
 const BASE_URL = 'http://expressoemprego.pt';
 const SEARCH_PATH = '/ofertas-emprego';
 const ENCODING = 'UTF-8';
-const REQUEST_LIMIT = 1;
+const REQUEST_LIMIT = 3;
 
 const convertToRefArray = (previousData) => previousData.map(record => record.ref);
 

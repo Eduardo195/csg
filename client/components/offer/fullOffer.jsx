@@ -32,6 +32,7 @@ class FullOffer extends React.Component {
         $.ajax({
             url: `op/${this.props.params.id}`,
         }).done((data) => {
+            console.log(data);
             this.setState(data);
         });
     }

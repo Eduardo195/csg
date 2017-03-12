@@ -7,7 +7,7 @@ const RETRY_TIME = 15 * 60 * 1000; //ms
 
 console.log('gatherin\'');
 gather(ExpressoEmprego);
-gather(NetEmpregos);
+// gather(NetEmpregos);
 
 //TODO: needs optimizing
 function gather(worker) {

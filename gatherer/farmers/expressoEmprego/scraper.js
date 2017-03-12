@@ -4,15 +4,22 @@ const window = jsdom.jsdom().defaultView;
 const $ = require("jquery")(window);
 const Normalizer = require('./normalizer')
 const moment = require('moment');
+const sanitizeHtml = require('sanitize-html');
 
 const pToH3 = {
   filter: 'p',
-  replacement: content => `\n### ${content}  \n`
+  replacement: (innerHTML, node) => {
+      const shouldRepalce = node.classList.contains('fRobotoCondensedRegular');
+      return shouldRepalce ? `\n### ${innerHTML}  \n` : `${innerHTML}  `;
+  }
 }
 
 const h3ToP = {
   filter: 'h3',
-  replacement: content => `${content}  `
+  replacement: (innerHTML, node) => {
+      const shouldRepalce = node.classList.contains('fOpenSansRegular');
+      return shouldRepalce ? `${innerHTML}  ` : `\n### ${innerHTML}  \n`;
+  }
 }
 
 const scraper = {
@@ -42,7 +49,25 @@ const scraper = {
       // OH THE HUMANITY
       let description = body.find('div.fOpenSansRegular');
       description.find('div.pull-right').remove();
-      const markdown = toMarkdown(description.html().trim(), { converters: [pToH3, h3ToP]});
+
+      const cleanContent = sanitizeHtml(
+        description.html(),
+        { exclusiveFilter: (frame) => !frame.text.trim() } // remove empty tags
+      );
+      const markdown = sanitizeHtml(toMarkdown(cleanContent, {
+        converters: [pToH3, h3ToP],
+        // gfm: true // required to parse tables
+      }),
+      { allowedTags: [] } // clean leftover tags
+    );
+
+            if(title.indexOf('Advogado') >= 0){
+              console.log("\n\n\n\n ", title);
+              console.log("\n\n HTML \n ");
+              console.log(cleanContent);
+              console.log("\n\n MARKDOWN \n");
+              console.log(markdown);
+            }
       return {
         src: 'expressoEmprego',
         title,
@@ -52,6 +77,7 @@ const scraper = {
         location: Normalizer.normalizeLocation(location.trim()),
         contractType: Normalizer.normalizeContractType(),
         markdown,
+        content: cleanContent,
         ref: rawRef.trim().split(" ")[1]
       };;
   },

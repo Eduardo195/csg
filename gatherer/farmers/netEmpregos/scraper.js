@@ -49,7 +49,8 @@ const scraper = {
       const description = center.find('tr:last-child p > font:last-child').html().trim();
       // console.log(description);
       const markdown = toMarkdown(description, {
-        converters :[linkFilter]
+        converters :[linkFilter],
+        gfm: true // required to parse tables
       });
 
       const values = {
