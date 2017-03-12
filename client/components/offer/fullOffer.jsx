@@ -8,12 +8,10 @@ const plc = {
     title: '-',
     contractType: '-',
     role: '-',
-    employer: '-',
+    company: '-',
     location: '-',
-    industry: '-',
+    industry: '',
     date: '-',
-    minPay: '-',
-    maxPay: '-',
 };
 
 function getRawMarkup(markdown) {
@@ -40,14 +38,14 @@ class FullOffer extends React.Component {
     render() {
         const data = this.state;
 
-        const { title, contractType, employer, location, industry, date } = data;
+        const { title, contractType, company, location, industry, date } = data;
         const { label: locationLabel } = location;
         const { minPay, maxPay } = data;
         const { markdown, url } = data;
 
         const shortFullPay = minPay && maxPay ? `${minPay} to ${maxPay}` : '';
         const shortMinPay = minPay && !maxPay ? `From ${minPay} ` : '';
-        const shortMaxPay = !minPay && maxPay ? `Up to ${maxPay} ` : '';
+        const shortMaxPay = !minPay && maxPay ? `Up to ${maxPay}` : '';
         const pay = shortFullPay || shortMinPay || shortMaxPay || '';
 
         return (
@@ -59,36 +57,24 @@ class FullOffer extends React.Component {
                             <div className="content" dangerouslySetInnerHTML={getRawMarkup(markdown || 'No content')} />
                             <br />
                             <a href={url} target="_blank" rel="noopener noreferrer">
-                                <Button className="btn--go">Apply</Button>
+                                <Button className="d-inline-block btn--main">Apply</Button>
                             </a>
                         </div>
                     </div>
                     <div className="overview">
                         <div className="contentWrapper">
-                            <div>
-                                <h3>Employer</h3>
-                                <span>{employer}</span>
-                            </div>
-                            <div>
-                                <h3>Location</h3>
-                                <span>{locationLabel}</span>
-                            </div>
-                            <div>
-                                <h3>Contract type</h3>
-                                <span>{contractType.label}</span>
-                            </div>
-                            <div>
-                                <h3>Salary</h3>
-                                <span>{pay}</span>
-                            </div>
-                            <div>
-                                <h3>Posted</h3>
-                                <span>{moment(date).format('ll')}</span>
-                            </div>
-                            <div>
-                                <h3>Industry</h3>
-                                <span>{industry}</span>
-                            </div>
+                            <h3>Employer</h3>
+                            <span>{company}</span>
+                            <h3>Location</h3>
+                            <span>{locationLabel}</span>
+                            <h3>Contract type</h3>
+                            <span>{contractType.label}</span>
+                            <h3>Salary</h3>
+                            <span>{pay}</span>
+                            <h3>Posted</h3>
+                            <span>{moment(date).format('ll')}</span>
+                            <h3>Industry</h3>
+                            <span>{industry}</span>
                         </div>
                     </div>
                 </div>

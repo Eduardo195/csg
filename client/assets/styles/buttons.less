@@ -2,6 +2,20 @@
     background: @bg-color-main;
     border: 1px solid #ccc;
     border-radius: 0;
+    cursor: pointer;
+    
+    &--main {
+
+      background: @btn-bg-main;
+      padding: 1em;
+      display: inline-block;
+      color: white;
+      border-color: @btn-bg-main;
+
+      &:focus, &.focus {
+        box-shadow: 0 0 0 2px rgba(233, 79, 43, 0.25);
+      }
+    }
 
     &--massive {
         font-size: 2em;
@@ -14,19 +28,6 @@
 
     &--bolder {
         font-weight: bolder;
-    }
-
-    &--go {
-        border-right: 0;
-        padding-right: 0;
-
-        &::after {
-            content: ">";
-            margin-left: 1em;
-            padding: 8.5px;
-            background: #333;
-            color: white;
-        }
     }
 
     &--incognito {

@@ -24,7 +24,7 @@ class Login extends React.Component {
                     <input ref={this.getPwdRef} type="password" placeholder="password" />
                 </div>
                 <div className="centered">
-                    <Button className="btn--go" onTap={this.onTapLogin}>Login</Button>
+                    <Button onTap={this.onTapLogin}>Login</Button>
                 </div>
                 <hr className="hr-text" data-content="Or" />
                 <Button className="btn--main">L</Button>

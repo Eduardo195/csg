@@ -69,7 +69,7 @@ class WorkAd extends React.Component {
 
                     <MarkdownBox />
                     <div>
-                        <Button className="btn--go">Post</Button>
+                        <Button>Post</Button>
                     </div>
                 </div>
             </section>

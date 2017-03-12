@@ -20,11 +20,11 @@ function Profile() {
                 <h2 className="title">Welcome Mr. Man</h2>
                 <h3>Customize your applications</h3>
                 <section>
-                    <Button className="btn--go">Create cover letter</Button>
+                    <Button>Create cover letter</Button>
                 </section>
                 <h3>Get discovered</h3>
                 <section>
-                    <Button className="btn--go">Upload your CV</Button>
+                    <Button>Upload your CV</Button>
                 </section>
             </SideImageLayout>
             <section className="anchor flex flex--col flex--center">

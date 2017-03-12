@@ -22,7 +22,7 @@ function Register() {
                     <div><input type="password" placeholder="Password" /></div>
                     <div><input type="password" placeholder="Confirm Password" /></div>
                     <div>
-                        <Button className="btn--go">Create Account</Button>
+                        <Button>Create Account</Button>
                     </div>
                 </div>
             </div>

@@ -28,24 +28,24 @@ class Apply extends React.Component {
                     <div className="radio">
                         <label>
                             <input type="radio" value="option1" checked />
-                        CV #1
-                      </label>
+                            CV #1
+                        </label>
                     </div>
                     <div className="radio">
                         <label>
                             <input type="radio" value="option2" />
-                        CV #2
-                      </label>
+                            CV #2
+                        </label>
                     </div>
                     <div className="radio">
                         <label>
                             <input type="radio" value="option3" />
-                        CV #3
-                      </label>
+                            CV #3
+                        </label>
                     </div>
                 </section>
                 <Link href={`jobs/${id}/status`}>
-                    <Button className="btn--go">Confirm</Button>
+                    <Button>Confirm</Button>
                 </Link>
             </div>
         );
