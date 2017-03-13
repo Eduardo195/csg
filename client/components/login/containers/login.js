@@ -1,30 +1,28 @@
 import $ from 'jquery';
 import { connect } from 'react-redux';
 import * as actions from 'components/user/actions/userActions';
-import { getSession } from 'components/user/selectors/sessionSelectors';
+import { getUsername } from 'components/user/selectors/sessionSelectors';
 import Login from '../login';
 
 function mapStateToProps(state) {
     return {
-        isLoggedIn: !!getSession(state),
+        username: getUsername(state),
     };
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps(dispatch, ownProps) {
+    console.log('ownProps :::', ownProps);
     return {
-        createSession(username, password) {
+        login(username, password) {
             // dispatch(actions.enterBusyState());
             $.ajax({
-                url: '/user/login',
+                url: '/api/login',
                 method: 'POST',
-                data: {
-                    username,
-                    password,
-                },
-            }).done((rsp) => {
-                dispatch(actions.createSession());
-                console.log('login rsp ::: ', rsp);
-                // dispatch(actions.leaveBusyState());
+                data: { username, password },
+            }).done((user) => {
+                console.log('Login user ::: ', user);
+                dispatch(actions.setUser(user));
+                ownProps.router.push('user/home');
             });
         },
     };

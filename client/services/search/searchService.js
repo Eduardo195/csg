@@ -60,18 +60,6 @@ const SearchService = {
             });
         });
     },
-    getUnique(field) {
-        return new Promise((resolve) => {
-            $.ajax({
-                url: '/api/getUnique',
-                data: {
-                    field,
-                },
-            }).done((data) => {
-                resolve(data);
-            });
-        });
-    },
 };
 
 export default SearchService;

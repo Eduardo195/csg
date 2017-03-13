@@ -41,7 +41,7 @@ class MainSearch extends React.Component {
 
     render() {
         const { kw, loc } = this.state;
-        const { roles, locations } = this.props;
+        const { locations } = this.props;
 
         return (
             <div className="mainSearch">
@@ -67,11 +67,14 @@ class MainSearch extends React.Component {
     }
 }
 
+MainSearch.propTypes = {
+    handleMount: React.PropTypes.func.isRequired,
+    locations: React.PropTypes.array.isRequired,
+    search: React.PropTypes.func.isRequired,
+};
+
 MainSearch.contextTypes = {
     router: React.PropTypes.object.isRequired,
 };
 
-// MainSearch.contextTypes = {
-//   router: React.PropTypes.func.isRequired
-// };
 export default MainSearch;

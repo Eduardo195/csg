@@ -1,14 +1,26 @@
+import $ from 'jquery';
 import * as actionTypes from './userActionTypes';
 
-export function createSession(username) {
+export function setUser(user) {
     return {
-        type: actionTypes.START_SESSION,
-        username,
+        type: actionTypes.SET_USER,
+        user,
     };
 }
 
-export function endSession() {
+export function removeUser() {
     return {
-        type: actionTypes.END_SESSION,
+        type: actionTypes.REMOVE_USER,
+    };
+}
+
+export function logout() {
+    return (dispatch) => {
+        $.ajax({
+            url: '/api/logout',
+        }).done((rsp) => {
+          // TODO: Busy state + redirect
+            dispatch(removeUser());
+        });
     };
 }

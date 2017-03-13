@@ -33,6 +33,7 @@ class Search extends React.Component {
 Search.propTypes = {
     results: React.PropTypes.array.isRequired,
     resultCount: React.PropTypes.number.isRequired,
+    handleMount: React.PropTypes.func.isRequired,
 };
 
 export default Search;

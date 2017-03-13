@@ -10,14 +10,14 @@ import Home from 'components/home/home';
 import WorkAd from 'components/advert/containers/workAd';
 import Search from 'components/search/containers/search';
 import Login from 'components/login/containers/login';
-import Register from 'components/register/register';
+import Register from 'components/register/containers/register';
 import EmployerHome from 'components/employer/home';
 import EmployerOpportunities from 'components/employer/opportunities';
 import Doh from 'components/errors/doh';
 import FullOffer from 'components/offer/fullOffer';
 import Apply from 'components/application/apply';
 import Status from 'components/application/status';
-import UserHome from 'components/user/home';
+import UserHome from 'components/user/containers/home';
 
 import App from './app';
 

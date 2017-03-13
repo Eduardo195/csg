@@ -45,21 +45,6 @@ const Connector = {
       return data[0];
     }));
   },
-  getUnique(field) {
-    return new Promise((resolve) => {
-      field = searchableFields[field];
-      this.connect().then((db) => {
-        db.collection(TABLE_NAME).distinct(field).then((data) => {
-          db.close();
-          return resolve(data);
-        }).catch((error) => {
-          db.close();
-          console.error(`error getUnique(${field})`, error);
-          resolve([]);
-        });
-      });
-    });
-  },
   search(query) {
     const limit = Checkers.checkLimit(query.limit);
     const page = Checkers.checkPage(query.page);

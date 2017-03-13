@@ -4,9 +4,25 @@ const bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 const local = require('./auth/local');
-const db = require('./db/connector');
 
 const PORT = 3000;
+
+// Configure the local strategy for use by Passport.
+//
+// The local strategy require a `verify` function which receives the credentials
+// (`username` and `password`) submitted by the user.  The function must verify
+// that the password is correct and then invoke `cb` with a user object, which
+// will be set at `req.user` in route handlers after authentication.
+// passport.use(new LocalStrategy(
+//   function(username, password, cb) {
+//     local.findByUsername(username, function(err, user) {
+//       if (err) { return cb(err); }
+//       if (!user) { return cb(null, false); }
+//       if (user.password != password) { return cb(null, false); }
+//       return cb(null, user);
+//     });
+//   }));
+
 
 passport.use('local-login', new LocalStrategy(
     {passReqToCallback : true}, //allows us to pass back the request to the callback
@@ -33,6 +49,14 @@ passport.use('local-register', new LocalStrategy(
     })
 );
 
+
+// Configure Passport authenticated session persistence.
+//
+// In order to restore authentication state across HTTP requests, Passport needs
+// to serialize users into and deserialize users out of the session.  The
+// typical implementation of this is as simple as supplying the user ID when
+// serializing, and querying the user record by ID from the database when
+// deserializing.
 passport.serializeUser(function(user, cb) {
   console.log('serializing', user, cb);
   cb(null, user._id);
@@ -72,12 +96,21 @@ app.use(passport.session());
 
 // Define routes.
 app.get('/', (req, res) => {
+  console.log('req.session :::', req.session);
+  console.log(req.isAuthenticated());
   res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
-app.post('/api/register', passport.authenticate('local-register'),(req, res) => {
-  res.send(req.user);
-});
+app.post('/api/session',
+    require('connect-ensure-login').ensureLoggedIn(),
+    (req, res) => {
+      // res.send({ user: req.user });
+      console.log('req.session :::', req.session);
+      console.log('req.user :::', req.user);
+      const session = {};
+      res.send(session);
+    }
+);
 
 app.post('/api/login', passport.authenticate('local-login'),
   (req, res) => {
@@ -86,50 +119,24 @@ app.post('/api/login', passport.authenticate('local-login'),
   }
 );
 
-app.get('/api/logout', (req, res) => {
+app.post('/api/register', passport.authenticate('local-register'),(req, res) => {
+  console.log(req.session);
+  console.log(req.isAuthenticated());
+  res.send({ status: 'what' });
+});
+
+app.get('/api/logout',
+  function(req, res){
     req.logout();
     res.send({ status: true });
   }
 );
 
-//TODO
 app.get('/api/profile',
   require('connect-ensure-login').ensureLoggedIn(),
   (req, res) => {
-    res.send(req.user);
+    res.send({ user: req.user });
   }
 );
 
-app.get('/api/latest', (req, res) => {
-  db.latest().then((data) => {
-    res.send(data);
-  });
-});
-
-app.get('/api/search', (req, res) => {
-  db.search(req.query).then((data) => {
-    res.send(data);
-  });
-});
-
-app.get('/api/districts', (req, res) => {
-  db.getDistricts().then((data) => {
-    res.send(data);
-  });
-});
-
-app.get('/api/contractTypes', (req, res) => {
-  db.getContractTypes().then((data) => {
-    res.send(data);
-  });
-});
-
-app.get('/op/:id', (req, res) => {
-  db.getByRef(req.params.id).then((data) => {
-    res.send(data);
-  });
-});
-
-app.listen(PORT, () => {
-  console.log(`Listening on port ${PORT}!  from ${__dirname}`);
-});
+app.listen(3000);

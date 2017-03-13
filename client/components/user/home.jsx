@@ -13,11 +13,12 @@ function getArticles(onlyEven) {
     });
 }
 
-function Profile() {
+function Home(props) {
+    const { username } = props;
     return (
         <div className="profile">
             <SideImageLayout>
-                <h2 className="title">Welcome Mr. Man</h2>
+                <h2 className="title">Welcome { username }</h2>
                 <h3>Customize your applications</h3>
                 <section>
                     <Button>Create cover letter</Button>
@@ -47,4 +48,8 @@ function Profile() {
     );
 }
 
-export default Profile;
+Home.propTypes = {
+    username: React.PropTypes.string.isRequired,
+};
+
+export default Home;

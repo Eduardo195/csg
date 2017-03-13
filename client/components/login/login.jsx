@@ -11,12 +11,19 @@ class Login extends React.Component {
     }
 
     onTapLogin() {
-        this.props.createSession(this.email.value, this.pwd.value);
+        this.props.login(this.email.value, this.pwd.value);
     }
 
     render() {
+        const { username } = this.props;
+        if (username) {
+            return (
+                <div>Welcome Don {username}</div>
+            );
+        }
         return (
             <div className="loginForm">
+                <h1 className="text-center">Login to your account</h1>
                 <div className="centered">
                     <input ref={this.getEmailRef} type="email" placeholder="Username / Email" />
                 </div>
@@ -27,16 +34,18 @@ class Login extends React.Component {
                     <Button onTap={this.onTapLogin}>Login</Button>
                 </div>
                 <hr className="hr-text" data-content="Or" />
-                <Button className="btn--main">L</Button>
-                <Button>F</Button>
-                <Button>G+</Button>
+                <div className="text-center">
+                    <Button>L</Button>
+                    <Button>F</Button>
+                    <Button>G+</Button>
+                </div>
             </div>
         );
     }
 }
 
 Login.propTypes = {
-    createSession: React.PropTypes.func.isRequired,
+    login: React.PropTypes.func.isRequired,
 };
 
 export default Login;

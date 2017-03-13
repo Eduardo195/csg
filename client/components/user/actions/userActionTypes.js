@@ -1,2 +1,2 @@
-export const START_SESSION = 'user/START_SESSION';
-export const END_SESSION = 'user/END_SESSION';
+export const SET_USER = 'user/SET_USER';
+export const REMOVE_USER = 'user/REMOVE_USER';
