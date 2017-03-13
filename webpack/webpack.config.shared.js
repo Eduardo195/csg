@@ -5,7 +5,8 @@ const EXCLUDE = (/node_modules/);
 
 const config = {
   entry: {
-    app: ['./client/index']
+    // app: ['./client/index']
+    app: ['./client/containers/root/root']
   },
   output: {
     path: path.join(__dirname, '../public'),
