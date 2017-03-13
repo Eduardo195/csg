@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import * as actions from 'components/latest/actions/latestActions';
 
 function latest(state = [], action) {

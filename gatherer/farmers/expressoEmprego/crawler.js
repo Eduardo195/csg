@@ -5,10 +5,11 @@ const BASE_URL = 'http://expressoemprego.pt';
 const SEARCH_PATH = '/ofertas-emprego';
 const ENCODING = 'UTF-8';
 const REQUEST_LIMIT = 3;
+const SOURCE_ID = 'expressoEmprego';
 
 const convertToRefArray = (previousData) => previousData.map(record => record.ref);
 
-function ExpressoEmpregoCrawler(previousData) {
+function expressoEmpregoCrawler(previousData) {
   const previousRefs = convertToRefArray(previousData);
   return new Promise( (resolve, reject) => {
     return getPage(1, [], previousRefs, [], resolve, reject);
@@ -55,4 +56,9 @@ function getPage(index, results, previousRefs, currentRefs, resolve, reject) {
   });
 }
 
-module.exports = ExpressoEmpregoCrawler;
+const crawler = {
+  crawl: expressoEmpregoCrawler,
+  src: SOURCE_ID
+}
+
+module.exports = crawler;

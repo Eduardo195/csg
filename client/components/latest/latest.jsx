@@ -20,4 +20,9 @@ class Latest extends React.Component {
     }
 }
 
+Latest.propTypes = {
+    items: React.PropTypes.array,
+    handleMount: React.PropTypes.func.isRequired,
+};
+
 export default Latest;

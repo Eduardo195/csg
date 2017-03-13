@@ -11,16 +11,13 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
-    console.log('ownProps :::', ownProps);
     return {
         login(username, password) {
-            // dispatch(actions.enterBusyState());
             $.ajax({
                 url: '/api/login',
                 method: 'POST',
                 data: { username, password },
             }).done((user) => {
-                console.log('Login user ::: ', user);
                 dispatch(actions.setUser(user));
                 ownProps.router.push('user/home');
             });

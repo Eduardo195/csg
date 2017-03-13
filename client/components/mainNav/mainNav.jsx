@@ -1,7 +1,7 @@
 import React from 'react';
 import Link from 'components/link/link';
 
-const menuItems = [, {
+const menuItems = [{
     title: 'Opportunities',
     href: '/opportunities/',
 },

@@ -1,6 +1,5 @@
 import $ from 'jquery';
 import { connect } from 'react-redux';
-import * as actions from 'components/user/actions/userActions';
 import { getUsername } from 'components/user/selectors/sessionSelectors';
 import Register from '../register';
 

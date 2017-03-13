@@ -4,12 +4,12 @@ const bodyParser = require('body-parser');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 const local = require('./auth/local');
-const db = require('./db/connector');
+const db = require('../shared/db/searchConnector');
 
 const PORT = 3000;
 
 passport.use('local-login', new LocalStrategy(
-    {passReqToCallback : true}, //allows us to pass back the request to the callback
+    {passReqToCallback : true},
     (req, username, password, done) => {
       local.login(username, password).then((user) => {
         console.log('USER: ', user);
@@ -21,14 +21,13 @@ passport.use('local-login', new LocalStrategy(
 );
 
 passport.use('local-register', new LocalStrategy(
-    {passReqToCallback : true}, //allows us to pass back the request to the callback
+    {passReqToCallback : true},
     (req, username, password, done) => {
       local.register(username, password).then((user) => {
         console.log('USER: ', user);
         done(null, user);
       }).catch(function (err){
-        console.log('FAILED TO REGISTEER', err);
-        // console.log(err.body);
+        console.log('Failed to register', err);
       });
     })
 );
@@ -50,23 +49,13 @@ passport.deserializeUser(function(id, cb) {
   });
 });
 
-// Create a new Express application.
 var app = express();
 
-// Configure view engine to render EJS templates.
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-
-// Use application-level middleware for common functionality, including
-// logging, parsing, and session handling.
-// app.use(require('morgan')('combined'));
 app.use(require('cookie-parser')());
-// app.use(require('body-parser').urlencoded({ extended: true }));
 app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
-
-// Initialize Passport and restore authentication state, if any, from the
-// session.
 app.use(passport.initialize());
 app.use(passport.session());
 

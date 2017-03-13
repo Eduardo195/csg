@@ -3,10 +3,10 @@ import Header from 'components/header/header';
 import Footer from 'components/footer/footer';
 import Dialog from 'components/dialog/containers/dialog';
 
-function App({ router, children }) {
+function App({ children }) {
     return (
         <div className="root">
-            <Header router={router} />
+            <Header />
             <main>
                 { children }
             </main>
@@ -18,7 +18,6 @@ function App({ router, children }) {
 
 App.propTypes = {
     children: React.PropTypes.element.isRequired,
-    router: React.PropTypes.object.isRequired,
 };
 
 export default App;

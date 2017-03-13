@@ -61,13 +61,6 @@ const scraper = {
       { allowedTags: [] } // clean leftover tags
     );
 
-            if(title.indexOf('Advogado') >= 0){
-              console.log("\n\n\n\n ", title);
-              console.log("\n\n HTML \n ");
-              console.log(cleanContent);
-              console.log("\n\n MARKDOWN \n");
-              console.log(markdown);
-            }
       return {
         src: 'expressoEmprego',
         title,

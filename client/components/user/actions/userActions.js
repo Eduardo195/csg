@@ -18,7 +18,7 @@ export function logout() {
     return (dispatch) => {
         $.ajax({
             url: '/api/logout',
-        }).done((rsp) => {
+        }).done(() => {
           // TODO: Busy state + redirect
             dispatch(removeUser());
         });

@@ -6,6 +6,7 @@ function getSelectedLabel(options, selectedId) {
             return options[i].label;
         }
     }
+    return null;
 }
 
 class DropdownGroup extends React.Component {
@@ -20,7 +21,7 @@ class DropdownGroup extends React.Component {
     }
 
     render() {
-        const { options, selected, onChange } = this.props;
+        const { options, selected } = this.props;
 
         if (!options) {
             return null;

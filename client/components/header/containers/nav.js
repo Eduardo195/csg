@@ -11,7 +11,6 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch, ownProps) {
-    console.log('ownProps :::', ownProps);
     return {
         logout(router) {
             dispatch(logout());

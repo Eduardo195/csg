@@ -1,14 +1,9 @@
 import $ from 'jquery';
 
-function getValArr({ all, selected }) {
-    const selectedObjs = all.filter((loc, index) => selected.indexOf(index) >= 0);
-    return selectedObjs.map(l => l.label);
-}
-
 function prepFilters(filters) {
-    const { itemsPerPage: limit, page, contracts, keywords, age } = filters;
-    const contractTypes = filters.contractTypes.selected;// getValArr(filters.contractTypes);
-    const locations = filters.locations.selected; // getValArr(filters.locations);
+    const { itemsPerPage: limit, page, keywords, age } = filters;
+    const contractTypes = filters.contractTypes.selected;
+    const locations = filters.locations.selected;
 
     const newFilters = {
         locations,

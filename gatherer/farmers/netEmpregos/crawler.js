@@ -5,10 +5,11 @@ const BASE_URL = 'http://www.net-empregos.com/';
 const SEARCH_PATH = 'listagem_livre2.asp';
 const ENCODING = 'ISO-8859-1';
 const REQUEST_LIMIT = 5;
+const SOURCE_ID = 'netempregos';
 
 const convertToRefArray = (previousData) => previousData.map(record => record.ref);
 
-function NetEmpregosCrawler(previousData) {
+function netEmpregosCrawler(previousData) {
   const previousRefs = convertToRefArray(previousData);
   return new Promise( (resolve, reject) => {
     return getPage(1, [], previousRefs, [], resolve, reject);
@@ -52,4 +53,10 @@ function getPage(index, results, previousRefs, currentRefs, resolve, reject) {
   });
 }
 
-module.exports = NetEmpregosCrawler;
+
+const crawler = {
+  crawl: netEmpregosCrawler,
+  src: SOURCE_ID
+}
+
+module.exports = crawler;

@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import { getResults, getResultCount } from 'components/search/selectors/searchSelectors';
 import { search } from 'components/filters/actions/filterActions';
-import SearchService from 'services/search/searchService';
 import Search from '../search';
 
 function mapStateToProps(state) {

@@ -43,4 +43,8 @@ class Register extends React.Component {
     }
 }
 
+Register.propTypes = {
+    register: React.PropTypes.func.isRequired,
+};
+
 export default Register;

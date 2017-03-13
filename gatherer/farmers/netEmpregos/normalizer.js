@@ -1,4 +1,4 @@
-const LOCATIONS = require('../../helpers/data/districts');
+const LOCATIONS = require('../../../shared/data/districts');
 const NOT_SPECIFIED = 'Not specified';
 
 const Normalizer = {
