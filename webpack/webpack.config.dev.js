@@ -1,15 +1,16 @@
 const webpack = require('webpack');
 const sharedConfig = require('./webpack.config.shared.js');
+
 const PORT = 3000;
 const EXCLUDE = (/node_modules/);
 
 const config = Object.assign({}, sharedConfig, {
-    devtool: 'cheap-module-eval-source-map',
-    devServer: {
-        contentBase: "./public",
-        hot: true,
-        port: PORT
-    }
+  devtool: 'cheap-module-eval-source-map',
+  devServer: {
+    contentBase: './public',
+    hot: true,
+    port: PORT
+  }
 });
 
 sharedConfig.module.rules.push(
@@ -24,7 +25,7 @@ config.entry.app.push(`webpack-dev-server/client?http://localhost:${PORT}`, 'web
 config.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-        'process.env.NODE_ENV': '"dev"'
+      'process.env.NODE_ENV': '"dev"'
     })
 );
 

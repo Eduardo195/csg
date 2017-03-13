@@ -4,9 +4,9 @@ import Button from 'components/button/button';
 function Toolbox(props) {
     const { onTapBold } = props;
     return (
-        <div className="toolbox">
-            <Button className="btn--incognito" onTap={onTapBold}>B</Button>
-        </div>
+      <div className="toolbox">
+        <Button className="btn--incognito" onTap={onTapBold}>B</Button>
+      </div>
     );
 }
 

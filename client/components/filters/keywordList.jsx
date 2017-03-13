@@ -20,16 +20,16 @@ class KeywordList extends React.Component {
         }
 
         return (
-            <div className="keywordList">
-                {
+          <div className="keywordList">
+            {
                     keywords.map(entry => (
-                        <span className="keyword">
-                            <button onClick={this.onRemove} value={entry}>X</button>
-                            {entry}
-                        </span>
+                      <span className="keyword">
+                        <button onClick={this.onRemove} value={entry}>X</button>
+                        {entry}
+                      </span>
                     ))
                 }
-            </div>
+          </div>
         );
     }
 }

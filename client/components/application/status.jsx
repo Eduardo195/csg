@@ -15,13 +15,13 @@ function Status(props) {
     const { title } = data;
 
     return (
-        <div className="advert">
-            <h2 className="title">Application Status</h2>
-            <section>
-                <p>You&#39;ve successfully applied for:</p>
-                <p>{ title }</p>
-            </section>
-        </div>
+      <div className="advert">
+        <h2 className="title">Application Status</h2>
+        <section>
+          <p>You&#39;ve successfully applied for:</p>
+          <p>{ title }</p>
+        </section>
+      </div>
     );
 }
 

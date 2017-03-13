@@ -1,4 +1,4 @@
-import deepFreeze from 'deep-freeze';
+import deepFreeze from 'deep-freeze'; // eslint-disable-line import/no-extraneous-dependencies
 
 function freeze(stateOrAction) {
     return stateOrAction !== undefined ? deepFreeze(stateOrAction) : stateOrAction;

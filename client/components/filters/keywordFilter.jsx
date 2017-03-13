@@ -17,12 +17,12 @@ class KeywordFilter extends React.Component {
 
     render() {
         return (
-            <div className="keywordFilter input-group">
-                <input ref={this.getRef} type="text" className="form-control" placeholder="Keyword" />
-                <span className="input-group-btn">
-                    <button onClick={this.onAdd} className="btn btn-secondary" type="button">+</button>
-                </span>
-            </div>
+          <div className="keywordFilter input-group">
+            <input ref={this.getRef} type="text" className="form-control" placeholder="Keyword" />
+            <span className="input-group-btn">
+              <button onClick={this.onAdd} className="btn btn-secondary" type="button">+</button>
+            </span>
+          </div>
         );
     }
 }

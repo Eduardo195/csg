@@ -37,42 +37,42 @@ class WorkAd extends React.Component {
         const { title, contractType, role, location, employer,
             minPay, maxPay, periodValue, experienceValue } = workAd;
         return (
-            <section className="advert">
-                <h1 className="title">Advertise a vacancy</h1>
-                <div className="content">
-                    <h3>Overview</h3>
-                    <TextAutocomplete id="title" placeholder="Title" value={title} datalist={titles} handleChange={setTitle} className="big" />
-                    <TextAutocomplete id="contractType" placeholder="Contract type" value={contractType} datalist={contractTypes} handleChange={setContractType} className="small" />
-                    <TextAutocomplete id="role" placeholder="Role" value={role} datalist={roles} handleChange={setRole} className="small" />
-                    <TextAutocomplete id="employer" placeholder="Employer" labelText="for " value={employer} datalist={employers} handleChange={setEmployer} className="small" />
-                    <TextAutocomplete id="locations" placeholder="Location" labelText="in " value={location} datalist={locations} handleChange={setLocation} className="small" />
-                    <div>
-                        <h3>Details</h3>
-                        <TextAutocomplete
-                          id="minPay" placeholder="Minimum Pay"
-                          value={minPay} datalist={min} handleChange={setMinPay} className="small"
-                        />
-                        <TextAutocomplete
-                          id="maxPay" placeholder="Maximum Pay" labelText="to "
-                          value={maxPay} datalist={max} handleChange={setMaxPay} className="small"
-                        />
-                        <TextAutocomplete
-                          id="period" placeholder="Time range" labelText="per "
-                          value={periodValue} datalist={period} handleChange={setPayRange} className="small"
-                        />
-                        <TextAutocomplete
-                          id="criteria" placeholder="Criteria" labelText="depending on "
-                          value={experienceValue} datalist={experience} handleChange={setPayCriteria} className="small"
-                        />
-                    </div>
-                    <h3>Write up</h3>
+          <section className="advert">
+            <h1 className="title">Advertise a vacancy</h1>
+            <div className="content">
+              <h3>Overview</h3>
+              <TextAutocomplete id="title" placeholder="Title" value={title} datalist={titles} handleChange={setTitle} className="big" />
+              <TextAutocomplete id="contractType" placeholder="Contract type" value={contractType} datalist={contractTypes} handleChange={setContractType} className="small" />
+              <TextAutocomplete id="role" placeholder="Role" value={role} datalist={roles} handleChange={setRole} className="small" />
+              <TextAutocomplete id="employer" placeholder="Employer" labelText="for " value={employer} datalist={employers} handleChange={setEmployer} className="small" />
+              <TextAutocomplete id="locations" placeholder="Location" labelText="in " value={location} datalist={locations} handleChange={setLocation} className="small" />
+              <div>
+                <h3>Details</h3>
+                <TextAutocomplete
+                  id="minPay" placeholder="Minimum Pay"
+                  value={minPay} datalist={min} handleChange={setMinPay} className="small"
+                />
+                <TextAutocomplete
+                  id="maxPay" placeholder="Maximum Pay" labelText="to "
+                  value={maxPay} datalist={max} handleChange={setMaxPay} className="small"
+                />
+                <TextAutocomplete
+                  id="period" placeholder="Time range" labelText="per "
+                  value={periodValue} datalist={period} handleChange={setPayRange} className="small"
+                />
+                <TextAutocomplete
+                  id="criteria" placeholder="Criteria" labelText="depending on "
+                  value={experienceValue} datalist={experience} handleChange={setPayCriteria} className="small"
+                />
+              </div>
+              <h3>Write up</h3>
 
-                    <MarkdownBox />
-                    <div>
-                        <Button>Post</Button>
-                    </div>
-                </div>
-            </section>
+              <MarkdownBox />
+              <div>
+                <Button>Post</Button>
+              </div>
+            </div>
+          </section>
         );
     }
 }

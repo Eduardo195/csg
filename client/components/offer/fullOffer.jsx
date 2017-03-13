@@ -49,36 +49,36 @@ class FullOffer extends React.Component {
         const pay = shortFullPay || shortMinPay || shortMaxPay || '';
 
         return (
-            <div className="op">
-                <h1 className="title">{ title }</h1>
-                <div className="mainWrapper">
-                    <div className="detais">
-                        <div className="contentWrapper">
-                            <div className="content" dangerouslySetInnerHTML={getRawMarkup(markdown || 'No content')} />
-                            <br />
-                            <a href={url} target="_blank" rel="noopener noreferrer">
-                                <Button className="d-inline-block btn--main">Apply</Button>
-                            </a>
-                        </div>
-                    </div>
-                    <div className="overview">
-                        <div className="contentWrapper">
-                            <h3>Employer</h3>
-                            <span>{company}</span>
-                            <h3>Location</h3>
-                            <span>{locationLabel}</span>
-                            <h3>Contract type</h3>
-                            <span>{contractType.label}</span>
-                            <h3>Salary</h3>
-                            <span>{pay}</span>
-                            <h3>Posted</h3>
-                            <span>{moment(date).format('ll')}</span>
-                            <h3>Industry</h3>
-                            <span>{industry}</span>
-                        </div>
-                    </div>
+          <div className="op">
+            <h1 className="title">{ title }</h1>
+            <div className="mainWrapper">
+              <div className="detais">
+                <div className="contentWrapper">
+                  <div className="content" dangerouslySetInnerHTML={getRawMarkup(markdown || 'No content')} />
+                  <br />
+                  <a href={url} target="_blank" rel="noopener noreferrer">
+                    <Button className="d-inline-block btn--main">Apply</Button>
+                  </a>
                 </div>
+              </div>
+              <div className="overview">
+                <div className="contentWrapper">
+                  <h3>Employer</h3>
+                  <span>{company}</span>
+                  <h3>Location</h3>
+                  <span>{locationLabel}</span>
+                  <h3>Contract type</h3>
+                  <span>{contractType.label}</span>
+                  <h3>Salary</h3>
+                  <span>{pay}</span>
+                  <h3>Posted</h3>
+                  <span>{moment(date).format('ll')}</span>
+                  <h3>Industry</h3>
+                  <span>{industry}</span>
+                </div>
+              </div>
             </div>
+          </div>
         );
     }
 }

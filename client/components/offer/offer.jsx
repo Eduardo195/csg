@@ -14,16 +14,16 @@ function Offer(props) {
     const shortEmployer = company || '';
 
     return (
-        <div className="offer">
-            <Link href={`jobs/${_id}`}>
-                <h3 className="title">{title}</h3>
-            </Link>
-            <h4 className="subTitle">{shortEmployer}</h4>
-            <span className="location">{shortLocation}</span>
-            <span>{shortRole}</span>
-            <span>{ formatDate(date) }</span>
-            <div className="short"> {shortDesc} </div>
-        </div>
+      <div className="offer">
+        <Link href={`jobs/${_id}`}>
+          <h3 className="title">{title}</h3>
+        </Link>
+        <h4 className="subTitle">{shortEmployer}</h4>
+        <span className="location">{shortLocation}</span>
+        <span>{shortRole}</span>
+        <span>{ formatDate(date) }</span>
+        <div className="short"> {shortDesc} </div>
+      </div>
     );
 }
 

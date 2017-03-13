@@ -16,35 +16,35 @@ function getArticles(onlyEven) {
 function Home(props) {
     const { username } = props;
     return (
-        <div className="profile">
-            <SideImageLayout>
-                <h2 className="title">Welcome { username }</h2>
-                <h3>Customize your applications</h3>
-                <section>
-                    <Button>Create cover letter</Button>
-                </section>
-                <h3>Get discovered</h3>
-                <section>
-                    <Button>Upload your CV</Button>
-                </section>
-            </SideImageLayout>
-            <section className="anchor flex flex--col flex--center">
-                <h1 className="title">Great resources to help you stand out</h1>
-                <div className="flex flex--center">
-                    <div>
-                        <div className="flex flex--col flex--center">
-                            { getArticles(true) }
-                        </div>
-                    </div>
-                    <div>
-                        <div className="flex flex--col flex--center">
-                            { getArticles() }
+      <div className="profile">
+        <SideImageLayout>
+          <h2 className="title">Welcome { username }</h2>
+          <h3>Customize your applications</h3>
+          <section>
+            <Button>Create cover letter</Button>
+          </section>
+          <h3>Get discovered</h3>
+          <section>
+            <Button>Upload your CV</Button>
+          </section>
+        </SideImageLayout>
+        <section className="anchor flex flex--col flex--center">
+          <h1 className="title">Great resources to help you stand out</h1>
+          <div className="flex flex--center">
+            <div>
+              <div className="flex flex--col flex--center">
+                { getArticles(true) }
+              </div>
+            </div>
+            <div>
+              <div className="flex flex--col flex--center">
+                { getArticles() }
 
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     );
 }
 

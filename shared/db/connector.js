@@ -1,9 +1,10 @@
 const MongoClient = require('mongodb').MongoClient;
+
 const URL = 'mongodb://localhost:27017/opLap';
 
 class Connector {
   constructor() {
-     this.con = MongoClient.connect(URL).then(db => {
+    this.con = MongoClient.connect(URL).then((db) => {
       this.db = db;
     });
   }
@@ -14,17 +15,15 @@ class Connector {
     return this.db.collection(name);
   }
   createIndex(col, params, options) {
-    return col.createIndex(params,options);
+    return col.createIndex(params, options);
   }
   dropCollection(name) {
-    return this.db.collection(name).drop()
+    return this.db.collection(name).drop();
   }
   insertMany(col, data) {
-    return col.insertMany(data, { ordered: false }).catch(err => {
-      return console.log('InsertMany failed: ', err);
-    });
+    return col.insertMany(data, { ordered: false }).catch(err => console.log('InsertMany failed: ', err));
   }
-  close(){
+  close() {
     this.db.close();
   }
 }

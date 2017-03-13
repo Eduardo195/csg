@@ -22,25 +22,25 @@ import UserHome from 'components/user/containers/home';
 import App from './app';
 
 render((
-    <Provider store={configureStore()}>
-        <Router history={hashHistory}>
-            <Route path="/" component={App}>
-                <IndexRoute component={Home} />
-                <Route path="employer/post" component={WorkAd} />
-                <Route path="employer/home" component={EmployerHome} />
-                <Route path="employer/opportunities" component={EmployerOpportunities} />
-                <Route path="employer/opportunities/:id" component={EmployerOpportunities} />
+  <Provider store={configureStore()}>
+    <Router history={hashHistory}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Home} />
+        <Route path="employer/post" component={WorkAd} />
+        <Route path="employer/home" component={EmployerHome} />
+        <Route path="employer/opportunities" component={EmployerOpportunities} />
+        <Route path="employer/opportunities/:id" component={EmployerOpportunities} />
 
-                <Route path="opportunities" component={Search} />
-                <Route path="/jobs/:id/status" component={Status} />
-                <Route path="/jobs/:id/apply" component={Apply} />
-                <Route path="/jobs/:id" component={FullOffer} />
+        <Route path="opportunities" component={Search} />
+        <Route path="/jobs/:id/status" component={Status} />
+        <Route path="/jobs/:id/apply" component={Apply} />
+        <Route path="/jobs/:id" component={FullOffer} />
 
-                <Route path="user/home" component={UserHome} />
-                <Route path="login" component={Login} />
-                <Route path="register" component={Register} />
-                <Route path="*" component={Doh} />
-            </Route>
-        </Router>
-    </Provider>
+        <Route path="user/home" component={UserHome} />
+        <Route path="login" component={Login} />
+        <Route path="register" component={Register} />
+        <Route path="*" component={Doh} />
+      </Route>
+    </Router>
+  </Provider>
 ), document.getElementById('main'));

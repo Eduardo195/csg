@@ -5,14 +5,14 @@ import Dialog from 'components/dialog/containers/dialog';
 
 function App({ children }) {
     return (
-        <div className="root">
-            <Header />
-            <main>
-                { children }
-            </main>
-            <Dialog />
-            <Footer />
-        </div>
+      <div className="root">
+        <Header />
+        <main>
+          { children }
+        </main>
+        <Dialog />
+        <Footer />
+      </div>
     );
 }
 

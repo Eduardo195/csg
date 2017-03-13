@@ -2,7 +2,7 @@ import React from 'react';
 import { Link as A } from 'react-router';
 
 const Link = ({ href, children }) => (
-    <A to={href}>{children}</A>
+  <A to={href}>{children}</A>
 );
 
 Link.propTypes = {

@@ -10,7 +10,7 @@ function mapStateToProps(state) {
     };
 }
 
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch) {
     return {
         logout(router) {
             dispatch(logout());

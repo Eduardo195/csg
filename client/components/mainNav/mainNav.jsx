@@ -25,38 +25,38 @@ const menuItems = [{
 ];
 
 const MainNav = () => (
-    <nav className="nav nav--main">
-        <ul className="fatnav">
-            {
+  <nav className="nav nav--main">
+    <ul className="fatnav">
+      {
                 menuItems.map(item => (
-                    <li key={item.title} className="nav--menuitem">
-                        {
+                  <li key={item.title} className="nav--menuitem">
+                    {
                             item.href ? (
-                                <Link href={item.href}>
-                                    {item.title}
-                                </Link>
+                              <Link href={item.href}>
+                                {item.title}
+                              </Link>
                             ) : item.title
                         }
-                        {
+                    {
                             item.items && (
                             <ul className="subLinks">
                                 {
                                         item.items.map(link => (
-                                            <li key={link.text}>
-                                                <Link href={link.href}>
-                                                    {link.text}
-                                                </Link>
-                                            </li>
+                                          <li key={link.text}>
+                                            <Link href={link.href}>
+                                              {link.text}
+                                            </Link>
+                                          </li>
                                         ))
                                     }
                             </ul>
                             )
                         }
-                    </li>
+                  </li>
                   ))
               }
-        </ul>
-    </nav>
+    </ul>
+  </nav>
     );
 
 export default MainNav;

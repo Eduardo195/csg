@@ -14,27 +14,27 @@ class Opportunities extends React.Component {
         const details = data.length > 0 ? data.map(entry => (<div> { entry.id } </div>)) : 'Select smth fam';
 
         return (
-            <div className="op flex">
-                <section className="op--list">
-                    <header> Opportunities </header>
-                    <main>
-                        {
+          <div className="op flex">
+            <section className="op--list">
+              <header> Opportunities </header>
+              <main>
+                {
                             mockOpportunities.map(op => (
-                                <Link href={`/employer/opportunities/${op.id}`}>
-                                    <article className="op--list--entry">
-                                        <div> { op.title } </div>
-                                        <div> { op.desc } </div>
-                                        <div> { getMockById(op.id).length } applications </div>
-                                    </article>
-                                </Link>
+                              <Link href={`/employer/opportunities/${op.id}`}>
+                                <article className="op--list--entry">
+                                  <div> { op.title } </div>
+                                  <div> { op.desc } </div>
+                                  <div> { getMockById(op.id).length } applications </div>
+                                </article>
+                              </Link>
                             ))
                         }
-                    </main>
-                </section>
-                <section className="op--details">
-                    { details }
-                </section>
-            </div>
+              </main>
+            </section>
+            <section className="op--details">
+              { details }
+            </section>
+          </div>
         );
     }
 }

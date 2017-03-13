@@ -44,25 +44,25 @@ class MainSearch extends React.Component {
         const { locations } = this.props;
 
         return (
-            <div className="mainSearch">
-                <h2 className="title">Find your future</h2>
-                <div className="form">
-                    <TextAutocomplete
-                      id="workSearh" placeholder="Role"
-                      className="small"
-                      handleChange={this.handleKeywordChange}
-                      value={kw}
-                    />
-                    <TextAutocomplete
-                      id="locationSearch" placeholder="Location"
-                      datalist={locations}
-                      className="small"
-                      handleChange={this.handleLocationChange}
-                      value={loc}
-                    />
-                    <Button className="btn--large" onTap={this.handleSearch}>Go</Button>
-                </div>
+          <div className="mainSearch">
+            <h2 className="title">Find your future</h2>
+            <div className="form">
+              <TextAutocomplete
+                id="workSearh" placeholder="Role"
+                className="small"
+                handleChange={this.handleKeywordChange}
+                value={kw}
+              />
+              <TextAutocomplete
+                id="locationSearch" placeholder="Location"
+                datalist={locations}
+                className="small"
+                handleChange={this.handleLocationChange}
+                value={loc}
+              />
+              <Button className="btn--large" onTap={this.handleSearch}>Go</Button>
             </div>
+          </div>
         );
     }
 }

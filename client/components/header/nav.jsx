@@ -13,18 +13,18 @@ class Nav extends React.Component {
     }
 
     render() {
-        const { isLoggedIn, showDialog, logout } = this.props;
+        const { isLoggedIn } = this.props;
 
         return (
-            <div className="nav nav--secondary">
-                <Link href={isLoggedIn ? '/user/home' : '/login'}>
-                    <Button>
-                        { isLoggedIn ? 'Home' : 'Sign in' }
-                    </Button>
-                </Link>
-                { !isLoggedIn && (<Link href="/register"> <Button> Sign up </Button> </Link>)}
-                { isLoggedIn && (<Button onTap={this.onTap}>Logout </Button>) }
-            </div>
+          <div className="nav nav--secondary">
+            <Link href={isLoggedIn ? '/user/home' : '/login'}>
+              <Button>
+                { isLoggedIn ? 'Home' : 'Sign in' }
+              </Button>
+            </Link>
+            { !isLoggedIn && (<Link href="/register"> <Button> Sign up </Button> </Link>)}
+            { isLoggedIn && (<Button onTap={this.onTap}>Logout </Button>) }
+          </div>
         );
     }
 }

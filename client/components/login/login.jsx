@@ -18,28 +18,28 @@ class Login extends React.Component {
         const { username } = this.props;
         if (username) {
             return (
-                <div>Welcome Don {username}</div>
+              <div>Welcome Don {username}</div>
             );
         }
         return (
-            <div className="loginForm">
-                <h1 className="text-center">Login to your account</h1>
-                <div className="centered">
-                    <input ref={this.getEmailRef} type="email" placeholder="Username / Email" />
-                </div>
-                <div className="centered" >
-                    <input ref={this.getPwdRef} type="password" placeholder="password" />
-                </div>
-                <div className="centered">
-                    <Button onTap={this.onTapLogin}>Login</Button>
-                </div>
-                <hr className="hr-text" data-content="Or" />
-                <div className="text-center">
-                    <Button>L</Button>
-                    <Button>F</Button>
-                    <Button>G+</Button>
-                </div>
+          <div className="loginForm">
+            <h1 className="text-center">Login to your account</h1>
+            <div className="centered">
+              <input ref={this.getEmailRef} type="email" placeholder="Username / Email" />
             </div>
+            <div className="centered" >
+              <input ref={this.getPwdRef} type="password" placeholder="password" />
+            </div>
+            <div className="centered">
+              <Button onTap={this.onTapLogin}>Login</Button>
+            </div>
+            <hr className="hr-text" data-content="Or" />
+            <div className="text-center">
+              <Button>L</Button>
+              <Button>F</Button>
+              <Button>G+</Button>
+            </div>
+          </div>
         );
     }
 }

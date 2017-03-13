@@ -17,37 +17,37 @@ class Apply extends React.Component {
         }
 
         return (
-            <div className="advert">
-                <h2 className="title">Application</h2>
-                <h3>Cover letter</h3>
-                <section>
-                    <MarkdownBox />
-                </section>
-                <h3>CV</h3>
-                <section>
-                    <div className="radio">
-                        <label>
-                            <input type="radio" value="option1" checked />
+          <div className="advert">
+            <h2 className="title">Application</h2>
+            <h3>Cover letter</h3>
+            <section>
+              <MarkdownBox />
+            </section>
+            <h3>CV</h3>
+            <section>
+              <div className="radio">
+                <label>
+                  <input type="radio" value="option1" checked />
                             CV #1
                         </label>
-                    </div>
-                    <div className="radio">
-                        <label>
-                            <input type="radio" value="option2" />
+              </div>
+              <div className="radio">
+                <label>
+                  <input type="radio" value="option2" />
                             CV #2
                         </label>
-                    </div>
-                    <div className="radio">
-                        <label>
-                            <input type="radio" value="option3" />
+              </div>
+              <div className="radio">
+                <label>
+                  <input type="radio" value="option3" />
                             CV #3
                         </label>
-                    </div>
-                </section>
-                <Link href={`jobs/${id}/status`}>
-                    <Button>Confirm</Button>
-                </Link>
-            </div>
+              </div>
+            </section>
+            <Link href={`jobs/${id}/status`}>
+              <Button>Confirm</Button>
+            </Link>
+          </div>
         );
     }
 }

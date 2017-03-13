@@ -3,9 +3,9 @@ import React from 'react';
 function Button(props) {
     const { children, onTap, onBlur, onHover, className } = props;
     return (
-        <button onClick={onTap} onBlur={onBlur} className={`btn ${className}`} onMouseEnter={onHover}>
-            {children}
-        </button>
+      <button onClick={onTap} onBlur={onBlur} className={`btn ${className}`} onMouseEnter={onHover}>
+        {children}
+      </button>
     );
 }
 

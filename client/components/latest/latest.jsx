@@ -12,10 +12,10 @@ class Latest extends React.Component {
     render() {
         const data = this.props.items || [];
         return (
-            <div className="latest">
-                <h2 className="sectionTitle">Latest Opportunities</h2>
-                { data.map(op => <Offer key={op.id} data={op} />) }
-            </div>
+          <div className="latest">
+            <h2 className="sectionTitle">Latest Opportunities</h2>
+            { data.map(op => <Offer key={op.id} data={op} />) }
+          </div>
         );
     }
 }

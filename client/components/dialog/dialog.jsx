@@ -28,17 +28,17 @@ class Dialog extends React.Component {
         const component = dialogMap[componentId];
 
         return (
-            <div className="dialog">
-                <div className="overlay" onClick={this.onClickOverlay} />
-                <div className="box">
-                    <div className="header">
-                        <h3>{ title }</h3>
-                    </div>
-                    <div className="body">
-                        { component }
-                    </div>
-                </div>
+          <div className="dialog">
+            <div className="overlay" onClick={this.onClickOverlay} />
+            <div className="box">
+              <div className="header">
+                <h3>{ title }</h3>
+              </div>
+              <div className="body">
+                { component }
+              </div>
             </div>
+          </div>
         );
     }
 }

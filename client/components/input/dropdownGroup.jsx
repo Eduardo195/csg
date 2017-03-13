@@ -28,27 +28,27 @@ class DropdownGroup extends React.Component {
         }
 
         return (
-            <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {getSelectedLabel(options, selected)}
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                    {
+          <div className="dropdown">
+            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {getSelectedLabel(options, selected)}
+            </button>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+              {
                       options.map(option => (
-                          <button
-                            className="dropdown-item"
-                            type="button"
-                            key={option.value}
-                            onClick={this.handleChange}
-                            value={option.value}
-                            data-value={option.value}
-                          >
-                              {option.label}
-                          </button>
+                        <button
+                          className="dropdown-item"
+                          type="button"
+                          key={option.value}
+                          onClick={this.handleChange}
+                          value={option.value}
+                          data-value={option.value}
+                        >
+                          {option.label}
+                        </button>
                       ))
                   }
-                </div>
             </div>
+          </div>
         );
     }
 }

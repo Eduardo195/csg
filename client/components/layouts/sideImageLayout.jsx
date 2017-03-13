@@ -1,17 +1,17 @@
 import React from 'react';
 
 const SideImageLayout = props => (
-    <div className={`sideImageLayout flex ${props.className}`}>
-        {
+  <div className={`sideImageLayout flex ${props.className}`}>
+    {
             !props.alt ? <div className="img">&nbsp;</div> : null
         }
-        <div className={`anchor ${props.anchorClassName}`}>
-            {props.children}
-        </div>
-        {
+    <div className={`anchor ${props.anchorClassName}`}>
+      {props.children}
+    </div>
+    {
             props.alt ? <div className="img">&nbsp;</div> : null
         }
-    </div>
+  </div>
 );
 
 SideImageLayout.propTypes = {

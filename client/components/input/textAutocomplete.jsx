@@ -12,33 +12,34 @@ class TextAutocomplete extends React.Component {
     }
 
     render() {
-        const { id, ref, labelText, datalist, handleChange, value, className } = this.props;
+        const { id, ref, labelText, datalist, value, className } = this.props;
 
         const placeholder = this.props.placeholder || (datalist && datalist.length > 0 ? datalist[0] : '');
         const label = labelText ? <label htmlFor={id}>{labelText}</label> : null;
 
         return (
-            <span className={`autocp ${className}`}>
-                { label }
-                <input
-                  ref={ref} type="text" id={id}
-                  value={value} list={`${id}-datalist`} placeholder={placeholder}
-                  onChange={this.handleChange}
-                />
-                <datalist id={`${id}-datalist`}>
-                    {
+          <span className={`autocp ${className}`}>
+            { label }
+            <input
+              ref={ref} type="text" id={id}
+              value={value} list={`${id}-datalist`} placeholder={placeholder}
+              onChange={this.handleChange}
+            />
+            <datalist id={`${id}-datalist`}>
+              {
                         datalist && datalist.map(entry => (
-                            <option key={entry} value={entry} />
+                          <option key={entry} value={entry} />
                       ))
                   }
-                </datalist>
-            </span>
+            </datalist>
+          </span>
         );
     }
 }
 
 TextAutocomplete.propTypes = {
     id: React.PropTypes.string.isRequired,
+    ref: React.PropTypes.func,
     labelText: React.PropTypes.string,
     handleChange: React.PropTypes.func,
     datalist: React.PropTypes.array.isRequired,

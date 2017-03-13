@@ -7,37 +7,37 @@ import articleMock from '../../mocks/articleMocks';
 
 function EmployerHome() {
     return (
-        <SideImageLayout anchorClassName="profile flex flex--col">
-            <section className="centered spaced">
-                <Link href="employer/post">
-                    <Button className="btn--alt btn--massive">Create Opportunity</Button>
-                </Link>
-            </section>
-            <section className="anchor flex flex--col flex--center">
-                <div className="flex flex--center">
-                    <div>
-                        <h2>Tips</h2>
-                        <div className="flex flex--col flex--center">
-                            {
+      <SideImageLayout anchorClassName="profile flex flex--col">
+        <section className="centered spaced">
+          <Link href="employer/post">
+            <Button className="btn--alt btn--massive">Create Opportunity</Button>
+          </Link>
+        </section>
+        <section className="anchor flex flex--col flex--center">
+          <div className="flex flex--center">
+            <div>
+              <h2>Tips</h2>
+              <div className="flex flex--col flex--center">
+                {
                                 articleMock.map(entry => (
-                                    <ArticleShort content={entry} />
+                                  <ArticleShort content={entry} />
                                 ))
                             }
-                        </div>
-                    </div>
-                    <div>
-                        <h2>Templates</h2>
-                        <div className="flex flex--col flex--center">
-                            {
+              </div>
+            </div>
+            <div>
+              <h2>Templates</h2>
+              <div className="flex flex--col flex--center">
+                {
                                 articleMock.map(entry => (
-                                    <ArticleShort content={entry} />
+                                  <ArticleShort content={entry} />
                                 ))
                             }
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </SideImageLayout>
+              </div>
+            </div>
+          </div>
+        </section>
+      </SideImageLayout>
     );
 }
 
