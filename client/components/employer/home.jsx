@@ -7,7 +7,7 @@ import articleMock from '../../mocks/articleMocks';
 
 function EmployerHome() {
     return (
-      <SideImageLayout anchorClassName="profile flex flex--col">
+      <SideImageLayout>
         <section className="centered spaced">
           <Link href="employer/post">
             <Button className="btn--alt btn--massive">Create Opportunity</Button>

@@ -5,9 +5,9 @@ import Dialog from 'components/dialog/containers/dialog';
 
 function App({ children }) {
     return (
-      <div className="root">
+      <div className="root d-flex flex-column">
         <Header />
-        <main>
+        <main className="flex-column d-flex flex-grow align-items-stretch">
           { children }
         </main>
         <Dialog />

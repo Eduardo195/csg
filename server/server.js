@@ -8,6 +8,8 @@ const expressSession = require('express-session');
 const sessionConfig = require('./sessionConfig');
 const local = require('./auth/local');
 const db = require('../shared/db/searchConnector');
+const authErrorCodes = require('./auth/errorCodes');
+const mailer = require('./mailer/mailer');
 
 const PORT = 3000;
 
@@ -24,18 +26,18 @@ passport.use('local-login', new LocalStrategy(
     })
 );
 
-passport.use('local-register', new LocalStrategy(
-    { passReqToCallback: true },
-    (req, username, password, done) => {
-      local.register(username, password).then((user) => {
-        console.log('USER: ', user);
-        done(null, user);
-      }).catch((err) => {
-        console.log('Failed to register', err);
-        done(null, false, { message: err });
-      });
-    })
-);
+// passport.use('local-register', new LocalStrategy(
+//     { passReqToCallback: true },
+//     (req, username, password, done) => {
+//       local.register(username, password).then((user) => {
+//         console.log('USER: ', user);
+//         done(null, user);
+//       }).catch((err) => {
+//         console.log('Failed to register', err);
+//         done(null, false, { message: err });
+//       });
+//     })
+// );
 
 passport.serializeUser((user, cb) => {
   console.log('serializing', user, cb);
@@ -69,9 +71,36 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
-app.post('/api/register', passport.authenticate('local-register'), (req, res) => {
-  res.send(req.user);
+app.post('/api/register', (req, res) => {
+  const { username, password } = req.body;
+  console.log(username, password);
+  local.register(username, password).then((user) => {
+    mailer.sendConfirmationEmail(username, user.confHash);
+    console.log('USER: created', user);
+    res.send({ success: true });
+  }).catch((err) => {
+    console.log('Failed to register\n', err);
+    if (err.code === authErrorCodes.USER_ALEADY_EXISTS) {
+      res.send({ success: true });
+    } else {
+      res.send({ success: false, message: err.msg });
+    }
+  }
+  ); // end catch
 });
+
+// passport.use('local-register', new LocalStrategy(
+//     { passReqToCallback: true },
+//     (req, username, password, done) => {
+//       local.register(username, password).then((user) => {
+//         console.log('USER: ', user);
+//         done(null, user);
+//       }).catch((err) => {
+//         console.log('Failed to register', err);
+//         done(null, false, { message: err });
+//       });
+//     })
+// );
 
 app.post('/api/login', passport.authenticate('local-login'),
   (req, res) => {

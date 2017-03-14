@@ -12,14 +12,14 @@ module.exports = {
   getByUsername(username) {
     return Connector.getCollection(TableNames.LOCAL_USERS).findOne({ username });
   },
-  register(username, password) {
+  register(username, password, confHash) {
     return new Promise((resolve, reject) => {
       const col = Connector.getCollection(TableNames.LOCAL_USERS);
       col.findOne({ username }, { username: 1 }).then((existingUserData) => {
         if (existingUserData) {
           return reject(new Error(`fAILED TO REGISTER: ${username} already exists`));
         }
-        const user = { username, password };
+        const user = { username, password, confHash };
         return col.insert(user).then((WriteResult) => {
           if (WriteResult.writeConcernError) {
             reject(new Error(`fAILED TO REGISTER: ${WriteResult.writeConcernError.errmsg}`));

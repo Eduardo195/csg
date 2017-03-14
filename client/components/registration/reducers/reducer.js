@@ -35,7 +35,27 @@ function validationErrors(state = null, action) {
     }
 }
 
+
+function registrationSuccess(state = false, action) {
+    switch (action.type) {
+
+    case actionTypes.SET_INVALID_EMAIL:
+        return false;
+
+    case actionTypes.SET_INVALID_PASSWORD:
+        return false;
+
+    case actionTypes.REGISTRATION_SUCCESS:
+        return true;
+
+    default:
+        return state;
+    }
+}
+
+
 export default combineReducers({
     submissionErrors,
     validationErrors,
+    registrationSuccess,
 });

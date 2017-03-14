@@ -1,6 +1,10 @@
 const bcrypt = require('bcrypt-nodejs');
 const db = require('../../shared/db/authConnector');
 const validateCredentials = require('./validateCredentials');
+const authErrorCodes = require('./errorCodes');
+const { randomBytes } = require('crypto');
+
+const HASH_BYTES = 256;
 
 module.exports = {
   register(username, password) {
@@ -10,16 +14,21 @@ module.exports = {
       }
       db.getByUsername(username).then((user) => {
         if (user) {
-          // TODO: Send to email confirmation page to prevent attaks?
-          reject(`User '${username}' already exists`);
+          reject({ code: authErrorCodes.USER_ALEADY_EXISTS, msg: `User '${username}' already exists` });
         } else {
-          bcrypt.hash(password, null, null, (err, hash) => {
-            if (err) {
-              reject(err);
+          bcrypt.hash(password, null, null, (error, passHash) => {
+            if (error) {
+              reject({ code: authErrorCodes.CRYPT_ERROR, msg: error });
             } else {
-              db.register(username, hash)
-                .then(userData => resolve(userData))
-                .catch(e => reject(new Error(e)));
+              randomBytes(HASH_BYTES, (err, buf) => {
+                if (err) {
+                  reject(err);
+                } else {
+                  db.register(username, passHash, buf.toString('hex'))
+                    .then(userData => resolve(userData))
+                    .catch(e => reject({ code: authErrorCodes.UNKNOWN, msg: e }));
+                }
+              });
             }
           });
         }

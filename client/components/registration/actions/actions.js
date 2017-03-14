@@ -1,5 +1,6 @@
-import * as actionTypes from './actionTypes';
+import $ from 'jquery';
 import CVS from 'services/credentialValidatorService';
+import * as actionTypes from './actionTypes';
 
 export function setServerErrorRegError() {
     return {
@@ -36,6 +37,12 @@ export function setInvalidPasswordMessage(msg) {
     };
 }
 
+export function setRegistrationSuccess() {
+    return {
+        type: actionTypes.REGISTRATION_SUCCESS,
+    };
+}
+
 export function register(username, password) {
     return (dispatch) => {
         const credentials = CVS.validate(username, password);
@@ -43,6 +50,7 @@ export function register(username, password) {
 
         dispatch(setInvalidUsernameMessage(usernameError));
         dispatch(setInvalidPasswordMessage(pwdError));
+        dispatch(clearRegError());
 
         if (!usernameError && !pwdError) {
             $.ajax({
@@ -57,9 +65,12 @@ export function register(username, password) {
               // server broke while processing
                     dispatch(setServerErrorRegError());
                 }
-            }).done(() => {
-                dispatch(clearRegError());
-            // TODO: Send to email confirmation page
+            }).done((res) => {
+                if (res.success) {
+                    dispatch(setRegistrationSuccess());
+                } else {
+                    dispatch(setServerErrorBadCredentials());
+                }
             });
         }
     };

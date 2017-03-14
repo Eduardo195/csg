@@ -74,6 +74,7 @@ export function removeContractType(index) {
 
 export function search(preservePaging) {
     return (dispatch, getState) => {
+        const { search: searchData } = getState();
         const { filters, itemsPerPage } = searchData;
         const page = preservePaging ? searchData.page : 1;
         if (!preservePaging) {
@@ -88,7 +89,7 @@ export function search(preservePaging) {
             dispatch(setIsLoading(false));
         }).catch((error) => {
             dispatch(setIsLoading(false));
-            console.error('SOMETHING BROKE Y\'ALL', error);
+            console.error(error); // eslint-disable-line no-console
         });
     };
 }

@@ -5,7 +5,7 @@ const ArticleShort = (props) => {
     const { title, shortDesc, author } = props.content;
     return (
       <article className="short">
-        <SideImageLayout anchorClassName="flex flex--col" alt>
+        <SideImageLayout alt>
           <h2>{title}</h2>
           <main>
             {shortDesc}
