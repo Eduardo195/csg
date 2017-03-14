@@ -19,9 +19,10 @@ passport.use('local-login', new LocalStrategy(
         done(null, user);
       }).catch((err) => {
         console.log('Failed to login', err);
+        done(null, false, { message: err });
       });
     })
-  );
+);
 
 passport.use('local-register', new LocalStrategy(
     { passReqToCallback: true },
@@ -31,6 +32,7 @@ passport.use('local-register', new LocalStrategy(
         done(null, user);
       }).catch((err) => {
         console.log('Failed to register', err);
+        done(null, false, { message: err });
       });
     })
 );

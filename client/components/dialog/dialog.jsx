@@ -1,10 +1,10 @@
 import React from 'react';
 import Login from 'components/login/containers/login';
-import Register from 'components/register/register';
+import Registration from 'components/registration/registration';
 
 const dialogMap = {
     login: <Login />,
-    register: <Register />,
+    register: <Registration />,
 };
 
 class Dialog extends React.Component {

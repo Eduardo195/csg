@@ -74,7 +74,6 @@ export function removeContractType(index) {
 
 export function search(preservePaging) {
     return (dispatch, getState) => {
-        const { search: searchData } = getState();
         const { filters, itemsPerPage } = searchData;
         const page = preservePaging ? searchData.page : 1;
         if (!preservePaging) {

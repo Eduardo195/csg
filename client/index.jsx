@@ -5,7 +5,7 @@ import Home from 'components/home/home';
 import WorkAd from 'components/advert/containers/workAd';
 import Search from 'components/search/containers/search';
 import Login from 'components/login/containers/login';
-import Register from 'components/register/containers/register';
+import Registration from 'components/registration/containers/registration';
 import EmployerHome from 'components/employer/home';
 import EmployerOpportunities from 'components/employer/opportunities';
 import Doh from 'components/errors/doh';
@@ -33,7 +33,7 @@ export default function index() {
 
           <Route path="user/home" component={UserHome} />
           <Route path="login" component={Login} />
-          <Route path="register" component={Register} />
+          <Route path="register" component={Registration} />
           <Route path="*" component={Doh} />
         </Route>
       </Router>
