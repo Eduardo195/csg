@@ -22,10 +22,6 @@ sharedConfig.output.publicPath = '/';
 sharedConfig.plugins.push(
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"prod"' }),
     new webpack.optimize.UglifyJsPlugin({
-      // Don't beautify output (enable for neater output)
-      beautify: false,
-      // Eliminate comments
-      comments: false,
       // Compression specific options
       compress: { warnings: false, drop_console: true }
     }),

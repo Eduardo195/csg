@@ -19,7 +19,7 @@ function mapDispatchToProps(dispatch) {
                 url: '/api/register',
                 method: 'POST',
                 data: { username, password },
-            }).fail((req, textStatus) => {
+            }).fail((req) => {
                 if (req.status === 401) { // invalid params
                 // invalid credentials - user likely went around our validation. Naughty boy
                     dispatch(setServerErrorBadCredentials());

@@ -18,7 +18,6 @@ class Registration extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         const { error } = this.props;
         return (
           <SideImageLayout className="register">
@@ -49,6 +48,7 @@ class Registration extends React.Component {
 
 Registration.propTypes = {
     register: React.PropTypes.func.isRequired,
+    error: React.PropTypes.string,
 };
 
 export default Registration;

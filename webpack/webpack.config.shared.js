@@ -12,7 +12,6 @@ const config = {
     path: path.join(__dirname, '../public'),
     filename: 'bundle.js'
   },
-  devtool: 'source-map',
   module: {
     rules: [
       { test: /\.js$/, use: 'babel-loader', exclude: EXCLUDE },
