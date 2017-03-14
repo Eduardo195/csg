@@ -1,6 +1,6 @@
 import React from 'react';
 import Login from 'components/login/containers/login';
-import Registration from 'components/registration/registration';
+import Registration from 'components/registration/containers/registration';
 
 const dialogMap = {
     login: <Login />,

@@ -45,7 +45,7 @@ class MainSearch extends React.Component {
 
         return (
           <div className="mainSearch">
-            <h2 className="title">Find your future</h2>
+            <h2>Find your future</h2>
             <div className="form">
               <TextAutocomplete
                 id="workSearh" placeholder="Role"

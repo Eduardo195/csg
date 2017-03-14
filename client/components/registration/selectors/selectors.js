@@ -1,1 +1,2 @@
-export const getRegError = state => state.registration; // eslint-disable-line import/prefer-default-export
+export const getSubmissionErrors = state => state.registration.submissionErrors;
+export const getsValidationErrors = state => state.registration.validationErrors;

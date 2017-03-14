@@ -17,4 +17,4 @@ function isUsernameValid(un) {
 module.exports = (un, pwd) => un && pwd &&
       un !== pwd &&
       isPasswordValid(pwd) &&
-      isUsernameValid(pwd);
+      isUsernameValid(un);

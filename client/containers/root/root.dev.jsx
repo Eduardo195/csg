@@ -9,7 +9,7 @@ render((
   <Provider store={configureStore()}>
     <div>
       <Index />
-      <DevTools />
+      { /* <DevTools /> */ }
     </div>
   </Provider>
 ), document.getElementById('main'));

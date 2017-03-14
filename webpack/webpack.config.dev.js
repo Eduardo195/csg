@@ -8,7 +8,7 @@ const config = Object.assign({}, sharedConfig, {
   devtool: 'cheap-module-eval-source-map',
   devServer: {
     proxy: {
-      'api/*': {
+      '/api': {
         target: 'http://localhost:3000',  // proxy to express
         secure: false
       }

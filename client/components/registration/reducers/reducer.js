@@ -1,11 +1,12 @@
+import { combineReducers } from 'redux';
 import * as actionTypes from 'components/registration/actions/actionTypes';
 
-function registration(state = null, action) {
+function submissionErrors(state = null, action) {
     switch (action.type) {
     case actionTypes.SERVER_ERROR:
         return action.msg;
 
-    case actionTypes.CLEAR_ERROR:
+    case actionTypes.CLEAR_ERRORS:
         return null;
 
     default:
@@ -13,4 +14,28 @@ function registration(state = null, action) {
     }
 }
 
-export default registration;
+function validationErrors(state = null, action) {
+    switch (action.type) {
+
+    case actionTypes.SET_INVALID_EMAIL:
+        return Object.assign({}, state, {
+            email: action.msg,
+        });
+
+    case actionTypes.SET_INVALID_PASSWORD:
+        return Object.assign({}, state, {
+            password: action.msg,
+        });
+
+    case actionTypes.CLEAR__VALIDATION_ERRORS:
+        return null;
+
+    default:
+        return state;
+    }
+}
+
+export default combineReducers({
+    submissionErrors,
+    validationErrors,
+});
