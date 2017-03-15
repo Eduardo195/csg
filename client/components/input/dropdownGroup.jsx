@@ -1,39 +1,39 @@
 import React from 'react';
 
 function getSelectedLabel(options, selectedId) {
-    for (let i = 0; i < options.length; i++) {
-        if (options[i].value === selectedId) {
-            return options[i].label;
-        }
+  for (let i = 0; i < options.length; i++) {
+    if (options[i].value === selectedId) {
+      return options[i].label;
     }
-    return null;
+  }
+  return null;
 }
 
 class DropdownGroup extends React.Component {
 
-    constructor() {
-        super();
-        this.handleChange = this.handleChange.bind(this);
+  constructor() {
+    super();
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    this.props.onChange(e.target.value);
+  }
+
+  render() {
+    const { options, selected } = this.props;
+
+    if (!options) {
+      return null;
     }
 
-    handleChange(e) {
-        this.props.onChange(e.target.value);
-    }
-
-    render() {
-        const { options, selected } = this.props;
-
-        if (!options) {
-            return null;
-        }
-
-        return (
-          <div className="dropdown">
-            <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              {getSelectedLabel(options, selected)}
-            </button>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
-              {
+    return (
+      <div className="dropdown">
+        <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {getSelectedLabel(options, selected)}
+        </button>
+        <div className="dropdown-menu" aria-labelledby="dropdownMenu2">
+          {
                       options.map(option => (
                         <button
                           className="dropdown-item"
@@ -47,16 +47,16 @@ class DropdownGroup extends React.Component {
                         </button>
                       ))
                   }
-            </div>
-          </div>
-        );
-    }
+        </div>
+      </div>
+    );
+  }
 }
 
 DropdownGroup.propTypes = {
-    options: React.PropTypes.array.isRequired,
-    selected: React.PropTypes.string.isRequired,
-    onChange: React.PropTypes.func.isRequired,
+  options: React.PropTypes.array.isRequired,
+  selected: React.PropTypes.string.isRequired,
+  onChange: React.PropTypes.func.isRequired,
 };
 
 export default DropdownGroup;

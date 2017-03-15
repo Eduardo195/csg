@@ -1,5 +1,5 @@
 // TODO: get from env build config file?
-const BASE_URL = 'http://localhost:3000/confirmEmail/';
+const BASE_URL = 'http://localhost:3000/api/confirmEmail/';
 
 module.exports = {
   getSubject() {

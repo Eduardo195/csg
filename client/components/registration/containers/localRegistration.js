@@ -4,18 +4,18 @@ import { getSubmissionErrors, getsValidationErrors } from 'components/registrati
 import LocalRegistration from '../localRegistration';
 
 function mapStateToProps(state) {
-    return {
-        submissionErrors: getSubmissionErrors(state),
-        validationErrors: getsValidationErrors(state),
-    };
+  return {
+    submissionErrors: getSubmissionErrors(state),
+    validationErrors: getsValidationErrors(state),
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        register(username, password) {
-            dispatch(register(username, password));
-        },
-    };
+  return {
+    register(username, password) {
+      dispatch(register(username, password));
+    },
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LocalRegistration);

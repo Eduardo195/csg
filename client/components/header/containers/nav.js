@@ -5,21 +5,21 @@ import { getUsername } from 'components/user/selectors/sessionSelectors';
 import Nav from '../nav';
 
 function mapStateToProps(state) {
-    return {
-        isLoggedIn: !!getUsername(state),
-    };
+  return {
+    isLoggedIn: !!getUsername(state),
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        logout(router) {
-            dispatch(logout());
-            router.push('/');
-        },
-        showDialog() {
-            dispatch(showDialog('register', {}));
-        },
-    };
+  return {
+    logout(router) {
+      dispatch(logout());
+      router.push('/');
+    },
+    showDialog() {
+      dispatch(showDialog('register', {}));
+    },
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Nav);

@@ -15,9 +15,9 @@ const SideImageLayout = props => (
 );
 
 SideImageLayout.propTypes = {
-    alt: React.PropTypes.bool,
-    className: React.PropTypes.string,
-    children: React.PropTypes.element.isRequired,
+  alt: React.PropTypes.bool,
+  className: React.PropTypes.string,
+  children: React.PropTypes.element.isRequired,
 };
 
 export default SideImageLayout;

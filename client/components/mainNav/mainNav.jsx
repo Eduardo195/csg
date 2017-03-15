@@ -2,8 +2,8 @@ import React from 'react';
 import Link from 'components/link/link';
 
 const menuItems = [{
-    title: 'Opportunities',
-    href: '/opportunities/',
+  title: 'Opportunities',
+  href: '/opportunities/',
 },
 // {
 //     title: 'CV',

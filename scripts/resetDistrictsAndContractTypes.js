@@ -4,6 +4,7 @@ const DISTRICTS_DATA = require('../shared/data/districts');
 const CONTRACT_TYPES_DATA = require('../shared/data/contractTypes');
 
 const reset = (colName, indexObj, data) => Connector.dropCollection(colName)
+  .catch(e => e)  // ignore drop errors
   .then(() => Connector.createCollection(colName)
   .then(col => Connector.createIndex(col, indexObj, { unique: true })
   .then(() => Connector.insertMany(col, data))));

@@ -4,18 +4,18 @@ import { search } from 'components/filters/actions/filterActions';
 import Search from '../search';
 
 function mapStateToProps(state) {
-    return {
-        results: getResults(state),
-        resultCount: getResultCount(state),
-    };
+  return {
+    results: getResults(state),
+    resultCount: getResultCount(state),
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        handleMount() {
-            dispatch(search());
-        },
-    };
+  return {
+    handleMount() {
+      dispatch(search());
+    },
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

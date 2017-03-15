@@ -1,19 +1,19 @@
 import * as actionTypes from '../actions/types';
 
 function dialogs(state = null, action) {
-    switch (action.type) {
+  switch (action.type) {
     case actionTypes.SHOW_DIALOG:
-        return {
-            config: action.config,
-            componentId: action.componentId,
-        };
+      return {
+        config: action.config,
+        componentId: action.componentId,
+      };
 
     case actionTypes.HIDE_DIALOG:
-        return null;
+      return null;
 
     default:
-        return state;
-    }
+      return state;
+  }
 }
 
 export default dialogs;

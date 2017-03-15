@@ -3,50 +3,50 @@ import Button from 'components/button/button';
 
 class Login extends React.Component {
 
-    constructor() {
-        super();
-        this.onTapLogin = this.onTapLogin.bind(this);
-        this.getEmailRef = (ref) => { this.email = ref; };
-        this.getPwdRef = (ref) => { this.pwd = ref; };
-    }
+  constructor() {
+    super();
+    this.onTapLogin = this.onTapLogin.bind(this);
+    this.getEmailRef = (ref) => { this.email = ref; };
+    this.getPwdRef = (ref) => { this.pwd = ref; };
+  }
 
-    onTapLogin() {
-        this.props.login(this.email.value, this.pwd.value);
-    }
+  onTapLogin() {
+    this.props.login(this.email.value, this.pwd.value);
+  }
 
-    render() {
-        const { username } = this.props;
-        if (username) {
-            return (
-              <div>Welcome Don {username}</div>
-            );
-        }
-        return (
-          <div className="loginForm">
-            <h1 className="text-center">Login to your account</h1>
-            <div className="centered">
-              <input ref={this.getEmailRef} type="email" placeholder="Username / Email" />
-            </div>
-            <div className="centered" >
-              <input ref={this.getPwdRef} type="password" placeholder="password" />
-            </div>
-            <div className="centered">
-              <Button onTap={this.onTapLogin}>Login</Button>
-            </div>
-            <hr className="hr-text" data-content="Or" />
-            <div className="text-center">
-              <Button>L</Button>
-              <Button>F</Button>
-              <Button>G+</Button>
-            </div>
-          </div>
-        );
+  render() {
+    const { username } = this.props;
+    if (username) {
+      return (
+        <div>Welcome Don {username}</div>
+      );
     }
+    return (
+      <div className="loginForm">
+        <h1 className="text-center">Login to your account</h1>
+        <div className="centered">
+          <input ref={this.getEmailRef} type="email" placeholder="Username / Email" />
+        </div>
+        <div className="centered" >
+          <input ref={this.getPwdRef} type="password" placeholder="password" />
+        </div>
+        <div className="centered">
+          <Button onTap={this.onTapLogin}>Login</Button>
+        </div>
+        <hr className="hr-text" data-content="Or" />
+        <div className="text-center">
+          <Button>L</Button>
+          <Button>F</Button>
+          <Button>G+</Button>
+        </div>
+      </div>
+    );
+  }
 }
 
 Login.propTypes = {
-    login: React.PropTypes.func.isRequired,
-    username: React.PropTypes.username,
+  login: React.PropTypes.func.isRequired,
+  username: React.PropTypes.username,
 };
 
 export default Login;

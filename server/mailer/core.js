@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer');
-const { service, from, pass } = require('./credentials');
+const { service, user, pass } = require('./credentials');
 
-const transporter = nodemailer.createTransport({ service, auth: { from, pass } });
+const transporter = nodemailer.createTransport({ service, auth: { user, pass } });
 
 function send(mailOptions) {
   transporter.sendMail(mailOptions, (error, info) => {  // eslint-disable-line consistent-return
@@ -13,5 +13,5 @@ function send(mailOptions) {
 }
 
 module.exports = (to, subject, html) => {
-  send({ from: `No-Reply <${from}>`, to, subject, html });
+  send({ from: `No-Reply <${user}>`, to, subject, html });
 };

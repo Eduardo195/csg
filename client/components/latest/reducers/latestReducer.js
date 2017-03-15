@@ -1,13 +1,13 @@
 import * as actions from 'components/latest/actions/latestActions';
 
 function latest(state = [], action) {
-    switch (action.type) {
+  switch (action.type) {
     case actions.SET_LATEST:
-        return action.latest;
+      return action.latest;
 
     default:
-        return state;
-    }
+      return state;
+  }
 }
 
 export default latest;

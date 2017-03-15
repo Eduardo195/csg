@@ -7,10 +7,10 @@ import user from 'components/user/reducers/user';
 import registration from 'components/registration/reducers/reducer';
 
 export default combineReducers({
-    registration,
-    search,
-    latest,
-    workAd,
-    dialogs,
-    user,
+  registration,
+  search,
+  latest,
+  workAd,
+  dialogs,
+  user,
 });

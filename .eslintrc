@@ -8,6 +8,7 @@
   "rules": {
     "comma-dangle": ["error", {
         "functions": "never"
-    }]
+    }],
+    "indent": ["error", 2]
   }
 }

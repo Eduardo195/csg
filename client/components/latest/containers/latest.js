@@ -4,19 +4,19 @@ import SearchService from 'services/search/searchService';
 import Latest from '../latest';
 
 function mapStateToProps(state) {
-    return {
-        items: state.latest,
-    };
+  return {
+    items: state.latest,
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        handleMount() {
-            SearchService.getLatest().then((latest) => {
-                dispatch(actions.setLatest(latest));
-            });
-        },
-    };
+  return {
+    handleMount() {
+      SearchService.getLatest().then((latest) => {
+        dispatch(actions.setLatest(latest));
+      });
+    },
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Latest);

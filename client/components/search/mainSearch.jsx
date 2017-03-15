@@ -4,77 +4,77 @@ import TextAutocomplete from 'components/input/textAutocomplete';
 
 class MainSearch extends React.Component {
 
-    constructor() {
-        super();
-        this.state = { kw: '', loc: '' };
-        this.handleSearch = this.handleSearch.bind(this);
-        this.handleKeywordChange = this.handleKeywordChange.bind(this);
-        this.handleLocationChange = this.handleLocationChange.bind(this);
-    }
+  constructor() {
+    super();
+    this.state = { kw: '', loc: '' };
+    this.handleSearch = this.handleSearch.bind(this);
+    this.handleKeywordChange = this.handleKeywordChange.bind(this);
+    this.handleLocationChange = this.handleLocationChange.bind(this);
+  }
 
-    componentDidMount() {
-        this.props.handleMount();
-    }
+  componentDidMount() {
+    this.props.handleMount();
+  }
 
-    handleKeywordChange(kw) {
-        this.setState(
+  handleKeywordChange(kw) {
+    this.setState(
         Object.assign({}, this.state, { kw }),
       );
-    }
+  }
 
-    handleLocationChange(loc) {
-        this.setState(
+  handleLocationChange(loc) {
+    this.setState(
           Object.assign({}, this.state, { loc }),
         );
-    }
+  }
 
-    handleSearch() {
-        const { kw, loc } = this.state;
-        const { locations } = this.props;
-        const locIndex = locations.indexOf(loc);
+  handleSearch() {
+    const { kw, loc } = this.state;
+    const { locations } = this.props;
+    const locIndex = locations.indexOf(loc);
 
-        this.props.search(kw, locIndex >= 0 ? locIndex : null);
-        this.setState({});
+    this.props.search(kw, locIndex >= 0 ? locIndex : null);
+    this.setState({});
 
-        this.context.router.push('/opportunities');
-    }
+    this.context.router.push('/opportunities');
+  }
 
-    render() {
-        const { kw, loc } = this.state;
-        const { locations } = this.props;
+  render() {
+    const { kw, loc } = this.state;
+    const { locations } = this.props;
 
-        return (
-          <div className="mainSearch">
-            <h2>Find your future</h2>
-            <div className="form">
-              <TextAutocomplete
-                id="workSearh" placeholder="Role"
-                className="small"
-                handleChange={this.handleKeywordChange}
-                value={kw}
-              />
-              <TextAutocomplete
-                id="locationSearch" placeholder="Location"
-                datalist={locations}
-                className="small"
-                handleChange={this.handleLocationChange}
-                value={loc}
-              />
-              <Button className="btn--large" onTap={this.handleSearch}>Go</Button>
-            </div>
-          </div>
-        );
-    }
+    return (
+      <div className="mainSearch">
+        <h2>Find your future</h2>
+        <div className="form">
+          <TextAutocomplete
+            id="workSearh" placeholder="Role"
+            className="small"
+            handleChange={this.handleKeywordChange}
+            value={kw}
+          />
+          <TextAutocomplete
+            id="locationSearch" placeholder="Location"
+            datalist={locations}
+            className="small"
+            handleChange={this.handleLocationChange}
+            value={loc}
+          />
+          <Button className="btn--large" onTap={this.handleSearch}>Go</Button>
+        </div>
+      </div>
+    );
+  }
 }
 
 MainSearch.propTypes = {
-    handleMount: React.PropTypes.func.isRequired,
-    locations: React.PropTypes.array.isRequired,
-    search: React.PropTypes.func.isRequired,
+  handleMount: React.PropTypes.func.isRequired,
+  locations: React.PropTypes.array.isRequired,
+  search: React.PropTypes.func.isRequired,
 };
 
 MainSearch.contextTypes = {
-    router: React.PropTypes.object.isRequired,
+  router: React.PropTypes.object.isRequired,
 };
 
 export default MainSearch;

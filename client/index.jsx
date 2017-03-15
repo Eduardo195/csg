@@ -17,25 +17,25 @@ import UserHome from 'components/user/containers/home';
 import App from './app';
 
 export default function index() {
-    return (
-      <Router history={hashHistory}>
-        <Route path="/" component={App}>
-          <IndexRoute component={Home} />
-          <Route path="employer/post" component={WorkAd} />
-          <Route path="employer/home" component={EmployerHome} />
-          <Route path="employer/opportunities" component={EmployerOpportunities} />
-          <Route path="employer/opportunities/:id" component={EmployerOpportunities} />
+  return (
+    <Router history={hashHistory}>
+      <Route path="/" component={App}>
+        <IndexRoute component={Home} />
+        <Route path="employer/post" component={WorkAd} />
+        <Route path="employer/home" component={EmployerHome} />
+        <Route path="employer/opportunities" component={EmployerOpportunities} />
+        <Route path="employer/opportunities/:id" component={EmployerOpportunities} />
 
-          <Route path="opportunities" component={Search} />
-          <Route path="/jobs/:id/status" component={Status} />
-          <Route path="/jobs/:id/apply" component={Apply} />
-          <Route path="/jobs/:id" component={FullOffer} />
+        <Route path="opportunities" component={Search} />
+        <Route path="/jobs/:id/status" component={Status} />
+        <Route path="/jobs/:id/apply" component={Apply} />
+        <Route path="/jobs/:id" component={FullOffer} />
 
-          <Route path="user/home" component={UserHome} />
-          <Route path="login" component={Login} />
-          <Route path="register" component={Registration} />
-          <Route path="*" component={Doh} />
-        </Route>
-      </Router>
-    );
+        <Route path="user/home" component={UserHome} />
+        <Route path="login" component={Login} />
+        <Route path="register" component={Registration} />
+        <Route path="*" component={Doh} />
+      </Route>
+    </Router>
+  );
 }

@@ -6,28 +6,28 @@ import SearchService from 'services/search/searchService';
 import { convertToMap } from '../helpers/helpers';
 
 function mapStateToProps(state) {
-    return {
-        items: getLocations(state),
-        selected: getSelectedLocations(state),
-        name: 'locations',
-    };
+  return {
+    items: getLocations(state),
+    selected: getSelectedLocations(state),
+    name: 'locations',
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        handleMount() {
-            SearchService.getDistricts().then((locations) => {
-                dispatch(actions.setLocations(convertToMap(locations)));
-            });
-        },
-        handleChange(value, isActive) {
-            if (isActive) {
-                dispatch(actions.addLocation(+value));
-            } else {
-                dispatch(actions.removeLocation(+value));
-            }
-        },
-    };
+  return {
+    handleMount() {
+      SearchService.getDistricts().then((locations) => {
+        dispatch(actions.setLocations(convertToMap(locations)));
+      });
+    },
+    handleChange(value, isActive) {
+      if (isActive) {
+        dispatch(actions.addLocation(+value));
+      } else {
+        dispatch(actions.removeLocation(+value));
+      }
+    },
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CheckboxGroup);

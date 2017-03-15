@@ -4,11 +4,11 @@ import RegistrationForm from './registrationForm';
 import RegistrationSuccess from './registrationSuccess';
 
 function Registration(props) {
-    const { registrationSuccess } = props;
+  const { registrationSuccess } = props;
 
-    return (
-      <SideImageLayout>
-        {
+  return (
+    <SideImageLayout>
+      {
           registrationSuccess ? (
             <div className="d-flex flex-grow align-items-center justify-content-center">
               <RegistrationSuccess />
@@ -17,12 +17,12 @@ function Registration(props) {
           <RegistrationForm />
         )
       }
-      </SideImageLayout>
-    );
+    </SideImageLayout>
+  );
 }
 
 Registration.propTypes = {
-    registrationSuccess: React.PropTypes.bool.isRequired,
+  registrationSuccess: React.PropTypes.bool.isRequired,
 };
 
 export default Registration;

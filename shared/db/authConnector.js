@@ -1,6 +1,7 @@
 const ObjectId = require('mongodb').ObjectID;
 const TableNames = require('./tableNames');
 const Connector = require('./connector');
+const RegConnector = require('./regConnector');
 
 const returnableValues = { _id: 1, username: 1 };
 
@@ -12,22 +13,39 @@ module.exports = {
   getByUsername(username) {
     return Connector.getCollection(TableNames.LOCAL_USERS).findOne({ username });
   },
-  register(username, password, confHash) {
-    return new Promise((resolve, reject) => {
-      const col = Connector.getCollection(TableNames.LOCAL_USERS);
-      col.findOne({ username }, { username: 1 }).then((existingUserData) => {
-        if (existingUserData) {
-          return reject(new Error(`fAILED TO REGISTER: ${username} already exists`));
+  register({ _id, username, password }) {
+    console.log('inserting ', username);
+    return Connector.getCollection(TableNames.LOCAL_USERS)
+      .insert({ username, password })
+      .then((WriteResult) => {
+        if (WriteResult.writeConcernError) {
+          console.log(`FAILED TO move ${username}: ${WriteResult.writeConcernError.errmsg}`);
+          return false;
         }
-        const user = { username, password, confHash };
-        return col.insert(user).then((WriteResult) => {
-          if (WriteResult.writeConcernError) {
-            reject(new Error(`fAILED TO REGISTER: ${WriteResult.writeConcernError.errmsg}`));
-          } else {
-            resolve(user);// TODO: send back the user obj without hash
-          }
-        });
+        console.log(`User ${username} moved`);
+        console.log('removing original');
+        return this.removeUnconfirmedById(_id);
       });
-    });
+  },
+  removeUnconfirmedById(_id) {
+    return RegConnector.getCollection(TableNames.UNVERIFIED).remove({ _id }, { justOne: true });
+  },
+  confirmHash(confHash) {
+    return RegConnector.getCollection(TableNames.UNVERIFIED)
+      .findOne({ confHash }, { username: 1, password: 1 });
+  },
+  getUnregisterdUserByUsername(username) {
+    return RegConnector.getCollection(TableNames.UNVERIFIED).findOne({ username });
+  },
+  registerUnconfirmed(username, password, confHash) {
+    return RegConnector.getCollection(TableNames.UNVERIFIED)
+      .insert({ username, password, confHash })
+      .then((WriteResult) => {
+        if (WriteResult.writeConcernError) {
+          throw new Error(`fAILED TO REGISTER UNCONFIRMED ${username}: ${WriteResult.writeConcernError.errmsg}`);
+        }
+        // conf hash needed for email cong
+        return { username, confHash };
+      });
   }
 };

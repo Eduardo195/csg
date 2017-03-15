@@ -9,28 +9,28 @@ import MainNav from '../mainSearch';
 const toFlatArr = values => values.map(entry => entry.label);
 
 function mapStateToProps(state) {
-    return {
-        locations: toFlatArr(getLocations(state)),
-    };
+  return {
+    locations: toFlatArr(getLocations(state)),
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-    return {
-        search(keyword, location) {
+  return {
+    search(keyword, location) {
             // TODO: move
-            if (keyword) {
-                dispatch(addKeyword(keyword));
-            }
-            if (location) {
-                dispatch(addLocation(location));
-            }
-        },
-        handleMount() {
-            SearchService.getDistricts().then((locations) => {
-                dispatch(setLocations(convertToMap(locations)));
-            });
-        },
-    };
+      if (keyword) {
+        dispatch(addKeyword(keyword));
+      }
+      if (location) {
+        dispatch(addLocation(location));
+      }
+    },
+    handleMount() {
+      SearchService.getDistricts().then((locations) => {
+        dispatch(setLocations(convertToMap(locations)));
+      });
+    },
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(MainNav);

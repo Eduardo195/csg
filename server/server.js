@@ -73,20 +73,22 @@ app.get('/', (req, res) => {
 
 app.post('/api/register', (req, res) => {
   const { username, password } = req.body;
-  console.log(username, password);
-  local.register(username, password).then((user) => {
+  local.registerUnconfirmed(username, password).then((user) => {
     mailer.sendConfirmationEmail(username, user.confHash);
-    console.log('USER: created', user);
     res.send({ success: true });
-  }).catch((err) => {
-    console.log('Failed to register\n', err);
-    if (err.code === authErrorCodes.USER_ALEADY_EXISTS) {
+  }).catch(({ code, msg }) => {
+    if (code === authErrorCodes.USER_ALEADY_EXISTS) {
       res.send({ success: true });
     } else {
-      res.send({ success: false, message: err.msg });
+      res.send({ success: false, msg });
     }
-  }
-  ); // end catch
+  }); // end catch
+});
+
+app.get('/api/confirmEmail/:id', (req, res) => {
+  local.checkHash(req.params.id).then(((wasValid) => {
+    res.send({ success: true, falsePos: !wasValid });
+  }));
 });
 
 // passport.use('local-register', new LocalStrategy(

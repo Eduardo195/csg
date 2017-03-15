@@ -7,7 +7,12 @@ const { randomBytes } = require('crypto');
 const HASH_BYTES = 256;
 
 module.exports = {
-  register(username, password) {
+  checkHash(hash) {
+    return db.confirmHash(hash)
+      .then(user => user ? db.register(user) : null);  // eslint-disable-line no-confusing-arrow
+  },
+  // TODO: needs a refactor
+  registerUnconfirmed(username, password) {
     return new Promise((resolve, reject) => { // eslint-disable-line consistent-return
       if (!validateCredentials(username, password)) {
         return reject(`Invalid details '${username}' '${password}'`);
@@ -16,17 +21,23 @@ module.exports = {
         if (user) {
           reject({ code: authErrorCodes.USER_ALEADY_EXISTS, msg: `User '${username}' already exists` });
         } else {
-          bcrypt.hash(password, null, null, (error, passHash) => {
-            if (error) {
-              reject({ code: authErrorCodes.CRYPT_ERROR, msg: error });
+          db.getUnregisterdUserByUsername(username).then((unregUser) => {
+            if (unregUser) {
+              reject({ code: authErrorCodes.UNREG_USER_ALEADY_EXISTS, msg: `User '${username}' already exists but is unregistered` });
             } else {
-              randomBytes(HASH_BYTES, (err, buf) => {
-                if (err) {
-                  reject(err);
+              bcrypt.hash(password, null, null, (error, passHash) => {
+                if (error) {
+                  reject({ code: authErrorCodes.CRYPT_ERROR, msg: error });
                 } else {
-                  db.register(username, passHash, buf.toString('hex'))
-                    .then(userData => resolve(userData))
-                    .catch(e => reject({ code: authErrorCodes.UNKNOWN, msg: e }));
+                  randomBytes(HASH_BYTES, (err, buf) => {
+                    if (err) {
+                      reject(err);
+                    } else {
+                      db.registerUnconfirmed(username, passHash, buf.toString('hex'))
+                        .then(userData => resolve(userData))
+                        .catch(e => reject({ code: authErrorCodes.UNKNOWN, msg: e }));
+                    }
+                  });
                 }
               });
             }

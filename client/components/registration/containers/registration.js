@@ -3,9 +3,9 @@ import { getRegistrationSuccess } from 'components/registration/selectors/select
 import Registration from '../registration';
 
 function mapStateToProps(state) {
-    return {
-        registrationSuccess: getRegistrationSuccess(state),
-    };
+  return {
+    registrationSuccess: getRegistrationSuccess(state),
+  };
 }
 
 export default connect(mapStateToProps)(Registration);

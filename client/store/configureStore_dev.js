@@ -13,21 +13,21 @@ const enhancer = compose(
 );
 
 function configureStore(initialState) {
-    const store = createStore(
+  const store = createStore(
         checkImmutable(rootReducer),
         initialState,
         enhancer,
     );
 
-    if (module.hot) {
+  if (module.hot) {
         // Enable Webpack hot module replacement for reducers
-        module.hot.accept('../reducers/reducers.js', () => {
-            const nextRootReducer = require('../reducers/reducers.js').default; // eslint-disable-line global-require
-            store.replaceReducer(nextRootReducer);
-        });
-    }
+    module.hot.accept('../reducers/reducers.js', () => {
+      const nextRootReducer = require('../reducers/reducers.js').default; // eslint-disable-line global-require
+      store.replaceReducer(nextRootReducer);
+    });
+  }
 
-    return store;
+  return store;
 }
 
 export default configureStore;

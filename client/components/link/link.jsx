@@ -6,15 +6,15 @@ const Link = ({ href, children }) => (
 );
 
 Link.propTypes = {
-    href: React.PropTypes.string.isRequired,
-    children: React.PropTypes.oneOfType([
-        React.PropTypes.string,
-        React.PropTypes.element,
-    ]).isRequired,
+  href: React.PropTypes.string.isRequired,
+  children: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.element,
+  ]).isRequired,
 };
 
 Link.contextTypes = {
-    router: React.PropTypes.object.isRequired,
+  router: React.PropTypes.object.isRequired,
 };
 
 export default Link;
