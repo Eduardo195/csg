@@ -58,6 +58,42 @@ export function setCaptcha(captcha) {
   };
 }
 
+export function setHashIsValid(isValid) {
+  return {
+    type: actionTypes.SET_HASH_IS_VALID,
+    isValid,
+  };
+}
+
+export function setHashIsLoading(isLoading) {
+  return {
+    type: actionTypes.SET_HASH_IS_LOADING,
+    isLoading,
+  };
+}
+
+export function validateEmailHash(hash) {
+  return (dispatch) => {  // eslint-disable-line consistent-return
+    if (!hash) {
+      return dispatch(setHashIsValid(false));
+    }
+    dispatch(setHashIsLoading(true));
+    $.ajax({
+      url: `/api/confirmEmail/${hash}`,
+    }).fail(() => {
+      dispatch(setHashIsValid(false));
+    }).done((res) => {
+      if (res.success) {
+        dispatch(setHashIsValid(true));
+      } else {
+        dispatch(setHashIsValid(false));
+      }
+    }).always(() => {
+      dispatch(setHashIsLoading(false));
+    });
+  };
+}
+
 export function register(username, password) {
   return (dispatch, getState) => {
     const credentials = CVS.validate(username, password);

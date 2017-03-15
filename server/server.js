@@ -73,6 +73,8 @@ app.post('/api/register', (req, res) => {
 app.get('/api/confirmEmail/:id', (req, res) => {
   local.checkHash(req.params.id).then(() => {
     res.send({ success: true });
+  }).catch((err) => {
+    res.send({ success: false, msg: err });
   });
 });
 

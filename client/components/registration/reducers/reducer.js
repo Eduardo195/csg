@@ -63,9 +63,28 @@ function captcha(state = null, action) {
   }
 }
 
+function hash(state = null, action) {
+  switch (action.type) {
+
+    case actionTypes.SET_HASH_IS_VALID:
+      return Object.assign({}, state, {
+        isValid: action.isValid,
+      });
+
+    case actionTypes.SET_HASH_IS_LOADING:
+      return Object.assign({}, state, {
+        isLoading: action.isLoading,
+      });
+
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   captcha,
   submissionErrors,
   validationErrors,
   registrationSuccess,
+  hash,
 });
