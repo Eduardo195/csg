@@ -15,7 +15,7 @@ module.exports = {
   registerUnconfirmed(username, password) {
     return new Promise((resolve, reject) => { // eslint-disable-line consistent-return
       if (!validateCredentials(username, password)) {
-        return reject(`Invalid details '${username}' '${password}'`);
+        return reject({ code: authErrorCodes.INVALID_DETAILS, msg: `Invalid details '${username}' '${password}'` });
       }
       db.getByUsername(username).then((user) => {
         if (user) {

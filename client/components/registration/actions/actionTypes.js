@@ -4,3 +4,4 @@ export const CLEAR_ERROR = 'registration/CLEAR_ERROR';
 export const SET_INVALID_EMAIL = 'registration/SET_INVALID_EMAIL';
 export const SET_INVALID_PASSWORD = 'registration/SET_INVALID_PASSWORD';
 export const REGISTRATION_SUCCESS = 'registration/REGISTRATION_SUCCESS';
+export const SET_CAPTCHA = 'registration/SET_CAPTCHA';

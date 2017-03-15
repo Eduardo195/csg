@@ -1,5 +1,6 @@
 import React from 'react';
 import ErrorMessage from 'components/errorMessage/errorMessage';
+import Recaptcha from 'components/registration/containers/recaptcha';
 
 class LocalRegistration extends React.Component {
   constructor() {
@@ -11,7 +12,8 @@ class LocalRegistration extends React.Component {
     this.getPwdConfRef = (ref) => { this.pwdConf = ref; };
   }
 
-  handleSubmit() {
+  handleSubmit(e) {
+    e.preventDefault();
     this.props.register(this.email.value, this.pwd.value);
   }
 
@@ -28,8 +30,8 @@ class LocalRegistration extends React.Component {
           />
           { emailError ? (<div className="form-control-feedback">{emailError}</div>) : null }
           <small id="emailHelp" className="form-text text-muted">
-                We will never share your email with anyone else.
-              </small>
+            We will never share your email with anyone else.
+          </small>
         </div>
         <div className={`form-group input-group-lg ${pwdError ? 'has-danger' : ''}`}>
           <label htmlFor="password" className="sr-only">Password</label>
@@ -40,6 +42,7 @@ class LocalRegistration extends React.Component {
           />
           { pwdError ? (<div className="form-control-feedback">{pwdError}</div>) : null }
           <small id="pwdHelp" className="form-text text-muted">Minimum 8 chars, max 25</small>
+          <Recaptcha />
         </div>
         <button type="submit" className="btn btn--main font-weight-bold">Create Account</button>
         { submissionErrors && <ErrorMessage msg={submissionErrors} />}

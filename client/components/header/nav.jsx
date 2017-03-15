@@ -22,7 +22,7 @@ class Nav extends React.Component {
             { isLoggedIn ? 'Home' : 'Sign in' }
           </Button>
         </Link>
-        { !isLoggedIn && (<Link href="/register"> <Button> Sign up </Button> </Link>)}
+        { !isLoggedIn && (<Link href="/registration"> <Button> Sign up </Button> </Link>)}
         { isLoggedIn && (<Button onTap={this.onTap}>Logout </Button>) }
       </div>
     );

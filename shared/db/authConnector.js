@@ -11,12 +11,13 @@ module.exports = {
       .findOne({ _id: ObjectId(id) }, returnableValues);
   },
   getByUsername(username) {
-    return Connector.getCollection(TableNames.LOCAL_USERS).findOne({ username });
+    return Connector.getCollection(TableNames.LOCAL_USERS)
+      .findOne({ username: username.toLowerCase() });
   },
   register({ _id, username, password }) {
     console.log('inserting ', username);
     return Connector.getCollection(TableNames.LOCAL_USERS)
-      .insert({ username, password })
+      .insert({ username: username.toLowerCase(), password })
       .then((WriteResult) => {
         if (WriteResult.writeConcernError) {
           console.log(`FAILED TO move ${username}: ${WriteResult.writeConcernError.errmsg}`);
@@ -35,11 +36,12 @@ module.exports = {
       .findOne({ confHash }, { username: 1, password: 1 });
   },
   getUnregisterdUserByUsername(username) {
-    return RegConnector.getCollection(TableNames.UNVERIFIED).findOne({ username });
+    return RegConnector.getCollection(TableNames.UNVERIFIED)
+      .findOne({ username: username.toLowerCase() });
   },
   registerUnconfirmed(username, password, confHash) {
     return RegConnector.getCollection(TableNames.UNVERIFIED)
-      .insert({ username, password, confHash })
+      .insert({ username: username.toLowerCase(), password, confHash })
       .then((WriteResult) => {
         if (WriteResult.writeConcernError) {
           throw new Error(`fAILED TO REGISTER UNCONFIRMED ${username}: ${WriteResult.writeConcernError.errmsg}`);

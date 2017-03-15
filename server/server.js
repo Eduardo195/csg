@@ -8,7 +8,7 @@ const expressSession = require('express-session');
 const sessionConfig = require('./sessionConfig');
 const local = require('./auth/local');
 const db = require('../shared/db/searchConnector');
-const authErrorCodes = require('./auth/errorCodes');
+const CaptchaVerifier = require('./captcha/verifier');
 const mailer = require('./mailer/mailer');
 
 const PORT = 3000;
@@ -25,19 +25,6 @@ passport.use('local-login', new LocalStrategy(
       });
     })
 );
-
-// passport.use('local-register', new LocalStrategy(
-//     { passReqToCallback: true },
-//     (req, username, password, done) => {
-//       local.register(username, password).then((user) => {
-//         console.log('USER: ', user);
-//         done(null, user);
-//       }).catch((err) => {
-//         console.log('Failed to register', err);
-//         done(null, false, { message: err });
-//       });
-//     })
-// );
 
 passport.serializeUser((user, cb) => {
   console.log('serializing', user, cb);
@@ -66,43 +53,28 @@ app.use(expressSession(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Define routes.
+// Define routes
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
 app.post('/api/register', (req, res) => {
-  const { username, password } = req.body;
-  local.registerUnconfirmed(username, password).then((user) => {
-    mailer.sendConfirmationEmail(username, user.confHash);
+  CaptchaVerifier.verify(req.body.captcha).then(() => {
+    const { username, password } = req.body;
+    return local.registerUnconfirmed(username, password)
+      .then(user => mailer.sendConfirmationEmail(username, user.confHash));
+  }).then(() => {
     res.send({ success: true });
-  }).catch(({ code, msg }) => {
-    if (code === authErrorCodes.USER_ALEADY_EXISTS) {
-      res.send({ success: true });
-    } else {
-      res.send({ success: false, msg });
-    }
-  }); // end catch
+  }).catch((err) => {
+    res.send({ success: false, msg: err.msg });
+  });
 });
 
 app.get('/api/confirmEmail/:id', (req, res) => {
-  local.checkHash(req.params.id).then(((wasValid) => {
-    res.send({ success: true, falsePos: !wasValid });
-  }));
+  local.checkHash(req.params.id).then(() => {
+    res.send({ success: true });
+  });
 });
-
-// passport.use('local-register', new LocalStrategy(
-//     { passReqToCallback: true },
-//     (req, username, password, done) => {
-//       local.register(username, password).then((user) => {
-//         console.log('USER: ', user);
-//         done(null, user);
-//       }).catch((err) => {
-//         console.log('Failed to register', err);
-//         done(null, false, { message: err });
-//       });
-//     })
-// );
 
 app.post('/api/login', passport.authenticate('local-login'),
   (req, res) => {
@@ -114,8 +86,7 @@ app.post('/api/login', passport.authenticate('local-login'),
 app.get('/api/logout', (req, res) => {
   req.logout();
   res.send({ status: true });
-}
-);
+});
 
 // TODO
 app.get('/api/profile',

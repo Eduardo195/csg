@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import { hashHistory } from 'react-router';
 import CVS from 'services/credentialValidatorService';
 import * as actionTypes from './actionTypes';
 
@@ -50,20 +51,30 @@ export function setRegistrationSuccess() {
   };
 }
 
+export function setCaptcha(captcha) {
+  return {
+    type: actionTypes.SET_CAPTCHA,
+    captcha,
+  };
+}
+
 export function register(username, password) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     const credentials = CVS.validate(username, password);
     const { usernameError, pwdError } = credentials;
+    const captcha = getState().registration.captcha;
 
     dispatch(setInvalidUsernameMessage(usernameError));
     dispatch(setInvalidPasswordMessage(pwdError));
+    // dispatch(setInvalidCaptchaMessage(captchaError));
+
     dispatch(clearRegError());
 
-    if (!usernameError && !pwdError) {
+    if (!usernameError && !pwdError /* && !captchaError*/) {
       $.ajax({
         url: '/api/register',
         method: 'POST',
-        data: { username, password },
+        data: { username, password, captcha },
       }).fail((req) => {
         if (req.status === 401) { // invalid params
               // invalid credentials - user likely went around our validation. Naughty boy
@@ -75,6 +86,7 @@ export function register(username, password) {
       }).done((res) => {
         if (res.success) {
           dispatch(setRegistrationSuccess());
+          hashHistory.push('/registration/success');
         } else if (res.msg) {
           dispatch(setServerError(res.msg));
         }

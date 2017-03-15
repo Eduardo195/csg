@@ -35,7 +35,6 @@ function validationErrors(state = null, action) {
   }
 }
 
-
 function registrationSuccess(state = false, action) {
   switch (action.type) {
 
@@ -53,8 +52,19 @@ function registrationSuccess(state = false, action) {
   }
 }
 
+function captcha(state = null, action) {
+  switch (action.type) {
+
+    case actionTypes.SET_CAPTCHA:
+      return action.captcha;
+
+    default:
+      return state;
+  }
+}
 
 export default combineReducers({
+  captcha,
   submissionErrors,
   validationErrors,
   registrationSuccess,
