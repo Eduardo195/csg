@@ -1,26 +1,18 @@
-import $ from 'jquery';
 import { connect } from 'react-redux';
-import * as actions from 'components/user/actions/userActions';
-import { getUsername } from 'components/user/selectors/sessionSelectors';
+import { login } from 'components/login/actions/actions';
+import { getLoginError } from 'components/login/selectors/selectors';
 import Login from '../login';
 
 function mapStateToProps(state) {
   return {
-    username: getUsername(state),
+    error: getLoginError(state),
   };
 }
 
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch) {
   return {
-    login(username, password) {
-      $.ajax({
-        url: '/api/login',
-        method: 'POST',
-        data: { username, password },
-      }).done((user) => {
-        dispatch(actions.setUser(user));
-        ownProps.router.push('user/home');
-      });
+    login(user, pass) {
+      dispatch(login(user, pass));
     },
   };
 }

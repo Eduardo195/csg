@@ -1,5 +1,5 @@
 import React from 'react';
-import ErrorMessage from 'components/errorMessage/errorMessage';
+import ErrorMessage from 'components/messages/error';
 import Recaptcha from 'components/registration/containers/recaptcha';
 
 class LocalRegistration extends React.Component {

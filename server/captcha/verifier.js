@@ -1,6 +1,6 @@
 const request = require('request');
 const SECRET = require('../secret/recaptchaKey');
-const { INVALID_CAPTCHA } = require('../auth/errorCodes');
+const { INVALID_CAPTCHA } = require('../auth/errors');
 
 const URL = 'https://www.google.com/recaptcha/api/siteverify';
 

@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt-nodejs');
 const db = require('../../shared/db/authConnector');
 const validateCredentials = require('./validateCredentials');
-const authErrorCodes = require('./errorCodes');
+const errors = require('./errors');
 const { randomBytes } = require('crypto');
 
 const HASH_BYTES = 256;
@@ -15,19 +15,19 @@ module.exports = {
   registerUnconfirmed(username, password) {
     return new Promise((resolve, reject) => { // eslint-disable-line consistent-return
       if (!validateCredentials(username, password)) {
-        return reject({ code: authErrorCodes.INVALID_DETAILS, msg: `Invalid details '${username}' '${password}'` });
+        return reject({ code: errors.INVALID_DETAILS, msg: `Invalid details '${username}' '${password}'` });
       }
       db.getByUsername(username).then((user) => {
         if (user) {
-          reject({ code: authErrorCodes.USER_ALEADY_EXISTS, msg: `User '${username}' already exists` });
+          reject({ code: errors.USER_ALEADY_EXISTS, msg: `User '${username}' already exists` });
         } else {
           db.getUnregisterdUserByUsername(username).then((unregUser) => {
             if (unregUser) {
-              reject({ code: authErrorCodes.UNREG_USER_ALEADY_EXISTS, msg: `User '${username}' already exists but is unregistered` });
+              reject({ code: errors.UNREG_USER_ALEADY_EXISTS, msg: `User '${username}' already exists but is unregistered` });
             } else {
               bcrypt.hash(password, null, null, (error, passHash) => {
                 if (error) {
-                  reject({ code: authErrorCodes.CRYPT_ERROR, msg: error });
+                  reject({ code: errors.CRYPT_ERROR, msg: error });
                 } else {
                   randomBytes(HASH_BYTES, (err, buf) => {
                     if (err) {
@@ -35,7 +35,7 @@ module.exports = {
                     } else {
                       db.registerUnconfirmed(username, passHash, buf.toString('hex'))
                         .then(userData => resolve(userData))
-                        .catch(e => reject({ code: authErrorCodes.UNKNOWN, msg: e }));
+                        .catch(() => reject(errors.UNKNOWN));
                     }
                   });
                 }
@@ -46,21 +46,21 @@ module.exports = {
       });
     });
   },
-  login(username, pwd) {
-    return new Promise((resolve, reject) => {
-      db.getByUsername(username).then((user) => {
-        if (!user) {
-          reject(`username '${username}' not found`);
-        } else {
-          bcrypt.compare(pwd, user.password, (err, res) => {
-            if (res) {
-              console.log('Login success');
-              resolve(user);
-            } else {
-              reject('password missmatch');
-            }
-          });
-        }
+  login(username, password) {
+    return db.getByUsername(username).then((user) => {
+      if (!user) {
+        throw errors.LOGIN_INVALID_CREDENTIALS;
+      }
+      return new Promise((resolve, reject) => {
+        bcrypt.compare(password, user.password, (err, res) => {
+          if (err) {
+            reject(errors.UNKNOWN);
+          }
+          if (!res) {
+            reject(errors.LOGIN_INVALID_CREDENTIALS);
+          }
+          resolve({ success: true, user: { _id: user._id, username } });  // eslint-disable-line no-underscore-dangle, max-len
+        });
       });
     });
   },

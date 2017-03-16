@@ -6,25 +6,12 @@ const LocalStrategy = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 const sessionConfig = require('./sessionConfig');
-const local = require('./auth/local');
+const AuthLocal = require('./auth/local');
 const db = require('../shared/db/searchConnector');
 const CaptchaVerifier = require('./captcha/verifier');
 const mailer = require('./mailer/mailer');
 
 const PORT = 3000;
-
-passport.use('local-login', new LocalStrategy(
-    { passReqToCallback: true },
-    (req, username, password, done) => {
-      local.login(username, password).then((user) => {
-        console.log('USER: ', user);
-        done(null, user);
-      }).catch((err) => {
-        console.log('Failed to login', err);
-        done(null, false, { message: err });
-      });
-    })
-);
 
 passport.serializeUser((user, cb) => {
   console.log('serializing', user, cb);
@@ -33,7 +20,7 @@ passport.serializeUser((user, cb) => {
 
 passport.deserializeUser((id, cb) => {
   console.log(`deserializing ${id}`);
-  local.findById(id).then((user) => {
+  AuthLocal.findById(id).then((user) => {
     console.log('user ::::', user);
     if (user) {
       cb(null, user);
@@ -53,6 +40,38 @@ app.use(expressSession(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
 
+passport.use('local-login', new LocalStrategy(
+    { passReqToCallback: true },
+    (req, username, password, done) => {
+      AuthLocal.login(username, password).then((res) => {
+        if (res.success) {
+          done(null, res.user);
+        } else {
+          done(null, false, res);
+        }
+      }).catch((err) => {
+        done(null, false, err);
+      });
+    })
+);
+
+app.post('/api/login', (req, res, next) => {
+  passport.authenticate('local-login', (err, user, info) => { // eslint-disable-line consistent-return
+    if (err) {
+      return next(err); // Throws a 500 error
+    }
+    if (!user) {
+      return res.send({ success: false, err: info.err.msg });
+    }
+    req.login(user, (loginErr) => {
+      if (loginErr) {
+        return next(loginErr);  // Throw 500
+      }
+      return res.send({ success: true, user });
+    });
+  })(req, res, next);
+}); // app end
+
 // Define routes
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'));
@@ -61,7 +80,7 @@ app.get('/', (req, res) => {
 app.post('/api/register', (req, res) => {
   CaptchaVerifier.verify(req.body.captcha).then(() => {
     const { username, password } = req.body;
-    return local.registerUnconfirmed(username, password)
+    return AuthLocal.registerUnconfirmed(username, password)
       .then(user => mailer.sendConfirmationEmail(username, user.confHash));
   }).then(() => {
     res.send({ success: true });
@@ -71,32 +90,17 @@ app.post('/api/register', (req, res) => {
 });
 
 app.get('/api/confirmEmail/:id', (req, res) => {
-  local.checkHash(req.params.id).then(() => {
+  AuthLocal.checkHash(req.params.id).then(() => {
     res.send({ success: true });
   }).catch((err) => {
     res.send({ success: false, msg: err });
   });
 });
 
-app.post('/api/login', passport.authenticate('local-login'),
-  (req, res) => {
-    console.log('returning user details', req.user);
-    res.send(req.user);
-  }
-);
-
 app.get('/api/logout', (req, res) => {
   req.logout();
   res.send({ status: true });
 });
-
-// TODO
-app.get('/api/profile',
-  require('connect-ensure-login').ensureLoggedIn(),
-  (req, res) => {
-    res.send(req.user);
-  }
-);
 
 app.get('/api/latest', (req, res) => {
   db.latest().then((data) => {

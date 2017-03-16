@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from 'components/button/button';
+import ErrorMessage from 'components/messages/error';
 
 class Login extends React.Component {
 
@@ -15,12 +16,7 @@ class Login extends React.Component {
   }
 
   render() {
-    const { username } = this.props;
-    if (username) {
-      return (
-        <div>Welcome Don {username}</div>
-      );
-    }
+    const { error } = this.props;
     return (
       <div className="loginForm">
         <h1 className="text-center">Login to your account</h1>
@@ -33,6 +29,7 @@ class Login extends React.Component {
         <div className="centered">
           <Button onTap={this.onTapLogin}>Login</Button>
         </div>
+        { error ? <ErrorMessage msg={error} /> : null }
         <hr className="hr-text" data-content="Or" />
         <div className="text-center">
           <Button>L</Button>
@@ -45,8 +42,8 @@ class Login extends React.Component {
 }
 
 Login.propTypes = {
+  error: React.PropTypes.string,
   login: React.PropTypes.func.isRequired,
-  username: React.PropTypes.username,
 };
 
 export default Login;
