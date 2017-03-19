@@ -1,9 +1,55 @@
+@circular-btn-size: 3em;
+
 .btn {
     background: @bg-color-main;
     border: 1px solid #ccc;
     border-radius: 0;
     cursor: pointer;
-    
+
+    &--circular {
+      height: @circular-btn-size;
+      width: @circular-btn-size;
+      border-radius: @circular-btn-size;
+      position: relative;
+
+      &:after {
+        content: " ";
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 50%;
+        left: 0;
+      }
+    }
+
+    &--profile {
+      overflow: hidden;
+      margin-left: 1em;
+
+      &:after {
+        background: @btn-bg-main;
+      }
+    }
+
+    &--logout {
+      border-color: @btn-bg-main;
+      margin: 0 1em;
+
+      &:after {
+        background: #fff;
+        width: 50%;
+        top: -0.5em;
+        left: 25%;
+        content: "|";
+        border-radius: 100%;
+        color: #e84e29;
+      }
+
+      &:hover {
+          background: #e84e29;
+      }
+    }
+
     &--main {
 
       background: @btn-bg-main;

@@ -15,6 +15,7 @@ import FullOffer from 'components/offer/fullOffer';
 import Apply from 'components/application/apply';
 import Status from 'components/application/status';
 import UserHome from 'components/user/containers/home';
+import Profile from 'components/user/profile';
 
 import App from './app';
 
@@ -33,6 +34,7 @@ export default function index() {
         <Route path="/jobs/:id/apply" component={Apply} />
         <Route path="/jobs/:id" component={FullOffer} />
 
+        <Route path="profile" component={Profile} />
         <Route path="user/home" component={UserHome} />
         <Route path="login" component={Login} />
         <Route path="registration" component={Registration} />

@@ -1,6 +1,8 @@
 import React from 'react';
 import Button from 'components/button/button';
 import Link from 'components/link/link';
+import LogoutBtn from './containers/logoutBtn';
+import ProfileBtn from './profileBtn';
 
 class Nav extends React.Component {
   constructor() {
@@ -23,7 +25,9 @@ class Nav extends React.Component {
           </Button>
         </Link>
         { !isLoggedIn && (<Link href="/registration"> <Button> Sign up </Button> </Link>)}
-        { isLoggedIn && (<Button onTap={this.onTap}>Logout </Button>) }
+        { /* isLoggedIn && */ (<ProfileBtn />)}
+        { /* isLoggedIn && */ (<LogoutBtn />)}
+        { /* // Button onTap={this.onTap}>Logout </Button>) } */}
       </div>
     );
   }

@@ -64,6 +64,9 @@ module.exports = {
       });
     });
   },
+  deleteUser(id) {
+    return db.deleteUser(id);
+  },
   findById(id) {
     return db.getById(id);
   }

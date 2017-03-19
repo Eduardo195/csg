@@ -102,6 +102,18 @@ app.get('/api/logout', (req, res) => {
   res.send({ status: true });
 });
 
+app.delete('/api/user/', (req, res) => {
+  if (!req.user) {
+    res.send({ status: false, msg: 'Not logged in' });
+  }
+  AuthLocal.deleteUser(req.user._id)
+    .then(status => res.send({ status: status.result.n === 1 }))
+    .catch(() => res.send({ status: false, msg: `ERROR DELETING ${req.user._id}` }))
+    .then(() => {
+      req.logout();
+    });
+});
+
 app.get('/api/latest', (req, res) => {
   db.latest().then((data) => {
     res.send(data);

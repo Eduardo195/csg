@@ -1,4 +1,4 @@
-const ObjectId = require('mongodb').ObjectID;
+const ObjectID = require('mongodb').ObjectID;
 const TableNames = require('./tableNames');
 const Connector = require('./connector');
 const RegConnector = require('./regConnector');
@@ -8,7 +8,7 @@ const returnableValues = { _id: 1, username: 1 };
 module.exports = {
   getById(id) {
     return Connector.getCollection(TableNames.LOCAL_USERS)
-      .findOne({ _id: ObjectId(id) }, returnableValues);
+      .findOne({ _id: ObjectID(id) }, returnableValues);
   },
   getByUsername(username) {
     return Connector.getCollection(TableNames.LOCAL_USERS)
@@ -49,5 +49,9 @@ module.exports = {
         // conf hash needed for email cong
         return { username, confHash };
       });
+  },
+  deleteUser(id) {
+    return Connector.getCollection(TableNames.LOCAL_USERS)
+      .removeOne({ _id: ObjectID(id) });
   }
 };
