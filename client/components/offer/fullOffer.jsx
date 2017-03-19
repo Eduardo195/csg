@@ -62,17 +62,17 @@ class FullOffer extends React.Component {
           </div>
           <div className="overview">
             <div className="contentWrapper">
-              <h3>Employer</h3>
+              <h4>Employer</h4>
               <span>{company}</span>
-              <h3>Location</h3>
+              <h4>Location</h4>
               <span>{locationLabel}</span>
-              <h3>Contract type</h3>
+              <h4>Contract type</h4>
               <span>{contractType.label}</span>
-              <h3>Salary</h3>
+              <h4>Salary</h4>
               <span>{pay}</span>
-              <h3>Posted</h3>
+              <h4>Posted</h4>
               <span>{moment(date).format('ll')}</span>
-              <h3>Industry</h3>
+              <h4>Industry</h4>
               <span>{industry}</span>
             </div>
           </div>

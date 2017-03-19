@@ -35,19 +35,11 @@
           color: @font-color-main;
 
           &:hover, &:focus {
-            background-color: lighten(@bg-color-tertiary, 50%);
-            border-color: lighten(@bg-color-tertiary, 50%);
+            background-color: @bg-color-tertiary;
+            border-color: @bg-color-tertiary;
           }
-        }
-
-        &.active > .page-link {
-          background-color: @bg-color-tertiary;
-          border-color: @bg-color-tertiary;
-          color: @font-color-alt;
-        }
-      }
-
-
+        } // end page-link
+      } // end page-item
   }
 
 }

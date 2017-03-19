@@ -16,9 +16,9 @@ function Offer(props) {
   return (
     <div className="offer">
       <Link href={`jobs/${_id}`}>
-        <h3 className="title">{title}</h3>
+        <h4 className="title">{title}</h4>
       </Link>
-      <h4 className="subTitle">{shortEmployer}</h4>
+      <h5 className="subTitle">{shortEmployer}</h5>
       <span className="location">{shortLocation}</span>
       <span>{shortRole}</span>
       <span>{ formatDate(date) }</span>
