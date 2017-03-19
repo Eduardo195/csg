@@ -625,6 +625,7 @@ input {
   cursor: pointer;
   color: #333;
 }
+.searchWrapper .pagination .page-item .page-link.active > .page-link,
 .searchWrapper .pagination .page-item .page-link:hover,
 .searchWrapper .pagination .page-item .page-link:focus {
   background-color: #e6e6e6;
