@@ -61,7 +61,7 @@ app.post('/api/login', (req, res, next) => {
       return next(err); // Throws a 500 error
     }
     if (!user) {
-      return res.send({ success: false, err: info.err.msg });
+      return res.send({ success: false, err: info.msg });
     }
     req.login(user, (loginErr) => {
       if (loginErr) {

@@ -3,3 +3,5 @@ npm-debug.log
 !public/index.html
 server/secret.js
 */secret/*
+public/*
+!public/index.html
