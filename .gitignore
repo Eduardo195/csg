@@ -5,3 +5,5 @@ server/secret.js
 */secret/*
 public/*
 !public/index.html
+!public/styles.css
+!public/bundle.js
