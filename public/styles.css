@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   min-height: 10vh;
+  padding: 0 6em;
 }
 .root > header .nav--main {
   flex-grow: 1;
@@ -22,7 +23,7 @@
   justify-content: center;
 }
 .mainSearch h2 {
-  padding-top: 2em;
+  padding-top: 1.5em;
 }
 .mainSearch .form {
   padding-top: 2em;
@@ -146,9 +147,45 @@
   border-radius: 0;
   cursor: pointer;
 }
+.btn--circular {
+  height: 3em;
+  width: 3em;
+  border-radius: 3em;
+  position: relative;
+}
+.btn--circular:after {
+  content: " ";
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 50%;
+  left: 0;
+}
+.btn--profile {
+  overflow: hidden;
+  margin-left: 1em;
+}
+.btn--profile:after {
+  background: #E94F2B;
+}
+.btn--logout {
+  border-color: #E94F2B;
+  margin: 0 1em;
+}
+.btn--logout:after {
+  background: #fff;
+  width: 50%;
+  top: -0.5em;
+  left: 25%;
+  content: "|";
+  border-radius: 100%;
+  color: #e84e29;
+}
+.btn--logout:hover {
+  background: #e84e29;
+}
 .btn--main {
   background: #E94F2B;
-  padding: 1em;
   display: inline-block;
   color: white;
   border-color: #E94F2B;
@@ -190,6 +227,9 @@ button:hover .caret {
   padding: 0;
   margin: 0;
 }
+.nav ul.fatnav li {
+  font-size: 1.4em;
+}
 .nav ul.fatnav li:hover ul.subLinks {
   opacity: 1;
   visibility: visible;
@@ -208,10 +248,11 @@ button:hover .caret {
   text-align: left;
 }
 .nav ul.fatnav li ul.subLinks li a {
-  color: #fff;
   padding: 1em;
   display: block;
+  font-weight: bold;
   text-decoration: none;
+  color: #4eb8a9;
 }
 .nav--menuitem {
   display: inline-block;
@@ -226,7 +267,8 @@ button:hover .caret {
   white-space: nowrap;
 }
 .nav--menuitem a {
-  color: #333;
+  font-weight: bold;
+  color: #4eb8a9;
 }
 .markdownBox {
   background-color: #fff;
@@ -293,6 +335,9 @@ button:hover .caret {
 .root > footer {
   background: #e6e6e6;
   padding: 1em 10%;
+}
+.root > footer a {
+  color: #e94f2b;
 }
 .root > footer .d-flex.flex-wrap > div {
   flex: 1;
@@ -488,8 +533,8 @@ input {
   background: url(/810e76948e4d5b98830870e9569640ab.svg) no-repeat 50%;
 }
 .filters {
-  padding: 2em;
-  padding-top: 0;
+  margin-top: 2em;
+  padding-right: 2em;
   border-right: 1px solid #aaa;
 }
 .filters .mainTitle,
@@ -501,7 +546,7 @@ input {
   font-style: normal;
 }
 .filters h2 {
-  font-size: 2em;
+  font-size: 1.9em;
   padding-bottom: 0.25em;
   margin: 0;
   border-bottom: 1px solid #808080;
@@ -598,14 +643,12 @@ input {
   font-weight: 600;
   font-style: normal;
 }
-.searchWrapper {
-  padding: 1em;
-}
 .searchWrapper .results .offer:last-child {
   border: 0;
 }
 .searchWrapper .anchor {
-  padding-left: 1em;
+  margin-top: 2em;
+  padding-left: 3em;
 }
 .searchWrapper .anchor .no--results {
   align-self: center;
@@ -621,15 +664,20 @@ input {
 .searchWrapper .pagination {
   padding: 1em;
 }
+.searchWrapper .pagination .page-item.active > .page-link {
+  background-color: #4eb8a9;
+  border-color: #4eb8a9;
+  color: #fff;
+}
 .searchWrapper .pagination .page-item .page-link {
   cursor: pointer;
   color: #333;
 }
-.searchWrapper .pagination .page-item .page-link.active > .page-link,
 .searchWrapper .pagination .page-item .page-link:hover,
 .searchWrapper .pagination .page-item .page-link:focus {
-  background-color: #e6e6e6;
-  border-color: #e6e6e6;
+  background-color: #4eb8a9;
+  border-color: #4eb8a9;
+  color: #fff;
 }
 .catpcha {
   padding: 1em;
@@ -644,6 +692,9 @@ html {
 }
 body {
   background: #fff;
+}
+.root > main {
+  padding: 0 6em;
 }
 .root {
   min-height: 100vh;

@@ -1,12 +1,12 @@
 .searchWrapper {
-  padding: 1em;
 
   .results .offer:last-child {
     border: 0;
   }
 
   .anchor {
-    padding-left: 1em;
+    margin-top: 2em;
+    padding-left: 3em;
 
     .no--results {
       align-self: center;
@@ -30,14 +30,21 @@
 
       .page-item  {
 
+        &.active > .page-link {
+          background-color: @font-color-title;
+          border-color: @font-color-title;
+          color: @font-color-alt;
+        }
+
+
         .page-link {
           cursor: pointer;
           color: @font-color-main;
 
-          &.active > .page-link,
           &:hover, &:focus {
-            background-color: @bg-color-tertiary;
-            border-color: @bg-color-tertiary;
+            background-color: @font-color-title;
+            border-color: @font-color-title;
+            color: @font-color-alt;
           }
         } // end page-link
       } // end page-item

@@ -22,6 +22,7 @@ export function logout() {
     }).done(() => {
           // TODO: Busy state + redirect
       dispatch(removeUser());
+      hashHistory.push('/');
     });
   };
 }

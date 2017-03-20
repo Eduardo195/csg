@@ -4,9 +4,8 @@ import LogoutBtn from '../logoutBtn';
 
 function mapDispatchToProps(dispatch) {
   return {
-    logout(router) {
+    logout() {
       dispatch(logout());
-      router.push('/');
     },
   };
 }
