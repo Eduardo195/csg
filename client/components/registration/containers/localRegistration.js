@@ -1,12 +1,11 @@
 import { connect } from 'react-redux';
 import { register } from 'components/registration/actions/actions';
-import { getSubmissionErrors, getsValidationErrors } from 'components/registration/selectors/selectors';
+import { getRegistrationErrors } from 'components/registration/selectors/selectors';
 import LocalRegistration from '../localRegistration';
 
 function mapStateToProps(state) {
   return {
-    submissionErrors: getSubmissionErrors(state),
-    validationErrors: getsValidationErrors(state),
+    registrationErrors: getRegistrationErrors(state),
   };
 }
 

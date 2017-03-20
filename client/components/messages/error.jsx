@@ -1,17 +1,20 @@
 import React from 'react';
 
-function ErrorMessage({ title, msg }) {
+function ErrorMessage({ title, children }) {
   return (
     <div className="alert alert-danger" role="alert">
-      <strong>{ title || 'Error!'}</strong>
-      <div>{ msg }</div>
+      <h4 className="alert-heading">{ title || 'Error!'}</h4>
+      <p className="mb-0">{ children }</p>
     </div>
   );
 }
 
 ErrorMessage.propTypes = {
   title: React.PropTypes.string,
-  msg: React.PropTypes.string.isRequired,
+  children: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.element,
+  ]).isRequired,
 };
 
 export default ErrorMessage;

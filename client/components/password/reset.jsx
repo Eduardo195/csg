@@ -1,29 +1,53 @@
 import React from 'react';
-import Button from 'components/button/button';
+import EmailInput from 'components/input/containers/emailInput';
+import SuccessMessage from 'components/messages/success';
 
 class Reset extends React.Component {
 
   constructor() {
     super();
+    this.state = { email: null };
+
+    this.updateEmail = this.updateEmail.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+
     this.getEmailRef = (ref) => { this.email = ref; };
   }
 
-  onSubmit() {
-    this.props.requestPasswordReset(this.email.value);
+  onSubmit(e) {
+    e.preventDefault();
+    if (this.state.email) {
+      this.props.requestPasswordReset(this.state.email);
+      this.setState({ sent: true, email: this.state.email });
+    }
+  }
+
+  updateEmail(isValid, value) {
+    if (isValid) {
+      this.setState({
+        email: isValid ? value : null,
+      });
+    }
   }
 
   render() {
+    const { email, sent } = this.state;
     return (
-      <div className="loginForm">
+      <form onSubmit={this.onSubmit}>
         <h1 className="text-center">Reset your password</h1>
+        <EmailInput id="email" onChange={this.updateEmail} />
         <div className="centered">
-          <input ref={this.getEmailRef} type="email" placeholder="Email" />
+          {
+            sent ? (
+              <SuccessMessage>
+                We&#39;ve sent an email to <strong>{email}</strong>.
+              </SuccessMessage>
+            ) : (
+              <button type="submit" className="btn btn--main">Reset</button>
+            )
+          }
         </div>
-        <div className="centered">
-          <Button onTap={this.onSubmit}>Reset</Button>
-        </div>
-      </div>
+      </form>
     );
   }
 }
