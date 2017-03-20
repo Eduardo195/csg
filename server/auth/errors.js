@@ -14,5 +14,13 @@ module.exports = {
   UNKNOWN: {
     code: i++,
     msg: 'Unknown error'
+  },
+  USER_NOT_FOUND: {
+    code: i++,
+    msg: 'User not found'
+  },
+  INVALID_DETAILS: {
+    code: i++,
+    msg: 'Invalid details'
   }
 };

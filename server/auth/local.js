@@ -1,3 +1,4 @@
+/* eslint no-use-before-define: 0 */
 const bcrypt = require('bcrypt-nodejs');
 const db = require('../../shared/db/authConnector');
 const validateCredentials = require('./validateCredentials');
@@ -29,15 +30,10 @@ module.exports = {
                 if (error) {
                   reject({ code: errors.CRYPT_ERROR, msg: error });
                 } else {
-                  randomBytes(HASH_BYTES, (err, buf) => {
-                    if (err) {
-                      reject(err);
-                    } else {
-                      db.registerUnconfirmed(username, passHash, buf.toString('hex'))
-                        .then(userData => resolve(userData))
-                        .catch(() => reject(errors.UNKNOWN));
-                    }
-                  });
+                  return getRandomBytes()
+                    .then(hash => db.registerUnconfirmed(username, passHash, hash)
+                      .then(userData => resolve(userData))
+                      .catch(() => reject(errors.UNKNOWN)));
                 }
               });
             }
@@ -69,5 +65,55 @@ module.exports = {
   },
   findById(id) {
     return db.getById(id);
+  },
+  requestResetLink(email) {
+    return db.getByUsername(email).then((userData) => {
+      if (!userData) {
+        return true;  // false positive
+      }
+      return getRandomBytes().then(hash => db.setPasswordConfirmationHash(email, hash)
+        .catch(() => db.getPasswordConfirmationHash(email)
+          .then((user) => {
+            if (!user) {
+              throw errors.UNKNOWN;
+            }
+            return user;
+          })).then(user => user.hash));
+    });
+  },
+  resetPassword(email, newPassword, confirmationHash) {
+    return db.getPasswordConfirmationHash(email).then((user) => {
+      if (!user || user.hash !== confirmationHash) {
+        throw errors.INVALID_DETAILS;
+      }
+      return hashPassword(newPassword)
+      .then(newPasswordHash => db.setUserPassword(email, newPasswordHash).catch(() => {
+        throw errors.UNKNOWN;
+      }));
+    });
   }
 };
+
+function getRandomBytes() {
+  return new Promise((resolve, reject) => {
+    randomBytes(HASH_BYTES, (err, buf) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(buf.toString('hex'));
+      }
+    });
+  });
+}
+
+function hashPassword(password) {
+  return new Promise((resolve, reject) => {
+    bcrypt.hash(password, null, null, (error, passHash) => {
+      if (error) {
+        reject({ code: errors.CRYPT_ERROR, msg: error });
+      } else {
+        resolve(passHash);
+      }
+    });
+  });
+}

@@ -16,6 +16,8 @@ import Apply from 'components/application/apply';
 import Status from 'components/application/status';
 import UserHome from 'components/user/containers/home';
 import Profile from 'components/user/profile';
+import PasswordReset from 'components/password/containers/reset';
+import PasswordResetForm from 'components/password/containers/resetForm';
 
 import App from './app';
 
@@ -33,6 +35,8 @@ export default function index() {
         <Route path="/jobs/:id/status" component={Status} />
         <Route path="/jobs/:id/apply" component={Apply} />
         <Route path="/jobs/:id" component={FullOffer} />
+        <Route path="/password/reset" component={PasswordReset} />
+        <Route path="/password/reset/:hash" component={PasswordResetForm} />
 
         <Route path="profile" component={Profile} />
         <Route path="user/home" component={UserHome} />

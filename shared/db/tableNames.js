@@ -3,7 +3,8 @@ const TableNames = {
   CONTRACT_TYPES: 'contractTypes',
   OPPORTUNITIES: 'opportunities',
   LOCAL_USERS: 'localUsers',
-  UNVERIFIED: 'unverified'
+  UNVERIFIED: 'unverified',
+  PASSWORD_RESET: 'passwordReset'
 };
 
 module.exports = TableNames;

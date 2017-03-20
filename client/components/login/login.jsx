@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'components/link/link';
 import Button from 'components/button/button';
 import ErrorMessage from 'components/messages/error';
 
@@ -25,6 +26,9 @@ class Login extends React.Component {
         </div>
         <div className="centered" >
           <input ref={this.getPwdRef} type="password" placeholder="password" />
+          <small>
+            <Link href="/password/reset">Forgot your password?</Link>
+          </small>
         </div>
         <div className="centered">
           <Button onTap={this.onTapLogin}>Login</Button>

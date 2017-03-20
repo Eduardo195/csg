@@ -15,7 +15,6 @@ module.exports = {
       .findOne({ username: username.toLowerCase() });
   },
   register({ _id, username, password }) {
-    console.log('inserting ', username);
     return Connector.getCollection(TableNames.LOCAL_USERS)
       .insert({ username: username.toLowerCase(), password })
       .then((WriteResult) => {
@@ -23,10 +22,12 @@ module.exports = {
           console.log(`FAILED TO move ${username}: ${WriteResult.writeConcernError.errmsg}`);
           return false;
         }
-        console.log(`User ${username} moved`);
-        console.log('removing original');
         return this.removeUnconfirmedById(_id);
       });
+  },
+  setUserPassword(username, password) {
+    return Connector.getCollection(TableNames.LOCAL_USERS)
+      .updateOne({ username: username.toLowerCase() }, { $set: { password } });
   },
   removeUnconfirmedById(_id) {
     return RegConnector.getCollection(TableNames.UNVERIFIED).remove({ _id }, { justOne: true });
@@ -53,5 +54,14 @@ module.exports = {
   deleteUser(id) {
     return Connector.getCollection(TableNames.LOCAL_USERS)
       .removeOne({ _id: ObjectID(id) });
+  },
+  setPasswordConfirmationHash(username, hash) {
+    return Connector.getCollection(TableNames.PASSWORD_RESET)
+      .insertOne({ username, hash })
+      .then(() => ({ hash }));  // Explicitly return user data
+  },
+  getPasswordConfirmationHash(username) {
+    return Connector.getCollection(TableNames.PASSWORD_RESET)
+    .findOne({ username });
   }
 };
