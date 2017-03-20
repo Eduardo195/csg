@@ -1,5 +1,6 @@
-// TODO: get from env build config file?
-const BASE_URL = 'http://localhost:3000/#/registration/confirmation/';
+const BASE_URL = `${
+  process.env.NODE_ENV.trim() === 'development' ? 'http://localhost:3000' : 'http://oportunarium.com'
+}/#/registration/confirmation/`;
 
 module.exports = {
   getSubject() {

@@ -1,4 +1,4 @@
-const secret = require('./secret');
+const secret = require('./secret/sessionSecret');
 
 module.exports = {
   secret,

@@ -33,7 +33,7 @@ class Login extends React.Component {
         <div className="centered">
           <Button onTap={this.onTapLogin}>Login</Button>
         </div>
-        { error ? <ErrorMessage msg={error} /> : null }
+        { error ? (<ErrorMessage> { error } </ErrorMessage>) : null }
         <hr className="hr-text" data-content="Or" />
         <div className="text-center">
           <Button>L</Button>
