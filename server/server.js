@@ -81,10 +81,11 @@ app.post('/api/register', (req, res) => {
   CaptchaVerifier.verify(req.body.captcha).then(() => {
     const { username, password } = req.body;
     return AuthLocal.registerUnconfirmed(username, password)
-      .then(user => mailer.sendConfirmationEmail(username, user.confHash));
+      .then(confHash => mailer.sendConfirmationEmail(username, confHash));
   }).then(() => {
     res.send({ success: true });
   }).catch((err) => {
+    console.log('err :::', err);
     res.send({ success: false, msg: err.msg });
   });
 });

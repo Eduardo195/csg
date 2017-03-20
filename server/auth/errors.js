@@ -2,9 +2,24 @@
 let i = 0;
 
 module.exports = {
-  USER_ALEADY_EXISTS: i++,
+  USER_ALEADY_EXISTS: {
+    code: i++,
+    msg: 'User already exists'
+  },
   UNREG_USER_ALEADY_EXISTS: i++,
   REG_INVALID_DETAILS: i++,
+  INVALID_PASSWORD: {
+    code: i++,
+    msg: 'Invalid password'
+  },
+  INVALID_USERNAME: {
+    code: i++,
+    msg: 'Invalid username'
+  },
+  INVALID_PASSWORD_USERNAME_COMBINATION: {
+    code: i++,
+    msg: 'Invalid username / password combination'
+  },
   LOGIN_INVALID_CREDENTIALS: {
     code: i++,
     msg: 'Invalid username / password combination'

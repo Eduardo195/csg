@@ -1,3 +1,5 @@
+const errors = require('./errors');
+
 const PASSWORD_MIN_LENGTH = 8;
 const PASSWORD_MAX_LENGTH = 25;
 
@@ -18,7 +20,14 @@ function isUsernameValid(un) {
     EMAIL_REGEX.test(un);
 }
 
-module.exports = (un, pwd) => un && pwd &&
-      un !== pwd &&
-      isPasswordValid(pwd) &&
-      isUsernameValid(un);
+module.exports = (un, pwd) => new Promise((resolve, reject) => {
+  if (!un || !isUsernameValid(un)) {
+    reject(errors.INVALID_USERNAME);
+  } else if (!pwd || !isPasswordValid(pwd)) {
+    reject(errors.INVALID_PASSWORD);
+  } else if (un === pwd) {
+    reject(errors.INVALID_PASSWORD_USERNAME_COMBINATION);
+  } else {
+    resolve();
+  }
+});

@@ -12,35 +12,26 @@ module.exports = {
     return db.confirmHash(hash)
       .then(user => user ? db.register(user) : null);  // eslint-disable-line no-confusing-arrow
   },
-  // TODO: needs a refactor
   registerUnconfirmed(username, password) {
-    return new Promise((resolve, reject) => { // eslint-disable-line consistent-return
-      if (!validateCredentials(username, password)) {
-        return reject({ code: errors.INVALID_DETAILS, msg: `Invalid details '${username}' '${password}'` });
-      }
-      db.getByUsername(username).then((user) => {
+    return validateCredentials(username, password)
+    .then(() => db.getByUsername(username)
+      .then((user) => {
         if (user) {
-          reject({ code: errors.USER_ALEADY_EXISTS, msg: `User '${username}' already exists` });
-        } else {
-          db.getUnregisterdUserByUsername(username).then((unregUser) => {
-            if (unregUser) {
-              reject({ code: errors.UNREG_USER_ALEADY_EXISTS, msg: `User '${username}' already exists but is unregistered` });
-            } else {
-              bcrypt.hash(password, null, null, (error, passHash) => {
-                if (error) {
-                  reject({ code: errors.CRYPT_ERROR, msg: error });
-                } else {
-                  return getRandomBytes()
-                    .then(hash => db.registerUnconfirmed(username, passHash, hash)
-                      .then(userData => resolve(userData))
-                      .catch(() => reject(errors.UNKNOWN)));
-                }
-              });
-            }
-          });
+          throw errors.USER_ALEADY_EXISTS;
         }
-      });
-    });
+        return db.getUnregisterdUserByUsername(username).then((unregUser) => {
+          if (unregUser) {
+            throw errors.USER_ALEADY_EXISTS;
+          }
+          return hashPassword(password)
+            .then(passHash => getRandomBytes()
+              .then(confirmationHash => db.registerUnconfirmed(username, passHash, confirmationHash)
+              .then(() => confirmationHash)
+            )
+          );
+        });
+      })
+    );
   },
   login(username, password) {
     return db.getByUsername(username).then((user) => {
