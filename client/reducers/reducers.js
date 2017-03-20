@@ -6,6 +6,7 @@ import latest from 'components/latest/reducers/latestReducer';
 import user from 'components/user/reducers/user';
 import registration from 'components/registration/reducers/reducer';
 import login from 'components/login/reducers/reducer';
+import password from 'components/password/reducers/reducer';
 
 export default combineReducers({
   registration,
@@ -15,4 +16,7 @@ export default combineReducers({
   dialogs,
   user,
   login,
+  submissions: combineReducers({
+    password,
+  }),
 });

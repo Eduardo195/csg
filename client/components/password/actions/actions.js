@@ -1,15 +1,26 @@
 import $ from 'jquery';
+import * as types from './types';
+
+function setSubmissionStatus(success, msg) {
+  return {
+    type: types.SET_SUBMISSION_STATUS,
+    status: {
+      success,
+      msg,
+    },
+  };
+}
 
 export function resetPassword(email, password, hash) {
-  return () => {
+  return (dispatch) => {
     $.ajax({
       url: '/api/password/reset',
       data: { email, password, hash },
       method: 'POST',
-    }).done(() => {
-      console.log('done');
-    }).fail((err) => {
-      console.error('error', err);
+    }).done((rsp) => {
+      dispatch(setSubmissionStatus(rsp.success, rsp.msg));
+    }).fail(() => {
+      dispatch(setSubmissionStatus(false, 'Unknown error'));
     });
   };
 }

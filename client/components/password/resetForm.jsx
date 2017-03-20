@@ -1,37 +1,77 @@
 import React from 'react';
-import Button from 'components/button/button';
+import EmailInput from 'components/input/containers/emailInput';
+import PasswordInput from 'components/input/containers/passwordInput';
+import SuccessMessage from 'components/messages/success';
+import ErrorMessage from 'components/messages/error';
 
 class ResetForm extends React.Component {
 
   constructor() {
     super();
+    this.state = {};
+
+    this.updateEmail = this.updateEmail.bind(this);
+    this.updatePassword = this.updatePassword.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-    this.getEmailRef = (ref) => { this.email = ref; };
-    this.getPassRef = (ref) => { this.pass = ref; };
     this.getPassConfRef = (ref) => { this.passconf = ref; };
   }
 
   onSubmit(e) {
     e.preventDefault(); // stop page reload
-    this.props.resetPassword(this.email.value, this.pass.value, this.props.params.hash);
+    if (this.state.email && this.state.password) {
+      this.props.resetPassword(this.state.email, this.state.password, this.props.params.hash);
+    }
+  }
+
+  updateEmail(isValid, value) {
+    if (isValid) {
+      this.setState(Object.assign({}, this.state, {
+        email: isValid ? value : null,
+      }));
+    }
+  }
+
+  updatePassword(isValid, value) {
+    if (isValid) {
+      this.setState(Object.assign({}, this.state, {
+        password: isValid ? value : null,
+      }));
+    }
   }
 
   render() {
+    const { success, error } = this.props;
+
     return (
       <form className="resetForm" onSubmit={this.onSubmit}>
         <h1 className="text-center">Change your password</h1>
         <div className="centered">
-          <input ref={this.getEmailRef} type="email" placeholder="Email" />
+          <EmailInput id="email" onChange={this.updateEmail} />
+          <PasswordInput id="pass" onChange={this.updatePassword} />
         </div>
-        <div className="centered">
-          <input ref={this.getPassRef} type="password" placeholder="Password" />
-        </div>
-        <div className="centered">
-          <input ref={this.getPassConfRef} type="password" placeholder="Confirm Password" />
-        </div>
-        <div className="centered">
-          <Button onTap={this.onSubmit}>Reset</Button>
-        </div>
+        {
+         !success && (
+         <button type="submit" className="btn btn--main">
+              Change
+            </button>
+          )
+        }
+
+        {
+          error && (
+            <ErrorMessage>
+              { error }
+            </ErrorMessage>
+          )
+        }
+
+        {
+          success && (
+            <SuccessMessage>
+              Password changed successfully!
+            </SuccessMessage>
+          )
+        }
       </form>
     );
   }
@@ -42,6 +82,8 @@ ResetForm.propTypes = {
     hash: React.PropTypes.string.isRequired,
   }),
   resetPassword: React.PropTypes.func.isRequired,
+  success: React.PropTypes.bool,
+  error: React.PropTypes.string,
 };
 
 export default ResetForm;

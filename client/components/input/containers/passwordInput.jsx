@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { logout } from 'components/user/actions/userActions';
 import validator from 'services/validators/password';
 import SelfValidatingInput from '../selfValidatingInput';
 
