@@ -42,14 +42,6 @@ module.exports = {
     code: i++,
     msg: 'Invalid details'
   },
-  CONTACT_DETAILS_NOT_FOUND: {
-    code: i++,
-    msg: 'Contact details not found'
-  },
-  NIF_SERVER_UNREACHEABLE: {
-    code: i++,
-    msg: 'NIF server unreachable'
-  },
   COMPANY_ALREADY_EXISTS: {
     code: i++,
     msg: 'Company already exists'

@@ -1,6 +1,6 @@
 const request = require('request');
 const apiKey = require('./secret');
-const errors = require('../auth/errors');
+const errors = require('./errors');
 
 const URI = `http://www.nif.pt/?json=1&key=${apiKey}&q=`;
 
