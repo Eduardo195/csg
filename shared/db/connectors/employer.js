@@ -6,10 +6,6 @@ const AccountConnector = require('./account');
 module.exports = Object.assign(
   AccountConnector(Connector, TableNames.LOCAL_EMPLOYERS, TableNames.LOCAL_EMPLOYERS_UNV),
   {
-    getUnverifiedByUsername(username) {
-      return Connector.getCollection(TableNames.LOCAL_EMPLOYERS_UNV)
-        .findOne({ username: username.toLowerCase() });
-    },
     register(username, email, password, nif, confHash) {
       return Connector.getCollection(TableNames.LOCAL_EMPLOYERS_UNV)
         .insert({ username: username.toLowerCase(), email: email.toLowerCase(), password, confHash, nif })

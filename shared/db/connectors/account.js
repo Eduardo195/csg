@@ -1,5 +1,6 @@
 const ObjectID = require('mongodb').ObjectID;
 const TableNames = require('../tableNames');
+const errors = require('./errors');
 
 const returnableValues = { _id: 1, username: 1 };
 
@@ -9,19 +10,21 @@ function AccountConnector(Connector, registeredTable, unregisteredTable) {
       return Connector.getCollection(registeredTable)
         .findOne({ _id: ObjectID(id) }, returnableValues);
     },
-    getByUsername(table, username) {
-      return Connector.getCollection(table)
+    getByUsername(username) {
+      return Connector.getCollection(registeredTable)
         .findOne({ username: username.toLowerCase() });
     },
-    confirmAccount({ _id, username, password }) {
+    confirmAccount({ username, password }) {
       return Connector.getCollection(registeredTable)
         .insert({ username: username.toLowerCase(), password })
-        .then((WriteResult) => {
+        .catch((err) => {
+          console.log(err);
+          throw errors.FAILED_CONFIRM_ACCOUNT;
+        }).then((WriteResult) => {
           if (WriteResult.writeConcernError) {
             console.log(`FAILED TO move ${username}: ${WriteResult.writeConcernError.errmsg}`);
-            return false;
+            throw errors.FAILED_CONFIRM_ACCOUNT;
           }
-          return this.removeUnconfirmedById(_id);
         });
     },
     setUserPassword(username, password) {
@@ -33,9 +36,14 @@ function AccountConnector(Connector, registeredTable, unregisteredTable) {
     },
     verifyRegistrationHash(confHash) {
       return Connector.getCollection(unregisteredTable)
-        .findOne({ confHash }, { username: 1, password: 1 });
+        .findOne({ confHash }, { _id: 1, username: 1, password: 1, nif: 1 }).then((record) => {
+          if (!record) {
+            throw errors.VERIFICATION_HASH_NOT_FOUND;
+          }
+          return record;
+        });
     },
-    getUnregisterdUserByUsername(username) {
+    getUnverifiedByUsername(username) {
       return Connector.getCollection(unregisteredTable)
         .findOne({ username: username.toLowerCase() });
     },

@@ -90,16 +90,13 @@ app.post('/api/register/employer', (req, res) => {
 app.post('/api/register/user', (req, res) => {
   CaptchaService.verify(req.body.captcha).then(() => {
     const { username, password } = req.body;
-    return AuthLocal.user.registerUnconfirmed(username, password)
-      .then((confHash) => {
-        return mailer.sendConfirmationEmail(username, confHash);
-      }).catch((err) => {
-        console.log('error', err);
-        return err;
-      });
+    return AuthLocal.user.register(username, password).then((confHash) => {
+      return mailer.sendConfirmationEmail(username, confHash);
+    });
   }).then(() => {
     res.send({ success: true });
   }).catch((err) => {
+    console.log(err);
     res.send({ success: false, msg: err.msg });
   });
 });
@@ -108,7 +105,7 @@ app.get('/api/confirmEmail/:hash', (req, res) => {
   AuthLocal.user.verifyAccount(req.params.hash).then(() => {
     res.send({ success: true });
   }).catch((err) => {
-    res.send({ success: false, msg: err });
+    res.send({ success: false, msg: err && err.msg });
   });
 });
 
