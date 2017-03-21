@@ -10,12 +10,7 @@
     "start": "webpack-dev-server -d --config webpack/webpack.config.dev.js",
     "xp": "NODE_ENV=production && node server/server.js",
     "dev": "SET NODE_ENV=development && node server/server.js",
-    "lint": "eslint --ignore-path .gitignore --fix --ext js,jsx .",
-    "lint-sever": "eslint --fix --ext js* server",
-    "lint-client": "eslint --fix --ext js* client",
-    "lint-shared": "eslint --fix --ext js* shared",
-    "lint-scripts": "eslint --fix --ext js* scripts",
-    "lint-gatherer": "eslint --fix --ext js* gatherer"
+    "lint": "eslint --ignore-path .gitignore --fix --ext js,jsx ."
   },
   "repository": {
     "type": "git",
