@@ -1,13 +1,13 @@
-const db = require('../../shared/db/authConnectorEmployer');
+const db = require('../../../shared/db/authConnectorEmployer');
 const errors = require('./errors');
-const getCompanyContact = require('../services/nif/nif');
-const CaptchaService = require('../services/captcha/captcha');
+const getCompanyContact = require('../../services/nif/nif');
+const CaptchaService = require('../../services/captcha/captcha');
 const validateCredentials = require('./validateCredentialsEmployer');
 const { hashPassword, getRandomBytes } = require('./helpers');
-const mailer = require('../services/mailer/mailer');
+const mailer = require('../../services/mailer/mailer');
 
 module.exports = {
-  registerCompany(captcha, username, password, nif) {
+  register(captcha, username, password, nif) {
     return CaptchaService.verify(captcha).then(() => {
       return validateCredentials(username, password, nif).then(() => {
         return db.getByUsername(username).then((company) => {

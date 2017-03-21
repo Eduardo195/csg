@@ -7,7 +7,6 @@ const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 const sessionConfig = require('./sessionConfig');
 const AuthLocal = require('./auth/local');
-const AuthLocalEmployer = require('./auth/localEmployer');
 const db = require('../shared/db/searchConnector');
 const CaptchaService = require('./services/captcha/captcha');
 const mailer = require('./services/mailer/mailer');
@@ -21,7 +20,7 @@ passport.serializeUser((user, cb) => {
 
 passport.deserializeUser((id, cb) => {
   console.log(`deserializing ${id}`);
-  AuthLocal.findById(id).then((user) => {
+  AuthLocal.user.findById(id).then((user) => {
     console.log('user ::::', user);
     if (user) {
       cb(null, user);
@@ -44,7 +43,7 @@ app.use(passport.session());
 passport.use('local-login', new LocalStrategy(
     { passReqToCallback: true },
     (req, username, password, done) => {
-      AuthLocal.login(username, password).then((res) => {
+      AuthLocal.user.login(username, password).then((res) => {
         if (res.success) {
           done(null, res.user);
         } else {
@@ -78,10 +77,20 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
+app.post('/api/register/employer', (req, res) => {
+  AuthLocal.employer.register(
+    req.body.captcha, req.body.username, req.body.password, req.body.nif
+  ).then((email) => {
+    res.send({ success: true, email });
+  }).catch((err) => {
+    res.send({ success: false, msg: err && err.msg });
+  });
+});
+
 app.post('/api/register/user', (req, res) => {
   CaptchaService.verify(req.body.captcha).then(() => {
     const { username, password } = req.body;
-    return AuthLocal.registerUnconfirmed(username, password)
+    return AuthLocal.user.registerUnconfirmed(username, password)
       .then((confHash) => {
         return mailer.sendConfirmationEmail(username, confHash);
       }).catch((err) => {
@@ -95,18 +104,8 @@ app.post('/api/register/user', (req, res) => {
   });
 });
 
-app.post('/api/register/employer', (req, res) => {
-  AuthLocalEmployer.registerCompany(
-    req.body.captcha, req.body.username, req.body.password, req.body.nif
-  ).then((email) => {
-    res.send({ success: true, email });
-  }).catch((err) => {
-    res.send({ success: false, msg: err && err.msg });
-  });
-});
-
 app.get('/api/confirmEmail/:id', (req, res) => {
-  AuthLocal.checkHash(req.params.id).then(() => {
+  AuthLocal.user.checkHash(req.params.id).then(() => {
     res.send({ success: true });
   }).catch((err) => {
     res.send({ success: false, msg: err });
@@ -114,7 +113,7 @@ app.get('/api/confirmEmail/:id', (req, res) => {
 });
 
 app.get('/api/password/reset', (req, res) => {
-  AuthLocal.requestResetLink(req.query.email)
+  AuthLocal.user.requestResetLink(req.query.email)
     .then((hash) => {
       res.send({ success: true });
       mailer.sendResetPasswordEmail(req.query.email, hash);
@@ -124,7 +123,7 @@ app.get('/api/password/reset', (req, res) => {
 });
 
 app.post('/api/password/reset', (req, res) => {
-  AuthLocal.resetPassword(req.body.email, req.body.password, req.body.hash).then(() => {
+  AuthLocal.user.resetPassword(req.body.email, req.body.password, req.body.hash).then(() => {
     res.send({ success: true });
   }).catch((err) => {
     res.send({ success: false, msg: err.msg });
@@ -140,7 +139,7 @@ app.delete('/api/user/', (req, res) => {
   if (!req.user) {
     res.send({ status: false, msg: 'Not logged in' });
   }
-  AuthLocal.deleteUser(req.user._id)
+  AuthLocal.user.deleteUser(req.user._id)
     .then(status => res.send({ status: status.result.n === 1 }))
     .catch(() => res.send({ status: false, msg: `ERROR DELETING ${req.user._id}` }))
     .then(() => {
