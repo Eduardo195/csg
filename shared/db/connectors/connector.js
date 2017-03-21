@@ -11,14 +11,14 @@ class Connector {
   createCollection(name, options) {
     return this.db.createCollection(name, options);
   }
-  getCollection(name) {
-    return this.db.collection(name);
-  }
   createIndex(col, params, options) {
     return col.createIndex(params, options);
   }
   dropCollection(name) {
     return this.db.collection(name).drop();
+  }
+  getCollection(name) {
+    return this.db.collection(name);
   }
   insertMany(col, data) {
     return col.insertMany(data, { ordered: false }).catch(err => console.log('InsertMany failed: ', err));
