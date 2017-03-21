@@ -1,13 +1,10 @@
 const Connector = require('../shared/db/connector');
 const TableNames = require('../shared/db/tableNames');
+const { resetTable } = require('./helpers');
 
-Connector.con.then(() => {
-  Connector.dropCollection(TableNames.LOCAL_USERS).catch(e => e).then(() => {
-    Connector.createCollection(TableNames.LOCAL_USERS).then((col) => {
-      Connector.createIndex(col, { username: 1 }, { unique: true }).then(() => {
-        Connector.close();
-        console.log('done.');
-      });
-    });
+resetTable(Connector, TableNames.LOCAL_USERS, { username: 1 }).then(() => {
+  resetTable(Connector, TableNames.LOCAL_USERS_UNV, { username: 1 }, { unique: true, expireAfterSeconds: 3600 }).then(() => {
+    console.log('done.');
+    Connector.close();
   });
 });

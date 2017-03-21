@@ -1,13 +1,8 @@
 const Connector = require('../shared/db/connector');
 const TableNames = require('../shared/db/tableNames');
+const { resetTable } = require('./helpers');
 
-Connector.con.then(() => {
-  Connector.dropCollection(TableNames.OPPORTUNITIES).catch(e => e).then(() => {
-    Connector.createCollection(TableNames.OPPORTUNITIES).then((col) => {
-      Connector.createIndex(col, { ref: 1 }, { unique: true }).then(() => {
-        Connector.close();
-        console.log('done.');
-      });
-    });
-  });
+resetTable(Connector, TableNames.OPPORTUNITIES, { ref: 1 }).then(() => {
+  console.log('done.');
+  Connector.close();
 });

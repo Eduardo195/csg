@@ -1,20 +1,13 @@
 const Connector = require('../shared/db/connector');
-const UnvConnector = require('../shared/db/unvConnector');
 const TableNames = require('../shared/db/tableNames');
+const { resetTable } = require('./helpers');
 
-
-function init(Con, index) {
-  Con.con.then(() => {
-    Con.dropCollection(TableNames.LOCAL_EMPLOYERS).catch(e => e).then(() => {
-      Con.createCollection(TableNames.LOCAL_EMPLOYERS).then((col) => {
-        Con.createIndex(col, index, { unique: true }).then(() => {
-          Con.close();
-          console.log('done.');
-        });
-      });
-    });
+resetTable(Connector, TableNames.LOCAL_EMPLOYERS, { username: 1 }).then(() => {
+  resetTable(Connector, TableNames.LOCAL_EMPLOYERS_UNV,
+    { username: 1 },
+    { unique: true, expireAfterSeconds: 3600 }
+  ).then(() => {
+    console.log('done.');
+    Connector.close();
   });
-}
-
-init(Connector, { username: 1 });
-init(UnvConnector, { username: 1 });
+});

@@ -104,8 +104,8 @@ app.post('/api/register/user', (req, res) => {
   });
 });
 
-app.get('/api/confirmEmail/:id', (req, res) => {
-  AuthLocal.user.checkHash(req.params.id).then(() => {
+app.get('/api/confirmEmail/:hash', (req, res) => {
+  AuthLocal.user.verifyAccount(req.params.hash).then(() => {
     res.send({ success: true });
   }).catch((err) => {
     res.send({ success: false, msg: err });

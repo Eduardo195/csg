@@ -2,13 +2,12 @@ const bcrypt = require('bcrypt-nodejs');
 const db = require('../../../shared/db/authConnector');
 const { hashPassword, getRandomBytes } = require('./helpers');
 const validateCredentials = require('./validateCredentials');
-const CaptchaService = require('../../services/captcha/captcha');
 const errors = require('./errors');
 
 module.exports = {
-  checkHash(hash) {
-    return db.confirmHash(hash)
-      .then(user => user ? db.register(user) : null);  // eslint-disable-line no-confusing-arrow
+  verifyAccount(hash) {
+    return db.verifyRegistrationHash(hash)
+      .then(user => user ? db.confirmAccount(user) : null);  // eslint-disable-line no-confusing-arrow
   },
   registerUnconfirmed(username, password) {
     return validateCredentials(username, password)

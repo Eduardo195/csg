@@ -22,7 +22,7 @@ module.exports = {
               return hashPassword(password).then((passHash) => {
                 return getRandomBytes().then((confHash) => {
                     // TODO: sanitize email
-                  return db.registerUnverified(username, email, passHash, nif, confHash).then(() => {
+                  return db.register(username, email, passHash, nif, confHash).then(() => {
                     return mailer.sendConfirmationEmail(email, confHash).then(() => email);
                   });  // registerUnverified
                 });  // getRandomBytes

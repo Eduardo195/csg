@@ -1,7 +1,6 @@
 const ObjectID = require('mongodb').ObjectID;
 const TableNames = require('./tableNames');
 const Connector = require('./connector');
-const UnvConnector = require('./unvConnector');
 
 const returnableValues = { _id: 1, username: 1 };
 
@@ -14,7 +13,7 @@ module.exports = {
     return Connector.getCollection(TableNames.LOCAL_USERS)
       .findOne({ username: username.toLowerCase() });
   },
-  register({ _id, username, password }) {
+  confirmAccount({ _id, username, password }) {
     return Connector.getCollection(TableNames.LOCAL_USERS)
       .insert({ username: username.toLowerCase(), password })
       .then((WriteResult) => {
@@ -30,18 +29,18 @@ module.exports = {
       .updateOne({ username: username.toLowerCase() }, { $set: { password } });
   },
   removeUnconfirmedById(_id) {
-    return UnvConnector.getCollection(TableNames.UNVERIFIED).remove({ _id }, { justOne: true });
+    return Connector.getCollection(TableNames.LOCAL_USERS_UNV).remove({ _id }, { justOne: true });
   },
-  confirmHash(confHash) {
-    return UnvConnector.getCollection(TableNames.UNVERIFIED)
+  verifyRegistrationHash(confHash) {
+    return Connector.getCollection(TableNames.LOCAL_USERS_UNV)
       .findOne({ confHash }, { username: 1, password: 1 });
   },
   getUnregisterdUserByUsername(username) {
-    return UnvConnector.getCollection(TableNames.UNVERIFIED)
+    return Connector.getCollection(TableNames.LOCAL_USERS_UNV)
       .findOne({ username: username.toLowerCase() });
   },
   registerUnconfirmed(username, password, confHash) {
-    return UnvConnector.getCollection(TableNames.UNVERIFIED)
+    return Connector.getCollection(TableNames.LOCAL_USERS_UNV)
       .insert({ username: username.toLowerCase(), password, confHash })
       .then((WriteResult) => {
         if (WriteResult.writeConcernError) {
