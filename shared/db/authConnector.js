@@ -1,7 +1,7 @@
 const ObjectID = require('mongodb').ObjectID;
 const TableNames = require('./tableNames');
 const Connector = require('./connector');
-const RegConnector = require('./regConnector');
+const UnvConnector = require('./unvConnector');
 
 const returnableValues = { _id: 1, username: 1 };
 
@@ -30,18 +30,18 @@ module.exports = {
       .updateOne({ username: username.toLowerCase() }, { $set: { password } });
   },
   removeUnconfirmedById(_id) {
-    return RegConnector.getCollection(TableNames.UNVERIFIED).remove({ _id }, { justOne: true });
+    return UnvConnector.getCollection(TableNames.UNVERIFIED).remove({ _id }, { justOne: true });
   },
   confirmHash(confHash) {
-    return RegConnector.getCollection(TableNames.UNVERIFIED)
+    return UnvConnector.getCollection(TableNames.UNVERIFIED)
       .findOne({ confHash }, { username: 1, password: 1 });
   },
   getUnregisterdUserByUsername(username) {
-    return RegConnector.getCollection(TableNames.UNVERIFIED)
+    return UnvConnector.getCollection(TableNames.UNVERIFIED)
       .findOne({ username: username.toLowerCase() });
   },
   registerUnconfirmed(username, password, confHash) {
-    return RegConnector.getCollection(TableNames.UNVERIFIED)
+    return UnvConnector.getCollection(TableNames.UNVERIFIED)
       .insert({ username: username.toLowerCase(), password, confHash })
       .then((WriteResult) => {
         if (WriteResult.writeConcernError) {

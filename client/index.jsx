@@ -6,8 +6,10 @@ import WorkAd from 'components/advert/containers/workAd';
 import Search from 'components/search/containers/search';
 import Login from 'components/login/containers/login';
 import Registration from 'components/registration/containers/registration';
-import RegistrationSuccess from 'components/registration/registrationSuccess';
+import RegistrationSuccess from 'components/registration/containers/registrationSuccess';
 import RegistrationConfirmation from 'components/registration/containers/registrationConfirmation';
+
+import EmployerRegistration from 'components/registration/employerRegistration';
 import EmployerHome from 'components/employer/home';
 import EmployerOpportunities from 'components/employer/opportunities';
 import Doh from 'components/errors/doh';
@@ -42,6 +44,7 @@ export default function index() {
         <Route path="user/home" component={UserHome} />
         <Route path="login" component={Login} />
         <Route path="registration" component={Registration} />
+        <Route path="registration/employer" component={EmployerRegistration} />
         <Route path="registration/success" component={RegistrationSuccess} />
         <Route path="registration/confirmation/:hash" component={RegistrationConfirmation} />
         <Route path="*" component={Doh} />

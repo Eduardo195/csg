@@ -9,6 +9,7 @@
     "comma-dangle": ["error", {
         "functions": "never"
     }],
-    "indent": ["error", 2]
+    "indent": ["error", 2],
+    "arrow-body-style": 0
   }
 }

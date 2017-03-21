@@ -3,8 +3,9 @@ import ErrorMessage from 'components/messages/error';
 import Recaptcha from 'components/registration/containers/recaptcha';
 import EmailInput from 'components/input/containers/emailInput';
 import PasswordInput from 'components/input/containers/passwordInput';
+import NIFInput from 'components/input/containers/nifInput';
 
-class LocalRegistration extends React.Component {
+class LocalRegistrationEmployer extends React.Component {
   constructor() {
     super();
     this.state = {};
@@ -12,12 +13,13 @@ class LocalRegistration extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.updateEmail = this.updateEmail.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
+    this.updateNif = this.updateNif.bind(this);
   }
 
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.email && this.state.password) {
-      this.props.register(this.state.email, this.state.password);
+      this.props.register(this.state.email, this.state.password, this.state.nif);
     }
   }
 
@@ -37,11 +39,20 @@ class LocalRegistration extends React.Component {
     }
   }
 
+  updateNif(isValid, value) {
+    if (isValid) {
+      this.setState(Object.assign({}, this.state, {
+        nif: isValid ? value : null,
+      }));
+    }
+  }
+
   render() {
     const { registrationErrors } = this.props;
     return (
       <form onSubmit={this.handleSubmit}>
         <EmailInput id="email" onChange={this.updateEmail} />
+        <NIFInput id="nif" onChange={this.updateNif} />
         <PasswordInput id="pass" onChange={this.updatePassword} />
         <Recaptcha />
         <button type="submit" className="btn btn--main font-weight-bold">Create Account</button>
@@ -55,9 +66,9 @@ class LocalRegistration extends React.Component {
   }
 }
 
-LocalRegistration.propTypes = {
+LocalRegistrationEmployer.propTypes = {
   register: React.PropTypes.func.isRequired,
   registrationErrors: React.PropTypes.string,
 };
 
-export default LocalRegistration;
+export default LocalRegistrationEmployer;

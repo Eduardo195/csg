@@ -60,9 +60,21 @@ function hash(state = null, action) {
   }
 }
 
+function email(state = null, action) {
+  switch (action.type) {
+
+    case actionTypes.SET_REGISTRATION_EMAIL:
+      return action.email;
+
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   captcha,
   registrationErrors,
   registrationSuccess,
   hash,
+  email,
 });

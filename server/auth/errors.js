@@ -16,6 +16,10 @@ module.exports = {
     code: i++,
     msg: 'Invalid username'
   },
+  INVALID_NIF: {
+    code: i++,
+    msg: 'Invalid NIF'
+  },
   INVALID_PASSWORD_USERNAME_COMBINATION: {
     code: i++,
     msg: 'Invalid username / password combination'
@@ -37,5 +41,25 @@ module.exports = {
   INVALID_DETAILS: {
     code: i++,
     msg: 'Invalid details'
+  },
+  CONTACT_DETAILS_NOT_FOUND: {
+    code: i++,
+    msg: 'Contact details not found'
+  },
+  NIF_SERVER_UNREACHEABLE: {
+    code: i++,
+    msg: 'NIF server unreachable'
+  },
+  COMPANY_ALREADY_EXISTS: {
+    code: i++,
+    msg: 'Company already exists'
+  },
+  UNV_COMPANY_ALREADY_EXISTS: {
+    code: i++,
+    msg: 'Unverified Company already exists'
+  },
+  REGISTER_COMPANY_EMAIL_SENDING_FAILED: {
+    code: i++,
+    msg: 'Confirmation email sending failed'
   }
 };

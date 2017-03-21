@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 const sessionConfig = require('./sessionConfig');
 const AuthLocal = require('./auth/local');
+const AuthLocalEmployer = require('./auth/localEmployer');
 const db = require('../shared/db/searchConnector');
 const CaptchaVerifier = require('./captcha/verifier');
 const mailer = require('./mailer/mailer');
@@ -77,7 +78,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '/public/index.html'));
 });
 
-app.post('/api/register', (req, res) => {
+app.post('/api/register/user', (req, res) => {
   CaptchaVerifier.verify(req.body.captcha).then(() => {
     const { username, password } = req.body;
     return AuthLocal.registerUnconfirmed(username, password)
@@ -85,7 +86,16 @@ app.post('/api/register', (req, res) => {
   }).then(() => {
     res.send({ success: true });
   }).catch((err) => {
-    console.log('err :::', err);
+    res.send({ success: false, msg: err.msg });
+  });
+});
+
+app.post('/api/register/employer', (req, res) => {
+  CaptchaVerifier.verify(req.body.captcha).then(() => {
+    return AuthLocalEmployer.registerCompany(req.body.username, req.body.password, req.body.nif);
+  }).then((email) => {
+    res.send({ success: true, email });
+  }).catch((err) => {
     res.send({ success: false, msg: err.msg });
   });
 });

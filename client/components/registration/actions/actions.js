@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { hashHistory } from 'react-router';
 import * as actionTypes from './actionTypes';
+import { getCaptcha } from '../selectors/selectors';
 
 export function setServerError(msg) {
   return {
@@ -32,6 +33,13 @@ export function clearRegError() {
 export function setRegistrationSuccess() {
   return {
     type: actionTypes.REGISTRATION_SUCCESS,
+  };
+}
+
+export function setRegistrationEmail(email) {
+  return {
+    type: actionTypes.SET_REGISTRATION_EMAIL,
+    email,
   };
 }
 
@@ -81,9 +89,9 @@ export function validateEmailHash(hash) {
 export function register(username, password) {
   return (dispatch, getState) => {
     dispatch(clearRegError());
-    const captcha = getState().registration.captcha;
+    const captcha = getCaptcha(getState());
     $.ajax({
-      url: '/api/register',
+      url: '/api/register/user',
       method: 'POST',
       data: { username, password, captcha },
     }).fail((req) => {
@@ -96,6 +104,35 @@ export function register(username, password) {
       }
     }).done((res) => {
       if (res.success) {
+        dispatch(setRegistrationSuccess());
+        dispatch(setRegistrationEmail(username));
+        hashHistory.push('/registration/success');
+      } else if (res.msg) {
+        dispatch(setServerError(res.msg));
+      }
+    });
+  };
+}
+
+export function registerEmployer(username, password, nif) {
+  return (dispatch, getState) => {
+    dispatch(clearRegError());
+    const captcha = getCaptcha(getState());
+    $.ajax({
+      url: '/api/register/employer',
+      method: 'POST',
+      data: { username, password, nif, captcha },
+    }).fail((req) => {
+      if (req.status === 401) { // invalid params
+            // invalid credentials - user likely went around our validation. Naughty boy
+        dispatch(setServerErrorBadCredentials());
+      } else if (req.status === 500) {
+            // server broke while processing
+        dispatch(setServerErrorRegError());
+      }
+    }).done((res) => {
+      if (res.success) {
+        dispatch(setRegistrationEmail(res.email));
         dispatch(setRegistrationSuccess());
         hashHistory.push('/registration/success');
       } else if (res.msg) {

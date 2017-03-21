@@ -1,6 +1,6 @@
 const TableNames = require('../shared/db/tableNames');
 const Connector = require('../shared/db/connector');
-const RegConnector = require('../shared/db/regConnector');
+const UnvConnector = require('../shared/db/unvConnector');
 
 function showAll(Conn, table) {
   return Conn.con.then(() => Conn.getCollection(table)
@@ -12,5 +12,5 @@ function showAll(Conn, table) {
 }
 
 showAll(Connector, TableNames.LOCAL_USERS).then(() => {
-  showAll(RegConnector, TableNames.UNVERIFIED);
+  showAll(UnvConnector, TableNames.UNVERIFIED);
 });

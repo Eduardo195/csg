@@ -9,7 +9,6 @@ import login from 'components/login/reducers/reducer';
 import password from 'components/password/reducers/reducer';
 
 export default combineReducers({
-  registration,
   search,
   latest,
   workAd,
@@ -18,5 +17,6 @@ export default combineReducers({
   login,
   submissions: combineReducers({
     password,
+    registration,
   }),
 });

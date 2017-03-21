@@ -4,6 +4,12 @@ import Link from 'components/link/link';
 const menuItems = [{
   title: 'Opportunities',
   href: '/opportunities/',
+}, {
+  title: 'Employers',
+  items: [
+      { text: 'Resgister your company', href: 'registration/employer' },
+      { text: 'Create opportunity', href: 'employer/post' },
+  ],
 },
 // {
 //     title: 'CV',

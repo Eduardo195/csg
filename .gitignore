@@ -2,6 +2,7 @@ node_modules
 npm-debug.log
 !public/index.html
 */secret/*
+secret*
 public/*
 !public/index.html
 !public/styles.css

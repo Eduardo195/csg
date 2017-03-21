@@ -1,12 +1,18 @@
 import React from 'react';
+import SuccessMessage from 'components/messages/success';
 
-function RegistrationSuccess() {
+function RegistrationSuccess(props) {
   return (
-    <div className="alert alert-success" role="alert">
-      <strong>Great success!</strong> Your account has been created.
-        <div>Please follow the confirmation link we sent to your email.</div>
-    </div>
+    <SuccessMessage>
+      Your account has been created.
+      <br />
+      Please follow the confirmation link we sent to <strong> {props.email} </strong>
+    </SuccessMessage>
   );
 }
+
+RegistrationSuccess.propTypes = {
+  email: React.PropTypes.string.isRequired,
+};
 
 export default RegistrationSuccess;
