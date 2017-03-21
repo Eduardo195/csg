@@ -46,7 +46,8 @@ const scraper = {
     const [rawDate, location, rawRef] = header.find('> span').text().trim().split('|');
 
     const now = moment();
-    const date = moment(`${rawDate.trim()} ${now.hours()}:${now.minutes()}:${now.seconds()}`, 'DD.MM.YYYY HH:mm:ss').valueOf();
+    const date = moment(`${rawDate.trim()} ${now.hours()}:${now.minutes()}:${now.seconds()}`, 'DD.MM.YYYY HH:mm:ss')
+      .valueOf();
 
       // OH THE HUMANITY
     const description = body.find('div.fOpenSansRegular');

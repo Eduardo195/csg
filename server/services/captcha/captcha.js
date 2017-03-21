@@ -1,6 +1,6 @@
 const request = require('request');
-const SECRET = require('../secret/recaptchaKey');
-const { INVALID_CAPTCHA } = require('../auth/errors');
+const errors = require('./errors');
+const SECRET = require('./secret/recaptchaKey');
 
 const URL = 'https://www.google.com/recaptcha/api/siteverify';
 
@@ -12,11 +12,11 @@ function verify(captchaResponse) {
     } }, (error, response, body) => {
       if (error) {
         console.log('error contacting captcha server', error);
-        reject(error);
+        return reject(errors.CAPTCHA_SERVER_UNREACHEABLE);
       }
       const bodyData = JSON.parse(body);
       if (!bodyData || !bodyData.success) {
-        reject({ code: INVALID_CAPTCHA, msg: 'Invalid captcha' });
+        reject(errors.INVALID_CAPTCHA);
       } else {
         resolve();
       }

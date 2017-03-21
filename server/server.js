@@ -9,8 +9,8 @@ const sessionConfig = require('./sessionConfig');
 const AuthLocal = require('./auth/local');
 const AuthLocalEmployer = require('./auth/localEmployer');
 const db = require('../shared/db/searchConnector');
-const CaptchaVerifier = require('./captcha/verifier');
-const mailer = require('./mailer/mailer');
+const CaptchaService = require('./services/captcha/captcha');
+const mailer = require('./services/mailer/mailer');
 
 const PORT = 3000;
 
@@ -79,10 +79,15 @@ app.get('/', (req, res) => {
 });
 
 app.post('/api/register/user', (req, res) => {
-  CaptchaVerifier.verify(req.body.captcha).then(() => {
+  CaptchaService.verify(req.body.captcha).then(() => {
     const { username, password } = req.body;
     return AuthLocal.registerUnconfirmed(username, password)
-      .then(confHash => mailer.sendConfirmationEmail(username, confHash));
+      .then((confHash) => {
+        return mailer.sendConfirmationEmail(username, confHash);
+      }).catch((err) => {
+        console.log('error', err);
+        return err;
+      });
   }).then(() => {
     res.send({ success: true });
   }).catch((err) => {
@@ -91,12 +96,12 @@ app.post('/api/register/user', (req, res) => {
 });
 
 app.post('/api/register/employer', (req, res) => {
-  CaptchaVerifier.verify(req.body.captcha).then(() => {
-    return AuthLocalEmployer.registerCompany(req.body.username, req.body.password, req.body.nif);
-  }).then((email) => {
+  AuthLocalEmployer.registerCompany(
+    req.body.captcha, req.body.username, req.body.password, req.body.nif
+  ).then((email) => {
     res.send({ success: true, email });
   }).catch((err) => {
-    res.send({ success: false, msg: err.msg });
+    res.send({ success: false, msg: err && err.msg });
   });
 });
 

@@ -9,5 +9,5 @@ module.exports = {
   NIF_SERVER_UNREACHEABLE: {
     code: `service_nif_${i++}`,
     msg: 'NIF server unreachable'
-  },
+  }
 };
