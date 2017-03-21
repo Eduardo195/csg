@@ -1,5 +1,5 @@
 const ObjectID = require('mongodb').ObjectID;
-const TableNames = require('./tableNames');
+const TableNames = require('../tableNames');
 const Connector = require('./connector');
 
 const returnableValues = { _id: 1, username: 1 };

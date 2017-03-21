@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
 const sessionConfig = require('./sessionConfig');
 const AuthLocal = require('./auth/local');
-const db = require('../shared/db/searchConnector');
+const db = require('../shared/db/connectors/search');
 const CaptchaService = require('./services/captcha/captcha');
 const mailer = require('./services/mailer/mailer');
 

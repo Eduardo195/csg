@@ -1,28 +1,28 @@
 const bcrypt = require('bcrypt-nodejs');
-const db = require('../../../shared/db/authConnector');
+const UserConnector = require('../../../shared/db/connectors/user');
 const { hashPassword, getRandomBytes } = require('./helpers');
 const validateCredentials = require('./validateCredentials');
 const errors = require('./errors');
 
 module.exports = {
   verifyAccount(hash) {
-    return db.verifyRegistrationHash(hash)
-      .then(user => user ? db.confirmAccount(user) : null);  // eslint-disable-line no-confusing-arrow
+    return UserConnector.verifyRegistrationHash(hash)
+      .then(user => user ? UserConnector.confirmAccount(user) : null);  // eslint-disable-line no-confusing-arrow
   },
   registerUnconfirmed(username, password) {
     return validateCredentials(username, password)
-    .then(() => db.getByUsername(username)
+    .then(() => UserConnector.getByUsername(username)
       .then((user) => {
         if (user) {
           throw errors.USER_ALEADY_EXISTS;
         }
-        return db.getUnregisterdUserByUsername(username).then((unregUser) => {
+        return UserConnector.getUnregisterdUserByUsername(username).then((unregUser) => {
           if (unregUser) {
             throw errors.USER_ALEADY_EXISTS;
           }
           return hashPassword(password)
             .then(passHash => getRandomBytes()
-              .then(confirmationHash => db.registerUnconfirmed(username, passHash, confirmationHash)
+              .then(confirmationHash => UserConnector.registerUnconfirmed(username, passHash, confirmationHash)
               .then(() => confirmationHash)
             )
           );
@@ -31,7 +31,7 @@ module.exports = {
     );
   },
   login(username, password) {
-    return db.getByUsername(username).then((user) => {
+    return UserConnector.getByUsername(username).then((user) => {
       if (!user) {
         throw errors.LOGIN_INVALID_CREDENTIALS;
       }
@@ -49,18 +49,18 @@ module.exports = {
     });
   },
   deleteUser(id) {
-    return db.deleteUser(id);
+    return UserConnector.deleteUser(id);
   },
   findById(id) {
-    return db.getById(id);
+    return UserConnector.getById(id);
   },
   requestResetLink(email) {
-    return db.getByUsername(email).then((userData) => {
+    return UserConnector.getByUsername(email).then((userData) => {
       if (!userData) {
         return true;  // false positive
       }
-      return getRandomBytes().then(hash => db.setPasswordConfirmationHash(email, hash)
-        .catch(() => db.getPasswordConfirmationHash(email)
+      return getRandomBytes().then(hash => UserConnector.setPasswordConfirmationHash(email, hash)
+        .catch(() => UserConnector.getPasswordConfirmationHash(email)
           .then((user) => {
             if (!user) {
               throw errors.UNKNOWN;
@@ -70,12 +70,12 @@ module.exports = {
     });
   },
   resetPassword(email, newPassword, confirmationHash) {
-    return db.getPasswordConfirmationHash(email).then((user) => {
+    return UserConnector.getPasswordConfirmationHash(email).then((user) => {
       if (!user || user.hash !== confirmationHash) {
         throw errors.INVALID_DETAILS;
       }
       return hashPassword(newPassword)
-      .then(newPasswordHash => db.setUserPassword(email, newPasswordHash).catch(() => {
+      .then(newPasswordHash => UserConnector.setUserPassword(email, newPasswordHash).catch(() => {
         throw errors.UNKNOWN;
       }));
     });

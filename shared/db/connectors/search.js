@@ -1,7 +1,7 @@
 const ObjectId = require('mongodb').ObjectID;
-const Checkers = require('./helpers/checkers');
+const Checkers = require('../helpers/checkers');
+const TableNames = require('../tableNames');
 const Connector = require('./connector');
-const TableNames = require('./tableNames');
 
 const returnableFields = {
   contractType: 1,

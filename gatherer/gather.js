@@ -1,4 +1,4 @@
-const Connector = require('../shared/db/connector');
+const Connector = require('../shared/db/connectors/connector');
 const TableNames = require('../shared/db/tableNames');
 const NetEmpregos = require('./farmers/netEmpregos/crawler');
 const ExpressoEmprego = require('./farmers/expressoEmprego/crawler');

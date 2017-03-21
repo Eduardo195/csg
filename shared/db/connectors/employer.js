@@ -1,6 +1,6 @@
-const TableNames = require('./tableNames');
-const errors = require('./errors');
+const errors = require('../errors');
 const Connector = require('./connector');
+const TableNames = require('../tableNames');
 
 module.exports = {
   getByUsername(username) {
