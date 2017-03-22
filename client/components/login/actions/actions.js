@@ -26,9 +26,11 @@ export function login(username, password) { // eslint-disable-line import/prefer
     }).done((rsp) => {
       if (rsp.success) {
         dispatch(setUser(rsp.user));
-        hashHistory.push('/user/home');
-      } else {
+        window.location = '/';
+      } else if (rsp.err){
         dispatch(setLoginError(rsp.err));
+      } else {
+        dispatch(setLoginError('Unknown error'));
       }
     }).fail(() => {
       dispatch(setLoginError('Unknown error'));

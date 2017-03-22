@@ -73,8 +73,17 @@ app.post('/api/login', (req, res, next) => {
 }); // app end
 
 // Define routes
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '/public/index.html'));
+app.get('/*', (req, res) => {
+  if(req.user && req.user.type === 'employer') {
+    console.log('got employer');
+    res.sendFile(path.join(__dirname, '../public/employer.html'));
+  } else if(req.user && req.user.type === 'user') {
+    console.log('got user');
+    res.sendFile(path.join(__dirname, '../public/user.html'));
+  } else {
+    console.log('got base');
+    res.sendFile(path.join(__dirname, '../public/_index.html'));
+  }
 });
 
 app.post('/api/register/employer', (req, res) => {
@@ -128,7 +137,9 @@ app.post('/api/password/reset', (req, res) => {
 });
 
 app.get('/api/logout', (req, res) => {
-  req.logout();
+  console.log(req.user);
+  console.log(req.logout());
+  console.log(req.user);
   res.send({ status: true });
 });
 

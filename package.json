@@ -7,6 +7,16 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack/webpack.config.prod.js",
     "watch": "webpack -w --progress --color --config webpack/webpack.config.dev.js",
+
+    "b-emp": "webpack -w --progress --color --config webpack/webpack.config.dev.employer.js",
+    "b-usr": "webpack --progress --color --config webpack/webpack.config.user.dev.js",
+    "b-usr-prod": "webpack --progress --color --config webpack/webpack.config.user.prod.js",
+    "b-emp-prod": "webpack --progress --color --config webpack/webpack.config.employer.prod.js",
+
+
+
+
+
     "start": "webpack-dev-server -d --config webpack/webpack.config.dev.js",
     "xp": "NODE_ENV=production && node server/server.js",
     "dev": "SET NODE_ENV=development && node server/server.js",

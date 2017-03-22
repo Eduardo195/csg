@@ -3,7 +3,7 @@ const Connector = require('./connector');
 const TableNames = require('../tableNames');
 const errors = require('./errors');
 
-const returnableValues = { _id: 1, username: 1 };
+const returnableValues = { _id: 1, username: 1, type: 1 };
 const WHITELISTED_FIELDS = {
   [TableNames.LOCAL_USERS]: ['username', 'email', 'type', 'password', 'nif'],
   [TableNames.LOCAL_USERS_UNVERIFIED]: ['username', 'email', 'type', 'password', 'nif', 'confHash']
