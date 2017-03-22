@@ -1,25 +1,25 @@
-const AccountAuth = require('./account');
-const Connector = require('../../../shared/db/connectors/user');
+const AccountManager = require('./account');
+const AccountConnector = require('../../../shared/db/connectors/account');
 const validateCredentials = require('./validateCredentials');
 const { hashPassword, getRandomBytes } = require('./helpers');
 const errors = require('./errors');
 
-module.exports = Object.assign(AccountAuth(Connector),
+module.exports = Object.assign(AccountManager(),
   {
     register(username, password) {
       return validateCredentials(username, password)
-      .then(() => Connector.getByUsername(username).then((user) => {
+      .then(() => AccountConnector.getByUsername(username).then((user) => {
         if (user) {
           throw errors.USER_ALEADY_EXISTS;
         }
-        return Connector.getUnverifiedByUsername(username).then((unregUser) => {
+        return AccountConnector.getUnverifiedByUsername(username).then((unregUser) => {
           if (unregUser) {
             throw errors.USER_ALEADY_EXISTS;
           }
           return hashPassword(password)
               .then(passHash => getRandomBytes()
-                .then(confirmationHash => Connector.register(username, passHash, confirmationHash)
-                .then(() => confirmationHash)
+                .then(confHash => AccountConnector.register({ username, type: 'user', password: passHash, confHash })
+                .then(() => confHash)
               )
             );
         });

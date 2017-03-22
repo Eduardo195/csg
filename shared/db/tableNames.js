@@ -4,9 +4,7 @@ const TableNames = {
   OPPORTUNITIES: 'opportunities',
   PASSWORD_RESET: 'passwordReset',
   LOCAL_USERS: 'localUsers',
-  LOCAL_USERS_UNV: 'localUsers_unv',
-  LOCAL_EMPLOYERS: 'employers',
-  LOCAL_EMPLOYERS_UNV: 'employers_unv'
+  LOCAL_USERS_UNVERIFIED: 'localUsers_unverified'
 };
 
 module.exports = TableNames;

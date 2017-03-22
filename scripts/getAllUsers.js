@@ -4,7 +4,7 @@ const { findAndLog } = require('./helpers');
 
 Promise.all([
   findAndLog(Connector, TableNames.LOCAL_USERS, {}),
-  findAndLog(Connector, TableNames.LOCAL_USERS_UNV, {})
+  findAndLog(Connector, TableNames.LOCAL_USERS_UNVERIFIED, {})
 ]).then(() => {
   return Connector.close();
 });

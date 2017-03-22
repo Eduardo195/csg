@@ -1,23 +1,13 @@
 const bcrypt = require('bcrypt-nodejs');
 const { hashPassword, getRandomBytes } = require('./helpers');
 const errors = require('./errors');
+const Connector = require('../../../shared/db/connectors/account');
 
-function excludeKeys(obj, keys) {
-  const newObj = {};
-  const objKeys = Object.keys(obj);
-  objKeys.forEach((key) => {
-    if (keys.indexOf(key) < 0) {
-      newObj[key] = obj[key];
-    }
-  });
-  return newObj;
-}
-
-function AccountManager(Connector) {
+function AccountManager() {
   return {
     verifyAccount(hash) {
       return Connector.verifyRegistrationHash(hash).then((user) => {
-        return Connector.confirmAccount(excludeKeys(user, ['_id'])).then(() => {
+        return Connector.verifyAccount(user).then(() => {
           return Connector.removeUnconfirmedById(user._id);
         });
       });
