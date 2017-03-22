@@ -25,7 +25,7 @@ function AccountManager() {
             if (!res) {
               reject(errors.LOGIN_INVALID_CREDENTIALS);
             }
-            resolve({ success: true, user: { _id: user._id, username } });  // eslint-disable-line no-underscore-dangle, max-len
+            resolve({ success: true, user: { _id: user._id, username: user.username, type: user.type } });  // eslint-disable-line no-underscore-dangle, max-len
           });
         });
       });
