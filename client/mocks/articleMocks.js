@@ -4,7 +4,7 @@ export default [{
   author: 'Humpty dumpty',
 }, {
   title: 'In-office fruit bowls - are they going bananas?',
-  shortDesc: 'Going deeper into the pseudo healthy world of office fruit. Why does Todd always eats the good stuff? Screw you Todd.',
+  shortDesc: 'Going deeper into the pseudo healthy world of office fruit. Why does Todd always eat the good stuff? Screw you Todd.',
   author: 'Tonald Dump',
 }, {
   title: 'Is your president a velociraptor is disquise?',
@@ -13,5 +13,5 @@ export default [{
 }, {
   title: 'Who the hell reads these anyway',
   shortDesc: 'Oh.. Well this is awkward.',
-  author: 'Hawkward, the falcon',
+  author: 'Hawkward Falcon',
 }];
