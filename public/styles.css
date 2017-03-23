@@ -4,13 +4,6 @@
   min-height: 10vh;
   padding: 0 6em;
 }
-.root > header .nav--main {
-  flex-grow: 1;
-  margin-left: 5em;
-}
-.root > header .nav--secondary {
-  padding: 1em;
-}
 .mainSearch {
   text-align: center;
   background: url(/3dab0ac8462f4da1efed59eaa63a07a7.svg) no-repeat;
@@ -220,6 +213,17 @@ button:focus .caret,
 button:hover .caret {
   transform: rotate(-180deg);
 }
+.nav--main {
+  flex-grow: 1;
+  margin-left: 5em;
+}
+.nav--secondary {
+  padding: 1em;
+}
+.nav--secondary a:hover,
+.nav--secondary a:focus {
+  text-decoration: none;
+}
 .nav ul,
 .nav li {
   box-sizing: border-box;
@@ -227,27 +231,32 @@ button:hover .caret {
   padding: 0;
   margin: 0;
 }
-.nav ul.fatnav li {
+.nav ul.fatnav > li {
   font-size: 1.4em;
+  cursor: pointer;
 }
-.nav ul.fatnav li:hover ul.subLinks {
+.nav ul.fatnav > li:hover {
+  background: #F7F7F7;
+}
+.nav ul.fatnav > li:hover ul.subLinks {
   opacity: 1;
   visibility: visible;
 }
-.nav ul.fatnav li ul.subLinks {
+.nav ul.fatnav > li ul.subLinks {
   position: absolute;
-  background: #c0c0c0;
+  background: #F7F7F7;
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
   box-shadow: 0 3px 4px rgba(0, 0, 0, 0.12);
 }
-.nav ul.fatnav li ul.subLinks li {
-  border-bottom: 1px solid #e3e3e3;
+.nav ul.fatnav > li ul.subLinks li {
+  border-bottom: 1px solid #f4f4f4;
   line-height: 2em;
   text-align: left;
+  font-size: 1em;
 }
-.nav ul.fatnav li ul.subLinks li a {
+.nav ul.fatnav > li ul.subLinks li a {
   padding: 1em;
   display: block;
   font-weight: bold;
@@ -265,7 +274,9 @@ button:hover .caret {
   padding: 0 2em;
   transition: background-color 0.2s ease-in-out;
   white-space: nowrap;
+  padding-bottom: 1em;
 }
+.nav--menuitem,
 .nav--menuitem a {
   font-weight: bold;
   color: #4eb8a9;
@@ -333,7 +344,7 @@ button:hover .caret {
   resize: vertical;
 }
 .root > footer {
-  background: #e6e6e6;
+  background: #F7F7F7;
   padding: 1em 10%;
 }
 .root > footer a {
@@ -696,6 +707,9 @@ body {
 .overlay {
   background-image: url(/ca83a81379a49886cf2c2489579d8fc1.svg);
   background-repeat: no-repeat;
+}
+.overlay.hidden {
+  height: 0%;
 }
 .root > main {
   padding: 0 6em;
