@@ -7,7 +7,7 @@ function SecNav(props) {
   const { isLoggedIn } = props;
   return (
     <div className="navbar-nav">
-      <Link href={isLoggedIn ? '/user/home' : '/login'}>
+      <Link href={isLoggedIn ? '/home' : '/login'}>
         <span className="btn btn--main">{ isLoggedIn ? 'Home' : 'Sign in' }</span>
       </Link>
       { !isLoggedIn && (

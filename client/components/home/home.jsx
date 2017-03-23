@@ -1,12 +1,16 @@
+/* eslint no-confusing-arrow: 0 */
 import React from 'react';
-import MainSearch from 'components/search/containers/mainSearch';
-import Latest from 'components/latest/containers/latest';
+import UserHome from 'components/user/home';
+import EmployerHome from 'components/employer/containers/home';
 
-const Home = () => (
-  <div>
-    <MainSearch />
-    <Latest />
-  </div>
-    );
+const Home = props => props.isEmployer ? (
+  <EmployerHome />
+  ) : (
+    <UserHome />
+);
+
+Home.propTypes = {
+  isEmployer: React.PropTypes.bool.isRequired,
+};
 
 export default Home;

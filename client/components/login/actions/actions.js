@@ -24,7 +24,7 @@ export function login(username, password) { // eslint-disable-line import/prefer
     UserService.login(username, password).then((rsp) => {
       if (rsp.success) {
         dispatch(setUser(rsp.user));
-        hashHistory.push('/user/home');
+        hashHistory.push('/home');
       } else {
         dispatch(setLoginError(rsp.err));
       }
