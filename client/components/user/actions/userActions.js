@@ -1,5 +1,6 @@
-import $ from 'jquery';
+import UserService from 'services/user/userService';
 import { hashHistory } from 'react-router';
+import { setOverlayVisibility } from 'components/overlay/actions/actions';
 import * as actionTypes from './userActionTypes';
 
 export function setUser(user) {
@@ -17,23 +18,24 @@ export function removeUser() {
 
 export function logout() {
   return (dispatch) => {
-    $.ajax({
-      url: '/api/logout',
-    }).done(() => {
-          // TODO: Busy state + redirect
+    dispatch(setOverlayVisibility(true));
+    UserService.logout().then(() => {
+      dispatch(setOverlayVisibility(false));
       dispatch(removeUser());
       hashHistory.push('/');
+    }).catch(() => {
+      dispatch(setOverlayVisibility(false));
     });
   };
 }
 
 export function deleteAccount() {
-  return () => {
-    $.ajax({
-      url: '/api/user',
-      method: 'DELETE',
-    }).done(() => {
-      hashHistory.push('/');
+  return (dispatch) => {
+    dispatch(setOverlayVisibility(true));
+    UserService.delete().then(() => {
+      dispatch(setOverlayVisibility(false));
+    }).catch(() => {
+      dispatch(setOverlayVisibility(false));
     });
   };
 }

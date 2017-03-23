@@ -7,7 +7,6 @@ class Overlay extends React.Component {
     // replace with a react component on app load
     $('#overlay').remove();
     $('html').removeClass('mask');
-    this.props.onMount();
   }
 
   render() {
@@ -19,7 +18,6 @@ class Overlay extends React.Component {
 
 Overlay.propTypes = {
   isVisible: React.PropTypes.bool.isRequired,
-  onMount: React.PropTypes.func.isRequired,
 };
 
 export default Overlay;

@@ -21,7 +21,7 @@ import Profile from 'components/user/profile';
 import PasswordReset from 'components/password/containers/reset';
 import PasswordResetForm from 'components/password/containers/resetForm';
 
-import App from './app';
+import App from 'components/app/containers/app';
 
 export default function index() {
   return (

@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { setOverlayVisibility } from '../actions/actions';
 import Overlay from '../overlay';
 
 function mapStateToProps(state) {
@@ -8,12 +7,4 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onMount() {
-      dispatch(setOverlayVisibility(false));
-    },
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Overlay);
+export default connect(mapStateToProps)(Overlay);

@@ -1,7 +1,7 @@
-import $ from 'jquery';
 import { hashHistory } from 'react-router';
 import { setUser } from 'components/user/actions/userActions';
 import { setOverlayVisibility } from 'components/overlay/actions/actions';
+import UserService from 'services/user/userService';
 import * as actionTypes from './types';
 
 function setLoginError(error) {
@@ -21,20 +21,16 @@ export function login(username, password) { // eslint-disable-line import/prefer
   return (dispatch) => {
     dispatch(clearLoginError());
     dispatch(setOverlayVisibility(true));
-    $.ajax({
-      url: '/api/login',
-      method: 'POST',
-      data: { username, password },
-    }).done((rsp) => {
+    UserService.login(username, password).then((rsp) => {
       if (rsp.success) {
         dispatch(setUser(rsp.user));
         hashHistory.push('/user/home');
       } else {
         dispatch(setLoginError(rsp.err));
       }
-    }).fail(() => {
+      dispatch(setOverlayVisibility(false));
+    }).catch(() => {
       dispatch(setLoginError('Unknown error'));
-    }).always(() => {
       dispatch(setOverlayVisibility(false));
     });
   };

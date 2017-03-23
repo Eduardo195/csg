@@ -61,6 +61,7 @@ app.post('/api/login', (req, res, next) => {
       return next(err); // Throws a 500 error
     }
     if (!user) {
+      console.log('ERROR', err, user, info);
       return res.send({ success: false, err: info.msg });
     }
     req.login(user, (loginErr) => {
@@ -132,6 +133,18 @@ app.get('/api/logout', (req, res) => {
   res.send({ status: true });
 });
 
+// user to restore sessions
+app.get('/api/user/', (req, res) => {
+  if (req.user) {
+    console.log('retturning ', req.user);
+    res.send({ success: true, user: req.user });
+  } else {
+    res.send({ success: false });
+  }
+});
+
+// TODO: add captcha to prevent naughty people
+// Deltes user
 app.delete('/api/user/', (req, res) => {
   if (!req.user) {
     res.send({ status: false, msg: 'Not logged in' });
