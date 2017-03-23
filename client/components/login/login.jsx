@@ -36,9 +36,9 @@ class Login extends React.Component {
         { error ? (<ErrorMessage> { error } </ErrorMessage>) : null }
         <hr className="hr-text" data-content="Or" />
         <div className="text-center">
-          <Button>L</Button>
-          <Button>F</Button>
-          <Button>G+</Button>
+          <button className="btn">L</button>
+          <button className="btn">F</button>
+          <button className="btn">G+</button>
         </div>
       </div>
     );

@@ -1,6 +1,19 @@
-@nav-item-bg: darken(@bg-color-tertiary, 15%);
-
 .nav {
+
+  &--main  {
+      flex-grow: 1;
+      margin-left: 5em;
+  }
+
+  &--secondary {
+    padding: 1em;
+
+    a {
+      &:hover, &:focus {
+        text-decoration: none;
+      }
+    }
+  }
 
   ul, li {
     box-sizing: border-box;
@@ -10,17 +23,22 @@
   }
 
   ul.fatnav {
-    li {
+    > li {
       font-size: 1.4em;
+      cursor: pointer;
 
-      &:hover ul.subLinks{
-        opacity: 1;
-        visibility: visible;
+      &:hover {
+        background: @bg-color-tertiary;
+
+        ul.subLinks {
+          opacity: 1;
+          visibility: visible;
+        }
       }
 
       ul.subLinks {
         position: absolute;
-        background: @nav-item-bg;
+        background: @bg-color-tertiary;
         opacity: 0;
         visibility: hidden;
         transition: opacity .2s ease-in-out,visibility .2s ease-in-out;
@@ -30,6 +48,7 @@
           border-bottom: 1px solid darken(@bg-color-tertiary, 1%);;
           line-height: 2em;
           text-align: left;
+          font-size: 1em;
 
           a {
             padding: 1em;
@@ -54,8 +73,9 @@
     padding: 0 2em;
     transition: background-color .2s ease-in-out;
     white-space: nowrap;
+    padding-bottom: 1em;
 
-    a {
+    &, a {
       font-weight: bold;
       color: @font-color-title;
     }

@@ -7,7 +7,8 @@ const DevTools = createDevTools(
   <DockMonitor
     toggleVisibilityKey="ctrl-h"
     changePositionKey="ctrl-q"
-    defaultIsVisible
+    defaultIsVisible={false}
+    defaultPosition="left"
   >
     <LogMonitor theme="tomorrow" />
   </DockMonitor>,
