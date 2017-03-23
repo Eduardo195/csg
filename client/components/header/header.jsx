@@ -1,14 +1,20 @@
 import React from 'react';
-import Nav from 'components/header/containers/nav';
-import MainNav from 'components/mainNav/mainNav';
 import Logo from 'components/header/logo';
+import Nav from 'components/header/nav';
 
 const Header = () => (
-  <header className="header">
-    <Logo />
-    <MainNav />
+  <nav className="navbar navbar-toggleable-md navbar-light">
+    <Logo className="navbar-brand" />
+    <button
+      className="navbar-toggler navbar-toggler-right" type="button"
+      data-toggle="collapse" data-target="#mainNav"
+      aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span className="navbar-toggler-icon" />
+    </button>
     <Nav />
-  </header>
+  </nav>
 );
 
 export default Header;

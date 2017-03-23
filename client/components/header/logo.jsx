@@ -1,10 +1,14 @@
 import React from 'react';
 import Link from 'components/link/link';
 
-const Logo = () => (
-  <Link href="/" >
+const Logo = props => (
+  <Link href="/" className={props.className ? props.className : null}>
     <div className="in-b logo">&nbsp;</div>
   </Link>
 );
+
+Logo.propTypes = {
+  className: React.PropTypes.string,
+};
 
 export default Logo;
