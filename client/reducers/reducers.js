@@ -7,8 +7,10 @@ import user from 'components/user/reducers/user';
 import registration from 'components/registration/reducers/reducer';
 import login from 'components/login/reducers/reducer';
 import password from 'components/password/reducers/reducer';
+import overlay from 'components/overlay/reducers/reducer';
 
 export default combineReducers({
+  overlay,
   search,
   latest,
   workAd,

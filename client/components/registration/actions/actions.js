@@ -1,5 +1,6 @@
-import $ from 'jquery';
+import { setOverlayVisibility } from 'components/overlay/actions/actions';
 import { hashHistory } from 'react-router';
+import $ from 'jquery';
 import * as actionTypes from './actionTypes';
 import { getCaptcha } from '../selectors/selectors';
 
@@ -88,6 +89,7 @@ export function validateEmailHash(hash) {
 
 export function register(username, password) {
   return (dispatch, getState) => {
+    dispatch(setOverlayVisibility(true));
     dispatch(clearRegError());
     const captcha = getCaptcha(getState());
     $.ajax({
@@ -110,6 +112,8 @@ export function register(username, password) {
       } else if (res.msg) {
         dispatch(setServerError(res.msg));
       }
+    }).always(() => {
+      dispatch(setOverlayVisibility(false));
     });
   };
 }
@@ -138,6 +142,8 @@ export function registerEmployer(username, password, nif) {
       } else if (res.msg) {
         dispatch(setServerError(res.msg));
       }
+    }).always(() => {
+      dispatch(setOverlayVisibility(false));
     });
   };
 }

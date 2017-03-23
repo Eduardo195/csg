@@ -693,6 +693,10 @@ html {
 body {
   background: #fff;
 }
+.overlay {
+  background-image: url(/ca83a81379a49886cf2c2489579d8fc1.svg);
+  background-repeat: no-repeat;
+}
 .root > main {
   padding: 0 6em;
 }

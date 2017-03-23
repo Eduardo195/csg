@@ -1,6 +1,7 @@
 import $ from 'jquery';
 import { hashHistory } from 'react-router';
 import { setUser } from 'components/user/actions/userActions';
+import { setOverlayVisibility } from 'components/overlay/actions/actions';
 import * as actionTypes from './types';
 
 function setLoginError(error) {
@@ -19,6 +20,7 @@ function clearLoginError() {
 export function login(username, password) { // eslint-disable-line import/prefer-default-export
   return (dispatch) => {
     dispatch(clearLoginError());
+    dispatch(setOverlayVisibility(true));
     $.ajax({
       url: '/api/login',
       method: 'POST',
@@ -32,6 +34,8 @@ export function login(username, password) { // eslint-disable-line import/prefer
       }
     }).fail(() => {
       dispatch(setLoginError('Unknown error'));
+    }).always(() => {
+      dispatch(setOverlayVisibility(false));
     });
   };
 }
