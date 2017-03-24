@@ -31,9 +31,9 @@ export function requestPasswordReset(email) {
       url: '/api/password/reset',
       data: { email },
     }).done(() => {
-      console.log('done');
+      console.log('done');  // eslint-disable-line no-console
     }).fail((err) => {
-      console.error('error', err);
+      console.error('error', err);    // eslint-disable-line no-console
     });
   };
 }

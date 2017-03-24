@@ -1,5 +1,8 @@
 import { combineReducers } from 'redux';
 import * as actions from 'components/filters/actions/actionTypes';
+import LOCATIONS from 'districts';  // preloading data
+import CONTRACT_TYPES from 'contractTypes';  // preloading data
+import { convertToMap } from '../helpers/helpers';
 
 function keywords(state = null, action) {
   switch (action.type) {
@@ -34,7 +37,7 @@ function age(state = 'w', action) {
 }
 
 function locations(state = {
-  all: [],
+  all: convertToMap(LOCATIONS),
   selected: [],
 }, action) {
   switch (action.type) {
@@ -64,7 +67,7 @@ function locations(state = {
 }
 
 function contractTypes(state = {
-  all: [],
+  all: convertToMap(CONTRACT_TYPES),
   selected: [],
 }, action) {
   switch (action.type) {

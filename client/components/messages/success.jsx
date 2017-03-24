@@ -12,6 +12,7 @@ function SuccessMessage({ title, children }) {
 SuccessMessage.propTypes = {
   title: React.PropTypes.string,
   children: React.PropTypes.oneOfType([
+    React.PropTypes.object,
     React.PropTypes.string,
     React.PropTypes.element,
   ]).isRequired,

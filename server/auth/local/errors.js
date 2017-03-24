@@ -16,6 +16,10 @@ module.exports = {
     code: i++,
     msg: 'Invalid username'
   },
+  LOGIN_REQUIRED: {
+    code: i++,
+    msg: 'Login required'
+  },
   INVALID_NIF: {
     code: i++,
     msg: 'Invalid NIF'

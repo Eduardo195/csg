@@ -8,6 +8,12 @@ class Connector {
       this.db = db;
     });
   }
+  find(collectionName, query) {
+    return this.getCollection(collectionName).find(query).toArray();
+  }
+  findOne(collectionName, query) {
+    return this.getCollection(collectionName).findOne(query).toArray();
+  }
   createCollection(name, options) {
     return this.db.createCollection(name, options);
   }
@@ -19,6 +25,9 @@ class Connector {
   }
   getCollection(name) {
     return this.db.collection(name);
+  }
+  insert(collectionName, entry) {
+    return this.getCollection(collectionName).insert(entry);
   }
   insertMany(col, data) {
     return col.insertMany(data, { ordered: false }).catch(err => console.log('InsertMany failed: ', err));

@@ -1,5 +1,7 @@
+/* eslint import/no-extraneous-dependencies: 0, react/no-danger: 0 */
+
 import React from 'react';
-import marked from 'marked';
+import marked from 'marked';  // eslint-disable-line
 import Toolbox from './toolbox';
 
 const defaultMarkdown = `# This is Markdown

@@ -13,7 +13,7 @@ const navOptions = {
   }],
   employer: [{
     label: 'Create opportunity',
-    href: '/employer/post',
+    href: '/opportunity/create',
   }],
   user: [{
     label: 'Opportunities',

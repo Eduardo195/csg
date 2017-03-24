@@ -1,5 +1,5 @@
 import React from 'react';
-import marked from 'marked';
+import marked from 'marked';  // eslint-disable-line import/no-extraneous-dependencies
 import Button from 'components/button/button';
 import moment from 'moment';
 import $ from 'jquery';

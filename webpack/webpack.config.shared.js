@@ -21,7 +21,11 @@ const config = {
   },
   resolve: {
     extensions: ['.js', '.jsx', '.jpg', '.svg', '.less'],
-    modules: [path.resolve(__dirname, '../client'), path.resolve(__dirname, '../node_modules/')]
+    modules: [
+      path.resolve(__dirname, '../client'),
+      path.resolve(__dirname, '../node_modules/'),
+      path.resolve(__dirname, '../shared/data')
+    ]
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin()

@@ -9,7 +9,9 @@ const sessionConfig = require('./sessionConfig');
 const AuthLocal = require('./auth/local');
 const db = require('../shared/db/connectors/search');
 const CaptchaService = require('./services/captcha/captcha');
+const EmpOpportunityService = require('./services/opportunity/employer/employer');
 const mailer = require('./services/mailer/mailer');
+const errors = require('./auth/local/errors');
 
 const PORT = 3000;
 
@@ -181,11 +183,28 @@ app.get('/api/contractTypes', (req, res) => {
   });
 });
 
+function isLoggedInAsEmployer(req, res, next) {
+  if (req.isAuthenticated() && req.user.type === 'employer') {
+    return next();
+  }
+  res.send({ success: false, msg: errors.LOGIN_REQUIRED.msg });
+}
+
+app.post('/api/opportunity', isLoggedInAsEmployer, (req, res) => {
+  EmpOpportunityService.post(req.user._id, req.body.opportunity).then(() => {
+    res.send({ success: true });
+  }).catch((err) => {
+    console.log('err', err);
+    res.send({ success: false, msg: err.msg ? err.msg : 'Unknown error' });
+  });
+});
+
 app.get('/op/:id', (req, res) => {
   db.getByRef(req.params.id).then((data) => {
     res.send(data);
   });
 });
+
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}!  from ${__dirname}`);

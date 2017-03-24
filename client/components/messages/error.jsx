@@ -12,6 +12,7 @@ function ErrorMessage({ title, children }) {
 ErrorMessage.propTypes = {
   title: React.PropTypes.string,
   children: React.PropTypes.oneOfType([
+    React.PropTypes.object,
     React.PropTypes.string,
     React.PropTypes.element,
   ]).isRequired,
