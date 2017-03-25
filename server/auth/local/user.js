@@ -8,23 +8,25 @@ module.exports = Object.assign(AccountManager(),
   {
     register(username, password) {
       return validateCredentials(username, password)
-      .then(() => AccountConnector.getByUsername(username).then((user) => {
-        if (user) {
-          throw errors.USER_ALEADY_EXISTS;
-        }
-        return AccountConnector.getUnverifiedByUsername(username).then((unregUser) => {
-          if (unregUser) {
+      .then(() => {
+        return AccountConnector.getByUsername(username).then((user) => {
+          if (user) {
             throw errors.USER_ALEADY_EXISTS;
           }
-          return hashPassword(password)
-              .then(passHash => getRandomBytes()
-                .then(confHash => AccountConnector.register({ username, type: 'user', password: passHash, confHash })
-                .then(() => confHash)
-              )
-            );
+          return AccountConnector.getUnverifiedByUsername(username).then((unregUser) => {
+            if (unregUser) {
+              throw errors.USER_ALEADY_EXISTS;
+            }
+            return hashPassword(password).then((passHash) => {
+              return getRandomBytes().then((confHash) => {
+                return AccountConnector.register({ username, type: 'user', password: passHash, confHash }).then(() => {
+                  return confHash;
+                });
+              });
+            });
+          });
         });
-      })
-      );
-    }
-  }
-);
+      });
+    } // register
+  } // exported obj
+);  // Object.assign

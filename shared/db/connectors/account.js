@@ -14,7 +14,7 @@ function whitelist(obj, keys) {
   const objKeys = Object.keys(obj);
   objKeys.forEach((key) => {
     if (keys.indexOf(key) >= 0) {
-      newObj[key] = typeof obj[key] === 'string' ? obj[key].toLowerCase() : obj[key];
+      newObj[key] = (typeof obj[key] === 'string' && key !== 'password') ? obj[key].toLowerCase() : obj[key];
     }
   });
   return newObj;
@@ -30,6 +30,7 @@ module.exports = {
       .findOne({ username: username.toLowerCase() });
   },
   register(user) {
+    console.log('DIRTY FAGGOT USER', user);
     const whitelisted = whitelist(user, WHITELISTED_FIELDS[TableNames.LOCAL_USERS_UNVERIFIED]);
     console.log('INSERING whitelisted user', whitelisted);
     return Connector.getCollection(TableNames.LOCAL_USERS_UNVERIFIED).insert(whitelisted).then((WriteResult) => {
