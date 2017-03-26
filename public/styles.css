@@ -475,16 +475,8 @@ input.editableTag:focus {
 .op {
   padding: 1em;
 }
-.op--list {
-  border-right: 1px solid #202950;
-}
-.op--list header {
-  padding: 1em 0;
-  border-bottom: 1px solid #202950;
-  text-align: center;
-}
-.op--list main {
-  padding: 1em;
+.op--list h4 {
+  margin: 0;
 }
 .logo {
   width: 12em;
