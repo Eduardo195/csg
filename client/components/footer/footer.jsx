@@ -7,14 +7,14 @@ const Footer = () => (
       <div className="flex-grow align-self-stretch">
         <div>
           <h4>For Opportunity Seekers</h4>
-          <div><Link href="#">Find Opportunities</Link></div>
+          <div><Link href="/opportunities">Find Opportunities</Link></div>
           <div><Link href="#">Upload CV</Link></div>
         </div>
       </div>
       <div className="flex-grow align-self-stretch">
         <div>
           <h4>For Employers</h4>
-          <div><Link href="#">Post opportunity</Link></div>
+          <div><Link href="/opportunity/create">Create opportunity</Link></div>
         </div>
       </div>
       <div className="flex-grow align-self-stretch">
