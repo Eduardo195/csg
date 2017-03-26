@@ -79,15 +79,15 @@ class Create extends React.Component {
         <h1 className="title">
           <EditableTag onChange={this.onTitleChange} placeholder="Procuramos [profissao] em [localidade]" />
         </h1>
-        <div className="mainWrapper">
-          <div className="detais">
+        <div className="mainWrapper d-flex flex-wrap">
+          <div className="detais align-self-stretch">
             <div className="contentWrapper">
               <div className="content">
                 <MarkdownBox onChange={this.onMarkdownChange} placeholder={markdownPlaceholder} />
               </div>
             </div>
           </div>
-          <div className="overview">
+          <div className="overview align-self-stretch">
             <div className="contentWrapper">
               <h4>Employer</h4>
               <span>{'Pre-filled'}</span>

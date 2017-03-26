@@ -52,17 +52,13 @@ class FullOffer extends React.Component {
     return (
       <div className="op">
         <h1 className="title">{ title }</h1>
-        <div className="mainWrapper">
-          <div className="detais">
+        <div className="mainWrapper d-flex flex-wrap">
+          <div className="detais align-self-stretch">
             <div className="contentWrapper">
               <div className="content" dangerouslySetInnerHTML={getRawMarkup(markdown || 'No content')} />
-              <br />
-              <a href={url} target="_blank" rel="noopener noreferrer">
-                <Button className="d-inline-block btn--main">Apply</Button>
-              </a>
             </div>
           </div>
-          <div className="overview">
+          <div className="overview align-self-stretch">
             <div className="contentWrapper">
               <h4>Employer</h4>
               <span>{company}</span>
@@ -78,6 +74,11 @@ class FullOffer extends React.Component {
               <span>{industry}</span>
             </div>
           </div>
+        </div>
+        <div>
+          <a href={url} target="_blank" rel="noopener noreferrer">
+            <Button className="d-inline-block btn--main">Apply</Button>
+          </a>
         </div>
       </div>
     );
