@@ -13,10 +13,15 @@ const linkFilter = {
 };
 
 const scraper = {
-  getPostUrls(html) {
+  getPostUrls(html, previousRefs) {
     const data = [];
     $(html).find('div font > table').each((index, table) => {
-      data.push($(table).find('font > a').first()[0].href);
+      const url = $(table).find('font > a').first()[0].href;
+      const ref = url.split('/')[1];
+      if (previousRefs.indexOf(ref) < 0) {
+        data.push(`http://www.net-empregos.com/${url}`);
+        previousRefs.push(ref);
+      }
     });
     return data;
   },
@@ -45,7 +50,7 @@ const scraper = {
     });
 
     const values = {
-      src: 'netempregos',
+      src: 'netEmpregos',
       title,
       url,
       company,

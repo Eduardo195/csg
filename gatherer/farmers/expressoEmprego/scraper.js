@@ -8,7 +8,6 @@ const jquery = require('jquery');
 const window = jsdom.jsdom().defaultView;
 const $ = jquery(window);
 
-
 const pToH3 = {
   filter: 'p',
   replacement: (innerHTML, node) => {
@@ -26,10 +25,17 @@ const h3ToP = {
 };
 
 const scraper = {
-  getPostUrls(html) {
+  getPostUrls(html, previousRefs) {
     const data = [];
     $(html).find('.resultadosBox').each((index, elem) => {
-      data.push($(elem).find('a').attr('href'));
+      const url = $(elem).find('a').attr('href');
+      const absoluteUrl = `http://expressoemprego.pt/${url}`;
+      const split = url.split('/');
+      const ref = split[split.length - 1];
+      if (previousRefs.indexOf(ref) < 0) {
+        data.push(absoluteUrl);
+        previousRefs.push(ref);
+      }
     });
     return data;
   },
@@ -55,11 +61,16 @@ const scraper = {
 
     const cleanContent = sanitizeHtml(
         description.html(),
-        { exclusiveFilter: frame => !frame.text.trim() } // remove empty tags
+        {
+          exclusiveFilter: frame => !frame.text.trim(),
+          allowedAttributes: {
+            'p': ['class'],  // needed by the toMarkdown converters
+            'h3': ['class']  // needed by the toMarkdown converters
+          }
+        } // remove empty tags
       );
     const markdown = sanitizeHtml(toMarkdown(cleanContent, {
       converters: [pToH3, h3ToP]
-        // gfm: true // required to parse tables
     }),
       { allowedTags: [] } // clean leftover tags
     );

@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "gather-p": "export NODE_ENV=production && node --expose-gc gatherer/gather.js",
+    "gather": "SET NODE_ENV=production && node --expose-gc gatherer/gather.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack/webpack.config.prod.js",
     "watch": "webpack -w --progress --color --config webpack/webpack.config.dev.js",
     "start": "webpack-dev-server -d --config webpack/webpack.config.dev.js",
-    "xp": "NODE_ENV=production && node server/server.js",
+    "xp": "export NODE_ENV=production && node server/server.js",
     "dev": "SET NODE_ENV=development && nodemon server/server.js",
     "lint": "eslint --ignore-path .gitignore --fix --ext js,jsx ."
   },

@@ -2,9 +2,19 @@ const MongoClient = require('mongodb').MongoClient;
 
 const URL = 'mongodb://localhost:27017/labop';
 
+function connect() {
+  return MongoClient.connect(URL);
+}
+
 class Connector {
-  constructor(url) {
-    this.con = MongoClient.connect(url).then((db) => {
+  constructor() {
+    this.con = this.connect();
+  }
+  connect() {
+    if (this.con) {
+      return this.con;
+    }
+    return connect().then((db) => {
       this.db = db;
     });
   }
@@ -34,6 +44,8 @@ class Connector {
   }
   close() {
     this.db.close();
+    this.db = null;
+    this.con = null;
   }
 }
 
