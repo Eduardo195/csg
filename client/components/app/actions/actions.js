@@ -12,8 +12,7 @@ export function init() {
         dispatch(setUser(res.user));
       }
       dispatch(setOverlayVisibility(false));
-    }).catch((err) => {
-      console.log('error', err);
+    }).catch(() => {
       dispatch(setOverlayVisibility(false));
     });
   };

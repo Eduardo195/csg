@@ -1,5 +1,14 @@
 @circular-btn-size: 3em;
 
+a.btn {
+
+  &--main,
+  &--main:hover {
+    color: @font-color-alt;
+  }
+
+}
+
 .btn {
     background: @bg-color-main;
     border: 1px solid #ccc;
@@ -51,11 +60,10 @@
     }
 
     &--main {
-
-      background: @btn-bg-main;
-      display: inline-block;
-      color: white;
       border-color: @btn-bg-main;
+      background: @btn-bg-main;
+      color: @font-color-alt;
+      display: inline-block;
 
       &:focus, &.focus {
         box-shadow: 0 0 0 2px rgba(233, 79, 43, 0.25);
@@ -78,12 +86,6 @@
     &--incognito {
         border: 0;
         background: transparent;
-    }
-
-    &--main {
-        display: block;
-        text-align: center;
-        margin: 0 auto;
     }
 
     &--large {

@@ -12,7 +12,7 @@
     "start": "webpack-dev-server -d --config webpack/webpack.config.dev.js",
     "xp": "export NODE_ENV=production && node server/server.js",
     "dev": "SET NODE_ENV=development && nodemon server/server.js",
-    "lint": "eslint --ignore-path .gitignore --fix --ext js,jsx ."
+    "lint": "eslint --fix --ext js,jsx ."
   },
   "repository": {
     "type": "git",

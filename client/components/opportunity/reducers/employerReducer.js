@@ -60,7 +60,7 @@ export function myOpportunities(state = {
 
     case actionTypes.SET_DELETE_SUCCESS:
       return Object.assign({}, state, {
-        opportunities: state.opportunities.filter(op => op._id !== action.id)
+        opportunities: state.opportunities.filter(op => op._id !== action.id),
       });
 
     default:

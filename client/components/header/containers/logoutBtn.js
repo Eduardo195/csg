@@ -1,13 +1,13 @@
 import { connect } from 'react-redux';
 import { logout } from 'components/user/actions/userActions';
-import LogoutBtn from '../logoutBtn';
+import Button from 'components/button/button';
 
 function mapDispatchToProps(dispatch) {
   return {
-    logout() {
+    onTap() {
       dispatch(logout());
     },
   };
 }
 
-export default connect(null, mapDispatchToProps)(LogoutBtn);
+export default connect(null, mapDispatchToProps)(Button);

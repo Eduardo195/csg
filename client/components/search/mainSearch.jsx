@@ -1,6 +1,5 @@
 import React from 'react';
 import Button from 'components/button/button';
-import TextAutocomplete from 'components/input/textAutocomplete';
 
 class MainSearch extends React.Component {
 
@@ -40,26 +39,27 @@ class MainSearch extends React.Component {
   }
 
   render() {
-    const { kw, loc } = this.state;
     const { locations } = this.props;
 
     return (
       <div className="mainSearch">
         <h2>Find your future</h2>
-        <div className="form">
-          <TextAutocomplete
-            id="workSearh" placeholder="Role"
-            className="small"
-            handleChange={this.handleKeywordChange}
-            value={kw}
-          />
-          <TextAutocomplete
-            id="locationSearch" placeholder="Location"
-            datalist={locations}
-            className="small"
-            handleChange={this.handleLocationChange}
-            value={loc}
-          />
+        <div className="form-inline text-center d-flex justify-content-center">
+          <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+            <label htmlFor="workSearh" className="sr-only">Role Keyword</label>
+            <input type="text" onChange={this.handleKeywordChange} className="form-control" id="workSearh" placeholder="Role" />
+          </div>
+          <div className="input-group mb-2 mr-sm-2 mb-sm-0">
+            <label htmlFor="locationSearch" className="sr-only">Location Keyword</label>
+            <input type="text" list="loc-datalist" onChange={this.handleLocationChange} className="form-control" id="locationSearch" placeholder="Location" />
+            <datalist id="loc-datalist">
+              {
+                locations && locations.map(entry => (
+                  <option key={entry} value={entry} />
+                ))
+              }
+            </datalist>
+          </div>
           <Button className="btn--large" onTap={this.handleSearch}>Go</Button>
         </div>
       </div>

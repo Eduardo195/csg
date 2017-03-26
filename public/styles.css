@@ -16,25 +16,16 @@
   justify-content: center;
 }
 .mainSearch h2 {
-  padding-top: 1.5em;
+  padding: 3% 0;
 }
 .mainSearch .form {
-  padding-top: 2em;
+  padding-top: 3%;
 }
 .mainSearch .form .btn {
   color: #333;
 }
 .mainSearch .form .autocp {
   margin-right: 1em;
-}
-.mainSearch div {
-  padding: 0 1em;
-}
-.mainSearch div input {
-  width: 25em;
-}
-.latest {
-  padding: 2rem 6em;
 }
 .offer {
   padding: 2em 1em;
@@ -135,6 +126,10 @@
 .op > .mainWrapper .overview h3:first-child {
   margin-top: 0;
 }
+a.btn--main,
+a.btn--main:hover {
+  color: #fff;
+}
 .btn {
   background: #fff;
   border: 1px solid #ccc;
@@ -179,10 +174,10 @@
   background: #e84e29;
 }
 .btn--main {
-  background: #E94F2B;
-  display: inline-block;
-  color: white;
   border-color: #E94F2B;
+  background: #E94F2B;
+  color: #fff;
+  display: inline-block;
 }
 .btn--main:focus,
 .btn--main.focus {
@@ -202,11 +197,6 @@
   border: 0;
   background: transparent;
 }
-.btn--main {
-  display: block;
-  text-align: center;
-  margin: 0 auto;
-}
 .btn--large {
   padding: 0.7em;
 }
@@ -217,73 +207,8 @@ button:hover .caret {
 .root > nav {
   padding: 1em 10%;
 }
-.nav--main {
-  flex-grow: 1;
-  margin-left: 5em;
-}
-.nav--secondary {
-  padding: 1em;
-}
-.nav--secondary a:hover,
-.nav--secondary a:focus {
-  text-decoration: none;
-}
-.nav ul,
-.nav li {
-  box-sizing: border-box;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.nav ul.fatnav > li {
-  font-size: 1.4em;
-  cursor: pointer;
-}
-.nav ul.fatnav > li:hover {
-  background: #F7F7F7;
-}
-.nav ul.fatnav > li:hover ul.subLinks {
-  opacity: 1;
-  visibility: visible;
-}
-.nav ul.fatnav > li ul.subLinks {
-  position: absolute;
-  background: #F7F7F7;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.2s ease-in-out, visibility 0.2s ease-in-out;
-  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.12);
-}
-.nav ul.fatnav > li ul.subLinks li {
-  border-bottom: 1px solid #f4f4f4;
-  line-height: 2em;
-  text-align: left;
-  font-size: 1em;
-}
-.nav ul.fatnav > li ul.subLinks li a {
-  padding: 1em;
-  display: block;
-  font-weight: bold;
-  text-decoration: none;
-  color: #4eb8a9;
-}
-.nav--menuitem {
-  display: inline-block;
-  text-align: center;
-  border: 0;
-  background: transparent;
-  text-decoration: none;
-  line-height: 4em;
-  min-width: 9em;
-  padding: 0 2em;
-  transition: background-color 0.2s ease-in-out;
-  white-space: nowrap;
-  padding-bottom: 1em;
-}
-.nav--menuitem,
-.nav--menuitem a {
-  font-weight: bold;
-  color: #4eb8a9;
+.root > nav .btn {
+  margin-left: 1em;
 }
 .md {
   position: relative;
@@ -368,8 +293,7 @@ button:hover .caret {
   color: #e94f2b;
 }
 .root > footer .d-flex.flex-wrap > div {
-  flex: 1;
-  text-align: center;
+  padding: 1em 2em;
 }
 .dialog .overlay {
   height: 100%;
