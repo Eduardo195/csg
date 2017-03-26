@@ -26,7 +26,14 @@ function findAndLog(Conn, tableName, query) {
   });
 }
 
+function dropIndexes(Conn, tableName) {
+  return Conn.con.then(() => {
+    return Conn.getCollection(tableName).dropIndexes();
+  });
+}
+
 module.exports = {
+  dropIndexes,
   resetTable,
   findAndLog,
   find

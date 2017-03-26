@@ -11,6 +11,7 @@ module.exports = {
           throw errors.UNKNOWN_USER;
         }
         const opportunity = Object.assign({}, sanitizedOp, {
+          src: 'Oportunarium',
           date: moment.now(),
           employerName: employerDetails.nif,
           employerId: employerDetails._id
