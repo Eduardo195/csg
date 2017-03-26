@@ -91,8 +91,7 @@
   border-bottom: 0.25em solid #4eb8a9;
 }
 .op > .mainWrapper {
-  padding: 1em;
-  overflow: hidden;
+  padding-top: 1em;
 }
 .op > .mainWrapper h1,
 .op > .mainWrapper h2,
@@ -100,16 +99,14 @@
 .op > .mainWrapper h4 {
   color: #4eb8a9;
 }
-.op > .mainWrapper .contentWrapper {
-  padding: 1em 3em 0;
-}
 .op > .mainWrapper .detais {
-  float: left;
-  width: 70%;
+  flex-grow: 7;
+}
+.op > .mainWrapper .detais .contentWrapper {
+  padding-right: 10%;
 }
 .op > .mainWrapper .overview {
-  width: 30%;
-  float: right;
+  flex-grow: 3;
 }
 .op > .mainWrapper .overview .contentWrapper {
   padding-left: 3em;
