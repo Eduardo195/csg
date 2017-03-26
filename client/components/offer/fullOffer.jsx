@@ -37,15 +37,17 @@ class FullOffer extends React.Component {
   render() {
     const data = this.state;
 
-    const { title, contractType, company, location, industry, date } = data;
+    const { title, pay, contractType, company, location, industry, date } = data;
     const { label: locationLabel } = location;
-    const { minPay, maxPay } = data;
     const { markdown, url } = data;
+
+    const minPay = pay && pay.min;
+    const maxPay = pay && pay.max;
 
     const shortFullPay = minPay && maxPay ? `${minPay} to ${maxPay}` : '';
     const shortMinPay = minPay && !maxPay ? `From ${minPay} ` : '';
     const shortMaxPay = !minPay && maxPay ? `Up to ${maxPay}` : '';
-    const pay = shortFullPay || shortMinPay || shortMaxPay || '';
+    const payLabel = shortFullPay || shortMinPay || shortMaxPay || '';
 
     return (
       <div className="op">
@@ -69,7 +71,7 @@ class FullOffer extends React.Component {
               <h4>Contract type</h4>
               <span>{contractType.label}</span>
               <h4>Salary</h4>
-              <span>{pay}</span>
+              <span>{payLabel}</span>
               <h4>Posted</h4>
               <span>{moment(date).format('ll')}</span>
               <h4>Industry</h4>

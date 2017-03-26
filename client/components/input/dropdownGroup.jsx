@@ -16,6 +16,12 @@ class DropdownGroup extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.selected !== undefined) { // in case of falsys
+      this.props.onChange(this.props.selected);
+    }
+  }
+
   handleChange(e) {
     this.props.onChange(e.target.value);
   }

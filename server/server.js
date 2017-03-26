@@ -191,7 +191,7 @@ function isLoggedInAsEmployer(req, res, next) {
 }
 
 app.post('/api/opportunity', isLoggedInAsEmployer, (req, res) => {
-  EmpOpportunityService.post(req.user._id, req.body.opportunity).then(() => {
+  EmpOpportunityService.post(req.user._id, req.body).then(() => {
     res.send({ success: true });
   }).catch((err) => {
     console.log('err', err);

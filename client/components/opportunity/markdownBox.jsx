@@ -1,28 +1,14 @@
 import React from 'react';
 import md from 'markdown-it';
 
-const placeholder = `#### Requisitos
-1. [REQUISITO]
-1.2. [SUB-REQUISITO]
-2. [REQUISITO]
-3. ...
-
----
-
-#### Beneficios
-- [BENEFICIO]
-- [BENEFICIO]
-- ...
-`;
-
 class MarkdownBox extends React.Component {
-  constructor() {
+  constructor(props) {
     super();
     this.md = md({ breaks: true, typographer: true });
     this.state = {
       isEditing: false,
-      markdown: placeholder,
-      parsed: this.parseMarkdown(placeholder),
+      markdown: props.placeholder || '',
+      parsed: this.parseMarkdown(props.placeholder || ''),
     };
 
     this.onFocus = this.onFocus.bind(this);
@@ -30,6 +16,12 @@ class MarkdownBox extends React.Component {
 
     this.onChange = this.onChange.bind(this);
     this.setTextareaRef = (ref) => { this.textarea = ref; };
+  }
+
+  componentDidMount() {
+    if (this.state.markdown) {
+      this.props.onChange(this.state.markdown);
+    }
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -86,6 +78,7 @@ class MarkdownBox extends React.Component {
 
 MarkdownBox.propTypes = {
   onChange: React.PropTypes.func.isRequired,
+  placeholder: React.PropTypes.string,
 };
 
 export default MarkdownBox;

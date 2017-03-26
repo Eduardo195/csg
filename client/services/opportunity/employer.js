@@ -11,7 +11,7 @@ const EmployerOpportunityService = {
     return query({
       url: '/api/opportunity/',
       method: 'POST',
-      data: { opportunity },
+      data: opportunity,
     });
   },
   deleteOpportunity(id) {

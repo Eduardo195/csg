@@ -51,11 +51,11 @@ class TextAutocomplete extends React.Component {
 
   render() {
     const { value, isEditing } = this.state;
-    const { placeholder } = this.props;
+    const { placeholder, type } = this.props;
 
     return isEditing ? (
       <input
-        ref={this.getInputRef} value={value} type="text" placeholder={placeholder}
+        type={type} ref={this.getInputRef} value={value} placeholder={placeholder}
         onKeyPress={this.onKeyPress} onChange={this.onChange} onBlur={this.onBlur} className="editableTag"
       />
     ) : (
@@ -69,6 +69,11 @@ class TextAutocomplete extends React.Component {
 TextAutocomplete.propTypes = {
   onChange: React.PropTypes.func.isRequired,
   placeholder: React.PropTypes.string,
+  type: React.PropTypes.string,
+};
+
+TextAutocomplete.defaultProps = {
+  type: 'text',
 };
 
 export default TextAutocomplete;

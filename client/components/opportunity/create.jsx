@@ -1,31 +1,27 @@
 import React from 'react';
+import moment from 'moment';
 import EditableTag from 'components/input/editableTag';
 import MarkdownBox from 'components/opportunity/markdownBox';
 import DropdownGroup from 'components/input/dropdownGroup';
 import ErrorMessage from 'components/messages/error';
-import moment from 'moment';
+import markdownPlaceholder from './markdownPlaceholder';
 
 class Create extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = { };
     this.onSubmit = this.onSubmit.bind(this);
 
     this.onTitleChange = this.onTitleChange.bind(this);
     this.onMarkdownChange = this.onMarkdownChange.bind(this);
-    this.onMinSalaryChange = this.onMinSalaryChange.bind(this);
-    this.onMaxSalaryChange = this.onMaxSalaryChange.bind(this);
+    this.onMinPayChange = this.onMinPayChange.bind(this);
+    this.onMaxPayChange = this.onMaxPayChange.bind(this);
     this.onLocationChange = this.onLocationChange.bind(this);
     this.onContracTypeChange = this.onContracTypeChange.bind(this);
   }
 
   onSubmit() {
-    // TODO: error messages
-    // if (!this.state.title || !this.state.markdown) {
-    //   this.updateState({ error: 'Incomplete details' });
-    // } else {
     this.props.onSubmit(this.state);
-    // }
   }
 
   onTitleChange(title) {
@@ -36,20 +32,24 @@ class Create extends React.Component {
     this.updateState({ markdown });
   }
 
-  onMinSalaryChange(salaryMin) {
-    this.updateState({ salaryMin });
+  onLocationChange(location) {
+    this.updateState({ location });
   }
 
-  onMaxSalaryChange(salaryMax) {
-    this.updateState({ salaryMax });
+  onContracTypeChange(contractType) {
+    this.updateState({ contractType });
   }
 
-  onLocationChange(selectedValue) {
-    this.updateState({ location: selectedValue });
+  onMinPayChange(min) {
+    this.updateState({
+      pay: Object.assign({}, this.state.pay, { min }),
+    });
   }
 
-  onContracTypeChange(selectedValue) {
-    this.updateState({ contractType: selectedValue });
+  onMaxPayChange(max) {
+    this.updateState({
+      pay: Object.assign({}, this.state.pay, { max }),
+    });
   }
 
   getDropdownDefault(propName, dataSource) {
@@ -83,7 +83,7 @@ class Create extends React.Component {
           <div className="detais">
             <div className="contentWrapper">
               <div className="content">
-                <MarkdownBox onChange={this.onMarkdownChange} />
+                <MarkdownBox onChange={this.onMarkdownChange} placeholder={markdownPlaceholder} />
               </div>
             </div>
           </div>
@@ -97,15 +97,15 @@ class Create extends React.Component {
               </span>
               <h4>Contract type</h4>
               <span>
-                <DropdownGroup id="locations" onChange={this.onContracTypeChange} options={this.props.contractTypes} selected={this.getSelectedContractType()} />
+                <DropdownGroup id="contractTypes" onChange={this.onContracTypeChange} options={this.props.contractTypes} selected={this.getSelectedContractType()} />
               </span>
               <h4>Salary</h4>
               <span>
-                <EditableTag onChange={this.onMinSalaryChange} placeholder="[Salario minimo]" />
+                <EditableTag id="minPay" type="number" onChange={this.onMinPayChange} placeholder="[Salario minimo]" />
               </span>
               to
               <span>
-                <EditableTag onChange={this.onMaxSalaryChange} placeholder="[Salario maximo]" />
+                <EditableTag id="maxPay" type="number" onChange={this.onMaxPayChange} placeholder="[Salario maximo]" />
               </span>
               <h4>Posted</h4>
               <span>{ moment().format('dddd, MMMM Do YYYY, H:mm') }</span>

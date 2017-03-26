@@ -10,10 +10,23 @@ module.exports = {
     code: i++,
     msg: 'Invalid title'
   },
-  INVALID_DESCRIPTION: {
+  INVALID_MARKDOWN: {
     code: i++,
-    msg: 'Invalid description'
+    msg: 'Invalid markdown'
   },
+  INVALID_LOCATION: {
+    code: i++,
+    msg: 'Invalid location'
+  },
+  INVALID_CONTRACT_TYPE: {
+    code: i++,
+    msg: 'Invalid contract type'
+  },
+  INVALID_PAY: {
+    code: i++,
+    msg: 'Invalid pay'
+  },
+
   UNKNOWN_USER: {
     code: i++,
     msg: 'Unknown user'
