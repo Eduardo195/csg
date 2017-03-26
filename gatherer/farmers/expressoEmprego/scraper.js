@@ -61,13 +61,13 @@ const scraper = {
 
     const cleanContent = sanitizeHtml(
         description.html(),
-        {
-          exclusiveFilter: frame => !frame.text.trim(),
-          allowedAttributes: {
-            'p': ['class'],  // needed by the toMarkdown converters
-            'h3': ['class']  // needed by the toMarkdown converters
-          }
-        } // remove empty tags
+      {
+        exclusiveFilter: frame => !frame.text.trim(),
+        allowedAttributes: {
+          p: ['class'],  // needed by the toMarkdown converters
+          h3: ['class']  // needed by the toMarkdown converters
+        }
+      } // remove empty tags
       );
     const markdown = sanitizeHtml(toMarkdown(cleanContent, {
       converters: [pToH3, h3ToP]

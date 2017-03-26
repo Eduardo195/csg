@@ -21,7 +21,7 @@ const UserService = {
     return query({ url: '/api/user' });
   },
   delete() {
-    return query({ url: '/api/logout', method: 'DELETE' });
+    return query({ url: '/api/user', method: 'DELETE' });
   },
 };
 
