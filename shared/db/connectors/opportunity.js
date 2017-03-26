@@ -13,5 +13,16 @@ module.exports = {
   insert(opportunity) {
     console.log('inserting ', opportunity);
     return Connector.insert(TableNames.OPPORTUNITIES, opportunity);
+  },
+  delete(employerId, opportunityId) {
+    return Connector.getCollection(TableNames.OPPORTUNITIES)
+      .remove({
+        _id: ObjectID(opportunityId),
+        employerId
+      }, { justOne: true });
+  },
+  getAll(id) {
+    return Connector.getCollection(TableNames.OPPORTUNITIES)
+      .find({ employerId: ObjectID(id) }).toArray();
   }
 };

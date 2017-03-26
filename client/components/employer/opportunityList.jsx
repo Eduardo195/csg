@@ -8,13 +8,13 @@ const OpportunityList = () => (
         </header>
     <main>
       {
-                mockOpportunities.map(op => (
-                  <article className="">
-                    <div> { op.title } </div>
-                    <div> { op.desc } </div>
-                  </article>
-                ))
-            }
+      mockOpportunities.map(op => (
+        <article className="">
+          <div> { op.title } </div>
+          <div> { op.desc } </div>
+        </article>
+      ))
+    }
     </main>
   </section>
 );

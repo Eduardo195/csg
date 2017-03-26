@@ -1,9 +1,13 @@
 import React from 'react';
 
 function Button(props) {
-  const { children, onTap, onBlur, onHover, className } = props;
+  const { children, onTap, onBlur, onHover, className, dataValue } = props;
   return (
-    <button onClick={onTap} onBlur={onBlur} className={`btn ${className}`} onMouseEnter={onHover}>
+    <button
+      onClick={onTap} onBlur={onBlur} onMouseEnter={onHover}
+      data-value={dataValue}
+      className={`btn ${className || ''}`}
+    >
       {children}
     </button>
   );
@@ -19,6 +23,7 @@ Button.propTypes = {
   onBlur: React.PropTypes.func,
   onHover: React.PropTypes.func,
   onTap: React.PropTypes.func.isRequired,
+  dataValue: React.PropTypes.string, // for data-attr
 };
 
 export default Button;

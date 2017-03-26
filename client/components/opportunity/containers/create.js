@@ -15,7 +15,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
   return {
     onSubmit(opportunity) {
-      console.log('opportunity ::::', opportunity); // eslint-disable-line no-console
+      console.log('opportunity ::::', opportunity);
       dispatch(post(opportunity));
     },
   };

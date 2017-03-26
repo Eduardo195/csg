@@ -1,9 +1,10 @@
 import { connect } from 'react-redux';
+import { getIsEmployer } from 'components/user/selectors/sessionSelectors';
 import Home from '../home';
 
 function mapStateToProps(state) {
   return {
-    isEmployer: state.user,
+    isEmployer: getIsEmployer(state),
   };
 }
 

@@ -19,5 +19,11 @@ module.exports = {
         return OpportunityConnector.insert(opportunity);
       });
     });
+  },
+  deleteOpportunity(userId, opportunityId) {
+    return OpportunityConnector.delete(userId, opportunityId);
+  },
+  getAll(id) {
+    return OpportunityConnector.getAll(id);
   }
 };

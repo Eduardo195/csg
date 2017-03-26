@@ -199,6 +199,24 @@ app.post('/api/opportunity', isLoggedInAsEmployer, (req, res) => {
   });
 });
 
+app.delete('/api/opportunity', isLoggedInAsEmployer, (req, res) => {
+  EmpOpportunityService.deleteOpportunity(req.user._id, req.body.id).then(() => {
+    res.send({ success: true });
+  }).catch((err) => {
+    console.log('err', err);
+    res.send({ success: false, msg: err.msg ? err.msg : 'Unknown error' });
+  });
+});
+
+app.get('/api/opportunity/all', isLoggedInAsEmployer, (req, res) => {
+  EmpOpportunityService.getAll(req.user._id).then((data) => {
+    res.send({ success: true, data });
+  }).catch((err) => {
+    console.log('err', err);
+    res.send({ success: false, msg: err.msg ? err.msg : 'Unknown error' });
+  });
+});
+
 app.get('/op/:id', (req, res) => {
   db.getByRef(req.params.id).then((data) => {
     res.send(data);

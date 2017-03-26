@@ -5,7 +5,7 @@ function Profile() {
     <div className="jumbotron">
       <div className="container">
         <h1>Password Reset</h1>
-        <button>Reset password</button>
+        <div>TODO</div>
       </div>
     </div>
   );

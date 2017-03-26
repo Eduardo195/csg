@@ -14,6 +14,16 @@ const EmployerOpportunityService = {
       data: { opportunity },
     });
   },
+  deleteOpportunity(id) {
+    return query({
+      url: '/api/opportunity',
+      method: 'DELETE',
+      data: { id },
+    });
+  },
+  getAll() {
+    return query({ url: '/api/opportunity/all' });
+  },
 };
 
 export default EmployerOpportunityService;
