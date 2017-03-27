@@ -190,7 +190,31 @@ function isLoggedInAsEmployer(req, res, next) {
   res.send({ success: false, msg: errors.LOGIN_REQUIRED.msg });
 }
 
-app.post('/api/opportunity', isLoggedInAsEmployer, (req, res) => {
+app.put('/api/opportunity/', isLoggedInAsEmployer, (req, res) => {
+  EmpOpportunityService.updateOne(req.user._id, req.body).then((result) => {
+    if (result.result.nModified >= 1 && result.result.ok === 1) {
+      res.send({ success: true, id: req.body.id });
+    } else {
+      res.send({ success: false, msg: 'Failed to update' });
+    }
+  }).catch((err) => {
+    res.send({ success: false, msg: err.msg ? err.msg : 'Unknown error' });
+  });
+});
+
+app.get('/api/opportunity/', isLoggedInAsEmployer, (req, res) => {
+  EmpOpportunityService.getOne(req.user._id, req.query.id).then((opportunity) => {
+    if (opportunity) {
+      res.send({ success: false, opportunity });
+    } else {
+      res.send({ success: false, msg: 'Not found' });
+    }
+  }).catch((err) => {
+    res.send({ success: false, msg: err.msg ? err.msg : 'Unknown error' });
+  });
+});
+
+app.post('/api/opportunity/', isLoggedInAsEmployer, (req, res) => {
   EmpOpportunityService.post(req.user._id, req.body).then(() => {
     res.send({ success: true });
   }).catch((err) => {
@@ -199,7 +223,7 @@ app.post('/api/opportunity', isLoggedInAsEmployer, (req, res) => {
   });
 });
 
-app.delete('/api/opportunity', isLoggedInAsEmployer, (req, res) => {
+app.delete('/api/opportunity/', isLoggedInAsEmployer, (req, res) => {
   EmpOpportunityService.deleteOpportunity(req.user._id, req.body.id).then(() => {
     res.send({ success: true });
   }).catch((err) => {
@@ -208,7 +232,7 @@ app.delete('/api/opportunity', isLoggedInAsEmployer, (req, res) => {
   });
 });
 
-app.get('/api/opportunity/all', isLoggedInAsEmployer, (req, res) => {
+app.get('/api/opportunities/', isLoggedInAsEmployer, (req, res) => {
   EmpOpportunityService.getAll(req.user._id).then((data) => {
     res.send({ success: true, data });
   }).catch((err) => {
@@ -217,7 +241,7 @@ app.get('/api/opportunity/all', isLoggedInAsEmployer, (req, res) => {
   });
 });
 
-app.get('/op/:id', (req, res) => {
+app.get('/op/', (req, res) => {
   db.getByRef(req.params.id).then((data) => {
     res.send(data);
   });

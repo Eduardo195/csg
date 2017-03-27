@@ -10,6 +10,7 @@ import Registration from 'components/registration/containers/registration';
 import RegistrationSuccess from 'components/registration/containers/registrationSuccess';
 import RegistrationConfirmation from 'components/registration/containers/registrationConfirmation';
 import CreateOpportunity from 'components/opportunity/containers/create';
+import EditOpportunity from 'components/opportunity/edit';
 
 import EmployerRegistration from 'components/registration/employerRegistration';
 import EmployerOpportunities from 'components/employer/opportunities';
@@ -36,6 +37,7 @@ export default function index() {
         <Route path="employer/opportunities/:id" component={EmployerOpportunities} />
 
         <Route path="opportunity/create" component={CreateOpportunity} />
+        <Route path="opportunity/edit/:id" component={EditOpportunity} />
         <Route path="/employer/post" component={WorkAd} />
         <Route path="opportunities" component={Search} />
         <Route path="/jobs/:id/status" component={Status} />

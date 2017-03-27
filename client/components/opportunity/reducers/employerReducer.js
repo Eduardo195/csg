@@ -38,6 +38,31 @@ export function deleteOpportunity(state = {
   }
 }
 
+export function updateOpportunity(state = {
+  error: null,
+  id: null,
+}, action) {
+  switch (action.type) {
+    case actionTypes.SET_UPDATE_ERROR:
+      return Object.assign({}, state, {
+        error: action.error,
+      });
+
+    case actionTypes.CLEAR_UPDATE_ERROR:
+      return Object.assign({}, state, {
+        error: null,
+      });
+
+    case actionTypes.SET_UPDATE_SUCCESS:
+      return Object.assign({}, state, {
+        id: action.id,
+      });
+
+    default:
+      return state;
+  }
+}
+
 export function myOpportunities(state = {
   error: null,
   opportunities: [],

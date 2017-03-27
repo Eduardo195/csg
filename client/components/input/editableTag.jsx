@@ -28,10 +28,7 @@ class TextAutocomplete extends React.Component {
 
   onChange(e) {
     this.props.onChange(e.target.value);
-    this.setState({
-      value: e.target.value,
-      isEditing: true,
-    });
+    this.setState({ isEditing: true });
   }
 
   onFocus() {
@@ -44,14 +41,13 @@ class TextAutocomplete extends React.Component {
 
   setEditMode(isEditing) {
     this.setState({
-      value: this.state.value,
       isEditing,
     });
   }
 
   render() {
-    const { value, isEditing } = this.state;
-    const { placeholder, type } = this.props;
+    const { isEditing } = this.state;
+    const { placeholder, type, value } = this.props;
 
     return isEditing ? (
       <input
@@ -69,6 +65,7 @@ class TextAutocomplete extends React.Component {
 TextAutocomplete.propTypes = {
   onChange: React.PropTypes.func.isRequired,
   placeholder: React.PropTypes.string,
+  value: React.PropTypes.string,
   type: React.PropTypes.string,
 };
 

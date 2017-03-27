@@ -34,6 +34,7 @@ const MyOpportunities = (props) => {
                   </header>
                   <footer>
                     <DeleteOpportunityBtn dataValue={op._id} className="btn--main">Delete</DeleteOpportunityBtn>
+                    <Link href={`/opportunity/edit/${op._id}`} className="btn btn--main">Edit</Link>
                   </footer>
                 </section>
               ))

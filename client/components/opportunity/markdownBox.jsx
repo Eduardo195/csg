@@ -7,8 +7,8 @@ class MarkdownBox extends React.Component {
     this.md = md({ breaks: true, typographer: true });
     this.state = {
       isEditing: false,
-      markdown: props.placeholder || '',
-      parsed: this.parseMarkdown(props.placeholder || ''),
+      markdown: props.value || props.placeholder || '',
+      parsed: this.parseMarkdown(props.value || props.placeholder || ''),
     };
 
     this.onFocus = this.onFocus.bind(this);
@@ -79,6 +79,7 @@ class MarkdownBox extends React.Component {
 MarkdownBox.propTypes = {
   onChange: React.PropTypes.func.isRequired,
   placeholder: React.PropTypes.string,
+  value: React.PropTypes.string,
 };
 
 export default MarkdownBox;

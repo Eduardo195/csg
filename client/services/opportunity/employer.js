@@ -16,13 +16,26 @@ const EmployerOpportunityService = {
   },
   deleteOpportunity(id) {
     return query({
-      url: '/api/opportunity',
+      url: '/api/opportunity/',
       method: 'DELETE',
       data: { id },
     });
   },
+  getOne(id) {
+    return query({
+      url: '/api/opportunity',
+      data: { id },
+    });
+  },
+  update(data) {
+    return query({
+      url: '/api/opportunity',
+      method: 'PUT',
+      data,
+    });
+  },
   getAll() {
-    return query({ url: '/api/opportunity/all' });
+    return query({ url: '/api/opportunities/' });
   },
 };
 

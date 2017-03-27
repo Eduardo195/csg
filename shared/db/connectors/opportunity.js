@@ -21,6 +21,23 @@ module.exports = {
         employerId
       }, { justOne: true });
   },
+  updateOne(employerId, opportunityId, opportunity) {
+    console.log('updateOne opportunity ::: ', opportunityId, opportunity);
+    return Connector.getCollection(TableNames.OPPORTUNITIES)
+      .updateOne({
+        _id: ObjectID(opportunityId),
+        employerId: ObjectID(employerId)
+      }, { $set: opportunity });
+  },
+  getOne(employerId, opportunityId) {
+    console.log('employerId :::', employerId);
+    console.log('opportunityId :::', opportunityId);
+    return Connector.getCollection(TableNames.OPPORTUNITIES)
+      .findOne({
+        _id: ObjectID(opportunityId),
+        employerId: ObjectID(employerId)
+      });
+  },
   getAll(id) {
     return Connector.getCollection(TableNames.OPPORTUNITIES)
       .find({ employerId: ObjectID(id) }).toArray();

@@ -6,6 +6,10 @@ module.exports = {
     code: i++,
     msg: 'Invalid params'
   },
+  INVALID_ID: {
+    code: i++,
+    msg: 'Invalid opportunity ID'
+  },
   INVALID_TITLE: {
     code: i++,
     msg: 'Invalid title'

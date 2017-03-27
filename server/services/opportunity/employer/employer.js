@@ -20,8 +20,17 @@ module.exports = {
       });
     });
   },
+  updateOne(userId, dirtyOpportunity) {
+    const dirtyId = dirtyOpportunity.id;
+    return Validator.validate(dirtyOpportunity, true).then((sanitizedOp) => {
+      return OpportunityConnector.updateOne(userId, dirtyId, sanitizedOp);
+    });
+  },
   deleteOpportunity(userId, opportunityId) {
     return OpportunityConnector.delete(userId, opportunityId);
+  },
+  getOne(userId, opportunityId) {
+    return OpportunityConnector.getOne(userId, opportunityId);
   },
   getAll(id) {
     return OpportunityConnector.getAll(id);

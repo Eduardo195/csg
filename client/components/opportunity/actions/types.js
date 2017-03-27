@@ -8,3 +8,7 @@ export const SET_MY_OPPORTUNITIES = 'emp_op/SET_MY_OPPORTUNITIES';
 export const SET_DELETE_ERROR = 'emp_op/SET_DELETE_ERROR';
 export const CLEAR_DELETE_ERROR = 'emp_op/CLEAR_DELETE_ERROR';
 export const SET_DELETE_SUCCESS = 'emp_op/SET_DELETE_SUCCESS';
+
+export const SET_UPDATE_ERROR = 'emp_op/SET_UPDATE_ERROR';
+export const CLEAR_UPDATE_ERROR = 'emp_op/CLEAR_UPDATE_ERROR';
+export const SET_UPDATE_SUCCESS = 'emp_op/SET_UPDATE_SUCCESS';

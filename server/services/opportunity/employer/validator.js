@@ -4,7 +4,6 @@ const locations = require('../../../../shared/data/districts');
 const contractTypes = require('../../../../shared/data/contractTypes');
 
 const MAX_TITLE_LENGTH = 128;
-
 const requiredFields = ['title', 'markdown'];
 
 const validators = {
@@ -83,6 +82,10 @@ function hasRequiredFields(op) {
   return true;
 }
 
+/**
+ * @param {Object} op The opportunity to validate.
+ * @param {boolean} boolean if true, does not enforce required fields to allow for diff updates.
+ */
 function sanitize(op) {
   // ensure it has all required fields
   if (!hasRequiredFields(op)) {
@@ -90,10 +93,10 @@ function sanitize(op) {
   }
 
   return Object.keys(op).reduce((acc, key) => {
-    if (!validators[key]) {
-      console.log(`IGNORING KEY ${key}`);
+    if (validators[key]) {
+      acc[key] = validators[key](op[key]); // eslint-disable-line no-param-reassign
     } else {
-      acc[key] = validators[key](op[key]);  // eslint-disable-line no-param-reassign
+      console.log(`IGNORING KEY ${key}`);
     }
     return acc;
   }, {});

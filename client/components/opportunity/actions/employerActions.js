@@ -91,6 +91,7 @@ function setDeleteSuccess(id) {
 
 export function deleteOpportunity(id) {
   return (dispatch) => {
+    dispatch(setOverlayVisibility(true));
     dispatch(clearDeleteOpportunitySubmissionError());
     OpportunityService.deleteOpportunity(id).then((rsp) => {
       if (!rsp.success) {
@@ -98,8 +99,48 @@ export function deleteOpportunity(id) {
       } else {
         dispatch(setDeleteSuccess(id));
       }
+      dispatch(setOverlayVisibility(false));
     }).catch((err) => {
       dispatch(setDeleteOpportunitySubmissionError(`${err.status} - ${err.statusText}`));
+      dispatch(setOverlayVisibility(false));
+    });
+  };
+}
+
+function setUpdateOpportunityError(error) {
+  return {
+    type: actionTypes.SET_UPDATE_ERROR,
+    error,
+  };
+}
+
+function clearUpdateOpportunityError() {
+  return {
+    type: actionTypes.CLEAR_UPDATE_ERROR,
+  };
+}
+
+function setUpdateSuccess(id) {
+  return {
+    type: actionTypes.SET_UPDATE_SUCCESS,
+    id,
+  };
+}
+
+export function update(opportunity) {
+  return (dispatch) => {
+    dispatch(setOverlayVisibility(true));
+    dispatch(clearUpdateOpportunityError());
+    OpportunityService.update(opportunity).then((rsp) => {
+      if (!rsp.success) {
+        dispatch(setUpdateOpportunityError(`${rsp.msg}`));
+      } else {
+        dispatch(setUpdateSuccess(opportunity._id));
+      }
+      dispatch(setOverlayVisibility(false));
+    }).catch((err) => {
+      dispatch(setUpdateOpportunityError(`${err.status} - ${err.statusText}`));
+      dispatch(setOverlayVisibility(false));
     });
   };
 }
