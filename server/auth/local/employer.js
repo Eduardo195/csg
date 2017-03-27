@@ -32,7 +32,7 @@ module.exports = Object.assign(AccountManager(),
                       nif,
                       confHash }
                     ).then(() => {
-                      return mailer.sendConfirmationEmail(email, confHash).then(() => email);
+                      return mailer.sendConfirmationEmail(username, confHash).then(() => username);
                     });  // registerUnverified
                   });  // getRandomBytes
                 });  // hashPassword

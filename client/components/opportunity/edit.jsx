@@ -21,12 +21,12 @@ class Edit extends React.Component {
   render() {
     const { params } = this.props;
     const { isLoading, error, opportunity } = this.state;
-
     return (
       <div>
         { isLoading ? ('Loading ... ') : null}
         { opportunity ? (<Create id={params.id} opportunity={opportunity} />) : null}
         { error ? (<ErrorMessage>{ error }</ErrorMessage>) : null}
+        { (!isLoading && !error && !opportunity) ? (<ErrorMessage>We dun goofed</ErrorMessage>) : null}
       </div>
     );
   }

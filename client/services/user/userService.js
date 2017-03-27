@@ -9,19 +9,19 @@ function query(params) {
 const UserService = {
   login(username, password) {
     return query({
-      url: '/api/login',
+      url: '/api/session',
       method: 'POST',
       data: { username, password },
     });
   },
   logout() {
-    return query({ url: '/api/logout' });
+    return query({ url: '/api/session', method: 'DELETE' });
   },
   restoreSession() {
-    return query({ url: '/api/user' });
+    return query({ url: '/api/session', method: 'PUT' });
   },
   delete() {
-    return query({ url: '/api/user', method: 'DELETE' });
+    return query({ url: '/api/account', method: 'DELETE' });
   },
 };
 

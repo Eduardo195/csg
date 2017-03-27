@@ -1,6 +1,7 @@
 import React from 'react';
 import marked from 'marked';  // eslint-disable-line import/no-extraneous-dependencies
 import Link from 'components/link/link';
+import ErrorMessage from 'components/messages/error';
 
 import moment from 'moment';
 import $ from 'jquery';
@@ -24,23 +25,28 @@ function getRawMarkup(markdown) {
 class Opportunity extends React.Component {
   constructor() {
     super();
-    this.state = plc;
+    this.state = { opportunity: plc };
   }
 
   componentDidMount() {
     $.ajax({
-      url: `op/${this.props.params.id}`,
-    }).done((data) => {
-      this.setState(data);
+      url: '/api/opportunity/',
+      data: { id: this.props.params.id },
+    }).done(({ success, opportunity, msg }) => {
+      this.setState(success ? { opportunity } : { error: msg });
     });
   }
 
   render() {
-    const data = this.state;
+    const { opportunity, error } = this.state;
 
-    const { _id, title, pay, contractType, company, location, industry, date } = data;
+    if (error) {
+      return (<ErrorMessage> { error }</ErrorMessage>);
+    }
+
+    const { _id, title, pay, contractType, company, location, industry, date } = opportunity;
     const { label: locationLabel } = location;
-    const { markdown } = data;
+    const { markdown } = opportunity;
 
     const minPay = pay && pay.min;
     const maxPay = pay && pay.max;

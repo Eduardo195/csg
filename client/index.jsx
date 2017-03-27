@@ -36,10 +36,6 @@ export default function index() {
         <Route path="employer/opportunities" component={EmployerOpportunities} />
         <Route path="employer/opportunities/:id" component={EmployerOpportunities} />
 
-        {/* User */}
-        <Route path="/opportunity/:id" component={Opportunity} />
-        <Route path="/opportunity/:id/apply" component={ApplyForOpportunity} />
-
         {/* Employer */}
         <Route path="/opportunity/create" component={CreateOpportunity} />
         <Route path="/opportunity/edit/:id" component={EditOpportunity} />
@@ -49,6 +45,10 @@ export default function index() {
         <Route path="/jobs/:id/apply" component={ApplyForOpportunity} />
         <Route path="/password/reset" component={PasswordReset} />
         <Route path="/password/reset/:hash" component={PasswordResetForm} />
+
+        {/* User */}
+        <Route path="/opportunity/:id" component={Opportunity} />
+        <Route path="/opportunity/:id/apply" component={ApplyForOpportunity} />
 
         <Route path="profile" component={Profile} />
         <Route path="login" component={Login} />
