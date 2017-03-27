@@ -241,7 +241,7 @@ app.get('/api/opportunities/', isLoggedInAsEmployer, (req, res) => {
   });
 });
 
-app.get('/op/', (req, res) => {
+app.get('/op/:id', (req, res) => {
   db.getByRef(req.params.id).then((data) => {
     res.send(data);
   });
