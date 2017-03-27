@@ -3,6 +3,7 @@ import Header from 'components/header/header';
 import Footer from 'components/footer/footer';
 import Overlay from 'components/overlay/containers/overlay';
 import Dialog from 'components/dialog/containers/dialog';
+import AdSenseVerifier from './adSenseVerifier';
 
 class App extends React.Component {
 
@@ -14,6 +15,7 @@ class App extends React.Component {
     const { children } = this.props;
     return (
       <div className="root d-flex flex-column">
+        <AdSenseVerifier />
         <Header />
         <main className="flex-column d-flex flex-grow align-items-stretch">
           { children }
