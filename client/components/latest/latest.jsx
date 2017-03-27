@@ -1,5 +1,5 @@
 import React from 'react';
-import Offer from '../offer/offer';
+import Offer from '../opportunity/short';
 
 class Latest extends React.Component {
   componentDidMount() {

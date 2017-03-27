@@ -12,6 +12,7 @@ const CaptchaService = require('./services/captcha/captcha');
 const EmpOpportunityService = require('./services/opportunity/employer/employer');
 const mailer = require('./services/mailer/mailer');
 const errors = require('./auth/local/errors');
+const setupCandidateRoutes = require('./routes/candidate');
 
 const PORT = 3000;
 
@@ -41,6 +42,7 @@ app.use(cookieParser());
 app.use(expressSession(sessionConfig));
 app.use(passport.initialize());
 app.use(passport.session());
+setupCandidateRoutes(app);
 
 passport.use('local-login', new LocalStrategy(
     { passReqToCallback: true },
@@ -246,7 +248,6 @@ app.get('/op/:id', (req, res) => {
     res.send(data);
   });
 });
-
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}!  from ${__dirname}`);

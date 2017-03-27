@@ -6,7 +6,7 @@ function formatDate(dateInMs) {
   return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
 }
 
-function Offer(props) {
+function Short(props) {
   const { _id, title, role, date, location, company, shortDesc } = props.data;
 
   const shortLocation = location ? ` ${location.label} |` : '';
@@ -15,7 +15,7 @@ function Offer(props) {
 
   return (
     <div className="offer">
-      <Link href={`jobs/${_id}`}>
+      <Link href={`/opportunity/${_id}`}>
         <h4 className="title">{title}</h4>
       </Link>
       <h5 className="subTitle">{shortEmployer}</h5>
@@ -27,8 +27,8 @@ function Offer(props) {
   );
 }
 
-Offer.propTypes = {
+Short.propTypes = {
   data: React.PropTypes.object.isRequired,
 };
 
-export default Offer;
+export default Short;

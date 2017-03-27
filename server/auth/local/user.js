@@ -19,7 +19,7 @@ module.exports = Object.assign(AccountManager(),
             }
             return hashPassword(password).then((passHash) => {
               return getRandomBytes().then((confHash) => {
-                return AccountConnector.register({ username, type: 'user', password: passHash, confHash }).then(() => {
+                return AccountConnector.register({ username, type: 'candidate', password: passHash, confHash }).then(() => {
                   return confHash;
                 });
               });

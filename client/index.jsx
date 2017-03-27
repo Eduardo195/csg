@@ -9,14 +9,14 @@ import Login from 'components/login/containers/login';
 import Registration from 'components/registration/containers/registration';
 import RegistrationSuccess from 'components/registration/containers/registrationSuccess';
 import RegistrationConfirmation from 'components/registration/containers/registrationConfirmation';
-import CreateOpportunity from 'components/opportunity/containers/create';
+import Opportunity from 'components/opportunity/opportunity';
 import EditOpportunity from 'components/opportunity/edit';
+import CreateOpportunity from 'components/opportunity/containers/create';
+import ApplyForOpportunity from 'components/opportunity/containers/apply';
 
 import EmployerRegistration from 'components/registration/employerRegistration';
 import EmployerOpportunities from 'components/employer/opportunities';
 import Doh from 'components/errors/doh';
-import FullOffer from 'components/offer/fullOffer';
-import Apply from 'components/application/apply';
 import Status from 'components/application/status';
 import Profile from 'components/user/profile';
 import PasswordReset from 'components/password/containers/reset';
@@ -36,13 +36,17 @@ export default function index() {
         <Route path="employer/opportunities" component={EmployerOpportunities} />
         <Route path="employer/opportunities/:id" component={EmployerOpportunities} />
 
-        <Route path="opportunity/create" component={CreateOpportunity} />
-        <Route path="opportunity/edit/:id" component={EditOpportunity} />
+        {/* User */}
+        <Route path="/opportunity/:id" component={Opportunity} />
+        <Route path="/opportunity/:id/apply" component={ApplyForOpportunity} />
+
+        {/* Employer */}
+        <Route path="/opportunity/create" component={CreateOpportunity} />
+        <Route path="/opportunity/edit/:id" component={EditOpportunity} />
         <Route path="/employer/post" component={WorkAd} />
-        <Route path="opportunities" component={Search} />
+        <Route path="/opportunities" component={Search} />
         <Route path="/jobs/:id/status" component={Status} />
-        <Route path="/jobs/:id/apply" component={Apply} />
-        <Route path="/jobs/:id" component={FullOffer} />
+        <Route path="/jobs/:id/apply" component={ApplyForOpportunity} />
         <Route path="/password/reset" component={PasswordReset} />
         <Route path="/password/reset/:hash" component={PasswordResetForm} />
 

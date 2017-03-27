@@ -1,6 +1,7 @@
 import React from 'react';
 import marked from 'marked';  // eslint-disable-line import/no-extraneous-dependencies
-import Button from 'components/button/button';
+import Link from 'components/link/link';
+
 import moment from 'moment';
 import $ from 'jquery';
 
@@ -20,7 +21,7 @@ function getRawMarkup(markdown) {
   };
 }
 
-class FullOffer extends React.Component {
+class Opportunity extends React.Component {
   constructor() {
     super();
     this.state = plc;
@@ -37,9 +38,9 @@ class FullOffer extends React.Component {
   render() {
     const data = this.state;
 
-    const { title, pay, contractType, company, location, industry, date } = data;
+    const { _id, title, pay, contractType, company, location, industry, date } = data;
     const { label: locationLabel } = location;
-    const { markdown, url } = data;
+    const { markdown } = data;
 
     const minPay = pay && pay.min;
     const maxPay = pay && pay.max;
@@ -76,16 +77,15 @@ class FullOffer extends React.Component {
           </div>
         </div>
         <div>
-          <a href={url} target="_blank" rel="noopener noreferrer">
-            <Button className="d-inline-block btn--main">Apply</Button>
-          </a>
+          <Link href={`/opportunity/${_id}/apply`} className="btn btn--main"> Apply </Link>
         </div>
       </div>
     );
   }
 }
-FullOffer.propTypes = {
+
+Opportunity.propTypes = {
   params: React.PropTypes.object.isRequired,
 };
 
-export default FullOffer;
+export default Opportunity;

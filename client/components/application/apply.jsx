@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'components/button/button';
 import Link from 'components/link/link';
-import OfferNotFound from 'components/offer/notFound';
+import OfferNotFound from 'components/opportunity/notFound';
 import MarkdownBox from 'components/advert/markdownBox';
 import mocks from 'mocks/shorts';
 

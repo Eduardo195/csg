@@ -1,7 +1,7 @@
 import React from 'react';
 import Filters from 'components/filters/containers/filters';
 import Paging from 'components/search/containers/paging';
-import Offer from 'components/offer/offer';
+import Offer from 'components/opportunity/short';
 import NoResults from './noResults';
 
 class Search extends React.Component {

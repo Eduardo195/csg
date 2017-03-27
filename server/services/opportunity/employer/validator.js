@@ -82,10 +82,6 @@ function hasRequiredFields(op) {
   return true;
 }
 
-/**
- * @param {Object} op The opportunity to validate.
- * @param {boolean} boolean if true, does not enforce required fields to allow for diff updates.
- */
 function sanitize(op) {
   // ensure it has all required fields
   if (!hasRequiredFields(op)) {

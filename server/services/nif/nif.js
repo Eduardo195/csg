@@ -6,7 +6,7 @@ const URI = `http://www.nif.pt/?json=1&key=${apiKey}&q=`;
 
 function getCompanyContact(nif) {
   return new Promise((resolve, reject) => {
-    return resolve('lamppostman@gmail.com');
+    return resolve(null);
 
     request.get(`${URI}${nif}`, (error, response, body) => {
       if (error || !body) {

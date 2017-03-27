@@ -1,5 +1,5 @@
 import React from 'react';
-import NotFound from 'components/offer/notFound';
+import NotFound from 'components/opportunity/notFound';
 import mocks from 'mocks/shorts';
 
 const getMockById = id => mocks.find(elem => elem.id === id);
