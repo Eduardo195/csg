@@ -634,6 +634,9 @@ input.editableTag:focus {
 .catpcha > div {
   margin: 0 auto;
 }
+.application {
+  padding: 1em 0 0 1em;
+}
 body,
 html {
   font-family: 'Open sans', 'Verdana';
