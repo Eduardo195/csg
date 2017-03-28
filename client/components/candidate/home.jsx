@@ -9,15 +9,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
-        <Applications />
-        <div className="jumbotron">
-          <div className="container">
-            <h1>My drafts</h1>
-            <div>TODO</div>
-          </div>
-        </div>
-      </div>
+      <Applications />
     );
   }
 }

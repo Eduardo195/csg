@@ -18,6 +18,10 @@ module.exports = {
     code: i++,
     msg: 'Candidate not found'
   },
+  OPPORTUNIY_NOT_FOUND: {
+    code: i++,
+    msg: 'Opportunity not found'
+  },
   DUPLICATE_APPLICATION: {
     code: i++,
     msg: 'Duplicate application'

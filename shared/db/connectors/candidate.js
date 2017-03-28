@@ -9,10 +9,11 @@ module.exports = {
     return Connector.getCollection(TableNames.LOCAL_USERS)
       .findOne({ _id: ObjectID(id), type: 'candidate' }, returnableCandidateValues);
   },
-  applyForOpportunity(candidadeId, opportunityId, application) {
+  applyForOpportunity(candidadeId, opportunityId, opportunity, application) {
     return Connector.getCollection(TableNames.APPLICATIONS).insertOne({
       candidadeId,
       opportunityId,
+      opportunity,
       application
     });
   }

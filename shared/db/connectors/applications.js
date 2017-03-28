@@ -5,6 +5,6 @@ const TableNames = require('../tableNames');
 module.exports = {
   getAll(id) {
     return Connector.getCollection(TableNames.APPLICATIONS)
-      .find({ candidadeId: ObjectID(id) }).toArray();
+      .find({ candidadeId: ObjectID(id) }, { application: 1, opportunity: 1 }).toArray();
   }
 };

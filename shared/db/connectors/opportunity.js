@@ -11,7 +11,6 @@ module.exports = {
       .findOne({ _id: ObjectID(id), type: 'employer' }, returnableFields);
   },
   insert(opportunity) {
-    console.log('inserting ', opportunity);
     return Connector.insert(TableNames.OPPORTUNITIES, opportunity);
   },
   delete(employerId, opportunityId) {
@@ -22,7 +21,6 @@ module.exports = {
       }, { justOne: true });
   },
   updateOne(employerId, opportunityId, opportunity) {
-    console.log('updateOne opportunity ::: ', opportunityId, opportunity);
     return Connector.getCollection(TableNames.OPPORTUNITIES)
       .updateOne({
         _id: ObjectID(opportunityId),
@@ -30,13 +28,16 @@ module.exports = {
       }, { $set: opportunity });
   },
   getOne(employerId, opportunityId) {
-    console.log('employerId :::', employerId);
-    console.log('opportunityId :::', opportunityId);
     return Connector.getCollection(TableNames.OPPORTUNITIES)
       .findOne({
         _id: ObjectID(opportunityId),
         employerId: ObjectID(employerId)
       });
+  },
+  getOneForApplication(id) {
+    return Connector.getCollection(TableNames.OPPORTUNITIES).findOne({
+      _id: ObjectID(id)
+    });
   },
   getAll(id) {
     return Connector.getCollection(TableNames.OPPORTUNITIES)
