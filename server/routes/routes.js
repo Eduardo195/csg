@@ -3,6 +3,7 @@ const register = require('./register/routes');
 const password = require('./password/routes');
 const opportunity = require('./opportunity/routes');
 const confirmEmail = require('./confirmEmail/routes');
+const applications = require('./applications/routes');
 
 function setup(app, passport) {
   session(app, passport);
@@ -10,6 +11,7 @@ function setup(app, passport) {
   password(app);
   opportunity(app);
   confirmEmail(app);
+  applications(app);
 }
 
 module.exports = setup;
