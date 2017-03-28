@@ -4,7 +4,7 @@ const PASSWORD_MIN_LENGTH = 8;
 const PASSWORD_MAX_LENGTH = 25;
 
 const USERNAME_MIN_LENGTH = 3;
-const USERNAME_MAX_LENGTH = 25;
+const USERNAME_MAX_LENGTH = 50;
 
 // TODO: is there a point in having a more strict regex?
 const EMAIL_REGEX = /\S+@\S+\.\S+/;

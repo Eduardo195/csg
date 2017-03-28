@@ -10,7 +10,7 @@
     "build": "webpack --config webpack/webpack.config.prod.js",
     "watch": "webpack -w --progress --color --config webpack/webpack.config.dev.js",
     "start": "webpack-dev-server -d --config webpack/webpack.config.dev.js",
-    "xp": "export NODE_ENV=production && node server/server.js",
+    "xp": "export NODE_ENV=production && node server/server.js >> server/log 2>&1",
     "dev": "SET NODE_ENV=development && node server/server.js",
     "devmon": "SET NODE_ENV=development && nodemon server/server.js",
     "lint": "eslint --fix --ext js,jsx ."

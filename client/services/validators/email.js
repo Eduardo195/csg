@@ -1,5 +1,5 @@
-const MIN_LENGTH = 3;
-const MAX_LENGTH = 25;
+const MIN_LENGTH = 5;
+const MAX_LENGTH = 50;
 const REGEX = /\S+@\S+\.\S+/;
 
 function validator(email) {
