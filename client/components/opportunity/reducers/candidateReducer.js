@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import * as actionTypes from '../actions/candidateActionTypes';
 
 function apply(state = { error: null, success: null }, action) {
@@ -23,6 +22,4 @@ function apply(state = { error: null, success: null }, action) {
   }
 }
 
-export default combineReducers({
-  apply,
-});
+export default apply;

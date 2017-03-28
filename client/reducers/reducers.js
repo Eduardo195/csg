@@ -9,7 +9,7 @@ import login from 'components/login/reducers/reducer';
 import password from 'components/password/reducers/reducer';
 import overlay from 'components/overlay/reducers/reducer';
 import { opportunity, deleteOpportunity, updateOpportunity, myOpportunities } from 'components/opportunity/reducers/employerReducer';
-import candidate from 'components/opportunity/reducers/candidateReducer';
+import candidate from 'components/candidate/reducers/reducer';
 
 export default combineReducers({
   overlay,

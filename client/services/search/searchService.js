@@ -1,4 +1,23 @@
-import $ from 'jquery';
+/* eslint no-use-before-define: 0*/
+import { query } from '../helpers';
+
+const SearchService = {
+  search(filters) {
+    return query({
+      url: '/api/search',
+      data: prepFilters(filters),
+    });
+  },
+  getLatest() {
+    return query({ url: '/api/latest' });
+  },
+  getDistricts() {
+    return query({ url: '/api/districts' });
+  },
+  getContractTypes() {
+    return query({ url: '/api/contractTypes' });
+  },
+};
 
 function prepFilters(filters) {
   const { itemsPerPage: limit, page, keywords, age } = filters;
@@ -16,45 +35,5 @@ function prepFilters(filters) {
 
   return newFilters;
 }
-
-const SearchService = {
-  search(filters) {
-    return new Promise((resolve) => {
-      $.ajax({
-        url: '/api/search',
-        data: prepFilters(filters),
-      }).done((data) => {
-        resolve(data);
-      });
-    });
-  },
-  getLatest() {
-    return new Promise((resolve) => {
-      $.ajax({
-        url: '/api/latest',
-      }).done((data) => {
-        resolve(data);
-      });
-    });
-  },
-  getDistricts() {
-    return new Promise((resolve) => {
-      $.ajax({
-        url: '/api/districts',
-      }).done((data) => {
-        resolve(data);
-      });
-    });
-  },
-  getContractTypes() {
-    return new Promise((resolve) => {
-      $.ajax({
-        url: '/api/contractTypes',
-      }).done((data) => {
-        resolve(data);
-      });
-    });
-  },
-};
 
 export default SearchService;

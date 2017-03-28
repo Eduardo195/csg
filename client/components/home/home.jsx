@@ -1,12 +1,12 @@
 /* eslint no-confusing-arrow: 0 */
 import React from 'react';
-import UserHome from 'components/user/home';
+import CandidateHome from 'components/candidate/containers/home';
 import EmployerHome from 'components/employer/containers/home';
 
 const Home = props => props.isEmployer ? (
   <EmployerHome />
   ) : (
-    <UserHome />
+    <CandidateHome />
 );
 
 Home.propTypes = {

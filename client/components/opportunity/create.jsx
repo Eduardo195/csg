@@ -25,7 +25,7 @@ class Create extends React.Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.onTitleChange = this.onTitleChange.bind(this);
-    this.onMarkdownChange = this.onMarkdownChange.bind(this);
+    this.onMdChange = this.onMdChange.bind(this);
     this.onMinPayChange = this.onMinPayChange.bind(this);
     this.onMaxPayChange = this.onMaxPayChange.bind(this);
     this.onLocationChange = this.onLocationChange.bind(this);
@@ -40,7 +40,7 @@ class Create extends React.Component {
     this.updateState({ title });
   }
 
-  onMarkdownChange(markdown) {
+  onMdChange(markdown) {
     this.updateState({ markdown });
   }
 
@@ -97,7 +97,7 @@ class Create extends React.Component {
           <div className="detais align-self-stretch">
             <div className="contentWrapper">
               <div className="content">
-                <MarkdownBox value={markdown} onChange={this.onMarkdownChange} placeholder={markdownPlaceholder} />
+                <MarkdownBox value={markdown} onChange={this.onMdChange} placeholder={markdownPlaceholder} />
               </div>
             </div>
           </div>

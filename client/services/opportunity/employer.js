@@ -1,10 +1,4 @@
-import $ from 'jquery';
-
-function query(params) {
-  return new Promise((resolve, reject) => {
-    $.ajax(params).done(resolve).fail(reject);
-  });
-}
+import { query } from '../helpers';
 
 const EmployerOpportunityService = {
   post(opportunity) {

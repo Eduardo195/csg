@@ -26,7 +26,9 @@ class Edit extends React.Component {
         { isLoading ? ('Loading ... ') : null}
         { opportunity ? (<Create id={params.id} opportunity={opportunity} />) : null}
         { error ? (<ErrorMessage>{ error }</ErrorMessage>) : null}
-        { (!isLoading && !error && !opportunity) ? (<ErrorMessage>We dun goofed</ErrorMessage>) : null}
+        { (!isLoading && !error && !opportunity) ? (
+          <ErrorMessage>We dun goofed</ErrorMessage>
+        ) : null}
       </div>
     );
   }
