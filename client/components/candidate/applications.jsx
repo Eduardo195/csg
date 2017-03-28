@@ -9,9 +9,9 @@ function Applications({ error, applications }) {
         {
           applications && applications.map(app => (
             <div className="row">
-              { app.toString() }
+              { app._id }
             </div>
-          ))
+        ))
         }
         {error && (
           <ErrorMessage>{ error }</ErrorMessage>
