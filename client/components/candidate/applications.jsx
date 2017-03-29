@@ -1,5 +1,6 @@
 import React from 'react';
 import ErrorMessage from 'components/messages/error';
+import Link from 'components/link/link';
 import moment from 'moment';
 
 function Applications({ error, applications }) {
@@ -11,18 +12,22 @@ function Applications({ error, applications }) {
           applications && applications.map(({ opportunity }) => (
             <div className="application">
               <div>
-                <h4>{opportunity.title}</h4>
+                <h4>
+                  <Link href={`/opportunity/${opportunity._id}`}>
+                    {opportunity.title}
+                  </Link>
+                </h4>
                 <strong>
                   {opportunity.employerName}
                 </strong>
-                , {opportunity.location.label} -
-                <i>[ROLE - TODO]</i>
+                , {opportunity.location.label}
+                - <i>[ROLE - TODO]</i>
               </div>
               <div>
                 <small>{moment(opportunity.date).format('DD/MM/YY HH:MM')}</small>
               </div>
             </div>
-        ))
+          ))
         }
         {error && (
           <ErrorMessage>{ error }</ErrorMessage>

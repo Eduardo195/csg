@@ -4,7 +4,7 @@ import EditableTag from 'components/input/editableTag';
 import MarkdownBox from 'components/opportunity/markdownBox';
 import DropdownGroup from 'components/input/dropdownGroup';
 import ErrorMessage from 'components/messages/error';
-import markdownPlaceholder from './markdownPlaceholder';
+import mdPlaceholder from './markdownPlaceholder';
 
 function getPertinentData({ title, markdown, date, employerName, location, contractType, pay }) {
   return {
@@ -97,7 +97,7 @@ class Create extends React.Component {
           <div className="detais align-self-stretch">
             <div className="contentWrapper">
               <div className="content">
-                <MarkdownBox value={markdown} onChange={this.onMdChange} placeholder={markdownPlaceholder} />
+                <MarkdownBox value={markdown} onChange={this.onMdChange} placeholder={mdPlaceholder} />
               </div>
             </div>
           </div>

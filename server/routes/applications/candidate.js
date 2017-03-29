@@ -3,7 +3,6 @@ const ApplicationsService = require('../../services/applications/candidate/candi
 
 function setup(app) {
   app.get('/api/applications/user', requireCandidateLogin, (req, res) => {
-    const hardcodedId = '58d997117b449815d453f11c';
     return ApplicationsService.getAll(req.user._id).then((applications) => {
       res.send({ success: true, applications });
     }).catch((err) => {
