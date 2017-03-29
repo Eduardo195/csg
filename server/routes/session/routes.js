@@ -28,7 +28,7 @@ function setup(app, passport) {
   // PUT === restore session
   app.put('/api/session/', (req, res) => {
     if (req.user) {
-      console.log('retturning ', req.user);
+      console.log('returning ', req.user);
       res.send({ success: true, user: req.user });
     } else {
       res.send({ success: false });

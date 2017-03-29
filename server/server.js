@@ -49,6 +49,13 @@ app.get('/api/contractTypes', (req, res) => {
   });
 });
 
+app.use((err, req, res) => {
+  if (err.code && err.msg) {
+    res.send(err.code, err.msg);
+  }
+  res.send(500, 'Unknows error (0x000000)');
+});
+
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}!  from ${__dirname}`);
 });

@@ -1,13 +1,10 @@
-/* eslint no-plusplus: 0 */
-let i = 0;
-
 module.exports = {
   LOGIN_REQUIRED_CANDIDATE: {
-    code: `service_captcha_${i++}`,
+    code: 401,
     msg: 'Candidate login required for operation'
   },
   LOGIN_REQUIRED_EMPLOYER: {
-    code: `login_required_${i++}`,
+    code: 401,
     msg: 'Employer login required for operation'
   }
 };

@@ -1,5 +1,5 @@
 import UserService from 'services/user/userService';
-import { hashHistory } from 'react-router';
+import SessionService from 'services/session/sessionService';
 import { setOverlayVisibility } from 'components/overlay/actions/actions';
 import * as actionTypes from './userActionTypes';
 
@@ -19,12 +19,10 @@ export function removeUser() {
 export function logout() {
   return (dispatch) => {
     dispatch(setOverlayVisibility(true));
-    UserService.logout().then(() => {
-      dispatch(setOverlayVisibility(false));
-      dispatch(removeUser());
-      hashHistory.push('/');
+    SessionService.logout().then(() => {
+      window.location = '/';
     }).catch(() => {
-      dispatch(setOverlayVisibility(false));
+      window.location = '/';
     });
   };
 }

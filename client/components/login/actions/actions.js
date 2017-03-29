@@ -1,7 +1,7 @@
 import { hashHistory } from 'react-router';
 import { setUser } from 'components/user/actions/userActions';
 import { setOverlayVisibility } from 'components/overlay/actions/actions';
-import UserService from 'services/user/userService';
+import SessionService from 'services/session/sessionService';
 import * as actionTypes from './types';
 
 function setLoginError(error) {
@@ -21,7 +21,7 @@ export function login(username, password) { // eslint-disable-line import/prefer
   return (dispatch) => {
     dispatch(clearLoginError());
     dispatch(setOverlayVisibility(true));
-    UserService.login(username, password).then((rsp) => {
+    SessionService.login(username, password).then((rsp) => {
       if (rsp.success) {
         dispatch(setUser(rsp.user));
         hashHistory.push('/home');
