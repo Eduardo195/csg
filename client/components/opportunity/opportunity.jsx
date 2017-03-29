@@ -16,9 +16,9 @@ const plc = {
   date: '-',
 };
 
-function getRawMarkup(markdown) {
+function getRawMarkup(markdown, body) {
   return {
-    __html: marked(markdown, { sanitize: true }),
+    __html: body || marked(markdown, { sanitize: true }),
   };
 }
 
@@ -44,7 +44,7 @@ class Opportunity extends React.Component {
       return (<ErrorMessage> { error }</ErrorMessage>);
     }
 
-    const { _id, title, pay, contractType, company, location, industry, date } = opportunity;
+    const { _id, title, pay, contractType, body, company, location, industry, date } = opportunity;
     const { label: locationLabel } = location;
     const { markdown } = opportunity;
 
@@ -62,7 +62,7 @@ class Opportunity extends React.Component {
         <div className="mainWrapper d-flex flex-wrap">
           <div className="detais align-self-stretch">
             <div className="contentWrapper">
-              <div className="content" dangerouslySetInnerHTML={getRawMarkup(markdown || 'No content')} />
+              <div className="content" dangerouslySetInnerHTML={getRawMarkup(markdown || 'No content', body)} />
             </div>
           </div>
           <div className="overview align-self-stretch">

@@ -1,31 +1,36 @@
 import React from 'react';
 import moment from 'moment';
+import Editor from 'components/editor/editor';
 import EditableTag from 'components/input/editableTag';
-import MarkdownBox from 'components/opportunity/markdownBox';
 import DropdownGroup from 'components/input/dropdownGroup';
 import ErrorMessage from 'components/messages/error';
-import mdPlc from './markdownPlaceholder';
 
-function getPertinentData({ title, markdown, date, employerName, location, contractType, pay }) {
+const bodyPlc = 'Enter some text';
+
+function getData({ title, date, body, employerName, location, contractType, pay }) {
   return {
-    pay,
-    date,
-    title,
-    markdown,
-    employerName,
-    location: location.index,
-    contractType: contractType.index,
+    opportunity: {
+      pay,
+      date,
+      title,
+      body,
+      employerName,
+      location: location.index,
+      contractType: contractType.index,
+    },
   };
 }
 
 class Create extends React.Component {
   constructor(props) {
     super();
-    this.state = props.opportunity ? getPertinentData(props.opportunity) : {};
+    this.state = props.opportunity ? getData(props.opportunity) : {};
+    this.getTextAreaRef = (ref) => { this.textarea = ref; };
+    this.togglePreview = this.togglePreview.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
-
+    this.onSubmit = this.onSubmit.bind(this);
     this.onTitleChange = this.onTitleChange.bind(this);
-    this.onMdChange = this.onMdChange.bind(this);
+    this.onBodyChange = this.onBodyChange.bind(this);
     this.onMinPayChange = this.onMinPayChange.bind(this);
     this.onMaxPayChange = this.onMaxPayChange.bind(this);
     this.onLocationChange = this.onLocationChange.bind(this);
@@ -33,42 +38,42 @@ class Create extends React.Component {
   }
 
   onSubmit() {
-    this.props.onSubmit(this.state);
+    this.props.onSubmit(this.state.opportunity);
   }
 
   onTitleChange(title) {
-    this.updateState({ title });
+    this.updateOpportunity({ title });
   }
 
-  onMdChange(markdown) {
-    this.updateState({ markdown });
+  onBodyChange(body) {
+    this.updateOpportunity({ body });
   }
 
   onLocationChange(location) {
-    this.updateState({ location });
+    this.updateOpportunity({ location });
   }
 
   onContracTypeChange(contractType) {
-    this.updateState({ contractType });
+    this.updateOpportunity({ contractType });
   }
 
   onMinPayChange(min) {
-    this.updateState({
-      pay: Object.assign({}, this.state.pay, { min }),
+    this.updateOpportunity({
+      pay: Object.assign({}, this.state.opportunity.pay, { min }),
     });
   }
 
   onMaxPayChange(max) {
-    this.updateState({
-      pay: Object.assign({}, this.state.pay, { max }),
+    this.updateOpportunity({
+      pay: Object.assign({}, this.state.opportunity.pay, { max }),
     });
   }
 
   getDropdownDefault(propName, dataSource) {
-    if (this.state[propName]) {
-      return this.state[propName];
-    } else if (this.props[dataSource].length > 0) {
-      return this.props[dataSource][0].value;
+    if (this.state.opportunity[propName]) {
+      return this.state.opportunity[propName];
+    } else if (this.props.opportunity[dataSource].length > 0) {
+      return this.props.opportunity[dataSource][0].value;
     }
     return null;
   }
@@ -81,12 +86,22 @@ class Create extends React.Component {
     return this.getDropdownDefault('location', 'locations');
   }
 
-  updateState(obj) {
-    this.setState(Object.assign({}, this.state, obj));
+
+  togglePreview() {
+    this.setState(Object.assign({}, this.state, { isPreview: !this.state.isPreview }));
+  }
+
+  updateOpportunity(obj) {
+    this.setState(
+      Object.assign({}, this.state, {
+        opportunity: Object.assign({}, this.state.opportunity, obj),
+      }),
+    );
   }
 
   render() {
-    const { title, markdown, location, contractType, date, pay, employerName } = this.state;
+    const { isPreview, opportunity } = this.state;
+    const { title, body, location, contractType, date, pay, employerName } = opportunity;
 
     return (
       <div className="op">
@@ -96,8 +111,12 @@ class Create extends React.Component {
         <div className="mainWrapper d-flex flex-wrap">
           <div className="detais align-self-stretch">
             <div className="contentWrapper">
-              <div className="content">
-                <MarkdownBox value={markdown} onChange={this.onMdChange} placeholder={mdPlc} />
+              <div className="content" dangerouslySetInnerHTML={isPreview ? { __html: body } : null}>
+                {
+                  isPreview ? null : (
+                    <Editor value={body} placeholder={bodyPlc} onChange={this.onBodyChange} />
+                  )
+                }
               </div>
             </div>
           </div>
@@ -135,6 +154,9 @@ class Create extends React.Component {
         )}
         <button className="btn btn--main" onClick={this.onSubmit}>
           Publish
+        </button>
+        <button className="btn btn--main" onClick={this.togglePreview}>
+          Preview
         </button>
       </div>
     );

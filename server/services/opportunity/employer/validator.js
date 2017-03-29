@@ -4,15 +4,20 @@ const locations = require('../../../../shared/data/districts');
 const contractTypes = require('../../../../shared/data/contractTypes');
 
 const MAX_TITLE_LENGTH = 128;
-const requiredFields = ['title', 'markdown'];
+const requiredFields = ['title', 'body'];
 
 const validators = {
   title: titleValidator,
+  body: bodyValidator,
   markdown: markdownValidator,
   location: locationValidator,
   contractType: contractTypeValidator,
   pay: payValidator
 };
+
+function bodyValidator(body) {
+  return body;
+}
 
 function titleValidator(title) {
   if (!title || title.length <= 0 || title.length > MAX_TITLE_LENGTH) {
