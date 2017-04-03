@@ -3,14 +3,13 @@ import { Router, Route, IndexRoute, hashHistory } from 'react-router';
 import 'assets/styles/styles.less';
 import Landing from 'components/landing/landing';
 import Home from 'components/home/containers/home';
-import WorkAd from 'components/advert/containers/workAd';
 import Search from 'components/search/containers/search';
 import Login from 'components/login/containers/login';
 import Registration from 'components/registration/containers/registration';
 import RegistrationSuccess from 'components/registration/containers/registrationSuccess';
 import RegistrationConfirmation from 'components/registration/containers/registrationConfirmation';
-import Opportunity from 'components/opportunity/opportunity';
-import EditOpportunity from 'components/opportunity/edit';
+import ViewOpportunity from 'components/opportunity/view';
+import EditOpportunity from 'components/opportunity/containers/edit';
 import CreateOpportunity from 'components/opportunity/containers/create';
 import ApplyForOpportunity from 'components/opportunity/containers/apply';
 
@@ -32,14 +31,12 @@ export default function index() {
 
         <Route path="home" component={Home} />
 
-        <Route path="employer/post" component={WorkAd} />
         <Route path="employer/opportunities" component={EmployerOpportunities} />
         <Route path="employer/opportunities/:id" component={EmployerOpportunities} />
 
         {/* Employer */}
         <Route path="/opportunity/create" component={CreateOpportunity} />
         <Route path="/opportunity/edit/:id" component={EditOpportunity} />
-        <Route path="/employer/post" component={WorkAd} />
         <Route path="/opportunities" component={Search} />
         <Route path="/jobs/:id/status" component={Status} />
         <Route path="/jobs/:id/apply" component={ApplyForOpportunity} />
@@ -47,7 +44,7 @@ export default function index() {
         <Route path="/password/reset/:hash" component={PasswordResetForm} />
 
         {/* User */}
-        <Route path="/opportunity/:id" component={Opportunity} />
+        <Route path="/opportunity/:id" component={ViewOpportunity} />
         <Route path="/opportunity/:id/apply" component={ApplyForOpportunity} />
 
         <Route path="profile" component={Profile} />

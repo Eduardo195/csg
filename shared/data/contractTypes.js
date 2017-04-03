@@ -3,9 +3,9 @@
 let i = 0;
 
 const ContractTypes = [
-  { index: i++, label: 'Full time' },
-  { index: i++, label: 'Part time' },
-  { index: i++, label: 'Estagio' }
+  { id: i++, label: 'Full time' },
+  { id: i++, label: 'Part time' },
+  { id: i++, label: 'Estagio' }
 ];
 
 module.exports = ContractTypes;

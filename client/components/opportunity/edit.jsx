@@ -1,7 +1,8 @@
 import React from 'react';
 import OpportunityService from 'services/opportunity/employer';
 import ErrorMessage from 'components/messages/error';
-import Create from './containers/edit';
+import EditableOpportunity from './editableOpportunity';
+import Districts from 'districts';
 
 class Edit extends React.Component {
 
@@ -19,13 +20,13 @@ class Edit extends React.Component {
   }
 
   render() {
-    const { params } = this.props;
+    const { params, error: submissionError } = this.props;
     const { isLoading, error, opportunity } = this.state;
     return (
       <div>
         { isLoading ? ('Loading ... ') : null}
-        { opportunity ? (<Create id={params.id} opportunity={opportunity} />) : null}
-        { error ? (<ErrorMessage>{ error }</ErrorMessage>) : null}
+        { opportunity ? (<EditableOpportunity opportunity={opportunity} onSubmit={this.props.onSubmit}/>) : null}
+        { (error || submissionError)? (<ErrorMessage>{ error || submissionError }</ErrorMessage>) : null}
         { (!isLoading && !error && !opportunity) ? (
           <ErrorMessage>We dun goofed</ErrorMessage>
         ) : null}

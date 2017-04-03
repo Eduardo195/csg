@@ -65,7 +65,10 @@ class TextAutocomplete extends React.Component {
 TextAutocomplete.propTypes = {
   onChange: React.PropTypes.func.isRequired,
   placeholder: React.PropTypes.string,
-  value: React.PropTypes.string,
+  value: React.PropTypes.oneOfType([
+    React.PropTypes.string,
+    React.PropTypes.number
+  ]).isRequired,
   type: React.PropTypes.string,
 };
 

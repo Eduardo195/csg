@@ -1,97 +1,60 @@
 import React from 'react';
-import marked from 'marked';  // eslint-disable-line import/no-extraneous-dependencies
-import Link from 'components/link/link';
-import ErrorMessage from 'components/messages/error';
-
+// import marked from 'marked';  // eslint-disable-line import/no-extraneous-dependencies
 import moment from 'moment';
-import $ from 'jquery';
-
-const plc = {
-  title: '-',
-  contractType: '-',
-  role: '-',
-  company: '-',
-  location: '-',
-  industry: '',
-  date: '-',
-};
 
 function getRawMarkup(markdown, body) {
   return {
-    __html: body || marked(markdown, { sanitize: true }),
+    __html: body //|| marked(markdown, { sanitize: true }),
   };
 }
 
-class Opportunity extends React.Component {
-  constructor() {
-    super();
-    this.state = { opportunity: plc };
-  }
+const Opportunity = props => {
+  const { opportunity } = props;
 
-  componentDidMount() {
-    $.ajax({
-      url: '/api/opportunity/',
-      data: { id: this.props.params.id },
-    }).done(({ success, opportunity, msg }) => {
-      this.setState(success ? { opportunity } : { error: msg });
-    });
-  }
+  const { _id, title, pay, contractType, body, company, location, industry, date } = opportunity;
+  const { label: locationLabel } = location;
+  const { markdown } = opportunity;
 
-  render() {
-    const { opportunity, error } = this.state;
+  const minPay = pay && pay.min;
+  const maxPay = pay && pay.max;
 
-    if (error) {
-      return (<ErrorMessage> { error }</ErrorMessage>);
-    }
+  const shortFullPay = minPay && maxPay ? `${minPay} to ${maxPay}` : '';
+  const shortMinPay = minPay && !maxPay ? `From ${minPay} ` : '';
+  const shortMaxPay = !minPay && maxPay ? `Up to ${maxPay}` : '';
+  const payLabel = shortFullPay || shortMinPay || shortMaxPay || '';
 
-    const { _id, title, pay, contractType, body, company, location, industry, date } = opportunity;
-    const { label: locationLabel } = location;
-    const { markdown } = opportunity;
-
-    const minPay = pay && pay.min;
-    const maxPay = pay && pay.max;
-
-    const shortFullPay = minPay && maxPay ? `${minPay} to ${maxPay}` : '';
-    const shortMinPay = minPay && !maxPay ? `From ${minPay} ` : '';
-    const shortMaxPay = !minPay && maxPay ? `Up to ${maxPay}` : '';
-    const payLabel = shortFullPay || shortMinPay || shortMaxPay || '';
-
-    return (
-      <div className="op">
-        <h1 className="title">{ title }</h1>
-        <div className="mainWrapper d-flex flex-wrap">
-          <div className="detais align-self-stretch">
-            <div className="contentWrapper">
-              <div className="content" dangerouslySetInnerHTML={getRawMarkup(markdown || 'No content', body)} />
-            </div>
-          </div>
-          <div className="overview align-self-stretch">
-            <div className="contentWrapper">
-              <h4>Employer</h4>
-              <span>{company}</span>
-              <h4>Location</h4>
-              <span>{locationLabel}</span>
-              <h4>Contract type</h4>
-              <span>{contractType.label}</span>
-              <h4>Salary</h4>
-              <span>{payLabel}</span>
-              <h4>Posted</h4>
-              <span>{moment(date).format('ll')}</span>
-              <h4>Industry</h4>
-              <span>{industry}</span>
-            </div>
+  return (
+    <div className="op">
+      <h1 className="title">{ title }</h1>
+      <div className="mainWrapper d-flex flex-wrap">
+        <div className="detais align-self-stretch">
+          <div className="contentWrapper">
+            <div className="content" dangerouslySetInnerHTML={getRawMarkup(markdown || 'No content', body)}></div>
           </div>
         </div>
-        <div>
-          <Link href={`/opportunity/${_id}/apply`} className="btn btn--main"> Apply </Link>
+        <div className="overview align-self-stretch">
+          <div className="contentWrapper">
+            <h4>Employer</h4>
+            <span>{company}</span>
+            <h4>Location</h4>
+            <span>{locationLabel}</span>
+            <h4>Contract type</h4>
+            <span>{contractType.label}</span>
+            <h4>Salary</h4>
+            <span>{payLabel}</span>
+            <h4>Posted</h4>
+            <span>{moment(date).format('ll')}</span>
+            <h4>Industry</h4>
+            <span>{industry}</span>
+          </div>
         </div>
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 Opportunity.propTypes = {
-  params: React.PropTypes.object.isRequired,
+  opportunity: React.PropTypes.object.isRequired,
 };
 
 export default Opportunity;

@@ -2,7 +2,6 @@ import React from 'react';
 import Button from 'components/button/button';
 import Link from 'components/link/link';
 import OfferNotFound from 'components/opportunity/notFound';
-import MarkdownBox from 'components/advert/markdownBox';
 import mocks from 'mocks/shorts';
 
 const getMockById = id => mocks.find(elem => elem.id === id);
@@ -20,7 +19,7 @@ function Apply({ params }) {
       <h2 className="title">Application</h2>
       <h3>Cover letter</h3>
       <section>
-        <MarkdownBox />
+        TODO
       </section>
       <h3>CV</h3>
       <section>

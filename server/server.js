@@ -49,7 +49,7 @@ app.get('/api/contractTypes', (req, res) => {
   });
 });
 
-app.use((err, req, res) => {
+app.use((err, req, res, extra1, extra2) => {
   if (err.code && err.msg) {
     res.send(err.code, err.msg);
   }

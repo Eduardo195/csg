@@ -34,7 +34,7 @@ function markdownValidator(md) {
 }
 
 function findInMap(needle, haystack) {
-  return haystack.find(({ index }) => index === needle);
+  return haystack.find(({ id }) => id === needle);
 }
 
 function locationValidator(locIndex) {

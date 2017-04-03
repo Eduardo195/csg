@@ -1,8 +1,8 @@
 import React from 'react';
 
-function getSelectedLabel(options, selectedValue) {
+function getSelectedLabel(options, selectedId) {
   for (let i = 0; i < options.length; i++) {
-    if (options[i].value == selectedValue) {  // eslint-disable-line eqeqeq
+    if (options[i].id == selectedId) {  // eslint-disable-line eqeqeq
       return options[i].label;
     }
   }
@@ -41,8 +41,8 @@ class DropdownGroup extends React.Component {
           {
             options.map(option => (
               <button
-                className="dropdown-item" type="button" key={option.value} onClick={this.handleChange}
-                value={option.value} data-value={option.value}
+                className="dropdown-item" type="button" key={option.id}
+                onClick={this.handleChange} value={option.id} data-value={option.id}
               >
                 {option.label}
               </button>

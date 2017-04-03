@@ -20,10 +20,10 @@ module.exports = {
       });
     });
   },
-  updateOne(userId, dirtyOpportunity) {
-    const dirtyId = dirtyOpportunity.id;
+  updateOne(employerId, dirtyOpportunity) {
+    const dirtyId = dirtyOpportunity._id;
     return Validator.validate(dirtyOpportunity, true).then((sanitizedOp) => {
-      return OpportunityConnector.updateOne(userId, dirtyId, sanitizedOp);
+      return OpportunityConnector.updateOne(employerId, dirtyId, sanitizedOp);
     });
   },
   deleteOpportunity(userId, opportunityId) {

@@ -1,23 +1,27 @@
+/* eslint no-plusplus: 0 */
+
+let i = 0;
+
 const Districts = [
-  { index: -1, label: 'Outros', simple: 'Outros' },
-  { index: 0, label: 'Aveiro', simple: 'Aveiro' },
-  { index: 1, label: 'Beja', simple: 'Beja' },
-  { index: 2, label: 'Braga', simple: 'Braga' },
-  { index: 3, label: 'Bragança', simple: 'Braganca' },
-  { index: 4, label: 'Castelo Branco', simple: 'Castelo Branco' },
-  { index: 5, label: 'Coimbra', simple: 'Coimbra' },
-  { index: 6, label: 'Évora', simple: 'Evora' },
-  { index: 7, label: 'Faro', simple: 'Faro' },
-  { index: 8, label: 'Guarda', simple: 'Guarda' },
-  { index: 9, label: 'Leiria', simple: 'Leiria' },
-  { index: 10, label: 'Lisboa', simple: 'Lisboa' },
-  { index: 11, label: 'Portalegre', simple: 'Portalegre' },
-  { index: 12, label: 'Porto', simple: 'Porto' },
-  { index: 13, label: 'Santarém', simple: 'Santarem' },
-  { index: 14, label: 'Setúbal', simple: 'Setubal' },
-  { index: 15, label: 'Viana do Castelo', simple: 'Viana do Castelo' },
-  { index: 16, label: 'Vila Real', simple: 'Vila Real' },
-  { index: 17, label: 'Viseu', simple: 'Viseu' }
+  { id: i++, label: 'Outros', simple: 'Outros' },
+  { id: i++, label: 'Aveiro', simple: 'Aveiro' },
+  { id: i++, label: 'Beja', simple: 'Beja' },
+  { id: i++, label: 'Braga', simple: 'Braga' },
+  { id: i++, label: 'Bragança', simple: 'Braganca' },
+  { id: i++, label: 'Castelo Branco', simple: 'Castelo Branco' },
+  { id: i++, label: 'Coimbra', simple: 'Coimbra' },
+  { id: i++, label: 'Évora', simple: 'Evora' },
+  { id: i++, label: 'Faro', simple: 'Faro' },
+  { id: i++, label: 'Guarda', simple: 'Guarda' },
+  { id: i++, label: 'Leiria', simple: 'Leiria' },
+  { id: i++, label: 'Lisboa', simple: 'Lisboa' },
+  { id: i++, label: 'Portalegre', simple: 'Portalegre' },
+  { id: i++, label: 'Porto', simple: 'Porto' },
+  { id: i++, label: 'Santarém', simple: 'Santarem' },
+  { id: i++, label: 'Setúbal', simple: 'Setubal' },
+  { id: i++, label: 'Viana do Castelo', simple: 'Viana do Castelo' },
+  { id: i++, label: 'Vila Real', simple: 'Vila Real' },
+  { id: i++, label: 'Viseu', simple: 'Viseu' }
 ];
 
 module.exports = Districts;
