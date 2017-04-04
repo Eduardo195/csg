@@ -12,31 +12,26 @@ const Applications = (props) => {
         <h1>Applications</h1>
         { error && (<ErrorMessage> { error } </ErrorMessage>)}
         {
-              applications.map(({ _id, opportunity }) => (
-                <section key={_id} className="row flex-column op">
-                  <header>
-                    <h4>
-                      { opportunity.title }
-                    </h4>
-                    {
-                      opportunity.contractType && (
-                        <small>{ opportunity.contractType.label } |</small>
-                      )
-                    }
-                    {
-                      opportunity.location && (
-                        <small>{ opportunity.location.label }</small>
-                      )
-                    }
-                  </header>
-                </section>
-              ))
-            }
-        {/* </div>
-        </div> */}
-        <div className="row justify-content-end">
-          <Link href="/opportunity/create" className="btn btn--main">Create new</Link>
-        </div>
+          applications.map(({ _id, opportunity }) => (
+            <section key={_id} className="row flex-column op">
+              <header>
+                <h4>
+                  { opportunity.title }
+                </h4>
+                {
+                  opportunity.contractType && (
+                    <small>{ opportunity.contractType.label } |</small>
+                  )
+                }
+                {
+                  opportunity.location && (
+                    <small>{ opportunity.location.label }</small>
+                  )
+                }
+              </header>
+            </section>
+          ))
+        }
       </div>
     </div>
   );
