@@ -1,7 +1,7 @@
 /* eslint no-confusing-arrow: 0 */
 import React from 'react';
-import CandidateHome from 'components/candidate/containers/home';
-import EmployerHome from 'components/employer/containers/home';
+import CandidateHome from './candidate/containers/home';
+import EmployerHome from './employer/containers/home';
 
 const Home = (props) => {
   if (props.isEmployer) {

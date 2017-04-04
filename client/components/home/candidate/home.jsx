@@ -1,5 +1,5 @@
 import React from 'react';
-import Applications from './containers/applications';
+import Applications from 'components/applications/candidate/containers/applications';
 
 class Home extends React.Component {
 

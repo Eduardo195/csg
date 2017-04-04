@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getApplications, getApplicationsError } from 'components/opportunity/selectors/employerSelectors';
+import { getApplications, getApplicationsError } from '../selectors/selectors';
 import Applications from '../applications';
 
 function mapStateToProps(state) {

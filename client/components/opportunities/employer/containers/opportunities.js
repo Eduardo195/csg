@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { getMyOpportunities, getMyOpportunitiesError } from 'components/opportunity/selectors/employerSelectors';
-import MyOpportunities from '../myOpportunities';
+import Opportunities from '../opportunities';
 
 function mapStateToProps(state) {
   return {
@@ -9,4 +9,4 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(MyOpportunities);
+export default connect(mapStateToProps)(Opportunities);

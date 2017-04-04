@@ -1,4 +1,4 @@
-import * as actionTypes from '../actions/candidateActionTypes';
+import * as actionTypes from '../actions/types';
 
 function applications(state = { error: null, success: null }, action) {
   switch (action.type) {

@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
-// import { getApplication } from 'components/user/selectors/sessionSelectors';
-import { getCandidateApplications } from 'components/applications/actions/candidateActions';
+import { getCandidateApplications } from 'components/applications/candidate/actions/actions';
 import Home from '../home';
 
 function mapDispatchToProps(dispatch) {

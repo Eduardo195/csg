@@ -1,6 +1,6 @@
 import React from 'react';
-import MyOpportunities from './containers/myOpportunities';
-import Applications from './containers/applications';
+import Applications from 'components/applications/employer/containers/applications';
+import Opportunities from 'components/opportunities/employer/containers/opportunities';
 
 class EmployerHome extends React.Component {
 
@@ -11,7 +11,7 @@ class EmployerHome extends React.Component {
   render() {
     return (
       <div>
-        <MyOpportunities />
+        <Opportunities />
         <Applications />
         <div className="jumbotron">
           <div className="container">

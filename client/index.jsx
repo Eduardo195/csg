@@ -14,7 +14,8 @@ import CreateOpportunity from 'components/opportunity/containers/create';
 import ApplyForOpportunity from 'components/opportunity/containers/apply';
 
 import EmployerRegistration from 'components/registration/employerRegistration';
-import EmployerOpportunities from 'components/employer/opportunities';
+import EmployerOpportunities from 'components/opportunities/employer/containers/opportunities';
+
 import Doh from 'components/errors/doh';
 import Status from 'components/application/status';
 import Profile from 'components/user/profile';

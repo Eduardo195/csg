@@ -13,7 +13,7 @@ import {
   myOpportunities,
   deleteOpportunity,
   updateOpportunity } from 'components/opportunity/reducers/employerReducer';
-import candidate from 'components/candidate/reducers/reducer';
+import candidate from 'components/home/candidate/reducers/reducer';
 
 export default combineReducers({
   overlay,

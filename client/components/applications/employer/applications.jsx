@@ -1,6 +1,5 @@
 /* eslint no-underscore-dangle: 0 */
 import React from 'react';
-import Link from 'components/link/link';
 import ErrorMessage from 'components/messages/error';
 
 const Applications = (props) => {

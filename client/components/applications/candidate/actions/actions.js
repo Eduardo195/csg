@@ -1,25 +1,24 @@
 /* eslint import/prefer-default-export: 0 */
-
 import { setOverlayVisibility } from 'components/overlay/actions/actions';
 import ApplicationsService from 'services/applications/candidate';
-import * as actionTypes from './candidateActionTypes';
+import * as types from './types';
 
 function setApplicationsError(error) {
   return {
-    type: actionTypes.SET_APPLICATIONS_ERROR,
+    type: types.SET_APPLICATIONS_ERROR,
     error,
   };
 }
 
 function clearApplicationsStatus() {
   return {
-    type: actionTypes.CLEAR_APPLICATIONS_STATUS,
+    type: types.CLEAR_APPLICATIONS_STATUS,
   };
 }
 
 function setApplications(applications) {
   return {
-    type: actionTypes.SET_APPLICATIONS,
+    type: types.SET_APPLICATIONS,
     applications,
   };
 }
