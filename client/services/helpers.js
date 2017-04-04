@@ -6,9 +6,8 @@ export function query(params) {
     $.ajax(params).done(resolve).fail((err) => {
       if (err.status === 401) { // session expired, redirect to login
         window.location = '#/login';
-      } else {
-        reject(err);
       }
+      reject(err);
     });
   });
 }

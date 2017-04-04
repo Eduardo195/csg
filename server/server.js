@@ -49,11 +49,13 @@ app.get('/api/contractTypes', (req, res) => {
   });
 });
 
+// error handling
 app.use((err, req, res) => {
-  if (err.code && err.msg) {
-    res.send(err.code, err.msg);
-  }
-  res.send(500, 'Unknows error (0x000000)');
+  res.status(err.status || err.code || 500);
+  res.send({
+    success: false,
+    msg: err.message || err.msg || 'Unknown error'
+  });
 });
 
 app.listen(PORT, () => {
