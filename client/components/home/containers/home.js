@@ -5,7 +5,7 @@ import Home from '../home';
 function mapStateToProps(state) {
   return {
     isEmployer: getIsEmployer(state),
-    iscandidate: getIsCandidate(state),
+    isCandidate: getIsCandidate(state),
   };
 }
 

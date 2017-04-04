@@ -1,24 +1,23 @@
 import { connect } from 'react-redux';
 import { getAge } from 'components/filters/selectors/filterSelectors';
 import { setAge } from 'components/filters/actions/filterActions';
-// import AgeFilter from 'components/filters/dropdownSelector';
 import AgeFilter from 'components/input/dropdownGroup';
 
 const options = [{
   label: 'Any Time',
-  value: '*',
+  id: '*',
 }, {
   label: 'Past Hour',
-  value: 'h',
+  id: 'h',
 }, {
   label: 'Past Day',
-  value: 'd',
+  id: 'd',
 }, {
   label: 'Past Week',
-  value: 'w',
+  id: 'w',
 }, {
   label: 'Past Month',
-  value: 'm',
+  id: 'm',
 }];
 
 function mapStateToProps(state) {
