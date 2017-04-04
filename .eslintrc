@@ -11,6 +11,6 @@
     }],
     "indent": ["error", 2],
     "arrow-body-style": 0,
-    "max-len": ["error", { "code": 125 }]
+    "max-len": 0
   }
 }

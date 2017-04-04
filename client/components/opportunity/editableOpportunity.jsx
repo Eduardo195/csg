@@ -4,9 +4,9 @@ import Editor from 'components/editor/editor';
 import EditableTag from 'components/input/editableTag';
 import DropdownGroup from 'components/input/dropdownGroup';
 import ErrorMessage from 'components/messages/error';
-import Opportunity from './opportunity';
-import Districts from 'districts';
 import ContractTypes from 'contractTypes';
+import Districts from 'districts';
+import Opportunity from './opportunity';
 
 const bodyPlc = 'Enter some text';
 const opportunityPlaceholder = {
@@ -15,14 +15,14 @@ const opportunityPlaceholder = {
   contractType: ContractTypes[0],
   body: 'Opportunity body',
   pay: {
-    min: 10, max: 20
-  }
-}
+    min: 10, max: 20,
+  },
+};
 
 function getIntialState(opportunity) {
   return {
     isPreview: false,
-    opportunity: opportunity || opportunityPlaceholder
+    opportunity: opportunity || opportunityPlaceholder,
   };
 }
 
@@ -42,11 +42,11 @@ class EditableOpportunity extends React.Component {
 
   onSubmit() {
     const opportunity = Object.assign({}, this.state.opportunity);
-    if(this.state.opportunity.location) {
-      opportunity.location = this.state.opportunity.location.id
+    if (this.state.opportunity.location) {
+      opportunity.location = this.state.opportunity.location.id;
     }
-    if(this.state.opportunity.contractType) {
-      opportunity.contractType = this.state.opportunity.contractType.id
+    if (this.state.opportunity.contractType) {
+      opportunity.contractType = this.state.opportunity.contractType.id;
     }
     this.props.onSubmit(opportunity);
   }
@@ -80,11 +80,11 @@ class EditableOpportunity extends React.Component {
   }
 
   getSelectedContractType() {
-    return this.state.opportunity['contractType'].id;
+    return this.state.opportunity.contractType.id;
   }
 
   getSelectedLocation() {
-    return this.state.opportunity['location'].id;
+    return this.state.opportunity.location.id;
   }
 
   togglePreview() {
@@ -103,8 +103,7 @@ class EditableOpportunity extends React.Component {
     const { isPreview, opportunity } = this.state;
     const { title, body, location, contractType, date, pay, employerName } = opportunity;
 
-    if(isPreview){
-
+    if (isPreview) {
       return (
         <div>
           <Opportunity opportunity={opportunity} />
@@ -112,7 +111,7 @@ class EditableOpportunity extends React.Component {
             Preview
           </button>
         </div>
-      )
+      );
     }
 
     return (
@@ -134,17 +133,21 @@ class EditableOpportunity extends React.Component {
               <span>{employerName || 'NOT SET'}</span>
               <h4>Location</h4>
               <span>
-                <DropdownGroup value={location.id} id="locations"
+                <DropdownGroup
+                  value={location.id} id="locations"
                   onChange={this.onLocationChange}
                   options={Districts}
-                  selected={this.getSelectedLocation()} />
+                  selected={this.getSelectedLocation()}
+                />
               </span>
               <h4>Contract type</h4>
               <span>
-                <DropdownGroup value={contractType.id} id="contractTypes"
+                <DropdownGroup
+                  value={contractType.id} id="contractTypes"
                   onChange={this.onContracTypeChange}
                   options={ContractTypes}
-                  selected={this.getSelectedContractType()} />
+                  selected={this.getSelectedContractType()}
+                />
               </span>
               <h4>Salary</h4>
               <span>

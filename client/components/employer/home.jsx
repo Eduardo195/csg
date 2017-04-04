@@ -1,5 +1,6 @@
 import React from 'react';
 import MyOpportunities from './containers/myOpportunities';
+import Applications from './containers/applications';
 
 class EmployerHome extends React.Component {
 
@@ -11,12 +12,7 @@ class EmployerHome extends React.Component {
     return (
       <div>
         <MyOpportunities />
-        <div className="jumbotron">
-          <div className="container">
-            <h1>Applications</h1>
-            <div>TODO</div>
-          </div>
-        </div>
+        <Applications />
         <div className="jumbotron">
           <div className="container">
             <h1>My drafts</h1>

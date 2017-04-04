@@ -92,3 +92,28 @@ export function myOpportunities(state = {
       return state;
   }
 }
+
+export function applications(state = {
+  error: null,
+  applications: [],
+}, action) {
+  switch (action.type) {
+    case actionTypes.SET_GET_APPLICATIONS_ERROR:
+      return Object.assign({}, state, {
+        error: action.error,
+      });
+
+    case actionTypes.CLEAR_GET_APPLICATIONS_ERROR:
+      return Object.assign({}, state, {
+        error: null,
+      });
+
+    case actionTypes.SET_APPLICATIONS:
+      return Object.assign({}, state, {
+        applications: action.applications,
+      });
+
+    default:
+      return state;
+  }
+}

@@ -14,7 +14,7 @@ const Home = (props) => {
 
 Home.propTypes = {
   isEmployer: React.PropTypes.bool,
-  isCandidate: React.PropTypes.bool
+  isCandidate: React.PropTypes.bool,
 };
 
 export default Home;

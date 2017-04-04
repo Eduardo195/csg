@@ -1,19 +1,17 @@
 import React from 'react';
-// import marked from 'marked';  // eslint-disable-line import/no-extraneous-dependencies
 import moment from 'moment';
 
-function getRawMarkup(markdown, body) {
+function getDangerouslySetInnerHTML(body) {
   return {
-    __html: body //|| marked(markdown, { sanitize: true }),
+    __html: body,
   };
 }
 
-const Opportunity = props => {
+const Opportunity = (props) => {
   const { opportunity } = props;
 
-  const { _id, title, pay, contractType, body, company, location, industry, date } = opportunity;
+  const { title, pay, contractType, body, company, location, industry, date } = opportunity;
   const { label: locationLabel } = location;
-  const { markdown } = opportunity;
 
   const minPay = pay && pay.min;
   const maxPay = pay && pay.max;
@@ -29,7 +27,7 @@ const Opportunity = props => {
       <div className="mainWrapper d-flex flex-wrap">
         <div className="detais align-self-stretch">
           <div className="contentWrapper">
-            <div className="content" dangerouslySetInnerHTML={getRawMarkup(markdown || 'No content', body)}></div>
+            <div className="content" dangerouslySetInnerHTML={getDangerouslySetInnerHTML(body)} />
           </div>
         </div>
         <div className="overview align-self-stretch">
@@ -51,7 +49,7 @@ const Opportunity = props => {
       </div>
     </div>
   );
-}
+};
 
 Opportunity.propTypes = {
   opportunity: React.PropTypes.object.isRequired,

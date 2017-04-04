@@ -67,7 +67,7 @@ TextAutocomplete.propTypes = {
   placeholder: React.PropTypes.string,
   value: React.PropTypes.oneOfType([
     React.PropTypes.string,
-    React.PropTypes.number
+    React.PropTypes.number,
   ]).isRequired,
   type: React.PropTypes.string,
 };

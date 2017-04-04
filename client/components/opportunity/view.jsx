@@ -1,8 +1,8 @@
 import $ from 'jquery';
 import React from 'react';
 import Link from 'components/link/link';
-import Opportunity from './opportunity';
 import ErrorMessage from 'components/messages/error';
+import Opportunity from './opportunity';
 
 class View extends React.Component {
   componentDidMount() {
@@ -20,7 +20,7 @@ class View extends React.Component {
     if (error) {
       return (<ErrorMessage> { error }</ErrorMessage>);
     }
-    if(!opportunity) {
+    if (!opportunity) {
       return null;
     }
     return (
@@ -28,7 +28,7 @@ class View extends React.Component {
         <Opportunity opportunity={opportunity} />
         <Link href={`/opportunity/${opportunity._id}/apply`} className="btn btn--main"> Apply </Link>
       </div>
-    )
+    );
   }
 }
 

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { getIsEmployer } from 'components/user/selectors/sessionSelectors';
-import { getAll } from 'components/opportunity/actions/employerActions';
+import { getAll, getApplications } from 'components/opportunity/actions/employerActions';
 import Home from '../home';
 
 function mapStateToProps(state) {
@@ -13,6 +13,7 @@ function mapDispatchToProps(dispatch) {
   return {
     getMyOpportunities() {
       dispatch(getAll());
+      dispatch(getApplications());
     },
   };
 }

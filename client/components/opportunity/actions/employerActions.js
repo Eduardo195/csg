@@ -1,6 +1,7 @@
 import { hashHistory } from 'react-router';
 import { setOverlayVisibility } from 'components/overlay/actions/actions';
 import OpportunityService from 'services/opportunity/employer';
+import ApplicationService from 'services/applications/employer';
 import * as actionTypes from './types';
 
 function setOpportunitySubmissionError(error) {
@@ -65,6 +66,41 @@ export function getAll() {
       }
     }).catch((err) => {
       dispatch(setGetAllOpportunitiesSubmissionError(`${err.status} - ${err.statusText}`));
+    });
+  };
+}
+
+function setGetApplicationsError(error) {
+  return {
+    type: actionTypes.SET_GET_APPLICATIONS_ERROR,
+    error,
+  };
+}
+
+function clearGetApplicationsError() {
+  return {
+    type: actionTypes.CLEAR_GET_APPLICATIONS_ERROR,
+  };
+}
+
+function setApplications(applications) {
+  return {
+    type: actionTypes.SET_APPLICATIONS,
+    applications,
+  };
+}
+
+export function getApplications() {
+  return (dispatch) => {
+    dispatch(clearGetApplicationsError());
+    ApplicationService.getAll().then((rsp) => {
+      if (!rsp.success) {
+        dispatch(setGetApplicationsError(`${rsp.msg}`));
+      } else {
+        dispatch(setApplications(rsp.data));
+      }
+    }).catch((err) => {
+      dispatch(setGetApplicationsError(`${err.status} - ${err.statusText}`));
     });
   };
 }

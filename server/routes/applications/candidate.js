@@ -1,5 +1,5 @@
 const requireCandidateLogin = require('../helpers/requireLogin/candidate');
-const ApplicationsService = require('../../services/applications/candidate/candidate');
+const ApplicationsService = require('../../services/applications/candidate');
 
 function setup(app) {
   app.get('/api/applications/user', requireCandidateLogin, (req, res) => {

@@ -37,6 +37,7 @@ module.exports = {
   getOneForApplication(id) {
     return Connector.getCollection(TableNames.OPPORTUNITIES).findOne({ _id: ObjectID(id) }, {
       title: 1,
+      employerId: 1,
       employerName: 1,
       'location.label': 1,
       'contractType.label': 1

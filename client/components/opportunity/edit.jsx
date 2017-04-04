@@ -2,7 +2,6 @@ import React from 'react';
 import OpportunityService from 'services/opportunity/employer';
 import ErrorMessage from 'components/messages/error';
 import EditableOpportunity from './editableOpportunity';
-import Districts from 'districts';
 
 class Edit extends React.Component {
 
@@ -20,13 +19,16 @@ class Edit extends React.Component {
   }
 
   render() {
-    const { params, error: submissionError } = this.props;
+    const { error: submissionError } = this.props;
     const { isLoading, error, opportunity } = this.state;
     return (
       <div>
         { isLoading ? ('Loading ... ') : null}
-        { opportunity ? (<EditableOpportunity opportunity={opportunity} onSubmit={this.props.onSubmit}/>) : null}
-        { (error || submissionError)? (<ErrorMessage>{ error || submissionError }</ErrorMessage>) : null}
+        { opportunity ? (<EditableOpportunity opportunity={opportunity} onSubmit={this.props.onSubmit} />) : null}
+        { (error || submissionError) ? (
+          <ErrorMessage>{ error || submissionError }</ErrorMessage>
+          ) : null
+        }
         { (!isLoading && !error && !opportunity) ? (
           <ErrorMessage>We dun goofed</ErrorMessage>
         ) : null}
@@ -39,6 +41,8 @@ Edit.propTypes = {
   params: React.PropTypes.shape({
     id: React.PropTypes.string.isRequired,
   }).isRequired,
+  onSubmit: React.PropTypes.func.isRequired,
+  error: React.PropTypes.string,
 };
 
 export default Edit;

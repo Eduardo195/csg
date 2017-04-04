@@ -9,7 +9,7 @@ function mapStateToProps(state) {
   };
 }
 
-function mapDispatchToProps(dispatch, ownProps) {
+function mapDispatchToProps(dispatch) {
   return {
     onSubmit(opportunity) {
       dispatch(update(opportunity));
