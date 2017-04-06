@@ -9,7 +9,7 @@
     margin-bottom: 0; // overriding bootstrap
 
     &:hover {
-      background-color: @bg-color-alt;
+      background-color: @tertiary-light;
     }
   }
 
@@ -26,13 +26,13 @@
   label span {/* <-- style the artificial checkbox */
     height: 1em;
     width: 1em;
-    border: 1px solid @font-color-title;
+    border: 1px solid @primary-light;
     display: inline-block;
     margin-right: 0.5em;
     transition: 0.3s background;
   }
 
   [type=checkbox]:checked + span {/* <-- style its checked state */
-    background: @font-color-title;
+    background: @primary-light;
   }
 }

@@ -36,12 +36,12 @@ a.btn {
       margin-left: 1em;
 
       &:after {
-        background: @btn-bg-main;
+        background: @primary-dark;
       }
     }
 
     &--logout {
-      border-color: @btn-bg-main;
+      border-color: @primary-dark;
       margin: 0 1em;
 
       &:after {
@@ -60,13 +60,24 @@ a.btn {
     }
 
     &--main {
-      border-color: @btn-bg-main;
-      background: @btn-bg-main;
+      border-color: @primary-dark;
+      background: @primary-dark;
       color: @font-color-alt;
       display: inline-block;
 
       &:focus, &.focus {
         box-shadow: 0 0 0 2px rgba(233, 79, 43, 0.25);
+      }
+
+      &-alt {
+        border-color: @primary-light;
+        color: @primary-light;
+
+        &-reverse {
+          background: @primary-light;
+          color: @font-color-alt;
+          border-color: @primary-light;
+        }
       }
     }
 
@@ -75,7 +86,7 @@ a.btn {
     }
 
     &--alt {
-        background: @bg-color-alt;
+        background: @tertiary-light;
         color: @font-color-alt;
     }
 

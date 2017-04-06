@@ -3,20 +3,20 @@ import { getIsLoggedIn, getIsEmployer } from 'components/user/selectors/sessionS
 
 const navOptions = {
   base: [{
-    label: 'Opportunities',
+    label: 'opportunities',
     href: '/opportunities/',
   }, {
-    label: 'Employers',
+    label: 'employers',
     items: [
           { label: 'Resgister your company', href: 'registration/employer' },
     ],
   }],
   employer: [{
-    label: 'Create opportunity',
+    label: 'create opportunity',
     href: '/opportunity/create',
   }],
   user: [{
-    label: 'Opportunities',
+    label: 'opportunities',
     href: '/opportunities/',
   }],
 };

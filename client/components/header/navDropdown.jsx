@@ -14,9 +14,10 @@ function NavDropdown(props) {
       </span>
       <div className="dropdown-menu" aria-labelledby={`${item.label.trim()}_nav_dd`}>
         {
-            item.items.map(i => (
-              <Link key={i.label} className="dropdown-item" href={i.href}>{i.label}</Link>))
-          }
+          item.items.map(i => (
+            <Link key={i.label} className="dropdown-item" href={i.href}>{i.label}</Link>),
+          )
+        }
       </div>
     </li>
   );

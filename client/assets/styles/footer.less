@@ -1,10 +1,19 @@
 .root {
     > footer  {
-        background: @bg-color-tertiary;
+        background: @tertiary-light;
         padding: 1em 10%;
 
+        article {
+          display: inline-block;
+          margin: 0 auto;
+
+          div {
+            text-align: right;
+          }
+        }
+
         a {
-          color: @font-color-sub;
+          color: @primary-dark;
         }
 
         .d-flex.flex-wrap > div {

@@ -1,12 +1,12 @@
-@font-color-filters: #808080;
+@secondary-dark: #808080;
 
 .filters {
   margin-top: 2em;
   padding-right: 2em;
-  border-right: 1px solid @border-color-main;
+  border-right: 1px solid @tertiary-light;
 
   .mainTitle, .title, h3 {
-    color: @font-color-filters;
+    color: @secondary-dark;
     text-transform: uppercase;
     .semi-bold
   }
@@ -15,7 +15,7 @@
     font-size: 1.9em;
     padding-bottom: 0.25em;
     margin: 0;
-    border-bottom: 1px solid @font-color-filters;
+    border-bottom: 1px solid @secondary-dark;
   }
 
   h3 {
@@ -30,7 +30,7 @@
     .semi-bold;
     font-weight: normal;
     padding: 0 0 0.25em 1em;
-    color: @font-color-filters;
+    color: @secondary-dark;
   }
 }
 
@@ -38,15 +38,15 @@
   margin-bottom: 0.25em;
 
   .form-control:focus {
-      border-color: @font-color-title;
+      border-color: @primary-light;
   }
 
   input, button {
-    border-color: @font-color-title;
+    border-color: @primary-light;
   }
 
   button {
-    background: @font-color-title;
+    background: @primary-light;
     color: @font-color-alt;
 
     &:focus {
@@ -58,7 +58,7 @@
     width: auto;
 
     &:focus {
-      border-color: @font-color-title;
+      border-color: @primary-light;
     }
   }
 }
@@ -68,7 +68,7 @@
 
   .keyword {
     display: inline-block;
-    background: @font-color-title;
+    background: @primary-light;
     color: @font-color-alt;
     padding-right: 0.5em;
     margin: 0.25em;
