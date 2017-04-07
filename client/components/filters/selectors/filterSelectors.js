@@ -1,6 +1,9 @@
+import Districts from 'districts';
+import { convertToMap } from '../helpers/helpers';
+
 export const getKeywords = state => state.search.filters && state.search.filters.keywords;
 export const getAge = state => state.search.filters && state.search.filters.age;
-export const getLocations = state => state.search.filters && state.search.filters.locations.all;
+export const getLocations = () => convertToMap(Districts);
 export const getSelectedLocations = state => (
   state.search.filters &&
   state.search.filters.locations.selected

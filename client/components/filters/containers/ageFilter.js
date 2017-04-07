@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { getAge } from 'components/filters/selectors/filterSelectors';
-import { setAge } from 'components/filters/actions/filterActions';
+import { setAge, search } from 'components/filters/actions/filterActions';
 import AgeFilter from 'components/input/dropdownGroup';
 
 const options = [{
@@ -31,6 +31,7 @@ function mapDispatchToProps(dispatch) {
   return {
     onChange(age) {
       dispatch(setAge(age));
+      dispatch(search());
     },
   };
 }

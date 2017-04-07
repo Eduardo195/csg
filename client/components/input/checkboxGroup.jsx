@@ -23,20 +23,19 @@ class CheckboxGroup extends React.Component {
 
   render() {
     const { items, selected, name } = this.props;
-
     return (
       <div className="checkboxGroup">
         {
-                    items.map((item, index) => (
-                      <div className="checkbox" key={item.value}>
-                        <label htmlFor={genId(name, index)}>
-                          <input onChange={this.handleChange} checked={selected.indexOf(item.value) >= 0} id={genId(name, index)} type="checkbox" value={item.value} />
-                          <span />
-                          {item.label}
-                        </label>
-                      </div>
-                    ))
-                }
+          items.map((item, index) => (
+            <div className="checkbox" key={item.value}>
+              <label htmlFor={genId(name, index)}>
+                <input onChange={this.handleChange} checked={selected.indexOf(item.value) >= 0} id={genId(name, index)} type="checkbox" value={item.value} />
+                <span />
+                {item.label}
+              </label>
+            </div>
+          ))
+        }
       </div>
     );
   }

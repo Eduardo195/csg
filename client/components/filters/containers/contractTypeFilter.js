@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import * as actions from 'components/filters/actions/filterActions';
+import { setContractTypes, addContractType, removeContractType, search } from 'components/filters/actions/filterActions';
 import { getContractTypes, getSelectedContractTypes } from 'components/filters/selectors/filterSelectors';
 import CheckboxGroup from 'components/input/checkboxGroup';
 import SearchService from 'services/search/searchService';
@@ -17,15 +17,16 @@ function mapDispatchToProps(dispatch) {
   return {
     handleMount() {
       SearchService.getContractTypes().then((locations) => {
-        dispatch(actions.setContractTypes(convertToMap(locations)));
+        dispatch(setContractTypes(convertToMap(locations)));
       });
     },
     handleChange(value, isActive) {
       if (isActive) {
-        dispatch(actions.addContractType(+value));
+        dispatch(addContractType(+value));
       } else {
-        dispatch(actions.removeContractType(+value));
+        dispatch(removeContractType(+value));
       }
+      dispatch(search());
     },
   };
 }

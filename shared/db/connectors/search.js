@@ -39,7 +39,6 @@ module.exports = {
     const filters = merged.length <= 0 ? {} : {
       $and: merged
     };
-    // return Connector.connect().then((db) => {
     const find = Connector.getCollection(TableNames.OPPORTUNITIES)
       .find(filters, returnableFields).sort({ date: -1 });
 

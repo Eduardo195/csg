@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
-import * as actions from 'components/filters/actions/filterActions';
+import { addLocation, removeLocation, search } from 'components/filters/actions/filterActions';
 import { getLocations, getSelectedLocations } from 'components/filters/selectors/filterSelectors';
 import CheckboxGroup from 'components/input/checkboxGroup';
-import SearchService from 'services/search/searchService';
-import { convertToMap } from '../helpers/helpers';
 
 function mapStateToProps(state) {
   return {
@@ -15,17 +13,13 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleMount() {
-      SearchService.getDistricts().then((locations) => {
-        dispatch(actions.setLocations(convertToMap(locations)));
-      });
-    },
     handleChange(value, isActive) {
       if (isActive) {
-        dispatch(actions.addLocation(+value));
+        dispatch(addLocation(+value));
       } else {
-        dispatch(actions.removeLocation(+value));
+        dispatch(removeLocation(+value));
       }
+      dispatch(search());
     },
   };
 }

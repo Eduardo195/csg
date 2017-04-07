@@ -22,7 +22,7 @@ const Checkers = {
   checkLocation(locations) {
     if (Array.isArray(locations)) {
       return {
-        'location.index': {
+        'location.id': {
           $in: locations.map(v => +v)
         }
       };
@@ -32,7 +32,7 @@ const Checkers = {
   checkContractType(contractTypes) {
     if (Array.isArray(contractTypes)) {
       return {
-        'contractType.index': {
+        'contractType.id': {
           $in: contractTypes.map(v => +v)
         }
       };

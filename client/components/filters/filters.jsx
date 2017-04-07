@@ -5,9 +5,7 @@ import KeywordFilter from 'components/filters/containers/keywordFilter';
 import KeywordList from 'components/filters/containers/keywordList';
 import AgeFilter from 'components/filters/containers/ageFilter';
 
-function Filters(props) {
-  const { search } = props;
-
+function Filters() {
   return (
     <div className="filters">
       <h3 className="mainTitle">filter results by:</h3>
@@ -28,8 +26,6 @@ function Filters(props) {
         <h3>Location</h3>
         <LocationFilter />
       </div>
-      <button className="btn" onClick={search}>Apply</button>
-
     </div>
   );
 }

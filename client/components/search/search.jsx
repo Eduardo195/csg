@@ -1,5 +1,5 @@
 import React from 'react';
-import Filters from 'components/filters/containers/filters';
+import Filters from 'components/filters/filters';
 import Paging from 'components/search/containers/paging';
 import Offer from 'components/opportunity/short';
 import NoResults from './noResults';

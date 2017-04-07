@@ -49,15 +49,6 @@ app.get('/api/contractTypes', (req, res) => {
   });
 });
 
-// error handling
-app.use((err, req, res) => {
-  res.status(err.status || err.code || 500);
-  res.send({
-    success: false,
-    msg: err.message || err.msg || 'Unknown error'
-  });
-});
-
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}!  from ${__dirname}`);
 });

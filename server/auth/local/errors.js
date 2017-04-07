@@ -36,7 +36,7 @@ module.exports = {
   CRYPT_ERROR: i++,
   UNKNOWN: {
     code: i++,
-    msg: 'Unknown error'
+    msg: 'Unknown error (0X0000001)'
   },
   USER_NOT_FOUND: {
     code: i++,
