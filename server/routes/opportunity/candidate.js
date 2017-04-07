@@ -3,6 +3,7 @@ const OpportunityService = require('../../services/opportunity/candidate/candida
 
 function setup(app) {
   app.post('/api/opportunity/apply', requireCandidateLogin, (req, res) => {
+    console.log('api/opportunity/apply');
     return OpportunityService.applyForOpportunity(req.user._id, req.body).then(() => {
       res.send({ success: true });
     }).catch((err) => {

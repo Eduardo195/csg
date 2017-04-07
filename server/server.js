@@ -49,6 +49,21 @@ app.get('/api/contractTypes', (req, res) => {
   });
 });
 
+// catch 404's
+app.use((req, res) => {
+  res.status(404).send('Not found');
+});
+
+// Error-handling middleware must provide four arguments to
+// identify it as an error-handling middleware function
+app.use((err, req, res, next) => {  // eslint-disable-line no-unused-vars
+  console.log('caught error', err);
+  res.send({
+    success: false,
+    msg: err.msg
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}!  from ${__dirname}`);
 });
