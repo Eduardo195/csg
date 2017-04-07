@@ -1,3 +1,20 @@
+input,
+input:focus {
+  border-color: @primary-light;
+  outline-color: @primary-light;
+}
+
+.input-group-lg > input.form-control {
+  font-size: initial;
+  &:focus {
+    border-color: @primary-light;
+  }
+}
+
+.has-danger > input.form-control {
+  border-color: @primary-dark;
+}
+
 .autocp {
     // padding: 0 1em;
     display: inline-block;
@@ -44,7 +61,7 @@ input {
     &:active,
     &:hover,
     &:focus {
-      background-color: primary-light;
+      background-color: @primary-light;
       color: @font-color-alt;
     }
   }

@@ -2,12 +2,29 @@
 
 a.btn {
 
-  &--main,
-  &--main:hover {
-    color: @font-color-alt;
+  &:hover {
+    color: darken(@primary-light, 10%);
+    box-shadow: 0 0 0 2px rgba(78, 184, 169, 0.25);
+    border-color: @primary-light;
   }
 
+  &:focus {
+    color: @primary-light;
+    outline-color: @primary-light;
+    border-color: @primary-light;
+    box-shadow: 0 0 0 2px rgba(78, 184, 169, 0.25);
+  }
+
+    &--main,
+    &--main:hover,
+    &--main:focus {
+      color: @font-color-alt;
+      box-shadow: 0 0 0 2px rgb(233, 79, 43, 0.25);
+      border-color: @primary-dark;
+    }
 }
+
+
 
 .btn {
     background: @bg-color-main;

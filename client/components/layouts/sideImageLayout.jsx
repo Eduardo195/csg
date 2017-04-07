@@ -5,7 +5,7 @@ const SideImageLayout = props => (
     {
       !props.alt ? <div className="img">&nbsp;</div> : null
     }
-    <div className={'flex-grow d-flex flex--column'}>
+    <div className={'content flex-grow d-flex flex--column'}>
       {props.children}
     </div>
     {

@@ -2,8 +2,8 @@ import React from 'react';
 
 function DeleteAccountBtn(props) {
   return (
-    <button onClick={props.deleteAccount}>
-      Delete acc
+    <button onClick={props.deleteAccount} className="btn btn--main">
+      Delete
     </button>
   );
 }

@@ -19,19 +19,19 @@ class Login extends React.Component {
   render() {
     const { error } = this.props;
     return (
-      <div className="loginForm">
-        <h1 className="text-center">Login to your account</h1>
-        <div className="centered">
+      <div className="loginForm align-self-center d-flex flex-column justify-content-center">
+        <h1 className="text-uppercase title text-center spaced">Login to your account</h1>
+        <div className="text-center">
           <input ref={this.getEmailRef} type="email" placeholder="Username / Email" />
         </div>
-        <div className="centered" >
+        <div className="text-center" >
           <input ref={this.getPwdRef} type="password" placeholder="password" />
           <small>
             <Link href="/password/reset">Forgot your password?</Link>
           </small>
         </div>
-        <div className="centered">
-          <Button onTap={this.onTapLogin}>Login</Button>
+        <div className="text-center">
+          <Button onTap={this.onTapLogin} className="bold btn--main text-lowercase">Login</Button>
         </div>
         { error ? (<ErrorMessage> { error } </ErrorMessage>) : null }
         <hr className="hr-text" data-content="Or" />

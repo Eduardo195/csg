@@ -43,7 +43,7 @@ class MainSearch extends React.Component {
 
     return (
       <div className="mainSearch">
-        <h2 className="text-uppercase">Find your future</h2>
+        <h2 className="text-uppercase spaced">Find your future</h2>
         <div className="form-inline text-center d-flex justify-content-center">
           <div className="input-group mb-2 mr-sm-2 mb-sm-0">
             <label htmlFor="workSearh" className="sr-only">Role Keyword</label>

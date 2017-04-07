@@ -44,7 +44,7 @@ class LocalRegistration extends React.Component {
         <EmailInput id="email" onChange={this.updateEmail} />
         <PasswordInput id="pass" onChange={this.updatePassword} />
         <Recaptcha />
-        <button type="submit" className="btn btn--main font-weight-bold">Create Account</button>
+        <button type="submit" className="btn btn--main font-weight-bold text-lowercase">Create</button>
         { registrationErrors && (
           <ErrorMessage>
             {registrationErrors}

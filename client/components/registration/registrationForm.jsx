@@ -4,7 +4,7 @@ import LocalRegistration from './containers/localRegistration';
 function RegistrationForm() {
   return (
     <div className="registrationForm">
-      <h2 className="title">Register with</h2>
+      <h2 className="title spaced text-uppercase">Register with</h2>
       <br />
       <div className="options">
         <button className="btn">Facebook</button>
