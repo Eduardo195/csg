@@ -1,13 +1,6 @@
 import { connect } from 'react-redux';
-import { getIsEmployer } from 'components/user/selectors/sessionSelectors';
 import { getAll, getApplications } from 'components/opportunity/actions/employerActions';
 import Home from '../home';
-
-function mapStateToProps(state) {
-  return {
-    isEmployer: getIsEmployer(state),
-  };
-}
 
 function mapDispatchToProps(dispatch) {
   return {
@@ -18,4 +11,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Home);
+export default connect(null, mapDispatchToProps)(Home);
