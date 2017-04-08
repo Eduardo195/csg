@@ -6,7 +6,7 @@ const CandidateUploadService = {
     data.append('file', cvBlob);
 
     return query({
-      url: '/api/upload/cv',
+      url: '/api/cv',
       method: 'POST',
       data,
       contentType: false,

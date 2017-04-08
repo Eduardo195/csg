@@ -1,9 +1,9 @@
 const candidate = require('./candidate');
-const employer = require('./employer');
+// const employer = require('./employer');
 
 function setup(app) {
   candidate(app);
-  employer(app);
+  // employer(app);
 }
 
 module.exports = setup;

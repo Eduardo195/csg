@@ -5,7 +5,7 @@ const errors = require('./errors');
 
 const returnableValues = { _id: 1, username: 1, type: 1 };
 const WHITELISTED_FIELDS = {
-  [TableNames.LOCAL_USERS]: ['username', 'email', 'type', 'password', 'nif'],
+  [TableNames.LOCAL_USERS]: ['username', 'email', 'type', 'password', 'nif', 'cv'],
   [TableNames.LOCAL_USERS_UNVERIFIED]: ['username', 'email', 'type', 'password', 'nif', 'confHash']
 };
 
@@ -78,8 +78,8 @@ module.exports = {
     return Connector.getCollection(TableNames.LOCAL_USERS).removeOne({ _id: ObjectID(id) });
   },
   setPasswordConfirmationHash(username, hash) {
-    return Connector.getCollection(TableNames.PASSWORD_RESET).insertOne({ username, hash })
-      .then(() => ({ hash }));  // Explicitly return user data
+    return Connector.getCollection(TableNames.PASSWORD_RESET)
+      .insertOne({ username, hash }).then(() => ({ hash }));  // Explicitly return user data
   },
   getPasswordConfirmationHash(username) {
     return Connector.getCollection(TableNames.PASSWORD_RESET).findOne({ username });

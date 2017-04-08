@@ -7,6 +7,7 @@ const sessionConfig = require('./sessionConfig');
 const db = require('../shared/db/connectors/search');
 const setupRoutes = require('./routes/routes');
 const setupPassport = require('./passport/setup');
+const busboy = require('connect-busboy');
 
 const PORT = 3000;
 const bundleMap = {
@@ -22,6 +23,11 @@ app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(cookieParser());
 app.use(expressSession(sessionConfig));
+app.use(busboy({
+  limits: {
+    fileSize: 1 * 1024 * 1024 // bytes
+  }
+}));
 
 const passport = setupPassport(app);
 setupRoutes(app, passport);
