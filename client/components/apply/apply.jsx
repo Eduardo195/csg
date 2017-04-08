@@ -20,7 +20,6 @@ class Apply extends React.Component {
     return (
       <div>
         Apply page { id }
-        { error && (<ErrorMessage>{ error }</ErrorMessage>) }
         { success && (<SuccessMessage>{ success }</SuccessMessage>) }
         <div className="jumbotron">
           <div className="content">
@@ -31,6 +30,11 @@ class Apply extends React.Component {
                 </button>
               </form>
             </div>
+            { error && (
+              <div className="row d-block errorContainer">
+                <ErrorMessage>{ error }</ErrorMessage>
+              </div>
+            ) }
           </div>
         </div>
       </div>

@@ -1,24 +1,24 @@
 /* eslint import/prefer-default-export: 0 */
 import { setOverlayVisibility } from 'components/overlay/actions/actions';
 import OpportunityService from 'services/opportunity/candidate';
-import * as actionTypes from './candidateActionTypes';
+import * as types from './types';
 
 function setApplyError(error) {
   return {
-    type: actionTypes.SET_APPLY_ERROR,
+    type: types.SET_APPLY_ERROR,
     error,
   };
 }
 
 function clearApplyStatus() {
   return {
-    type: actionTypes.CLEAR_APPLY_STATUS,
+    type: types.CLEAR_APPLY_STATUS,
   };
 }
 
 function setApplySuccess(id) {
   return {
-    type: actionTypes.SET_APPLY_SUCCESS,
+    type: types.SET_APPLY_SUCCESS,
     id,
   };
 }

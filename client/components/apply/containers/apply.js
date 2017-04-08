@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 // import { getLocations, getContractTypes } from 'components/filters/selectors/filterSelectors';
-import { getApplyError, getApplySuccess } from 'components/opportunity/selectors/candidate';
-import { apply } from '../actions/candidateActions';
+import { getApplyError, getApplySuccess } from 'components/apply/selectors/selectors';
+import { apply } from '../actions/actions';
 import Apply from '../apply';
 
 function mapStateToProps(state) {

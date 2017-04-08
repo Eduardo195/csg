@@ -11,7 +11,7 @@ import RegistrationConfirmation from 'components/registration/containers/registr
 import ViewOpportunity from 'components/opportunity/view';
 import EditOpportunity from 'components/opportunity/containers/edit';
 import CreateOpportunity from 'components/opportunity/containers/create';
-import ApplyForOpportunity from 'components/opportunity/containers/apply';
+import ApplyForOpportunity from 'components/apply/containers/apply';
 
 import EmployerRegistration from 'components/registration/employerRegistration';
 import EmployerOpportunities from 'components/opportunities/employer/containers/opportunities';
