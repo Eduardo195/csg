@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { deleteAccount } from 'components/user/actions/userActions';
+import { deleteAccount } from 'components/user/actions/actions';
 import DeleteAccountBtn from '../deleteAccountBtn';
 
 function mapDispatchToProps(dispatch) {

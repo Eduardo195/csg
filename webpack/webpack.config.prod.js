@@ -22,7 +22,6 @@ sharedConfig.output.publicPath = '/';
 sharedConfig.plugins.push(
     new webpack.DefinePlugin({ 'process.env.NODE_ENV': '"prod"' }),
     new webpack.optimize.UglifyJsPlugin({
-      // Compression specific options
       compress: { warnings: false, drop_console: true }
     }),
   new ExtractTextPlugin({ filename: 'styles.css' }),

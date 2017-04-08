@@ -1,4 +1,2 @@
-export const getApplicationsError = state => state.submissions.candidate.applications &&
-    state.submissions.candidate.applications.error;
-export const getApplications = state => state.submissions.candidate.applications &&
-    state.submissions.candidate.applications.applications;
+export const getApplicationsError = state => state.applications && state.applications.error;
+export const getApplications = state => state.applications && state.applications.applications;

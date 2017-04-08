@@ -5,12 +5,13 @@ const EXCLUDE = (/node_modules/);
 
 const config = {
   entry: {
-    // app: ['./client/index']
-    app: ['./client/containers/root/root']
+    candidate: ['./client/containers/root/candidate'],
+    employer: ['./client/containers/root/employer'],
+    guest: ['./client/containers/root/guest']
   },
   output: {
-    path: path.join(__dirname, '../public'),
-    filename: 'bundle.js'
+    path: path.join(__dirname, '../public/static'),
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [

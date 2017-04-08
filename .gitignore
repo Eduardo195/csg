@@ -4,7 +4,7 @@ npm-debug.log
 */secret/*
 secret*
 public/*
-!public/index.html
-!public/styles.css
-!public/bundle.js
-!public/*.svg
+!public/*.html
+!public/static/styles.css
+!public/static/*.bundle.js
+!public/static/*.svg

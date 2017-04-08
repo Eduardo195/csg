@@ -26,11 +26,15 @@ sharedConfig.module.rules.push(
     use: ['style-loader', 'css-loader', 'less-loader']
   }
 );
+// for hot module replacement
 config.output.publicPath = '/';
-config.entry.app.push(
-  `webpack-dev-server/client?http://localhost:${PORT}`,
-  'webpack/hot/only-dev-server'
-);
+const entryPoints = Object.keys(config.entry);
+entryPoints.forEach((entryPoint) => {
+  config.entry[entryPoint].push(
+    `webpack-dev-server/client?http://localhost:${PORT}`,
+    'webpack/hot/only-dev-server'
+  );
+});
 config.plugins.push(
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
