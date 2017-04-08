@@ -1,5 +1,6 @@
 import React from 'react';
 import Applications from 'components/applications/candidate/containers/applications';
+import Cvs from 'components/cvs/containers/cvs';
 
 class Home extends React.Component {
 
@@ -9,7 +10,10 @@ class Home extends React.Component {
 
   render() {
     return (
-      <Applications />
+      <div>
+        <Applications />
+        <Cvs />
+      </div>
     );
   }
 }
