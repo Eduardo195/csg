@@ -3,11 +3,23 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const expressSession = require('express-session');
+const MongoDBStore = require('connect-mongodb-session')(expressSession);
 const sessionConfig = require('./sessionConfig');
 const db = require('../shared/db/connectors/search');
 const setupRoutes = require('./routes/routes');
 const setupPassport = require('./passport/setup');
 const busboy = require('connect-busboy');
+
+// for session persistence
+const store = new MongoDBStore({
+  uri: 'mongodb://localhost:27017/labop',
+  collection: 'session'
+});
+
+// Catch errors
+store.on('error', (error) => {
+  console.log('session error', error);
+});
 
 const PORT = 3000;
 const bundleMap = {
@@ -22,7 +34,7 @@ app.use(express.static(path.join(__dirname, '../public/static')));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 app.use(cookieParser());
-app.use(expressSession(sessionConfig));
+app.use(expressSession(Object.assign({}, sessionConfig, { store })));
 app.use(busboy({
   limits: {
     fileSize: 1 * 1024 * 1024 // bytes
