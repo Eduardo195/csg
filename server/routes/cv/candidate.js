@@ -22,23 +22,23 @@ function setup(app) {
   app.get('/api/cv/:name', requireCandidateLogin, (req, res) => {
     CvService.getCv(req.user._id).then(({ cv }) => {
       const filepath = getDir(req.user._id) + path.basename(cv.filename);
-      fs.stat(filepath, (err, stat) => {
-        if(err) {
-          res.send({ success: false, msg: "File not found"})
+      fs.stat(filepath, (err) => {
+        if (err) {
+          res.send({ success: false, msg: 'File not found' });
         } else {
           const rs = fs.createReadStream(filepath);
           rs.pipe(res);
         }
-      })
+      });
     }).catch((err) => {
-      console.log("error sending file", err);
-      res.send({ success: false })
+      console.log('error sending file', err);
+      res.send({ success: false });
     });
   });
 
   app.post('/api/cv', requireCandidateLogin, (req, res) => {
     return busboy(req, getDir(req.user._id)).then((cv) => {
-      return CvService.uploadCv(req.user._id, cv).then((rsp) => {
+      return CvService.uploadCv(req.user._id, cv).then(() => {
         res.send({ success: true });
       });
     }).catch((err) => {

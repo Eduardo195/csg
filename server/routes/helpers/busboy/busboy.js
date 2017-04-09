@@ -3,7 +3,7 @@ const path = require('path');
 const errors = require('./errors');
 
 function ensureDirectoryExistence(filePath) {
-  var dirname = path.dirname(filePath);
+  const dirname = path.dirname(filePath);
   if (fs.existsSync(dirname)) {
     return true;
   }
@@ -29,7 +29,7 @@ function busboy(req, saveDir) {
           filename,
           mimetype,
           encoding,
-          size,
+          size
         });
       });
 

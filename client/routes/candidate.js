@@ -1,4 +1,4 @@
-import Profile from 'components/user/profile';
+import Profile from 'components/profile/candidate/containers/profile';
 import Home from 'components/home/candidate/containers/home';
 import base from './base';
 

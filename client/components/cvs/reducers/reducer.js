@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { SET_PROFILE } from 'components/profile/candidate/actions/types';
 import * as types from '../actions/types';
 
 function upload(state = {
@@ -54,6 +55,14 @@ function meta(state = {}, action) {
         filename: action.meta.filename,
         mimetype: action.meta.mimetype,
         size: action.meta.size,
+      });
+
+    // TODO: 1 source of truth
+    case SET_PROFILE:
+      return Object.assign({}, state, {
+        filename: action.profile.cv.filename,
+        mimetype: action.profile.cv.mimetype,
+        size: action.profile.cv.size,
       });
 
     case types.CLEAR_META:
