@@ -6,7 +6,7 @@ function setup(app) {
   app.get('/api/cv/meta', requireCandidateLogin, (req, res) => {
     CvService.getCvMeta(req.user._id).then((cv) => {
       console.log('cv meta ::: ', cv);
-      res.send({ success: true, cv });
+      res.send({ success: true, meta: cv.cv });
     }).catch((err) => {
       res.send({ success: false, msg: err ? err.msg : 'Unknown error' });
     });

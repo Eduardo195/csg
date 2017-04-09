@@ -1,30 +1,30 @@
+import { combineReducers } from 'redux';
 import * as types from '../actions/types';
 
-function cvs(state = {
-  file: null,
+function upload(state = {
   error: null,
   success: null,
   isLoading: false,
 }, action) {
   switch (action.type) {
-    case types.SET_IS_LOADING:
+    case types.SET_IS_UPLOADING:
       return Object.assign({}, state, {
         isLoading: action.isLoading,
       });
 
-    case types.SET_ERROR:
+    case types.SET_UPLOAD_ERROR:
       return Object.assign({}, state, {
         error: action.error,
         success: null,
       });
 
-    case types.SET_SUCCESS:
+    case types.SET_UPLOAD_SUCCESS:
       return Object.assign({}, state, {
         error: null,
         success: true,
       });
 
-    case types.CLEAR:
+    case types.CLEAR_UPLOAD:
       return Object.assign({}, state, {
         error: null,
         success: null,
@@ -36,4 +36,35 @@ function cvs(state = {
   }
 }
 
-export default cvs;
+function meta(state = {}, action) {
+  switch (action.type) {
+    case types.SET_META_IS_LOADING:
+      return Object.assign({}, state, {
+        isLoading: action.isLoading,
+      });
+
+    case types.SET_META_ERROR:
+      return Object.assign({}, state, {
+        error: action.error,
+        success: null,
+      });
+
+    case types.SET_META:
+      return Object.assign({}, state, {
+        filename: action.meta.filename,
+        mimetype: action.meta.mimetype,
+        size: action.meta.size,
+      });
+
+    case types.CLEAR_META:
+      return null;
+
+    default:
+      return state;
+  }
+}
+
+export default combineReducers({
+  upload,
+  meta,
+});

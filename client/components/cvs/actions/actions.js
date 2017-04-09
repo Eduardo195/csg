@@ -1,47 +1,93 @@
 /* eslint import/prefer-default-export: 0 */
+import ProfileService from 'services/profile/candidate';
 import UploadService from 'services/upload/candidate';
 import * as types from './types';
 
-function setIsLoading(isLoading) {
+function setIsUploading(isLoading) {
   return {
-    type: types.SET_IS_LOADING,
+    type: types.SET_IS_UPLOADING,
     isLoading,
   };
 }
 
-function setError(error) {
+function setUploadError(error) {
   return {
-    type: types.SET_ERROR,
+    type: types.SET_UPLOAD_ERROR,
     error,
   };
 }
 
-function clear() {
+function clearUpload() {
   return {
-    type: types.CLEAR,
+    type: types.CLEAR_UPLOAD,
   };
 }
 
-function setSuccess() {
+function setUploadSuccess() {
   return {
-    type: types.SET_SUCCESS,
+    type: types.SET_UPLOAD_SUCCESS,
   };
 }
 
 export function uploadCv(cv) {
   return (dispatch) => {
-    dispatch(clear());
-    dispatch(setIsLoading(true));
+    dispatch(clearUpload());
+    dispatch(setIsUploading(true));
     UploadService.uploadCv(cv).then((rsp) => {
       if (rsp.success) {
-        dispatch(setSuccess());
+        dispatch(setUploadSuccess());
       } else {
-        dispatch(setError(rsp.msg));
+        dispatch(setUploadError(rsp.msg));
       }
-      dispatch(setIsLoading(false));
+      dispatch(setIsUploading(false));
     }).catch((err) => {
-      dispatch(setError(`${err.status} - ${err.statusText}`));
-      dispatch(setIsLoading(false));
+      dispatch(setUploadError(`${err.status} - ${err.statusText}`));
+      dispatch(setIsUploading(false));
+    });
+  };
+}
+
+function setMetaError(error) {
+  return {
+    type: types.SET_META_ERROR,
+    error,
+  };
+}
+
+function setMetaIsLoading(isLoading) {
+  return {
+    type: types.SET_META_IS_LOADING,
+    isLoading,
+  };
+}
+
+function clearMeta() {
+  return {
+    type: types.CLEAR_META,
+  };
+}
+
+function setMeta(meta) {
+  return {
+    type: types.SET_META,
+    meta,
+  };
+}
+
+export function getCv(cv) {
+  return (dispatch) => {
+    dispatch(clearMeta());
+    dispatch(setMetaIsLoading(true));
+    ProfileService.getMeta(cv).then((rsp) => {
+      if (rsp.success) {
+        dispatch(setMeta(rsp.meta));
+      } else {
+        dispatch(setMetaError(rsp.msg));
+      }
+      dispatch(setMetaIsLoading(false));
+    }).catch((err) => {
+      dispatch(setMetaError(`${err.status} - ${err.statusText}`));
+      dispatch(setMetaIsLoading(false));
     });
   };
 }

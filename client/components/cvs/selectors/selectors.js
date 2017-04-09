@@ -1,4 +1,9 @@
-export const getCv = state => state.profile.cvs.file;
-export const getError = state => state.profile.cvs.error;
-export const getSuccess = state => state.profile.cvs.success;
-export const getIsLoading = state => state.profile.cvs.isLoading;
+export const getUploadError = state => state.profile.cvs.upload.error;
+export const getUploadSuccess = state => state.profile.cvs.upload.success;
+export const getIsUploading = state => state.profile.cvs.upload.isLoading;
+
+export const getMetaIsLoading = state => state.profile.cvs.meta.isLoading;
+export const getMetaError = state => state.profile.cvs.upload.error;
+export const getFilename = state => state.profile.cvs.meta.filename;
+export const getMimetype = state => state.profile.cvs.meta.mimetype;
+export const getSize = state => state.profile.cvs.meta.size;
