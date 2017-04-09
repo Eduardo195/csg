@@ -17,12 +17,11 @@ class Cvs extends React.Component {
           <div>
             {
               isLoading ? 'Loading....' : (
-                <a target="_blank" rel="noopener noreferrer" href="/api/cv">
+                <a target="_blank" rel="noopener noreferrer" href={`/api/cv/${filename}`}>
                   cv ::: { `${filename} - ${mimetype} - ${size} bytes` }
                 </a>
               )
             }
-
             {error && (
               <ErrorMessage>{ error }</ErrorMessage>
             )}

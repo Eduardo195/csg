@@ -1,10 +1,22 @@
+const fs = require('fs');
+const path = require('path');
 const errors = require('./errors');
 
-function busboy(req) {
-  console.log(req);
+function ensureDirectoryExistence(filePath) {
+  var dirname = path.dirname(filePath);
+  if (fs.existsSync(dirname)) {
+    return true;
+  }
+  ensureDirectoryExistence(dirname);
+  fs.mkdirSync(dirname);
+}
 
+function busboy(req, saveDir) {
   return new Promise((resolve, reject) => {
     req.busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
+      ensureDirectoryExistence(saveDir + path.basename(filename));
+      file.pipe(fs.createWriteStream(saveDir + path.basename(filename)));
+
       let size = 0;
       const fileData = [];
       file.on('data', (data) => {
@@ -18,7 +30,6 @@ function busboy(req) {
           mimetype,
           encoding,
           size,
-          file: fileData.join()
         });
       });
 

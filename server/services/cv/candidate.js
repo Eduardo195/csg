@@ -6,5 +6,8 @@ module.exports = {
   },
   getCvMeta(dirtyCandidadeId) {
     return CandidadeConnector.getCvMeta(dirtyCandidadeId);
+  },
+  getCv(dirtyCandidadeId) {
+    return CandidadeConnector.getCv(dirtyCandidadeId);
   }
 };
