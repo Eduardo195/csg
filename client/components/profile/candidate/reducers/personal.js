@@ -13,6 +13,17 @@ function isLoading(state = false, action) {
   }
 }
 
+function success(state = null, action) {
+  switch (action.type) {
+
+    case types.SET_PERSONAL_SUCCESS:
+      return action.success;
+
+    default:
+      return state;
+  }
+}
+
 function error(state = null, action) {
   switch (action.type) {
 
@@ -49,6 +60,7 @@ function surname(state = null, action) {
 export default combineReducers({
   query: combineReducers({
     isLoading,
+    success,
     error,
   }),
   name,

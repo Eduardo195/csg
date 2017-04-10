@@ -1,5 +1,6 @@
 const requireCandidateLogin = require('../helpers/requireLogin/candidate');
 const ProfileService = require('../../services/profile/candidate');
+const personalRoutes = require('./candidate/personal');
 
 function setup(app) {
   app.get('/api/profile', requireCandidateLogin, (req, res) => {
@@ -13,6 +14,7 @@ function setup(app) {
       res.send({ success: false, msg: err ? err.msg : 'Unknown error' });
     });
   });
+  personalRoutes(app);
 }
 
 module.exports = setup;

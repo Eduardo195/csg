@@ -16,6 +16,13 @@ function setPersonalError(error) {
   };
 }
 
+function setPersonalSuccess(success) {
+  return {
+    type: types.SET_PERSONAL_SUCCESS,
+    success,
+  };
+}
+
 function setPersonalIsLoading(isLoading) {
   return {
     type: types.SET_PERSONAL_IS_LOADING,
@@ -30,6 +37,7 @@ export function setPersonalData(personal) {
     ProfileService.setPersonal(personal).then((rsp) => {
       if (rsp.success) {
         dispatch(setPersonal(personal));
+        dispatch(setPersonalSuccess(true));
       } else {
         dispatch(setPersonalError(rsp.msg));
       }

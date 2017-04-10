@@ -33,13 +33,13 @@ class Personal extends React.Component {
   }
 
   render() {
-    const { isLoading, error, success } = this.props;
+    const { name, surname, isLoading, error, success } = this.props;
     return (
       <section>
         <h1 className="title sectionTitle text-uppercase">Personal</h1>
         <form onSubmit={this.onSubmit}>
-          <TextInput id="name" placeholder="Name" srLabel="Name" helperText="Visible to employers" onChange={this.setName} />
-          <TextInput id="surname" placeholder="Surname" srLabel="Surname" helperText="Visible to employers" onChange={this.setSurname} />
+          <TextInput id="name" initialValue={name} placeholder="Name" srLabel="Name" helperText="Visible to employers" onChange={this.setName} />
+          <TextInput id="surname" initialValue={surname} placeholder="Surname" srLabel="Surname" helperText="Visible to employers" onChange={this.setSurname} />
           <div>
             <button type="submit" disabled={isLoading} className="btn btn--main font-weight-bold text-lowercase"> { isLoading ? 'Loading...' : 'Save' }</button>
           </div>

@@ -6,5 +6,11 @@ module.exports = {
   getCandidateProfile(id) {
     return Connector.getCollection(TableNames.LOCAL_USERS)
       .find({ _id: ObjectID(id) }).toArray();
+  },
+  setPersonal(id, name, surname) {
+    return Connector.getCollection(TableNames.LOCAL_USERS)
+      .updateOne({ _id: ObjectID(id) }, {
+        $set: { name, surname }
+      });
   }
 };

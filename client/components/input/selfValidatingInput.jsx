@@ -2,22 +2,26 @@ import React from 'react';
 
 class SelfValidatingInput extends React.Component {
 
-  constructor() {
-    super();
-    this.state = { error: null };
-
+  constructor(props) {
+    super(props);
+    this.state = { error: null, value: props.initialValue || '' };
     this.onChange = this.onChange.bind(this);
     this.onBlur = this.onBlur.bind(this);
-
     this.getRef = (ref) => { this.elem = ref; };
   }
 
-  onChange() {
-    if (this.state.error) {
-      this.setState({
-        error: null,
-      });
+  componentWillReceiveProps(newProps) {
+    // TODO: refactor this hole thing, too mnay dodgy edge cases
+    if (newProps.initialValue) {
+      this.state.value = newProps.initialValue;
+      this.props.onChange(true, newProps.initialValue);
     }
+  }
+
+  onChange(e) {
+    this.setState({
+      value: e.target.value,
+    });
     const error = this.props.validate(this.elem.value);
     this.props.onChange(!error, this.elem.value);
   }
@@ -30,16 +34,17 @@ class SelfValidatingInput extends React.Component {
     if (!error !== !this.state.error) {
       this.props.onChange(!error, this.elem.value);
     }
-    this.setState({ error });
+    this.setState(Object.assign({}, this.state, { error }));
   }
 
   render() {
-    const { error } = this.state;
+    const { error, value } = this.state;
     const { id, type, placeholder, helperText, srLabel } = this.props;
     return (
       <div className={`form-group input-group-lg ${error ? 'has-danger' : ''}`}>
-        <label htmlFor="email" className="sr-only">{srLabel}</label>
+        <label htmlFor={`ac_${id}`} className="sr-only">{srLabel}</label>
         <input
+          value={value} id={`ac_${id}`}
           ref={this.getRef} type={type} aria-describedby={`${id}Help`}
           placeholder={placeholder} onBlur={this.onBlur} onChange={this.onChange}
           className={`form-control ${error ? 'form-control-danger' : ''}`}
@@ -56,6 +61,7 @@ class SelfValidatingInput extends React.Component {
 }
 
 SelfValidatingInput.propTypes = {
+  initialValue: React.PropTypes.string,
   id: React.PropTypes.string.isRequired,
   type: React.PropTypes.string.isRequired,
   placeholder: React.PropTypes.string.isRequired,

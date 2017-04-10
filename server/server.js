@@ -94,7 +94,7 @@ app.use((err, req, res, next) => {  // eslint-disable-line no-unused-vars
   console.log('caught error', err);
   res.send({
     success: false,
-    msg: err.msg
+    msg: err.msg || 'Fatal server error'
   });
 });
 

@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import validator from 'services/validators/text';
 import SelfValidatingInput from '../selfValidatingInput';
 
-function mapStateToProps(state) {
+function mapStateToProps() {
   return {
     validate: validator,
     type: 'text',
