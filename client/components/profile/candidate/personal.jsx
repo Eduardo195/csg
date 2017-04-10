@@ -12,6 +12,10 @@ class Personal extends React.Component {
     this.setSurname = this.setSurname.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.handleUnmount();
+  }
+
   onSubmit(e) {
     e.preventDefault();
     if (this.state.name !== this.props.name ||

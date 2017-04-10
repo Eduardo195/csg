@@ -2,6 +2,12 @@
 import ProfileService from 'services/profile/candidate';
 import * as types from './personalTypes';
 
+export function clearPersonalQuery() {
+  return {
+    type: types.CLEAR_PERSONAL_QUERY,
+  };
+}
+
 function setPersonal(personal) {
   return {
     type: types.SET_PERSONAL,
@@ -32,6 +38,7 @@ function setPersonalIsLoading(isLoading) {
 
 export function setPersonalData(personal) {
   return (dispatch) => {
+    dispatch(clearPersonalQuery());
     dispatch(setPersonalIsLoading(true));
     dispatch(setPersonalError(null));
     ProfileService.setPersonal(personal).then((rsp) => {

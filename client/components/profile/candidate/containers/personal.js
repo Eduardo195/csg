@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { getPersonalSuccess, getPersonalError, getPersonalIsLoading, getName, getSurname } from '../selectors/selectors';
-import { setPersonalData } from '../actions/personal';
+import { setPersonalData, clearPersonalQuery } from '../actions/personal';
 import Personal from '../personal';
 
 function mapStateToProps(state) {
@@ -17,6 +17,9 @@ function mapDispatchToProps(dispatch) {
   return {
     handleSubmit(personal) {
       dispatch(setPersonalData(personal));
+    },
+    handleUnmount() {
+      dispatch(clearPersonalQuery());
     },
   };
 }

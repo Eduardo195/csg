@@ -19,6 +19,9 @@ function success(state = null, action) {
     case types.SET_PERSONAL_SUCCESS:
       return action.success;
 
+    case types.CLEAR_PERSONAL_QUERY:
+      return null;
+
     default:
       return state;
   }
@@ -29,6 +32,9 @@ function error(state = null, action) {
 
     case types.SET_PERSONAL_ERROR:
       return action.error;
+
+    case types.CLEAR_PERSONAL_QUERY:
+      return null;
 
     default:
       return state;
