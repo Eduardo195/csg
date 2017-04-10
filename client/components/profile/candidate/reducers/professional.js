@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 import { SET_PROFILE } from 'components/profile/candidate/actions/types';
-import * as types from 'components/profile/candidate/actions/personalTypes';
+import * as types from 'components/profile/candidate/actions/professionalTypes';
 
 function isLoading(state = false, action) {
   switch (action.type) {
 
-    case types.SET_PERSONAL_IS_LOADING:
+    case types.SET_PROFESSIONAL_IS_LOADING:
       return action.isLoading;
 
     default:
@@ -16,10 +16,10 @@ function isLoading(state = false, action) {
 function success(state = null, action) {
   switch (action.type) {
 
-    case types.SET_PERSONAL_SUCCESS:
+    case types.SET_PROFESSIONAL_SUCCESS:
       return action.success;
 
-    case types.CLEAR_PERSONAL_QUERY:
+    case types.CLEAR_PROFESSIONAL_QUERY:
       return null;
 
     default:
@@ -30,10 +30,10 @@ function success(state = null, action) {
 function error(state = null, action) {
   switch (action.type) {
 
-    case types.SET_PERSONAL_ERROR:
+    case types.SET_PROFESSIONAL_ERROR:
       return action.error;
 
-    case types.CLEAR_PERSONAL_QUERY:
+    case types.CLEAR_PROFESSIONAL_QUERY:
       return null;
 
     default:
@@ -41,29 +41,14 @@ function error(state = null, action) {
   }
 }
 
-function name(state = null, action) {
+function yearsXp(state = null, action) {
   switch (action.type) {
 
     case SET_PROFILE:
-      return action.profile.name || null;
+      return +action.profile.yearsXp || null;
 
-    case types.SET_PERSONAL:
-      return action.personal.name || null;
-
-
-    default:
-      return state;
-  }
-}
-
-function surname(state = null, action) {
-  switch (action.type) {
-
-    case SET_PROFILE:
-      return action.profile.surname || null;
-
-    case types.SET_PERSONAL:
-      return action.personal.surname || null;
+    case types.SET_PROFESSIONAL:
+      return +action.professional.yearsXp || null;
 
     default:
       return state;
@@ -76,6 +61,5 @@ export default combineReducers({
     success,
     error,
   }),
-  name,
-  surname,
+  yearsXp,
 });

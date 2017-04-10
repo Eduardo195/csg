@@ -8,15 +8,18 @@ function mapStateToProps(state) {
     isLoading: getPersonalIsLoading(state),
     success: getPersonalSuccess(state),
     error: getPersonalError(state),
-    name: getName(state),
     surname: getSurname(state),
+    name: getName(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     handleSubmit(personal) {
-      dispatch(setPersonalData(personal));
+      dispatch(setPersonalData({
+        name: personal.name.value,
+        surname: personal.surname.value,
+      }));
     },
     handleUnmount() {
       dispatch(clearPersonalQuery());

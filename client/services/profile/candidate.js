@@ -11,11 +11,18 @@ const ProfileService = {
       url: '/api/profile',
     });
   },
-  setPersonal(personal) {
+  setPersonal(data) {
     return query({
       url: '/api/profile/personal',
       method: 'POST',
-      data: personal,
+      data,
+    });
+  },
+  setProfessional(data) {
+    return query({
+      url: '/api/profile/professional',
+      method: 'POST',
+      data,
     });
   },
 };

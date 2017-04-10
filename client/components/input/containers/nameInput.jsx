@@ -5,6 +5,7 @@ import SelfValidatingInput from '../selfValidatingInput';
 function mapStateToProps() {
   return {
     validate: validator,
+    type: 'text',
   };
 }
 

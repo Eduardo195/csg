@@ -41,16 +41,30 @@
       border-color: @primary-light;
   }
 
-  input, button {
+  input:focus, button {
     border-color: @primary-light;
   }
 
   button {
-    background: @primary-light;
     color: @font-color-alt;
+    background: @primary-light;
+    border-color: @primary-light;
 
     &:focus {
       color: @font-color-alt;
+      border-color: @primary-light;
+    }
+
+    &:hover {
+      color: @font-color-alt;
+      background: darken(@primary-light, 10%);
+      border-color: darken(@primary-light, 10%);
+    }
+
+    &:active {
+      color: @font-color-alt;
+      background: darken(@primary-light, 20%);
+      border-color: darken(@primary-light, 20%);
     }
   }
 

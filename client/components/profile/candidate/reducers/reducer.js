@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import personal from 'components/profile/candidate/reducers/personal';
+import professional from 'components/profile/candidate/reducers/professional';
 import cv from 'components/cvs/reducers/reducer';
 import * as types from '../actions/types';
 
@@ -31,5 +32,6 @@ export default combineReducers({
     error,
   }),
   personal,
+  professional,
   cv,
 });

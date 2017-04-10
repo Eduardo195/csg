@@ -12,5 +12,11 @@ module.exports = {
       .updateOne({ _id: ObjectID(id) }, {
         $set: { name, surname }
       });
+  },
+  setProfessional(id, yearsXp) {
+    return Connector.getCollection(TableNames.LOCAL_USERS)
+      .updateOne({ _id: ObjectID(id) }, {
+        $set: { yearsXp }
+      });
   }
 };

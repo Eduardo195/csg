@@ -12,7 +12,7 @@ a.btn {
     color: @primary-light;
     outline-color: @primary-light;
     border-color: @primary-light;
-    box-shadow: 0 0 0 2px rgba(78, 184, 169, 0.25);
+    // box-shadow: 0 0 0 2px rgba(78, 184, 169, 0.25);
   }
 
     &--main,
@@ -24,13 +24,15 @@ a.btn {
     }
 }
 
-
-
 .btn {
     background: @bg-color-main;
     border: 1px solid #ccc;
     border-radius: 0;
     cursor: pointer;
+
+    &:focus {
+      box-shadow: 0 0 0 2px fade(@primary-light, 50%)
+    }
 
     &--circular {
       height: @circular-btn-size;
@@ -83,7 +85,7 @@ a.btn {
       display: inline-block;
 
       &:focus, &.focus {
-        box-shadow: 0 0 0 2px rgba(233, 79, 43, 0.25);
+        box-shadow: 0 0 0 2px fade(@primary-dark, 50%);
       }
 
       &-alt {
@@ -122,12 +124,9 @@ a.btn {
 }
 
 button {
-
-    &:focus, &:hover {
-
-        .caret {
-                transform: rotate(-180deg);
-        }
+  &:focus, &:hover {
+    .caret {
+      transform: rotate(-180deg);
     }
-
+  }
 }

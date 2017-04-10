@@ -1,6 +1,8 @@
 import React from 'react';
 import ErrorMessage from 'components/messages/error';
 import Personal from './containers/personal';
+import Professional from './containers/professional';
+import ChangePassword from './changePassword';
 
 class Profile extends React.Component {
 
@@ -11,7 +13,7 @@ class Profile extends React.Component {
   render() {
     const { error, isLoading } = this.props;
     return (
-      <div>
+      <div className="profile">
         {
           error && (<ErrorMessage> { error } </ErrorMessage>)
         }
@@ -19,6 +21,8 @@ class Profile extends React.Component {
           isLoading && (<div> Loading... </div>)
         }
         <Personal />
+        <Professional />
+        <ChangePassword />
       </div>
     );
   }

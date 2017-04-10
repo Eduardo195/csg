@@ -4,6 +4,10 @@ input:focus {
   outline-color: @primary-light;
 }
 
+input:focus {
+  box-shadow: 0 0 0 2px fade(@primary-light, 50%)
+}
+
 .input-group-lg > input.form-control {
   font-size: initial;
   &:focus {
