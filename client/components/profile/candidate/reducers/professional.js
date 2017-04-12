@@ -55,6 +55,20 @@ function yearsXp(state = null, action) {
   }
 }
 
+function keywords(state = null, action) {
+  switch (action.type) {
+
+    case SET_PROFILE:
+      return action.profile.keywords || null;
+
+    case types.SET_PROFESSIONAL:
+      return action.professional.keywords || null;
+
+    default:
+      return state;
+  }
+}
+
 export default combineReducers({
   query: combineReducers({
     isLoading,
@@ -62,4 +76,5 @@ export default combineReducers({
     error,
   }),
   yearsXp,
+  keywords,
 });

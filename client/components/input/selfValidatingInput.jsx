@@ -69,7 +69,7 @@ SelfValidatingInput.propTypes = {
   initialValue: React.PropTypes.oneOfType([
     React.PropTypes.string,
     React.PropTypes.number,
-  ]).isRequired,
+  ]),
   helperText: React.PropTypes.string,
   showLabel: React.PropTypes.bool,
   labelCls: React.PropTypes.string,

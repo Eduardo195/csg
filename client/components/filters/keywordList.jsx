@@ -15,7 +15,7 @@ class KeywordList extends React.Component {
   render() {
     const { keywords } = this.props;
 
-    if (!keywords) {
+    if (!keywords || keywords.length === 0) {
       return null;
     }
 
@@ -23,7 +23,7 @@ class KeywordList extends React.Component {
       <div className="keywordList">
         {
           keywords.map(entry => (
-            <span className="keyword">
+            <span key={entry} className="keyword">
               <button onClick={this.onRemove} value={entry}>X</button>
               {entry}
             </span>

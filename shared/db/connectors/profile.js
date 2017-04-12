@@ -13,10 +13,10 @@ module.exports = {
         $set: { name, surname }
       });
   },
-  setProfessional(id, yearsXp) {
+  setProfessional(id, yearsXp, keywords) {
     return Connector.getCollection(TableNames.LOCAL_USERS)
       .updateOne({ _id: ObjectID(id) }, {
-        $set: { yearsXp }
+        $set: { yearsXp, keywords }
       });
   }
 };

@@ -9,6 +9,6 @@ module.exports = {
   },
   setProfessional(candidateId, body) {
     console.warn('TODO: SANITIZE');
-    return ProfileConnector.setProfessional(candidateId, body.yearsXp);
+    return ProfileConnector.setProfessional(candidateId, body.yearsXp, body.keywords);
   }
 };

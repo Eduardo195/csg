@@ -13,3 +13,4 @@ export const getProfessionalIsLoading = state => state.profile.professional.quer
 export const getProfessionalSuccess = state => state.profile.professional.query.success;
 export const getProfessionalError = state => state.profile.professional.query.error;
 export const getYearsExperience = state => state.profile.professional.yearsXp;
+export const getKeywords = state => state.profile.professional.keywords;

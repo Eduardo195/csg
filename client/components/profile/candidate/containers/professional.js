@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { getYearsExperience, getProfessionalSuccess, getProfessionalError,
+import { getYearsExperience, getKeywords, getProfessionalSuccess, getProfessionalError,
   getProfessionalIsLoading } from '../selectors/selectors';
 import { setProfessionalData, clearProfessionalQuery } from '../actions/professional';
 import Professional from '../professional';
@@ -10,18 +10,20 @@ function mapStateToProps(state) {
     success: getProfessionalSuccess(state),
     error: getProfessionalError(state),
     yearsXp: getYearsExperience(state),
+    keywords: getKeywords(state),
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
     handleUnmount() {
-      console.warn('TODO: handle professional unmount');
+      dispatch(clearProfessionalQuery());
     },
-    handleSubmit(data) {
+    handleSubmit(state) {
       dispatch(clearProfessionalQuery());
       dispatch(setProfessionalData({
-        yearsXp: data.yearsXp.value,
+        yearsXp: state.yearsXp.value,
+        keywords: state.keywords,
       }));
     },
   };

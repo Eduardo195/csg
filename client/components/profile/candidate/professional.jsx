@@ -2,17 +2,25 @@ import React from 'react';
 import TextInput from 'components/input/containers/textInput';
 import ErrorMessage from 'components/messages/error';
 import SuccessMessage from 'components/messages/success';
-
-import KeywordFilter from 'components/filters/containers/keywordFilter';
-import KeywordList from 'components/filters/containers/keywordList';
+import { without, isEqual, assign } from 'lodash';
+import KeywordFilter from 'components/filters/keywordFilter';
+import KeywordList from 'components/filters/keywordList';
 
 class Professional extends React.Component {
   constructor() {
     super();
-    this.state = { yearsXp: {} };
+    this.state = { yearsXp: {}, keywords: [] };
     this.onSubmit = this.onSubmit.bind(this);
     this.canSubmit = this.canSubmit.bind(this);
     this.setYearsXp = this.setYearsXp.bind(this);
+    this.addKeyword = this.addKeyword.bind(this);
+    this.removeKeyword = this.removeKeyword.bind(this);
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.keywords !== this.props.keywords) {
+      this.setKeywords(newProps.keywords);
+    }
   }
 
   componentWillUnmount() {
@@ -30,17 +38,33 @@ class Professional extends React.Component {
     this.updateState({ yearsXp: { isValid, value: +value } });
   }
 
+  setKeywords(keywords) {
+    this.updateState({ keywords });
+  }
+
   updateState(prop) {
-    this.setState(Object.assign({}, this.state, prop));
+    this.setState(assign({}, this.state, prop));
+  }
+
+  addKeyword(value) {
+    if (this.state.keywords.indexOf(value) < 0) {
+      this.updateState({ keywords: [...this.state.keywords, value] });
+    }
+  }
+
+  removeKeyword(value) {
+    this.updateState({ keywords: without(this.state.keywords, value) });
   }
 
   canSubmit() {
     return this.props.isLoading ||
-      (this.state.yearsXp.isValid && this.state.yearsXp.value !== this.props.yearsXp);
+      (this.state.yearsXp.isValid && this.state.yearsXp.value !== this.props.yearsXp) ||
+      !isEqual(this.state.keywords, this.props.keywords);
   }
 
   render() {
     const { yearsXp, isLoading, error, success } = this.props;
+    const { keywords } = this.state;
 
     return (
       <section>
@@ -54,14 +78,8 @@ class Professional extends React.Component {
             onChange={this.setYearsXp}
           />
           <div className="form-group">
-            <label>Industries you have experience in</label>
-            <KeywordFilter className="input-group-lg" />
-            <KeywordList />
-          </div>
-          <div className="form-group">
-            <label>Keywords</label>
-            <KeywordFilter className="input-group-lg" />
-            <KeywordList />
+            <KeywordFilter className="input-group-lg" handleAdd={this.addKeyword} placeholder="Areas and techs" showLabel label="Areas and technologies you have experience in" />
+            <KeywordList keywords={keywords} handleRemove={this.removeKeyword} />
           </div>
           <div>
             <button disabled={!this.canSubmit()} type="submit" className="btn btn--main font-weight-bold text-lowercase"> { isLoading ? 'Loading...' : 'Save' }</button>
@@ -81,6 +99,7 @@ Professional.propTypes = {
   success: React.PropTypes.bool,
   error: React.PropTypes.string,
   yearsXp: React.PropTypes.number,
+  keywords: React.PropTypes.array,
 };
 
 export default Professional;
