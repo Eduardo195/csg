@@ -1,3 +1,4 @@
+const account = require('./account/routes');
 const session = require('./session/routes');
 const register = require('./register/routes');
 const password = require('./password/routes');
@@ -8,6 +9,7 @@ const cv = require('./cv/routes');
 const profile = require('./profile/routes');
 
 function setup(app, passport) {
+  account(app);
   session(app, passport);
   register(app);
   password(app);

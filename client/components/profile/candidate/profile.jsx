@@ -3,6 +3,7 @@ import ErrorMessage from 'components/messages/error';
 import Personal from './containers/personal';
 import Professional from './containers/professional';
 import EmployerVisibility from './containers/employerVisibility';
+import DeleteAccount from '../containers/deleteAccount';
 
 class Profile extends React.Component {
 
@@ -23,6 +24,7 @@ class Profile extends React.Component {
         <Personal />
         <Professional />
         <EmployerVisibility />
+        <DeleteAccount />
       </div>
     );
   }
