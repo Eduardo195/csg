@@ -2,13 +2,13 @@ import { connect } from 'react-redux';
 import validator from 'services/validators/password';
 import SelfValidatingInput from '../selfValidatingInput';
 
-function mapStateToProps() {
+function mapStateToProps(state, ownProps) {
   return {
     validate: validator,
     type: 'password',
-    srLabel: 'Create a password',
-    placeholder: 'Password',
-    helperText: 'Minimum 8 chars, max 25.',
+    label: ownProps.label || 'Create a password',
+    placeholder: ownProps.placeholder || 'Password',
+    helperText: ownProps.helperText,
   };
 }
 

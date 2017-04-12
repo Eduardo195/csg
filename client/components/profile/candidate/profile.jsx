@@ -2,7 +2,6 @@ import React from 'react';
 import ErrorMessage from 'components/messages/error';
 import Personal from './containers/personal';
 import Professional from './containers/professional';
-import ChangePassword from './changePassword';
 
 class Profile extends React.Component {
 
@@ -22,7 +21,6 @@ class Profile extends React.Component {
         }
         <Personal />
         <Professional />
-        <ChangePassword />
       </div>
     );
   }

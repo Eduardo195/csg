@@ -38,10 +38,10 @@ class SelfValidatingInput extends React.Component {
 
   render() {
     const { error, value } = this.state;
-    const { id, type, placeholder, helperText, srLabel, showLabel, labelCls } = this.props;
+    const { id, type, placeholder, helperText, label, showLabel, labelCls } = this.props;
     return (
       <div className={`form-group input-group-lg ${error ? 'has-danger' : ''}`}>
-        <label htmlFor={`ac_${id}`} className={showLabel ? labelCls : 'sr-only'}>{srLabel}</label>
+        <label htmlFor={`ac_${id}`} className={showLabel ? labelCls : 'sr-only'}>{label}</label>
         <input
           value={value} id={`ac_${id}`}
           ref={this.getRef} type={type} aria-describedby={`${id}Help`}
@@ -64,7 +64,7 @@ SelfValidatingInput.propTypes = {
   type: React.PropTypes.string.isRequired,
   validate: React.PropTypes.func.isRequired,
   onChange: React.PropTypes.func.isRequired,
-  srLabel: React.PropTypes.string.isRequired,
+  label: React.PropTypes.string.isRequired,
   placeholder: React.PropTypes.string.isRequired,
   initialValue: React.PropTypes.oneOfType([
     React.PropTypes.string,

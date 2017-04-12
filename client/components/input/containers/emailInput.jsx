@@ -6,7 +6,7 @@ function mapStateToProps() {
   return {
     validate: validator,
     type: 'email',
-    srLabel: 'Your Email Address',
+    label: 'Your Email Address',
     placeholder: 'Email',
     helperText: 'We will never share your email with anyone else.',
   };

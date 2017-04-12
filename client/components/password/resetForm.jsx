@@ -47,7 +47,8 @@ class ResetForm extends React.Component {
         <h1 className="text-center">Change your password</h1>
         <div className="centered">
           <EmailInput id="email" onChange={this.updateEmail} />
-          <PasswordInput id="pass" onChange={this.updatePassword} />
+          <PasswordInput id="pass" onChange={this.updatePassword}
+            helperText="Minimum 8 chars, max 25." />
         </div>
         {
          !success && (

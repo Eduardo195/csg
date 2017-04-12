@@ -49,8 +49,8 @@ class Personal extends React.Component {
         <h1 className="title sectionTitle text-uppercase">About you</h1>
         <h6 className="text-uppercase">As shown on your applications</h6>
         <form onSubmit={this.onSubmit}>
-          <NameInput id="name" initialValue={name} placeholder="Name" srLabel="Name" showLabel onChange={this.setName} />
-          <NameInput id="sname" initialValue={surname} placeholder="Surname" srLabel="Surname" showLabel onChange={this.setSurname} />
+          <NameInput id="name" initialValue={name} placeholder="Name" label="Name" showLabel onChange={this.setName} />
+          <NameInput id="sname" initialValue={surname} placeholder="Surname" label="Surname" showLabel onChange={this.setSurname} />
           <div>
             <button disabled={!this.canSubmit()} type="submit" className="btn btn--main font-weight-bold text-lowercase"> { isLoading ? 'Loading...' : 'Save' }</button>
           </div>

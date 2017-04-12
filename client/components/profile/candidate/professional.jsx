@@ -9,7 +9,7 @@ import KeywordList from 'components/filters/keywordList';
 class Professional extends React.Component {
   constructor() {
     super();
-    this.state = { yearsXp: {}, keywords: [] };
+    this.state = { yearsXp: {}, keywords: null };
     this.onSubmit = this.onSubmit.bind(this);
     this.canSubmit = this.canSubmit.bind(this);
     this.setYearsXp = this.setYearsXp.bind(this);
@@ -74,7 +74,7 @@ class Professional extends React.Component {
           <TextInput
             id="yearsXparsExperience"
             initialValue={yearsXp} type="number"
-            placeholder="Years experience" showLabel srLabel="Years eperience in your field"
+            placeholder="Years experience" showLabel label="Years eperience in your field"
             onChange={this.setYearsXp}
           />
           <div className="form-group">

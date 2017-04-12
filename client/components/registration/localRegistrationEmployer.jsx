@@ -53,7 +53,7 @@ class LocalRegistrationEmployer extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <EmailInput id="email" onChange={this.updateEmail} />
         <NIFInput id="nif" onChange={this.updateNif} />
-        <PasswordInput id="pass" onChange={this.updatePassword} />
+        <PasswordInput id="pass" onChange={this.updatePassword} helperText="Minimum 8 chars, max 25." />
         <Recaptcha />
         <button type="submit" className="btn btn--main font-weight-bold">Create Account</button>
         { registrationErrors && (

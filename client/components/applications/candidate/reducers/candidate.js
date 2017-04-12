@@ -13,7 +13,7 @@ function applications(state = { error: null, success: null }, action) {
 
     case actionTypes.SET_APPLICATIONS:
       return {
-        error: false,
+        error: null,
         applications: action.applications,
       };
 

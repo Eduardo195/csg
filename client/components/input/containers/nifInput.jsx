@@ -6,7 +6,7 @@ function mapStateToProps() {
   return {
     validate: validator,
     type: 'number',
-    srLabel: 'Your NIF',
+    label: 'Your NIF',
     placeholder: 'NIF',
     helperText: 'Your company\'s NIF.',
   };

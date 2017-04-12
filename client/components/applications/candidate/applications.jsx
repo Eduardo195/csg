@@ -10,7 +10,7 @@ function Applications({ error, applications }) {
         <h1>My Applications</h1>
         {
           applications && applications.map(({ opportunity }) => (
-            <div className="application">
+            <div key={opportunity._id} className="application">
               <div>
                 <h4>
                   <Link href={`/opportunity/${opportunity._id}`}>
