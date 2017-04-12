@@ -78,7 +78,7 @@ class Professional extends React.Component {
             onChange={this.setYearsXp}
           />
           <div className="form-group">
-            <KeywordFilter className="input-group-lg" handleAdd={this.addKeyword} placeholder="Areas and techs" showLabel label="Areas and technologies you have experience in" />
+            <KeywordFilter id="profileKw" className="input-group-lg" handleAdd={this.addKeyword} placeholder="Areas and techs" showLabel label="Areas and technologies you have experience in" />
             <KeywordList keywords={keywords} handleRemove={this.removeKeyword} />
           </div>
           <div>

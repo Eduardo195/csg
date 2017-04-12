@@ -25,6 +25,14 @@ const ProfileService = {
       data,
     });
   },
+  setVisibility(isVisible) {
+    return query({
+      url: '/api/profile/employerVisibility',
+      method: 'POST',
+      data: { isVisible },
+    });
+  },
+
 };
 
 export default ProfileService;

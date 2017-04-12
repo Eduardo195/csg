@@ -1,6 +1,7 @@
 import { combineReducers } from 'redux';
 import personal from 'components/profile/candidate/reducers/personal';
 import professional from 'components/profile/candidate/reducers/professional';
+import employerVisibility from 'components/profile/candidate/reducers/employerVisibility';
 import cv from 'components/cvs/reducers/reducer';
 import * as types from '../actions/types';
 
@@ -31,7 +32,8 @@ export default combineReducers({
     isLoading,
     error,
   }),
+  cv,
   personal,
   professional,
-  cv,
+  employerVisibility,
 });

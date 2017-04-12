@@ -24,6 +24,26 @@ a.btn {
     }
 }
 
+
+.btn.btn--toggle.active {
+    background: @primary-light;
+    border-color: @primary-light;
+    color: @font-color-alt;
+}
+
+.btn.btn--toggle.btn--toggle-on {
+    padding-left: 6em;
+    padding-right: 0;
+}
+
+.btn.btn--toggle.btn--toggle-on:after {
+    content: " ? ";
+    border: 1.5em solid #4fbaaa;
+    background: #4fbaaa;
+    border-radius: 5em;
+
+}
+
 .btn {
     background: @bg-color-main;
     border: 1px solid #ccc;

@@ -12,7 +12,7 @@ const busboy = require('connect-busboy');
 
 // for session persistence
 const store = new MongoDBStore({
-  uri: 'mongodb://localhost:27017/labop',
+  uri: 'mongodb://127.0.0.1:27017/labop',
   collection: 'session'
 });
 

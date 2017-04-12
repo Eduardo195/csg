@@ -18,5 +18,12 @@ module.exports = {
       .updateOne({ _id: ObjectID(id) }, {
         $set: { yearsXp, keywords }
       });
+  },
+  setEmployerVisibility(id, employerVisibility) {
+    return Connector.getCollection(TableNames.LOCAL_USERS)
+      .updateOne({ _id: ObjectID(id) }, {
+        $set: { employerVisibility }
+      });
   }
+
 };

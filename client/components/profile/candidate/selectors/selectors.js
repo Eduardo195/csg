@@ -14,3 +14,8 @@ export const getProfessionalSuccess = state => state.profile.professional.query.
 export const getProfessionalError = state => state.profile.professional.query.error;
 export const getYearsExperience = state => state.profile.professional.yearsXp;
 export const getKeywords = state => state.profile.professional.keywords;
+
+export const getVisibilityIsLoading = state => state.profile.employerVisibility.query.isLoading;
+export const getVisibilitySuccess = state => state.profile.employerVisibility.query.success;
+export const getVisibilityError = state => state.profile.employerVisibility.query.error;
+export const getEmployerVisibility = state => state.profile.employerVisibility.employerVisibility;
