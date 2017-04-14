@@ -42,9 +42,9 @@ const scraper = {
     const industry = detailsTable.find('tr:nth-child(5) td:last-child').text().trim();
     const ref = detailsTable.find('tr:nth-child(6) td:last-child').text().split(' ')[1];
       // const shortDescription = center.find('tr:last-child p > font:last-child').html().trim();
-    const description = center.find('tr:last-child p > font:last-child').html().trim();
-      // console.log(description);
-    const markdown = toMarkdown(description, {
+    const content = center.find('tr:last-child p > font:last-child').html().trim();
+      // console.log(content);
+    const markdown = toMarkdown(content, {
       converters: [linkFilter],
       gfm: true // required to parse tables
     });
@@ -60,7 +60,7 @@ const scraper = {
       markdown,
       industry,
       ref,
-      description
+      content
     };
     return values;
   }

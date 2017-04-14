@@ -15,11 +15,11 @@ const returnableFields = {
 module.exports = {
   getDistricts() {
     return Connector.getCollection(TableNames.DISTRICTS)
-      .find().sort({ index: 1 }).toArray();
+      .find().sort({ id: 1 }).toArray();
   },
   getContractTypes() {
     return Connector.getCollection(TableNames.CONTRACT_TYPES)
-      .find().sort({ index: 1 }).toArray();
+      .find().sort({ id: 1 }).toArray();
   },
   getByRef(ref) {
     return Connector.getCollection(TableNames.OPPORTUNITIES)
@@ -36,6 +36,8 @@ module.exports = {
       Checkers.checkDate(query.age)
     ];
     const merged = entries.filter(entry => !!entry);
+
+    console.log('merged :::', merged);
     const filters = merged.length <= 0 ? {} : {
       $and: merged
     };

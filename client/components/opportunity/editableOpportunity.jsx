@@ -8,12 +8,12 @@ import ContractTypes from 'contractTypes';
 import Districts from 'districts';
 import Opportunity from './opportunity';
 
-const bodyPlc = 'Enter some text';
+const contentPlc = 'Enter some text';
 const opportunityPlaceholder = {
   title: '',
   location: Districts[0],
   contractType: ContractTypes[0],
-  body: 'Opportunity body',
+  content: 'Opportunity content',
   pay: {
     min: 10, max: 20,
   },
@@ -33,7 +33,7 @@ class EditableOpportunity extends React.Component {
     this.togglePreview = this.togglePreview.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onTitleChange = this.onTitleChange.bind(this);
-    this.onBodyChange = this.onBodyChange.bind(this);
+    this.onContentChange = this.onContentChange.bind(this);
     this.onMinPayChange = this.onMinPayChange.bind(this);
     this.onMaxPayChange = this.onMaxPayChange.bind(this);
     this.onLocationChange = this.onLocationChange.bind(this);
@@ -55,8 +55,8 @@ class EditableOpportunity extends React.Component {
     this.updateOpportunity({ title });
   }
 
-  onBodyChange(body) {
-    this.updateOpportunity({ body });
+  onContentChange(content) {
+    this.updateOpportunity({ content });
   }
 
   onLocationChange(locationId) {
@@ -101,7 +101,7 @@ class EditableOpportunity extends React.Component {
 
   render() {
     const { isPreview, opportunity } = this.state;
-    const { title, body, location, contractType, date, pay, employerName } = opportunity;
+    const { title, content, location, contractType, date, pay, employerName } = opportunity;
 
     if (isPreview) {
       return (
@@ -123,7 +123,7 @@ class EditableOpportunity extends React.Component {
           <div className="detais align-self-stretch">
             <div className="contentWrapper">
               <div className="content">
-                <Editor value={body} placeholder={bodyPlc} onChange={this.onBodyChange} />
+                <Editor value={content} placeholder={contentPlc} onChange={this.onContentChange} />
               </div>
             </div>
           </div>

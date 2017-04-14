@@ -10,7 +10,7 @@ function getDangerouslySetInnerHTML(body) {
 const Opportunity = (props) => {
   const { opportunity } = props;
 
-  const { title, pay, contractType, body, company, location, industry, date } = opportunity;
+  const { title, pay, contractType, body, content, company, location, industry, date } = opportunity;
   const { label: locationLabel } = location;
 
   const minPay = pay && pay.min;
@@ -27,7 +27,7 @@ const Opportunity = (props) => {
       <div className="mainWrapper d-flex flex-wrap">
         <div className="detais align-self-stretch">
           <div className="contentWrapper">
-            <div className="content" dangerouslySetInnerHTML={getDangerouslySetInnerHTML(body)} />
+            <div className="content" dangerouslySetInnerHTML={getDangerouslySetInnerHTML(body || content)} />
           </div>
         </div>
         <div className="overview align-self-stretch">
