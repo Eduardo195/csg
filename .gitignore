@@ -4,8 +4,9 @@ npm-debug.log
 */secret/*
 server/files
 secret*
-public/*
+public/static/*
 !public/*.html
 !public/static/styles.css
 !public/static/*.bundle.js
 !public/static/*.svg
+!public/static/*.gif
