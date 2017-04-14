@@ -1,0 +1,38 @@
+.root > main > div.home {
+  padding: 0;
+
+  .quickView {
+    background: @primary-light;
+    padding: 10%;
+
+    .applications {
+      background: white;
+      padding: 2em;
+
+      article {
+        header {
+          border-bottom: 1px solid @primary-light;
+          margin-bottom: .25rem;
+
+        }
+
+        main {
+          color: @secondary-light;
+
+          .status {
+            .bold;
+            color: @primary-light;
+          }
+        }
+
+        footer {
+          color: @primary-dark;
+        }
+      }
+
+      h1 {
+        .title;
+      }
+    }
+  }
+}

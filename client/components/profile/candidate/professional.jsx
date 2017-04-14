@@ -2,7 +2,7 @@ import React from 'react';
 import TextInput from 'components/input/containers/textInput';
 import ErrorMessage from 'components/messages/error';
 import SuccessMessage from 'components/messages/success';
-import { without, isEqual, assign } from 'lodash';
+import { without, isEqual, assign, includes } from 'lodash';
 import KeywordFilter from 'components/filters/keywordFilter';
 import KeywordList from 'components/filters/keywordList';
 
@@ -47,8 +47,8 @@ class Professional extends React.Component {
   }
 
   addKeyword(value) {
-    if (this.state.keywords.indexOf(value) < 0) {
-      this.updateState({ keywords: [...this.state.keywords, value] });
+    if (!includes(value)) {
+      this.updateState({ keywords: [...(this.state.keywords || []), value] });
     }
   }
 

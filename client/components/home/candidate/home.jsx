@@ -1,5 +1,5 @@
 import React from 'react';
-import Applications from 'components/applications/candidate/containers/applications';
+import QuickView from './quickView';
 import Cvs from 'components/cvs/containers/cvs';
 
 class Home extends React.Component {
@@ -10,8 +10,8 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div>
-        <Applications />
+      <div className='home'>
+        <QuickView />
         <Cvs />
       </div>
     );
