@@ -1,3 +1,4 @@
+import { get } from 'lodash';
 import { combineReducers } from 'redux';
 import { SET_PROFILE } from 'components/profile/candidate/actions/types';
 import * as types from '../actions/types';
@@ -52,17 +53,17 @@ function meta(state = {}, action) {
 
     case types.SET_META:
       return Object.assign({}, state, {
-        filename: action.meta.filename,
-        mimetype: action.meta.mimetype,
-        size: action.meta.size,
+        filename: get(action, 'meta.filename'),
+        mimetype: get(action, 'meta.mimetype'),
+        size: get(action, 'meta.size'),
       });
 
     // TODO: 1 source of truth
     case SET_PROFILE:
       return Object.assign({}, state, {
-        filename: action.profile.cv.filename,
-        mimetype: action.profile.cv.mimetype,
-        size: action.profile.cv.size,
+        filename: get(action, 'profile.cv.filename'),
+        mimetype: get(action, 'profile.cv.mimetype'),
+        size: get(action, 'profile.cv.size')
       });
 
     case types.CLEAR_META:

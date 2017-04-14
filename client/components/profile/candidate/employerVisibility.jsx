@@ -67,7 +67,7 @@ EmployerVisibility.propTypes = {
   handleSubmit: React.PropTypes.func.isRequired,
   isLoading: React.PropTypes.bool.isRequired,
   isVisible: React.PropTypes.bool,
-  success: React.PropTypes.string,
+  success: React.PropTypes.bool,
   error: React.PropTypes.string,
 };
 

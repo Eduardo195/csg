@@ -787,7 +787,7 @@ body {
 .overlay.hidden {
   height: 0%;
 }
-.root > main > div {
+.root > main > * {
   padding: 0 10% 3%;
 }
 .root {
