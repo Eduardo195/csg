@@ -18,9 +18,6 @@ class Profile extends React.Component {
         {
           error && (<ErrorMessage> { error } </ErrorMessage>)
         }
-        {
-          isLoading && (<div> Loading... </div>)
-        }
         <Personal />
         <Professional />
         <EmployerVisibility />

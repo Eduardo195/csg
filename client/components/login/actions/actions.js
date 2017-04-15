@@ -21,8 +21,7 @@ export function login(username, password) { // eslint-disable-line import/prefer
     dispatch(setOverlayVisibility(true));
     SessionService.login(username, password).then((rsp) => {
       if (rsp.success) {
-        window.location = '/#home';  // hash chanes don't trigger reloads
-        window.location.reload();
+        window.location = '/';
       } else {
         dispatch(setLoginError(rsp.err));
       }

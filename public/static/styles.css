@@ -245,6 +245,7 @@ button:hover .caret {
 .root > nav .navbar-nav a.nav-link {
   font-weight: 700;
   color: #4FBAAA;
+  white-space: nowrap;
 }
 .root > nav .navbar-toggler {
   color: rgba(0, 0, 0, 0.9);
@@ -335,6 +336,11 @@ button:hover .caret {
   background: #D1D2D4;
   padding: 1em 10%;
 }
+@media (max-width: 767px) {
+  .root > footer > div {
+    flex-direction: column;
+  }
+}
 .root > footer article {
   display: inline-block;
   margin: 0 auto;
@@ -345,6 +351,11 @@ button:hover .caret {
 .root > footer .d-flex.flex-wrap > div {
   text-transform: lowercase;
   padding: 1em 2em;
+}
+@media (max-width: 767px) {
+  .root > footer .d-flex.flex-wrap > div {
+    text-align: center;
+  }
 }
 .dialog .overlay {
   height: 100%;
