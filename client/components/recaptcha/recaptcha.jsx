@@ -18,6 +18,14 @@ class Recaptcha extends React.Component {
     }
   }
 
+  componentWillReceiveProps(newProps) {
+    if(newProps.resetTimestamp &&
+      newProps.resetTimestamp !== this.props.resetTimestamp) {
+        console.log("resetting captcha");
+      this.resetCaptcha();
+    }
+  }
+
   resetCaptcha() {
     window.grecaptcha.reset(this.id);
   }

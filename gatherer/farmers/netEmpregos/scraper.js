@@ -1,16 +1,24 @@
 const moment = require('moment');
 const toMarkdown = require('to-markdown');
 const Normalizer = require('./normalizer');
+const sanitizeHtml = require('sanitize-html');
+const startsWith = require('lodash/startsWith');
+const get = require('lodash/get');
 const jsdom = require('jsdom');
 const jquery = require('jquery');
 
 const window = jsdom.jsdom().defaultView;
 const $ = jquery(window);
 
-const linkFilter = {
-  filter: 'a',
-  replacement: content => content
-};
+// net empregos tags keywords onto the ads
+function removeSelfLinks(tagName, attribs) {
+  let replacementTag = tagName;
+  const href = get(attribs, 'href') || '';
+  if (startsWith(href, '/')) {
+    replacementTag = '';
+  }
+  return { tagName: replacementTag };
+}
 
 const scraper = {
   getPostUrls(html, previousRefs) {
@@ -43,11 +51,11 @@ const scraper = {
     const ref = detailsTable.find('tr:nth-child(6) td:last-child').text().split(' ')[1];
       // const shortDescription = center.find('tr:last-child p > font:last-child').html().trim();
     const content = center.find('tr:last-child p > font:last-child').html().trim();
-      // console.log(content);
-    const markdown = toMarkdown(content, {
-      converters: [linkFilter],
-      gfm: true // required to parse tables
-    });
+    const cleanContent = sanitizeHtml(content, {
+        exclusiveFilter: frame => !frame.text.trim(),
+        transformTags: { a: removeSelfLinks }
+      }
+    );
 
     const values = {
       src: 'netEmpregos',
@@ -57,15 +65,12 @@ const scraper = {
       contractType: Normalizer.normalizeContractType(contractType),
       date,
       location: Normalizer.normalizeLocation(location),
-      markdown,
       industry,
       ref,
-      content
+      content: cleanContent
     };
     return values;
   }
-
 };
-
 
 module.exports = scraper;

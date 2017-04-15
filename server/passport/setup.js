@@ -15,7 +15,7 @@ function setup(app) {
       if (user) {
         cb(null, user);
       } else {
-        cb('USER NOUT FOUND');
+        cb('USER NOT FOUND, removing session');
       }
     });
   });

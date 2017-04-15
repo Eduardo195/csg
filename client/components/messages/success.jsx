@@ -1,21 +1,12 @@
 import React from 'react';
+import Message from './message';
 
-function SuccessMessage({ title, children }) {
+function Success({ title, children }) {
   return (
-    <div className="alert alert-success" role="alert">
-      <h4 className="alert-heading">{ title || 'Success!'}</h4>
-      <p className="mb-0">{ children }</p>
-    </div>
-  );
+    <Message title={ title || 'Success!'} type='success'>
+      { children }
+    </Message>
+  )
 }
 
-SuccessMessage.propTypes = {
-  title: React.PropTypes.string,
-  children: React.PropTypes.oneOfType([
-    React.PropTypes.object,
-    React.PropTypes.string,
-    React.PropTypes.element,
-  ]).isRequired,
-};
-
-export default SuccessMessage;
+export default Success;

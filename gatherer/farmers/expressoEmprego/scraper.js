@@ -60,11 +60,10 @@ const scraper = {
       // OH THE HUMANITY
     const description = body.find('div.fOpenSansRegular');
     description.find('div.pull-right').remove();
-    const cleanContent = sanitizeHtml(
-        description.html(), {
-          exclusiveFilter: frame => !frame.text.trim(),
-          transformTags: { h3: h3ToP, p: pToH3 }
-        }
+    const cleanContent = sanitizeHtml(description.html(), {
+        exclusiveFilter: frame => !frame.text.trim(),
+        transformTags: { h3: h3ToP, p: pToH3 }
+      }
     );
 
     return {

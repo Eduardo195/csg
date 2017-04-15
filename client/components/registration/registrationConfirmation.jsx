@@ -1,4 +1,7 @@
 import React from 'react';
+import Link from 'components/link/link';
+import ErrorMessage from 'components/messages/error';
+import SuccessMessage from 'components/messages/success';
 
 class RegistrationConfirmation extends React.Component {
 
@@ -11,26 +14,21 @@ class RegistrationConfirmation extends React.Component {
     return (
       <div>
         <h1>Registration confirmation</h1>
-        <div>
-          Contacting server ...
-          {
-            !isLoading ? 'Done.' : ''
-          }
-        </div>
-
         {
-          !isLoading && (
-            isValid ? (
-              <div className="alert alert-success" role="alert">
-                <strong>Great success!</strong> Your email has been confirmed.
-                <div>Proceed to login</div>
-              </div>
+           !isLoading && (
+             isValid ? (
+              <SuccessMessage>
+                Your email has been confirmed.
+                <div>
+                  You can now <Link href='/login'> sign in </Link>
+                  <br />
+                </div>
+              </SuccessMessage>
             ) : (
-              <div className="alert alert-warning" role="alert">
-                <strong>Wooops!</strong>
-                Something went wrong, your account has not been activated.
+              <ErrorMessage>
+                Something went wrong on our side, your account has not been activated.
                 <div>Please try again later</div>
-              </div>
+              </ErrorMessage>
             )
           )
         }

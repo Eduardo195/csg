@@ -37,7 +37,7 @@ app.use(cookieParser());
 app.use(expressSession(Object.assign({}, sessionConfig, { store })));
 app.use(busboy({
   limits: {
-    fileSize: 1 * 1024 * 1024 // bytes
+    fileSize: 1 * 1024 * 1024 // takes bytes (1Mb)
   }
 }));
 

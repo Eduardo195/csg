@@ -6,7 +6,7 @@ function registrationErrors(state = null, action) {
     case actionTypes.SERVER_ERROR:
       return action.msg;
 
-    case actionTypes.CLEAR_ERRORS:
+    case actionTypes.CLEAR_ERROR:
       return null;
 
     default:

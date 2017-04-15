@@ -9,7 +9,11 @@ const gatherer = require('./helpers/gatherer');
 ExpressoEmpregoConfig.maxRequests = 5;
 ExpressoEmpregoConfig.maxRequests = 5;
 
-const configs = [ExpressoEmpregoConfig, NetEmpregosConfig];
+const configs = [
+  // ExpressoEmpregoConfig,
+  NetEmpregosConfig
+];
+
 const startTime = Date.now();
 
 console.log('Waking up to get some');
