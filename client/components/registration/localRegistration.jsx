@@ -13,6 +13,12 @@ class LocalRegistration extends React.Component {
     this.updatePassword = this.updatePassword.bind(this);
   }
 
+  componentWillReceiveProps(newProps) {
+    if (newProps.registrationErrors && !this.props.registrationErrors) {
+      this.setState({ resetCaptchaTimestap: (this.state.resetCaptchaTimestap || 1) + 1 });
+    }
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.email && this.state.password) {
@@ -36,22 +42,15 @@ class LocalRegistration extends React.Component {
     }
   }
 
-  componentWillReceiveProps(newProps) {
-    if(newProps.registrationErrors && !this.props.registrationErrors) { // if it has stopped loading and we're here, there's been an error
-      this.setState({ resetCaptchaTimestap: (this.state.resetCaptchaTimestap || 1) + 1 })
-    }
-  }
-
   render() {
     const { registrationErrors } = this.props;
     const { resetCaptchaTimestap } = this.state;
 
-    console.log('resetCaptchaTimestap :::', resetCaptchaTimestap);
     return (
       <form onSubmit={this.handleSubmit}>
         <EmailInput id="email" onChange={this.updateEmail} />
         <PasswordInput id="pass" onChange={this.updatePassword} helperText="Minimum 8 chars, max 25." />
-        <Recaptcha resetTimestamp={resetCaptchaTimestap}/>
+        <Recaptcha resetTimestamp={resetCaptchaTimestap} />
         <button type="submit" className="btn btn--main font-weight-bold text-lowercase">Create</button>
         { registrationErrors && (
           <ErrorMessage>

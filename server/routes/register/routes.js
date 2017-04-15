@@ -22,7 +22,6 @@ function setup(app) {
     }).then(() => {
       res.send({ success: true });
     }).catch((err) => {
-      console.log(err);
       res.send({ success: false, msg: err.msg });
     });
   });

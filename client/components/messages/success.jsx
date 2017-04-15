@@ -1,12 +1,14 @@
 import React from 'react';
 import Message from './message';
 
-function Success({ title, children }) {
+function Success(props) {
   return (
-    <Message title={ title || 'Success!'} type='success'>
-      { children }
-    </Message>
-  )
+    <Message {...props} title={props.title || 'Success!'} type="success" />
+  );
 }
+
+Success.propTypes = {
+  title: React.PropTypes.string,
+};
 
 export default Success;

@@ -13,15 +13,11 @@ module.exports = Object.assign(AccountManager(),
           if (user) {
             throw errors.USER_ALEADY_EXISTS;
           }
-          return AccountConnector.getUnverifiedByUsername(username).then((unregUser) => {
-            if (unregUser) {
-              throw errors.USER_ALEADY_EXISTS;
-            }
-            return hashPassword(password).then((passHash) => {
-              return getRandomBytes().then((confHash) => {
-                return AccountConnector.register({ username, type: 'candidate', password: passHash, confHash }).then(() => {
-                  return confHash;
-                });
+          // ignore unverified users
+          return hashPassword(password).then((passHash) => {
+            return getRandomBytes().then((confHash) => {
+              return AccountConnector.register({ username, type: 'candidate', password: passHash, confHash }).then(() => {
+                return confHash;
               });
             });
           });

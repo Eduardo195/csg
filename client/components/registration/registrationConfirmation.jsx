@@ -17,13 +17,13 @@ class RegistrationConfirmation extends React.Component {
         {
            !isLoading && (
              isValid ? (
-              <SuccessMessage>
+               <SuccessMessage>
                 Your email has been confirmed.
                 <div>
-                  You can now <Link href='/login'> sign in </Link>
+                  You can now <Link href="/login"> sign in </Link>
                   <br />
                 </div>
-              </SuccessMessage>
+               </SuccessMessage>
             ) : (
               <ErrorMessage>
                 Something went wrong on our side, your account has not been activated.

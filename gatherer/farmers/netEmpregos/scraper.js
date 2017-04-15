@@ -1,5 +1,4 @@
 const moment = require('moment');
-const toMarkdown = require('to-markdown');
 const Normalizer = require('./normalizer');
 const sanitizeHtml = require('sanitize-html');
 const startsWith = require('lodash/startsWith');
@@ -52,9 +51,9 @@ const scraper = {
       // const shortDescription = center.find('tr:last-child p > font:last-child').html().trim();
     const content = center.find('tr:last-child p > font:last-child').html().trim();
     const cleanContent = sanitizeHtml(content, {
-        exclusiveFilter: frame => !frame.text.trim(),
-        transformTags: { a: removeSelfLinks }
-      }
+      exclusiveFilter: frame => !frame.text.trim(),
+      transformTags: { a: removeSelfLinks }
+    }
     );
 
     const values = {

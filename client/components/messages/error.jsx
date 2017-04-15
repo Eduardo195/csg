@@ -1,12 +1,14 @@
 import React from 'react';
 import Message from './message';
 
-function Error({ title, children }) {
+function Error(props) {
   return (
-    <Message title={ title || "Error!"} type="danger">
-      { children }
-    </Message>
-  )
+    <Message {...props} title={props.title || 'Error!'} type="danger" />
+  );
 }
+
+Error.propTypes = {
+  title: React.PropTypes.string,
+};
 
 export default Error;

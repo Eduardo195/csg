@@ -1,12 +1,14 @@
 import React from 'react';
 import Message from './message';
 
-function Warning({ title, children }) {
+function Warning(props) {
   return (
-    <Message title={ title || "Warning"} type="warning">
-      { children }
-    </Message>
-  )
+    <Message {...props} title={props.title || 'Warning'} type="warning" />
+  );
 }
+
+Warning.propTypes = {
+  title: React.PropTypes.string,
+};
 
 export default Warning;

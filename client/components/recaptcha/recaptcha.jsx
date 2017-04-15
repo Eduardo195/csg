@@ -19,9 +19,8 @@ class Recaptcha extends React.Component {
   }
 
   componentWillReceiveProps(newProps) {
-    if(newProps.resetTimestamp &&
+    if (newProps.resetTimestamp &&
       newProps.resetTimestamp !== this.props.resetTimestamp) {
-        console.log("resetting captcha");
       this.resetCaptcha();
     }
   }
@@ -50,6 +49,7 @@ class Recaptcha extends React.Component {
 }
 
 Recaptcha.propTypes = {
+  resetTimestamp: React.PropTypes.number,
   callback: React.PropTypes.func.isRequired,
 };
 

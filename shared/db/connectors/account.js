@@ -30,10 +30,10 @@ module.exports = {
       .findOne({ username: username.toLowerCase() });
   },
   register(user) {
-    console.log('DIRTY FAGGOT USER', user);
     const whitelisted = whitelist(user, WHITELISTED_FIELDS[TableNames.LOCAL_USERS_UNVERIFIED]);
-    console.log('INSERING whitelisted user', whitelisted);
-    return Connector.getCollection(TableNames.LOCAL_USERS_UNVERIFIED).insert(whitelisted).then((WriteResult) => {
+    return Connector.getCollection(TableNames.LOCAL_USERS_UNVERIFIED).update({ username: whitelisted.username }, whitelisted, {
+      upsert: true
+    }).then((WriteResult) => {
       if (WriteResult.writeConcernError) {
         console.log(`fAILED TO REGISTER  ${user.username}: ${WriteResult.writeConcernError.errmsg}`);
         throw errors.UNV_REGISTRATION_FAILED;
