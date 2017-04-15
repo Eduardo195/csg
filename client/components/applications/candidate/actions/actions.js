@@ -1,5 +1,4 @@
 /* eslint import/prefer-default-export: 0 */
-import { setOverlayVisibility } from 'components/overlay/actions/actions';
 import ApplicationsService from 'services/applications/candidate';
 import * as types from './types';
 
@@ -25,7 +24,6 @@ function setApplications(applications) {
 
 export function getCandidateApplications() {
   return (dispatch) => {
-    dispatch(setOverlayVisibility(true));
     dispatch(clearApplicationsStatus());
     ApplicationsService.getAll().then((rsp) => {
       if (!rsp.success) {
@@ -33,10 +31,8 @@ export function getCandidateApplications() {
       } else {
         dispatch(setApplications(rsp.applications));
       }
-      dispatch(setOverlayVisibility(false));
     }).catch((err) => {
       dispatch(setApplicationsError(`${err.status} - ${err.statusText}`));
-      dispatch(setOverlayVisibility(false));
     });
   };
 }

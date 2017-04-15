@@ -17,9 +17,13 @@ class Search extends React.Component {
           <Filters />
           <div className="anchor">
             { !resultCount ? (<NoResults />) : null }
-            <div className="results">
-              { results ? results.map(entry => <Offer data={entry} />) : null }
-            </div>
+            {
+              Array.isArray(results) ? (
+                <div className="results">
+                  { results.map(entry => <Offer key={entry._id} data={entry} />) }
+                </div>
+              ) : null
+            }
             { resultCount ? (<div className="text-center">{`${resultCount} results`}</div>) : null }
             <Paging />
           </div>
@@ -31,7 +35,7 @@ class Search extends React.Component {
 }
 
 Search.propTypes = {
-  results: React.PropTypes.array.isRequired,
+  results: React.PropTypes.array,
   resultCount: React.PropTypes.number.isRequired,
   handleMount: React.PropTypes.func.isRequired,
 };

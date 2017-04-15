@@ -11,7 +11,7 @@ function Filters() {
       <h3 className="mainTitle">filter results by:</h3>
       <div>
         <h3>Keywords</h3>
-        <KeywordFilter />
+        <KeywordFilter id="keywords" />
         <KeywordList />
       </div>
       <div>
@@ -20,7 +20,7 @@ function Filters() {
       </div>
       <div>
         <h3>Post age</h3>
-        <AgeFilter />
+        <AgeFilter id="ageFilterDD" />
       </div>
       <div>
         <h3>Location</h3>
@@ -29,9 +29,5 @@ function Filters() {
     </div>
   );
 }
-
-Filters.propTypes = {
-  search: React.PropTypes.func.isRequired,
-};
 
 export default Filters;

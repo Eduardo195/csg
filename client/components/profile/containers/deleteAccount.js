@@ -5,7 +5,6 @@ import DeleteAccount from '../deleteAccount';
 function mapDispatchToProps(dispatch) {
   return {
     handleSubmit() {
-      console.warn('TODO: show popup');
       dispatch(deleteAccount());
     },
   };

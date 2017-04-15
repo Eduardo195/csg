@@ -1,6 +1,6 @@
 import React from 'react';
-import QuickView from './quickView';
 import Cvs from 'components/cvs/containers/cvs';
+import QuickView from './quickView';
 
 class Home extends React.Component {
 
@@ -10,7 +10,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div className='home'>
+      <div className="home">
         <QuickView />
         <Cvs />
       </div>

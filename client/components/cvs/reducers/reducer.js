@@ -63,7 +63,7 @@ function meta(state = {}, action) {
       return Object.assign({}, state, {
         filename: get(action, 'profile.cv.filename'),
         mimetype: get(action, 'profile.cv.mimetype'),
-        size: get(action, 'profile.cv.size')
+        size: get(action, 'profile.cv.size'),
       });
 
     case types.CLEAR_META:

@@ -15,16 +15,16 @@ class MainSearch extends React.Component {
     this.props.handleMount();
   }
 
-  handleKeywordChange(kw) {
+  handleKeywordChange(e) {
     this.setState(
-        Object.assign({}, this.state, { kw }),
-      );
+      Object.assign({}, this.state, { kw: e.target.value }),
+    );
   }
 
-  handleLocationChange(loc) {
+  handleLocationChange(e) {
     this.setState(
-          Object.assign({}, this.state, { loc }),
-        );
+      Object.assign({}, this.state, { loc: e.target.value }),
+    );
   }
 
   handleSearch() {

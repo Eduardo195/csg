@@ -7,19 +7,19 @@ const Normalizer = {
   normalizeContractType(cc) {
     // TODO: Get this from DB vs make it a service?
     switch (cc) {
-      case 'Tempo Inteiro':
-        return CONTRACT_TYPES[0];
+    case 'Tempo Inteiro':
+      return CONTRACT_TYPES[0];
 
-      case 'Part-Time':
-        return CONTRACT_TYPES[1];
+    case 'Part-Time':
+      return CONTRACT_TYPES[1];
 
-      case 'Estágio':
-        return CONTRACT_TYPES[2];
+    case 'Estágio':
+      return CONTRACT_TYPES[2];
 
-      default: {
-        console.error(`Could not convert ${cc} to contract type`);
-        return { id: -1, label: cc || NOT_SPECIFIED };
-      }
+    default: {
+      console.error(`Could not convert ${cc} to contract type`);
+      return { id: -1, label: cc || NOT_SPECIFIED };
+    }
     }
   },
 

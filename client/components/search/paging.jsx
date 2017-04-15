@@ -31,10 +31,10 @@ class Paging extends React.Component {
     const pag = [];
     for (let i = min; i <= max; i++) {
       pag.push((
-        <li className={`page-item ${i === cp ? 'active' : ''}`}>
+        <li key={`paging_${i}`} className={`page-item ${i === cp ? 'active' : ''}`}>
           <button className="page-link" data-value={i} onClick={changePage}>{ i }</button>
         </li>
-            ));
+      ));
     }
 
     return (
@@ -47,8 +47,8 @@ class Paging extends React.Component {
             </button>
           </li>
           {
-                      pag.map(btn => btn)
-                  }
+            pag.map(btn => btn)
+          }
           <li className="page-item">
             <button className={`page-link ${!canMoveForward ? 'disabled' : ''}`} aria-label="Next" data-value={cp + 1} onClick={canMoveForward ? changePage : null}>
               <span aria-hidden="true" data-value={cp + 1}>&raquo;</span>

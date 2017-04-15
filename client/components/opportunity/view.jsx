@@ -18,7 +18,7 @@ class View extends React.Component {
     const { opportunity, error } = this.state || {};
 
     if (error) {
-      return (<ErrorMessage> { error }</ErrorMessage>);
+      return (<ErrorMessage> Potato { error }</ErrorMessage>);
     }
     if (!opportunity) {
       return null;

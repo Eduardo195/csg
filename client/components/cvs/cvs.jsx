@@ -10,21 +10,24 @@ class Cvs extends React.Component {
   render() {
     const { filename, mimetype, size, error, isLoading } = this.props;
 
+    let cv = 'No Cv uploaded';
+    if (filename && mimetype && size) {
+      cv = (
+        <h4>
+          <a target="_blank" rel="noopener noreferrer" href={`/api/cv/${filename}`}>
+            { filename }
+          </a>
+        </h4>
+      );
+    }
+
     return (
       <div className="jumbotron">
         <div className="container">
           <h1>My Cv</h1>
           <div>
-            {
-              isLoading ? 'Loading....' : (
-                <a target="_blank" rel="noopener noreferrer" href={`/api/cv/${filename}`}>
-                  cv ::: { `${filename} - ${mimetype} - ${size} bytes` }
-                </a>
-              )
-            }
-            {error && (
-              <ErrorMessage>{ error }</ErrorMessage>
-            )}
+            { isLoading ? 'Loading....' : cv }
+            {error && (<ErrorMessage>{ error }</ErrorMessage>)}
           </div>
           <UploadCv />
         </div>

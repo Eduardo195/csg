@@ -6,10 +6,10 @@ import EmployerOpportunities from 'components/opportunities/employer/containers/
 import base from './base';
 
 export default [
-  ...base,
   { path: '/home', component: Home },
   { path: '/profile', component: Profile },
   { path: '/opportunity/create', component: CreateOpportunity },
   { path: '/opportunity/edit/:id', component: EditOpportunity },
   { path: '/employer/opportunities', component: EmployerOpportunities },
+  ...base,
 ];

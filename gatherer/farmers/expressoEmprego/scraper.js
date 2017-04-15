@@ -1,46 +1,30 @@
 const moment = require('moment');
-const toMarkdown = require('to-markdown');
 const Normalizer = require('./normalizer');
 const sanitizeHtml = require('sanitize-html');
 const jsdom = require('jsdom');
 const jquery = require('jquery');
 const get = require('lodash/get');
+
 const window = jsdom.jsdom().defaultView;
 const $ = jquery(window);
 
-const pToH3 = {
-  filter: 'p',
-  replacement: (innerHTML, node) => {
-    const shouldRepalce = node.classList.contains('fRobotoCondensedRegular');
-    return shouldRepalce ? `\n### ${innerHTML}  \n` : `${innerHTML}  `;
-  }
-};
-
-const h3ToP = {
-  filter: 'h3',
-  replacement: (innerHTML, node) => {
-    const shouldRepalce = node.classList.contains('fOpenSansRegular');
-    return shouldRepalce ? `${innerHTML}  ` : `\n### ${innerHTML}  \n`;
-  }
-};
-
-const transform_pToH3 = (tagName, attribs) => {
+const pToH3 = (tagName, attribs) => {
   let replacementTag = 'p';
   const cls = get(attribs, 'class') || '';
-  if(cls.indexOf('fRobotoCondensedRegular' >= 0)){
-    replacementTag = 'h3'
+  if (cls.indexOf('fRobotoCondensedRegular' >= 0)) {
+    replacementTag = 'h3';
   }
   return { tagName: replacementTag };
-}
+};
 
-const transform_h3ToP = (tagName, attribs) => {
+const h3ToP = (tagName, attribs) => {
   let replacementTag = 'h3';
   const cls = get(attribs, 'class') || '';
-  if(cls.indexOf('fOpenSansRegular') >= 0){
-    replacementTag = 'p'
+  if (cls.indexOf('fOpenSansRegular') >= 0) {
+    replacementTag = 'p';
   }
   return { tagName: replacementTag };
-}
+};
 
 const scraper = {
   getPostUrls(html, previousRefs) {
@@ -76,24 +60,11 @@ const scraper = {
       // OH THE HUMANITY
     const description = body.find('div.fOpenSansRegular');
     description.find('div.pull-right').remove();
-
     const cleanContent = sanitizeHtml(
-        description.html(),
-      {
-        exclusiveFilter: frame => !frame.text.trim(),
-        transformTags: {
-          'h3': transform_h3ToP,
-          'p': transform_pToH3,
+        description.html(), {
+          exclusiveFilter: frame => !frame.text.trim(),
+          transformTags: { h3: h3ToP, p: pToH3 }
         }
-        // allowedAttributes: {
-        //   p: ['class'],  // needed by the toMarkdown converters
-        //   h3: ['class']  // needed by the toMarkdown converters
-        // }
-      }); // remove empty tags
-    const markdown = sanitizeHtml(toMarkdown(cleanContent, {
-      converters: [pToH3, h3ToP]
-    }),
-      { allowedTags: [] } // clean leftover tags
     );
 
     return {
@@ -104,7 +75,6 @@ const scraper = {
       date,
       location: Normalizer.normalizeLocation(location.trim()),
       contractType: Normalizer.normalizeContractType(),
-      markdown,
       content: cleanContent,
       ref: rawRef.trim().split(' ')[1]
     };

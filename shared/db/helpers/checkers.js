@@ -20,7 +20,6 @@ const Checkers = {
     return !isNaN(page) && page >= 0 ? +page : 0;
   },
   checkLocation(locations) {
-    console.log('locations ::::', locations);
     if (Array.isArray(locations)) {
       return {
         'location.id': {

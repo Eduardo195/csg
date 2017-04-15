@@ -14,7 +14,9 @@ function ApplicationsShort({ error, applications }) {
               <header>
                 <h5>
                   <span className="bold">
-                    {opportunity.title}
+                    <Link href={`/opportunity/${opportunity._id}`}>
+                      {opportunity.title}
+                    </Link>
                   </span>
                   <span className="flt-r">
                     [Message]

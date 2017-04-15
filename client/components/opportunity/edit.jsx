@@ -26,7 +26,7 @@ class Edit extends React.Component {
         { isLoading ? ('Loading ... ') : null}
         { opportunity ? (<EditableOpportunity opportunity={opportunity} onSubmit={this.props.onSubmit} />) : null}
         { (error || submissionError) ? (
-          <ErrorMessage>{ error || submissionError }</ErrorMessage>
+          <ErrorMessage> { error || submissionError }</ErrorMessage>
           ) : null
         }
         { (!isLoading && !error && !opportunity) ? (

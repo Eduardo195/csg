@@ -7,14 +7,11 @@ function setup(app) {
   app.use(passport.session());
 
   passport.serializeUser((user, cb) => {
-    console.log('serializing', user, cb);
-    cb(null, user._id); // eslint-disable-line no-underscore-dangle
+    cb(null, user._id);
   });
 
   passport.deserializeUser((id, cb) => {
-    console.log(`deserializing ${id}`);
     AuthLocal.user.findById(id).then((user) => {
-      console.log('user ::::', user);
       if (user) {
         cb(null, user);
       } else {
