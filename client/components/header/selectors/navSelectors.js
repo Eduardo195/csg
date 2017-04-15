@@ -6,10 +6,13 @@ const navOptions = {
     label: 'opportunities',
     href: '/opportunities/',
   }, {
-    label: 'employers',
-    items: [
-          { label: 'Resgister your company', href: 'registration/employer' },
-    ],
+    label: 'Resgister your company',
+    href: '/registration/employer',
+  // }, {
+  //   label: 'employers',
+  //   items: [
+  //         { label: 'Resgister your company', href: 'registration/employer' },
+  //   ],
   }],
   employer: [{
     label: 'create opportunity',
