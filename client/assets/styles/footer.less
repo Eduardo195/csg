@@ -3,6 +3,12 @@
       background: @tertiary-light;
       padding: 1em 10%;
 
+      > div {
+        .media-phone-landscape({
+          flex-direction: column;
+        });
+      }
+
       article {
         display: inline-block;
         margin: 0 auto;
@@ -15,6 +21,9 @@
       .d-flex.flex-wrap > div {
         text-transform: lowercase;
         padding: 1em 2em;
+        .media-phone-landscape({
+          text-align: center;
+        });
       }
     }
-} 
+}
