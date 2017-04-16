@@ -19,6 +19,10 @@ class LocalRegistration extends React.Component {
     }
   }
 
+  componentWillUnmount() {
+    this.props.handleUnmount();
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     if (this.state.email && this.state.password) {
@@ -63,8 +67,9 @@ class LocalRegistration extends React.Component {
 }
 
 LocalRegistration.propTypes = {
-  register: React.PropTypes.func.isRequired,
+  handleUnmount: React.PropTypes.func.isRequired,
   registrationErrors: React.PropTypes.string,
+  register: React.PropTypes.func.isRequired,
 };
 
 export default LocalRegistration;

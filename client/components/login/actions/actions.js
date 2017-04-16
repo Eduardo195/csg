@@ -9,13 +9,13 @@ function setLoginError(error) {
   };
 }
 
-function clearLoginError() {
+export function clearLoginError() {
   return {
     type: actionTypes.CLEAR_LOGIN_ERRORS,
   };
 }
 
-export function login(username, password) { // eslint-disable-line import/prefer-default-export
+export function login(username, password) {
   return (dispatch) => {
     dispatch(clearLoginError());
     dispatch(setOverlayVisibility(true));

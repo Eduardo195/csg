@@ -6,7 +6,7 @@ const navOptions = {
     label: 'opportunities',
     href: '/opportunities/',
   }, {
-    label: 'Resgister your company',
+    label: 'Register your company',
     href: '/registration/employer',
   // }, {
   //   label: 'employers',

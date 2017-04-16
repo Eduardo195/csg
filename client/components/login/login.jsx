@@ -12,6 +12,10 @@ class Login extends React.Component {
     this.getPwdRef = (ref) => { this.pwd = ref; };
   }
 
+  componentWillUnmount() {
+    this.props.handleUnmount();
+  }
+
   onTapLogin() {
     this.props.login(this.email.value, this.pwd.value);
   }
@@ -34,12 +38,6 @@ class Login extends React.Component {
           <Button onTap={this.onTapLogin} className="bold btn--main text-lowercase">Login</Button>
         </div>
         { error ? (<ErrorMessage> { error } </ErrorMessage>) : null }
-        <hr className="hr-text" data-content="Or" />
-        <div className="text-center">
-          <button className="btn">L</button>
-          <button className="btn">F</button>
-          <button className="btn">G+</button>
-        </div>
       </div>
     );
   }
@@ -48,6 +46,7 @@ class Login extends React.Component {
 Login.propTypes = {
   error: React.PropTypes.string,
   login: React.PropTypes.func.isRequired,
+  handleUnmount: React.PropTypes.func.isRequired,
 };
 
 export default Login;

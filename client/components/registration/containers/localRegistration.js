@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { register } from 'components/registration/actions/actions';
+import { register, clearRegError } from 'components/registration/actions/actions';
 import { getRegistrationErrors } from 'components/registration/selectors/selectors';
 import LocalRegistration from '../localRegistration';
 
@@ -13,6 +13,9 @@ function mapDispatchToProps(dispatch) {
   return {
     register(username, password) {
       dispatch(register(username, password));
+    },
+    handleUnmount() {
+      dispatch(clearRegError());
     },
   };
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import ErrorMessage from 'components/messages/error';
-import Link from 'components/link/link';
 import moment from 'moment';
 
 function ApplicationsShort({ error, applications }) {
@@ -14,9 +13,7 @@ function ApplicationsShort({ error, applications }) {
               <header>
                 <h5>
                   <span className="bold">
-                    <Link href={`/opportunity/${opportunity._id}`}>
-                      {opportunity.title}
-                    </Link>
+                    {opportunity.title}
                   </span>
                   <span className="flt-r">
                     [Message]

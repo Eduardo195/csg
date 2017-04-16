@@ -16,7 +16,7 @@ class DeleteAccount extends React.Component {
         <h1 className="title sectionTitle text-uppercase">delete account</h1>
         <h6 className="text-uppercase">warning: There is no going back</h6>
         <form onSubmit={this.onSubmit}>
-          <button className="btn btn--main font-weight-bold text-lowercase text-uppercase">
+          <button className="btn btn--main font-weight-bold text-lowercase">
             delete my account
           </button>
         </form>
