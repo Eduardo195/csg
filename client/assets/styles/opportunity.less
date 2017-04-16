@@ -1,12 +1,20 @@
 .op {
   padding: 1em;
 
+  .media-phone-landscape({
+    padding: 0;
+  });
+
   .title {
     .sectionTitle;
   }
 
   > .mainWrapper {
     padding-top: 1em;
+
+    .media-phone-landscape({
+      display: block !important;
+    });
 
     h4 {
       font-size: 1.25em;
@@ -23,6 +31,10 @@
 
       .contentWrapper {
         padding-right: 10%;
+
+        .media-phone-landscape({
+          padding-right: 0;
+        });
       }
 
     }
@@ -33,6 +45,12 @@
       .contentWrapper {
           padding-left: 2em;
           border-left: 1px solid @primary-light;
+
+
+          .media-phone-landscape({
+            border-left: 0;
+            padding: 0;
+          });
 
           span {
             display: inline-block;
