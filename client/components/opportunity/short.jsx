@@ -15,9 +15,11 @@ function Short(props) {
 
   return (
     <div className="offer">
-      <Link href={`/opportunity/${_id}`}>
-        <h4 className="title">{title}</h4>
-      </Link>
+      <h4 className="title">
+        <Link href={`/opportunity/${_id}`}>
+          {title}
+        </Link>
+      </h4>
       <h5 className="subTitle">{shortEmployer}</h5>
       <span className="location">{shortLocation}</span>
       <span>{shortRole}</span>
