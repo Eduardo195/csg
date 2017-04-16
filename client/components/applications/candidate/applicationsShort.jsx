@@ -10,15 +10,11 @@ function ApplicationsShort({ error, applications }) {
         applications && applications.map(({ opportunity }) => (
           <div key={opportunity._id} className="application">
             <article>
-              <header>
-                <h5>
-                  <span className="bold">
-                    {opportunity.title}
-                  </span>
-                  <span className="flt-r">
-                    [Message]
-                  </span>
+              <header className="d-flex">
+                <h5 className="flex-anchor bold">
+                  {opportunity.title}
                 </h5>
+                <span className="align-self-end"> [Message] </span>
               </header>
               <main>
                 <span>

@@ -2,8 +2,12 @@
   padding: 0;
 
   .quickView {
+    .media-tablet-landscape({
+      display: block !important;
+    });
+
     background: @primary-light;
-    padding: 10%;
+    padding: 5%;
 
     .applications {
       background: white;
@@ -14,6 +18,11 @@
           border-bottom: 1px solid @primary-light;
           margin-bottom: .25rem;
 
+          h5 {
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
         }
 
         main {
@@ -34,5 +43,27 @@
         .title;
       }
     }
+
+    .cvbox,
+    .clbox {
+      background: white;
+      margin-left: 2em;
+      padding: 2em;
+
+      .media-tablet-landscape({
+        margin-left: 0;
+        margin-top: 1em;
+      });
+
+      a {
+        display: block;
+        color: @primary-dark;
+      }
+    }
+
+    .clbox {
+      margin-top: 1em;
+    }
+
   }
 }
