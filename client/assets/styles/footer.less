@@ -1,7 +1,13 @@
 .root {
     > footer  {
-      background: @tertiary-light;
-      padding: 1em 10%;
+      background: @tertiary-dark;
+      // padding: 1em 10%;
+
+      h2 {
+        color: @primary-light;
+        text-align: center;
+        margin: 1em 0;
+      }
 
       > div {
         .media-phone-landscape({
@@ -10,17 +16,17 @@
       }
 
       article {
-        display: inline-block;
-        margin: 0 auto;
+        padding: 0 2em;
+
+        a,
+        h6 {
+          color: @font-color-alt;
+        }
       }
 
-      a {
-        color: @primary-dark;
-      }
-
-      .d-flex.flex-wrap > div {
-        text-transform: lowercase;
+      .d-flex > div {
         padding: 1em 2em;
+
         .media-phone-landscape({
           text-align: center;
         });

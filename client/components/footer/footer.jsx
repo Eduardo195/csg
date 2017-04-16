@@ -3,23 +3,24 @@ import Link from 'components/link/link';
 
 const Footer = () => (
   <footer>
-    <div className="d-flex justify-content-center flex-wrap">
-      <div className="align-self-stretch">
+    <h2 className="bold">oportunarium</h2>
+    <div className="d-flex justify-content-center">
+      <div>
         <article>
-          <h4>For Opportunity Seekers</h4>
+          <h6 className="bold">For Opportunity Seekers</h6>
           <div><Link href="/opportunities">Find Opportunities</Link></div>
           <div><Link href="#">Upload CV</Link></div>
         </article>
       </div>
-      <div className="align-self-stretch">
+      <div>
         <article>
-          <h4>For Employers</h4>
+          <h6 className="bold">For Employers</h6>
           <div><Link href="/opportunity/create">Create opportunity</Link></div>
         </article>
       </div>
-      <div className="align-self-stretch">
+      <div>
         <article>
-          <h4>About us</h4>
+          <h6 className="bold">About us</h6>
           <div><Link href="#">Privacy</Link></div>
           <div><Link href="#">Contact</Link></div>
           <div><Link href="#">Terms</Link></div>
