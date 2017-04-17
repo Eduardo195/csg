@@ -1,5 +1,9 @@
 import React from 'react';
 
+function ignoreEvent(e) {
+  e.preventDefault();
+}
+
 class FileInput extends React.Component {
   constructor() {
     super();
@@ -27,9 +31,6 @@ class FileInput extends React.Component {
     this.fileInput.click();
   }
 
-  ignoreEvent(e) {
-    e.preventDefault();
-  }
 
   render() {
     const { isDisabled, label, placeholder } = this.props;
@@ -39,11 +40,13 @@ class FileInput extends React.Component {
       <div>
         <div className="input-group">
           <span className="input-group-btn">
-            <button className="btn btn--main-alt-reverse bold" type="button" onClick={this.triggerFileInput}>{label}</button>
+            <button className="btn btn--main-alt-reverse bold" type="button" onClick={this.triggerFileInput}>
+              {label}
+            </button>
           </span>
           <input
             type="text" className="form-control disabled" placeholder={placeholder} value={name}
-            ref={this.getFilePathInputRef} onClick={this.triggerFileInput} onChange={this.ignoreEvent}
+            ref={this.getFilePathInputRef} onClick={this.triggerFileInput} onChange={ignoreEvent}
           />
           <input
             id="fileInput" disabled={isDisabled} type="file"

@@ -33,6 +33,7 @@
 @import './editor';
 @import './home';
 @import './media';
+@import './about';
 
 body, html {
     font-family: @font-family;
@@ -62,8 +63,10 @@ body {
     min-height: 100vh;
 }
 
-.in-b {
+.d {
+  &-inb {
     display: inline-block;
+  }
 }
 
 .flt-r {
@@ -82,7 +85,6 @@ body {
   letter-spacing: 5px;
   font-size: 1.25em;
 }
-
 
 .workTable .img{
   background: url('../images/workTable') @primary-light no-repeat;
@@ -138,4 +140,10 @@ body {
 
 a, a:hover {
   color: inherit;
+}
+
+.p {
+  &-10 {
+    padding: 10%;
+  }
 }

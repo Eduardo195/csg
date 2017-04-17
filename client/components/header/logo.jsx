@@ -3,7 +3,7 @@ import Link from 'components/link/link';
 
 const Logo = props => (
   <Link href="/" className={props.className ? props.className : null}>
-    <div className="in-b logo">&nbsp;</div>
+    <div className="d-inb logo">&nbsp;</div>
   </Link>
 );
 

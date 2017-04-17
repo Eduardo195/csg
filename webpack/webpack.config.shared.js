@@ -17,12 +17,13 @@ const config = {
     rules: [
       { test: /\.js$/, use: 'babel-loader', exclude: EXCLUDE },
       { test: /\.jsx$/, use: 'babel-loader', exclude: EXCLUDE },
+      { test: /\.png$/, use: 'file-loader', exclude: EXCLUDE },
       { test: /\.svg$/, use: 'file-loader', exclude: EXCLUDE },
       { test: /\.gif$/, use: 'file-loader', exclude: EXCLUDE }
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.jpg', '.svg', '.gif', '.less'],
+    extensions: ['.js', '.jsx', 'png', '.svg', '.gif', '.less'],
     modules: [
       path.resolve(__dirname, '../client'),
       path.resolve(__dirname, '../node_modules/'),
