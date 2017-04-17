@@ -29,7 +29,7 @@ const Footer = () => (
         </article>
       </div>
     </div>
-    <div>&copy; TBD</div>
+    <div>&copy; Copyright (c) 2017 Particle Forward Ltd All Rights Reserved.</div>
   </footer>
 );
 

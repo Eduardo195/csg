@@ -1,34 +1,17 @@
 import React from 'react';
+import Link from 'components/link/link';
 import ErrorMessage from 'components/messages/error';
-import moment from 'moment';
+import Application from 'components/application/application';
 
 function ApplicationsShort({ error, applications }) {
   return (
     <div className="applications">
-      <h1 className="title text-uppercase bold">My Applications</h1>
+      <h1 className="title text-uppercase bold">
+        <Link href="/applications"> My Applications </Link>
+      </h1>
       {
         applications && applications.map(({ opportunity }) => (
-          <div key={opportunity._id} className="application">
-            <article>
-              <header className="d-flex">
-                <h5 className="flex-anchor bold">
-                  {opportunity.title}
-                </h5>
-                <span className="align-self-end"> [Message] </span>
-              </header>
-              <main>
-                <span>
-                  {opportunity.employerName}
-                </span>
-                <span className="flt-r text-uppercase status">
-                  received
-                </span>
-              </main>
-              <footer className="small bold">
-                { moment(opportunity.date).format('DD/MM/YYYY') }
-              </footer>
-            </article>
-          </div>
+          <Application key={opportunity._id} opportunity={opportunity} />
         ))
       }
       {error && (

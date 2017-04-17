@@ -1,3 +1,52 @@
-.application {
-  padding: 1em 0 0 1em;
+.applications {
+  background: white;
+  padding: 2em;
+
+  h2 {
+    .title;
+    color: @secondary-light;
+    margin-top: 3em;
+  }
+
+  > section {
+    border: 1px solid @tertiary-light;
+
+    .application {
+      border-bottom: 1px solid @tertiary-lightest;
+      padding: 2em;
+
+      &:last-of-type {
+        border: 0;
+      }
+    }
+  }
+
+  .application {
+    padding: 1em 0 0 1em;
+
+    header {
+      border-bottom: 1px solid @primary-light;
+      margin-bottom: .25rem;
+
+      h5 {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+    }
+
+    main {
+      color: @secondary-light;
+
+      .status {
+        .bold;
+        color: @primary-light;
+      }
+    }
+
+    footer {
+      color: @primary-dark;
+    }
+  }
+
 }

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import Applications from '../applications';
+import { getCandidateApplications } from '../actions/actions';
 import { getApplicationsError, getApplications } from '../selectors/selectors';
 
 function mapStateToProps(state) {
@@ -9,4 +10,12 @@ function mapStateToProps(state) {
   };
 }
 
-export default connect(mapStateToProps)(Applications);
+function mapDispatchToProps(dispatch) {
+  return {
+    onMount() {
+      dispatch(getCandidateApplications());
+    },
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Applications);

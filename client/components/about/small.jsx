@@ -4,7 +4,7 @@ import CandidateImg from 'assets/images/people.png';
 
 const AboutSmall = () => (
   <div className="about small">
-    <h3 className='bold'>
+    <h3 className="bold">
       Welcome to Oportunarium!
     </h3>
     <p className="intro">
@@ -20,14 +20,14 @@ const AboutSmall = () => (
     </p>
     <div>
       <section className="d-inb text-center d-inb">
-        <h3>20 Candidatos Registados</h3>
+        <h3>20+ registered candidates</h3>
         <div>
           <img src={CandidateImg} alt="Candidates" />
         </div>
         <div />
       </section>
       <section className="d-inb text-center d-inb">
-        <h3>3 Empresas Registadas</h3>
+        <h3>3 registered companies</h3>
         <div>
           <img src={CompanyImg} alt="Company" />
         </div>

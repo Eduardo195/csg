@@ -1,45 +1,54 @@
 import React from 'react';
 import ErrorMessage from 'components/messages/error';
-import Link from 'components/link/link';
-import moment from 'moment';
+import Application from 'components/application/application';
 
-function Applications({ error, applications }) {
-  return (
-    <div className="jumbotron">
-      <div className="container">
-        <h1>My Applications</h1>
-        {
+class Applications extends React.Component {
+  componentDidMount() {
+    this.props.onMount();
+  }
+
+  render() {
+    const { error, applications } = this.props;
+    return (
+      <div className="applications">
+        <h1 className="title sectionTitle text-uppercase text-center">My Applications</h1>
+        { error && (<ErrorMessage>{ error }</ErrorMessage>) }
+
+        <h2 className="text-uppercase">new</h2>
+        <section>
+          {
           applications && applications.map(({ opportunity }) => (
-            <div key={opportunity._id} className="application">
-              <div>
-                <h4>
-                  <Link href={`/opportunity/${opportunity._id}`}>
-                    {opportunity.title}
-                  </Link>
-                </h4>
-                <strong>
-                  {opportunity.employerName}
-                </strong>
-                , {opportunity.location.label}
-                - <i>[ROLE - TODO]</i>
-              </div>
-              <div>
-                <small>{moment(opportunity.date).format('DD/MM/YY HH:MM')}</small>
-              </div>
-            </div>
+            <Application key={opportunity._id} opportunity={opportunity} />
           ))
         }
-        {error && (
-          <ErrorMessage>{ error }</ErrorMessage>
-        )}
+        </section>
+
+        <h2 className="text-uppercase">Shortlisted</h2>
+        <section>
+          {
+          applications && applications.map(({ opportunity }) => (
+            <Application key={opportunity._id} opportunity={opportunity} />
+          ))
+        }
+        </section>
+
+        <h2 className="text-uppercase">Old</h2>
+        <section>
+          {
+          applications && applications.map(({ opportunity }) => (
+            <Application key={opportunity._id} opportunity={opportunity} />
+          ))
+        }
+        </section>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 Applications.propTypes = {
   error: React.PropTypes.string,
   applications: React.PropTypes.array,
+  onMount: React.PropTypes.func.isRequired,
 };
 
 export default Applications;

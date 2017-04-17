@@ -13,6 +13,7 @@ Link.propTypes = {
   className: React.PropTypes.string,
   href: React.PropTypes.string.isRequired,
   children: React.PropTypes.oneOfType([
+    React.PropTypes.array,
     React.PropTypes.string,
     React.PropTypes.element,
   ]).isRequired,

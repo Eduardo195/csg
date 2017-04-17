@@ -21,6 +21,9 @@ const navOptions = {
   user: [{
     label: 'opportunities',
     href: '/opportunities/',
+  }, {
+    label: 'my applications',
+    href: '/applications',
   }],
 };
 
