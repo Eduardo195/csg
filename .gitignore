@@ -9,4 +9,5 @@ public/static/*
 !public/static/styles.css
 !public/static/*.bundle.js
 !public/static/*.svg
+!public/static/*.png
 !public/static/*.gif

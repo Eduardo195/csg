@@ -4,7 +4,7 @@ import CandidateImg from 'assets/images/people.png';
 
 const AboutSmall = () => (
   <div className="about small">
-    <h3>
+    <h3 className='bold'>
       Welcome to Oportunarium!
     </h3>
     <p className="intro">
