@@ -2,8 +2,8 @@ import { combineReducers } from 'redux';
 import personal from 'components/profile/candidate/reducers/personal';
 import professional from 'components/profile/candidate/reducers/professional';
 import employerVisibility from 'components/profile/candidate/reducers/employerVisibility';
-import cv from 'components/cvs/reducers/reducer';
-import * as types from '../actions/types';
+import cv from 'components/profile/candidate/reducers/cvReducer';
+import * as types from '../actions/cvTypes';
 
 function isLoading(state = false, action) {
   switch (action.type) {

@@ -1,5 +1,4 @@
 import React from 'react';
-import Cvs from 'components/cvs/containers/cvs';
 import QuickView from './quickView';
 
 class Home extends React.Component {
@@ -12,7 +11,6 @@ class Home extends React.Component {
     return (
       <div className="home">
         <QuickView />
-        <Cvs />
       </div>
     );
   }

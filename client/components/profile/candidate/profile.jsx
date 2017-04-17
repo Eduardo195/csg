@@ -4,6 +4,7 @@ import Personal from './containers/personal';
 import Professional from './containers/professional';
 import EmployerVisibility from './containers/employerVisibility';
 import DeleteAccount from '../containers/deleteAccount';
+import Cv from './containers/cvs';
 
 class Profile extends React.Component {
 
@@ -18,8 +19,12 @@ class Profile extends React.Component {
         {
           error && (<ErrorMessage> { error } </ErrorMessage>)
         }
+        {
+          isLoading && (<div> Loading ... </div>)
+        }
         <Personal />
         <Professional />
+        <Cv />
         <EmployerVisibility />
         <DeleteAccount />
       </div>

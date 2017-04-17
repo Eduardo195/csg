@@ -1,7 +1,7 @@
 import { get } from 'lodash';
 import { combineReducers } from 'redux';
 import { SET_PROFILE } from 'components/profile/candidate/actions/types';
-import * as types from '../actions/types';
+import * as types from '../actions/cvTypes';
 
 function upload(state = {
   error: null,
@@ -38,7 +38,7 @@ function upload(state = {
   }
 }
 
-function meta(state = {}, action) {
+function meta(state = null, action) {
   switch (action.type) {
     case types.SET_META_IS_LOADING:
       return Object.assign({}, state, {

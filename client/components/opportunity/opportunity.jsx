@@ -10,7 +10,8 @@ function getDangerouslySetInnerHTML(body) {
 const Opportunity = (props) => {
   const { opportunity } = props;
 
-  const { title, pay, contractType, body, content, company, location, industry, date } = opportunity;
+  const { title, pay, contractType, body, content,
+    company, location, industry, date } = opportunity;
   const { label: locationLabel } = location;
 
   const minPay = pay && pay.min;
