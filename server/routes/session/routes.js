@@ -6,7 +6,8 @@ function setup(app, passport) {
         return next(err); // Throws a 500 error
       }
       if (!user) {
-        return res.send({ success: false, err: info.msg });
+        console.log(info);
+        return res.send({ success: false, err: info.message });
       }
       req.login(user, (loginErr) => {
         if (loginErr) {

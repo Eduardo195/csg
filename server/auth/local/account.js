@@ -13,6 +13,11 @@ function AccountManager() {
       });
     },
     login(username, password) {
+
+      /*if (!username || !password) {
+        throw errors.LOGIN_INVALID_CREDENTIALS;
+      }*/
+
       return Connector.getByUsername(username).then((user) => {
         if (!user) {
           throw errors.LOGIN_INVALID_CREDENTIALS;

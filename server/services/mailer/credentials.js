@@ -1,4 +1,4 @@
-const pass = require('./secret/secret');
+const pass = require('../../secret/secret');
 
 module.exports = {
   pass,
