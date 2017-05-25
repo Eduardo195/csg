@@ -83,6 +83,4 @@ function gather(config, previousRefs, insertData) {
   });
 }
 
-module.exports = {
-  gather
-};
+module.exports = { gather };

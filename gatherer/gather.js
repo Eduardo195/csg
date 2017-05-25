@@ -5,24 +5,20 @@ const NetEmpregosConfig = require('./farmers/netEmpregos/config');
 const ExpressoEmpregoConfig = require('./farmers/expressoEmprego/config');
 const gatherer = require('./helpers/gatherer');
 
-// 5 min cron allows for ~20 pages total at 1/sec
-ExpressoEmpregoConfig.maxRequests = 5;
-ExpressoEmpregoConfig.maxRequests = 5;
-
 const configs = [
-  // ExpressoEmpregoConfig,
+  ExpressoEmpregoConfig,
   NetEmpregosConfig
 ];
 
 const startTime = Date.now();
 
-console.log('Waking up to get some');
+console.log('Gatherin\'');
 Connector.con.then(() => {
   return Connector.find(TableNames.OPPORTUNITIES, {}).then((results) => {
     return gather(getRefsBySource(results), 0);
   });
 }).then(() => {
-  console.log(`Done, took ${(Date.now() - startTime) / 1000}sec / ${(Date.now() - startTime) / 60000}min on ${new Date()}`);
+  console.log(`Done, took ${(Date.now() - startTime) / 1000}sec / ${Math.round((Date.now() - startTime) / 600) / 100}min on ${new Date()}`);
   Connector.close();
 }).catch((err) => {
   console.log('catastrophic error', err);
