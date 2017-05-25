@@ -51,7 +51,7 @@ class EmployerVisibility extends React.Component {
         <h6 className="text-uppercase">Do you want employers to be able to find and contact you?</h6>
         <button
           disabled={this.isLoading} onClick={this.setVisibility} aria-pressed={isVisible}
-          className={`btn btn--toggle ${isVisible ? 'active' : ''}`}
+          className={`btn btn--toggle ${isVisible ? 'active' : ''} form-group`}
         >
           { label }
         </button>

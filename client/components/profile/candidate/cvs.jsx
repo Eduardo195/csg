@@ -66,11 +66,11 @@ class Cvs extends React.Component {
           <div className="form-group">
             <CvInput handleChange={this.handleFileChange} isDisabled={isLoading} />
           </div>
-          {uploadError && (<ErrorMessage>{ uploadError }</ErrorMessage>)}
-          {uploadSuccess && (<SuccessMessage>File uploaded successfully</SuccessMessage>)}
-          <button disabled={!this.canSubmit()} className="btn btn--main">
+          <button disabled={!this.canSubmit()} className="btn btn--main form-group">
             { isUploading ? 'Uploading...' : 'save cv' }
           </button>
+          {uploadError && (<ErrorMessage>{ uploadError }</ErrorMessage>)}
+          {uploadSuccess && (<SuccessMessage>File uploaded successfully</SuccessMessage>)}
         </form>
       </section>
     );

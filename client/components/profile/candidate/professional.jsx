@@ -81,9 +81,8 @@ class Professional extends React.Component {
             <KeywordFilter id="profileKw" className="input-group-lg" handleAdd={this.addKeyword} placeholder="Areas and techs" showLabel label="Areas and technologies you have experience in" />
             <KeywordList keywords={keywords} handleRemove={this.removeKeyword} />
           </div>
-          <div>
-            <button disabled={!this.canSubmit()} type="submit" className="btn btn--main font-weight-bold text-lowercase"> { isLoading ? 'Loading...' : 'Save' }</button>
-          </div>
+          <button disabled={!this.canSubmit()} type="submit" className="btn btn--main font-weight-bold text-lowercase form-group"> { isLoading ? 'Loading...' : 'Save' }</button>
+
           { error && (<ErrorMessage> { error } </ErrorMessage>) }
           { success && (<SuccessMessage>updated</SuccessMessage>) }
         </form>

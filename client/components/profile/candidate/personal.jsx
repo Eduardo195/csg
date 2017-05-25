@@ -51,9 +51,7 @@ class Personal extends React.Component {
         <form onSubmit={this.onSubmit}>
           <NameInput id="name" initialValue={name} placeholder="Name" label="Name" showLabel onChange={this.setName} />
           <NameInput id="sname" initialValue={surname} placeholder="Surname" label="Surname" showLabel onChange={this.setSurname} />
-          <div>
-            <button disabled={!this.canSubmit()} type="submit" className="btn btn--main font-weight-bold text-lowercase"> { isLoading ? 'Loading...' : 'Save' }</button>
-          </div>
+          <button disabled={!this.canSubmit()} type="submit" className="btn btn--main font-weight-bold text-lowercase form-group"> { isLoading ? 'Loading...' : 'Save' }</button>
         </form>
         { error && (<ErrorMessage> { error } </ErrorMessage>) }
         { success && (<SuccessMessage>updated</SuccessMessage>) }

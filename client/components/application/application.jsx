@@ -19,6 +19,12 @@ const Application = ({ opportunity }) => (
       { moment(opportunity.date).format('DD/MM/YYYY') }
     </footer>
   </article>
-  );
+);
+
+Application.propTypes = {
+  opportunity: React.PropTypes.shape({
+    title: React.PropTypes.string,
+  }).isRequired,
+};
 
 export default Application;

@@ -32,12 +32,12 @@ class Login extends React.Component {
 
   onSubmit(e) {
     e.preventDefault();
-    if(!this.state.email || !this.state.pwd) {
-      this.updateState({ error: 'Missing credentials'})
+    if (!this.state.email || !this.state.pwd) {
+      this.updateState({ error: 'Missing credentials' });
       return false;
     }
-    if(this.state.error) {
-      this.updateState({ error: null})
+    if (this.state.error) {
+      this.updateState({ error: null });
     }
 
     this.props.login(this.state.email, this.state.pwd);
