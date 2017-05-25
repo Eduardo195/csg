@@ -34,6 +34,21 @@
   }
 }
 
+.radioGroup {
+  .radio {
+    padding: 1em;
+    border: 1px solid @primary-light;
+    cursor: pointer;
+    transition: 0.25s background;
+    margin-bottom: 1em;
+
+    &.active {
+      background: @primary-light;
+      color: @font-color-alt;
+    }
+  }
+}
+
 .keywordFilter {
   margin-bottom: 0.25em;
 

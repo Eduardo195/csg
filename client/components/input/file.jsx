@@ -31,11 +31,10 @@ class FileInput extends React.Component {
     this.fileInput.click();
   }
 
-
   render() {
-    const { isDisabled, label, placeholder } = this.props;
+    const { inputRef, isDisabled, label, placeholder } = this.props;
     const { name, error } = this.state;
-
+    
     return (
       <div>
         <div className="input-group">
@@ -44,12 +43,10 @@ class FileInput extends React.Component {
               {label}
             </button>
           </span>
-          <input
-            type="text" className="form-control disabled" placeholder={placeholder} value={name}
-            ref={this.getFilePathInputRef} onClick={this.triggerFileInput} onChange={ignoreEvent}
+          <input type="text" className="form-control disabled" placeholder={placeholder} value={name}
+            ref={inputRef} onClick={this.triggerFileInput} onChange={ignoreEvent}
           />
-          <input
-            id="fileInput" disabled={isDisabled} type="file"
+          <input id="fileInput" disabled={isDisabled} type="file"
             ref={this.getFileInputRef} onChange={this.onChange} hidden
           />
         </div>
@@ -64,6 +61,7 @@ FileInput.propTypes = {
   validate: React.PropTypes.func.isRequired,
   placeholder: React.PropTypes.string,
   isDisabled: React.PropTypes.bool,
+  inputRef: React.PropTypes.func,
   label: React.PropTypes.string,
 };
 
