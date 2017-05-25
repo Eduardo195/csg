@@ -1,11 +1,17 @@
 .media-phone-landscape(@rules){
   @media (max-width:767px) {
-      @rules();
-    }
+    @rules();
   }
+}
 
-  .media-tablet-landscape(@rules){
-    @media (max-width:1024px) {
-        @rules();
-      }
-    }
+.media-phone-portrait(@rules) {
+  @media (max-width:480px) {
+    @rules();
+  }
+}
+
+.media-tablet-landscape(@rules){
+  @media (max-width:1024px) {
+    @rules();
+  }
+}

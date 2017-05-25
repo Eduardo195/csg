@@ -3,8 +3,36 @@
     background: url(../images/bcg.svg) no-repeat;
     background-size: auto 70%;
     background-position: 50% 80%;
-    min-height: 90vh;
     overflow: hidden;
+    height: 90vh;
+
+    .mobileWrapper {
+      height: 100%;
+      padding: 0 2em;
+
+      .media-phone-landscape({
+        background: fade(@primary-light, 75%);
+
+        h2 {
+          color: @font-color-alt;
+        }
+
+        .btn {
+          border-color: @primary-dark;
+          background: @primary-dark;
+          text-transform: uppercase;
+          color: @font-color-alt;
+
+          .media-phone-portrait({
+            width: 100%;
+          })
+        }
+
+      });
+
+
+
+    }
 
     &.flex.flex--center {
         justify-content: center;
@@ -26,13 +54,5 @@
             margin-right: 1em;
 
         }
-    }
-
-    .wrapper {
-        // padding: 13em;
-    }
-
-    div {
-        // padding: 0 1em;
     }
 }
