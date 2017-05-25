@@ -23,7 +23,7 @@ export function login(username, password) {
       if (rsp.success) {
         window.location = '/';
       } else {
-        dispatch(setLoginError(rsp.err));
+        dispatch(setLoginError(rsp.msg || 'Unknown error'));
       }
       dispatch(setOverlayVisibility(false));
     }).catch(() => {

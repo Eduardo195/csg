@@ -6,7 +6,7 @@ function setup(app, passport) {
         return next(err); // Throws a 500 error
       }
       if (!user) {
-        return res.send({ success: false, err: info.msg });
+        return res.send({ success: false, msg: info.message });
       }
       req.login(user, (loginErr) => {
         if (loginErr) {
@@ -28,7 +28,6 @@ function setup(app, passport) {
   // PUT === restore session
   app.put('/api/session/', (req, res) => {
     if (req.user) {
-      console.log('returning ', req.user);
       res.send({ success: true, user: req.user });
     } else {
       res.send({ success: false });

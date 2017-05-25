@@ -22,7 +22,7 @@ Button.propTypes = {
   className: React.PropTypes.string,
   onBlur: React.PropTypes.func,
   onHover: React.PropTypes.func,
-  onTap: React.PropTypes.func.isRequired,
+  onTap: React.PropTypes.func,   // submit buttons dont need an onTap
   dataValue: React.PropTypes.string, // for data-attr
 };
 

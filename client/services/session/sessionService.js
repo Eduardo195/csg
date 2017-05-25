@@ -1,6 +1,6 @@
 import { query } from '../helpers';
 
-const UserService = {
+const SessionService = {
   login(username, password) {
     return query({
       url: '/api/session',
@@ -16,4 +16,4 @@ const UserService = {
   },
 };
 
-export default UserService;
+export default SessionService;
